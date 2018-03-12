@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="GBK"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:websocket="http://www.springframework.org/schema/websocket"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                        http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+                        http://www.springframework.org/schema/context  
+                        http://www.springframework.org/schema/context/spring-context-4.0.xsd
+                        http://www.springframework.org/schema/mvc  
+                        http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd
+                         http://www.springframework.org/schema/websocket
+                         http://www.springframework.org/schema/websocket/spring-websocket.xsd">
+    <!-- 自动扫描该包，使SpringMVC认为包下用了@controller注解的类是控制器 -->
+    <context:component-scan base-package="com.hxsg">
+        <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller" />
+        <context:include-filter type="annotation" expression="org.springframework.stereotype.Service" />
+    </context:component-scan>
+    <mvc:annotation-driven/>
+
+    <bean id="mappingJacksonHttpMessageConverter"
+          class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter">
+        <property name="supportedMediaTypes">
+            <list>
+                <value>text/html;charset=UTF-8</value>
+            </list>
+        </property>
+    </bean>
+
+
+    <!--<mvc:default-servlet-handler/>-->
+    <!--<mvc:interceptors>-->
+        <!--<mvc:interceptor>-->
+            <!--&lt;!&ndash;需拦截的地址&ndash;&gt;-->
+            <!--<mvc:mapping path="/*/*/*" />-->
+            <!--<mvc:mapping path="/*/*" />-->
+            <!--&lt;!&ndash;需排除拦截的地址&ndash;&gt;-->
+            <!--<mvc:exclude-mapping path="/cocos2dLogin/*"/>-->
+            <!--<mvc:exclude-mapping path="/cocos2dRedis/*"/>-->
+            <!--<mvc:exclude-mapping path="/hxsgAdmin/*"/>-->
+            <!--<bean class="com.hxsg.Interceptor.HxsgUrlInterceptor" />-->
+        <!--</mvc:interceptor>-->
+    <!--</mvc:interceptors>-->
+</beans>

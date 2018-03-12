@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+  PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+  "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+ <miniui>
+ <!--
+ 1.cxjg 标签属性说明
+	1.1where 查询结果条件的查询方式：单选或者多选
+	1.2name 标识，可不填
+ 2.property 标签属性说明
+    2.1 name miniui控件类型 
+	2.2 readonly 默认false
+	2.3 vtype  控件验证类型
+	-->
+ <cxtj pd="000000" where="单选" name="查询条件" >
+  <property name="mini-textbox" vtype="int"  length="8" readonly="true">证件号码</property>
+  <property name="mini-textbox"> 在职序号</property>
+  <property name="mini-textbox">  社保登记码</property>
+ </cxtj>
+ <cxjg pd="30130018" name="查询结果">
+  <property id="" name="" >姓名</property>
+  <property id="" name="" >证件号码</property>
+  <property id="" name="" >  pid </property>
+  <property id="" name="" >人员类别</property>
+  <property id="" name="" >92工龄</property>
+  <property id="" name="" >92年底前连续工龄最大值</property>
+  <property id="" name="" >视作缴费年月 </property>
+  <property id="" name="" >人员类别</property>
+ </cxjg>
+ </miniui>
+ 
+ 
+ 

@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hxsg.Dao.FuJiangMapper" >
+  <resultMap id="BaseResultMap" type="com.hxsg.po.FuJiang" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="chengzhang" property="chengzhang" jdbcType="REAL" />
+    <result column="chuxue" property="chuxue" jdbcType="INTEGER" />
+    <result column="chujing" property="chujing" jdbcType="INTEGER" />
+    <result column="chusu" property="chusu" jdbcType="INTEGER" />
+    <result column="chufang" property="chufang" jdbcType="INTEGER" />
+    <result column="chugong" property="chugong" jdbcType="INTEGER" />
+    <result column="touxiang" property="touxiang" jdbcType="VARCHAR" />
+    <result column="fujiangname" property="fujiangname" jdbcType="VARCHAR" />
+    <result column="sex" property="sex" jdbcType="VARCHAR" />
+    <result column="touxian" property="touxian" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, chengzhang, chuxue, chujing, chusu, chufang, chugong, touxiang, fujiangname, 
+    sex, touxian
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from fujiang
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+    <select id="queryFuJiangByName" resultMap="BaseResultMap" parameterType="java.lang.String" >
+        select
+        <include refid="Base_Column_List" />
+        from fujiang
+        where fujiangname in (#{0,jdbcType=VARCHAR},#{1,jdbcType=VARCHAR},#{2,jdbcType=VARCHAR},#{3,jdbcType=VARCHAR},#{4,jdbcType=VARCHAR},#{5,jdbcType=VARCHAR})
+    </select>
+    <select id="selectAll" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+        select
+        <include refid="Base_Column_List" />
+        from fujiang
+     <where>
+         <if test="chengzhang != null" >
+             chengzhang = #{chengzhang,jdbcType=REAL}
+         </if>
+         <if test="chuxue != null" >
+          and   chuxue = #{chuxue,jdbcType=INTEGER}
+         </if>
+         <if test="chujing != null" >
+             and  chujing = #{chujing,jdbcType=INTEGER}
+         </if>
+         <if test="chusu != null" >
+             and  chusu = #{chusu,jdbcType=INTEGER}
+         </if>
+         <if test="chufang != null" >
+             and  chufang = #{chufang,jdbcType=INTEGER}
+         </if>
+         <if test="chugong != null" >
+             and   chugong = #{chugong,jdbcType=INTEGER}
+         </if>
+         <if test="touxiang != null" >
+             and  touxiang = #{touxiang,jdbcType=VARCHAR}
+         </if>
+         <if test="fujiangname != null" >
+             and  fujiangname = #{fujiangname,jdbcType=VARCHAR}
+         </if>
+         <if test="sex != null" >
+             and   sex = #{sex,jdbcType=VARCHAR},
+         </if>
+         <if test="touxian != null" >
+             and   touxian = #{touxian,jdbcType=VARCHAR}
+         </if>
+     </where>
+    </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from fujiang
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.hxsg.po.FuJiang" >
+    insert into fujiang (id, chengzhang, chuxue, 
+      chujing, chusu, chufang, 
+      chugong, touxiang, fujiangname, 
+      sex, touxian)
+    values (#{id,jdbcType=INTEGER}, #{chengzhang,jdbcType=REAL}, #{chuxue,jdbcType=INTEGER}, 
+      #{chujing,jdbcType=INTEGER}, #{chusu,jdbcType=INTEGER}, #{chufang,jdbcType=INTEGER}, 
+      #{chugong,jdbcType=INTEGER}, #{touxiang,jdbcType=VARCHAR}, #{fujiangname,jdbcType=VARCHAR}, 
+      #{sex,jdbcType=VARCHAR}, #{touxian,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hxsg.po.FuJiang" >
+    insert into fujiang
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="chengzhang != null" >
+        chengzhang,
+      </if>
+      <if test="chuxue != null" >
+        chuxue,
+      </if>
+      <if test="chujing != null" >
+        chujing,
+      </if>
+      <if test="chusu != null" >
+        chusu,
+      </if>
+      <if test="chufang != null" >
+        chufang,
+      </if>
+      <if test="chugong != null" >
+        chugong,
+      </if>
+      <if test="touxiang != null" >
+        touxiang,
+      </if>
+      <if test="fujiangname != null" >
+        fujiangname,
+      </if>
+      <if test="sex != null" >
+        sex,
+      </if>
+      <if test="touxian != null" >
+        touxian,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="chengzhang != null" >
+        #{chengzhang,jdbcType=REAL},
+      </if>
+      <if test="chuxue != null" >
+        #{chuxue,jdbcType=INTEGER},
+      </if>
+      <if test="chujing != null" >
+        #{chujing,jdbcType=INTEGER},
+      </if>
+      <if test="chusu != null" >
+        #{chusu,jdbcType=INTEGER},
+      </if>
+      <if test="chufang != null" >
+        #{chufang,jdbcType=INTEGER},
+      </if>
+      <if test="chugong != null" >
+        #{chugong,jdbcType=INTEGER},
+      </if>
+      <if test="touxiang != null" >
+        #{touxiang,jdbcType=VARCHAR},
+      </if>
+      <if test="fujiangname != null" >
+        #{fujiangname,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="touxian != null" >
+        #{touxian,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hxsg.po.FuJiang" >
+    update fujiang
+    <set >
+      <if test="chengzhang != null" >
+        chengzhang = #{chengzhang,jdbcType=REAL},
+      </if>
+      <if test="chuxue != null" >
+        chuxue = #{chuxue,jdbcType=INTEGER},
+      </if>
+      <if test="chujing != null" >
+        chujing = #{chujing,jdbcType=INTEGER},
+      </if>
+      <if test="chusu != null" >
+        chusu = #{chusu,jdbcType=INTEGER},
+      </if>
+      <if test="chufang != null" >
+        chufang = #{chufang,jdbcType=INTEGER},
+      </if>
+      <if test="chugong != null" >
+        chugong = #{chugong,jdbcType=INTEGER},
+      </if>
+      <if test="touxiang != null" >
+        touxiang = #{touxiang,jdbcType=VARCHAR},
+      </if>
+      <if test="fujiangname != null" >
+        fujiangname = #{fujiangname,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        sex = #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="touxian != null" >
+        touxian = #{touxian,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hxsg.po.FuJiang" >
+    update fujiang
+    set chengzhang = #{chengzhang,jdbcType=REAL},
+      chuxue = #{chuxue,jdbcType=INTEGER},
+      chujing = #{chujing,jdbcType=INTEGER},
+      chusu = #{chusu,jdbcType=INTEGER},
+      chufang = #{chufang,jdbcType=INTEGER},
+      chugong = #{chugong,jdbcType=INTEGER},
+      touxiang = #{touxiang,jdbcType=VARCHAR},
+      fujiangname = #{fujiangname,jdbcType=VARCHAR},
+      sex = #{sex,jdbcType=VARCHAR},
+      touxian = #{touxian,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,579 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hxsg.Dao.NewRoleMapper" >
+
+  <resultMap id="BaseResultMap" type="com.hxsg.po.NewRole" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="account" property="account" jdbcType="VARCHAR" />
+    <result column="roleName" property="rolename" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="VARCHAR" />
+    <result column="level" property="level" jdbcType="INTEGER" />
+    <result column="jingYan" property="jingyan" jdbcType="INTEGER" />
+    <result column="shengJiJingYan" property="shengjijingyan" jdbcType="INTEGER" />
+    <result column="sumds" property="sumds" jdbcType="INTEGER" />
+    <result column="keYongDs" property="keyongds" jdbcType="INTEGER" />
+    <result column="totalJy" property="totaljy" jdbcType="INTEGER" />
+    <result column="qiXueDs" property="qixueds" jdbcType="INTEGER" />
+    <result column="jingLiDs" property="jinglids" jdbcType="INTEGER" />
+    <result column="gongJiDs" property="gongjids" jdbcType="INTEGER" />
+    <result column="suDuDs" property="sududs" jdbcType="INTEGER" />
+    <result column="totalXue1" property="totalxue1" jdbcType="INTEGER" />
+    <result column="totalXue2" property="totalxue2" jdbcType="INTEGER" />
+    <result column="totalJing1" property="totaljing1" jdbcType="INTEGER" />
+    <result column="totalJing2" property="totaljing2" jdbcType="INTEGER" />
+    <result column="totalGong" property="totalgong" jdbcType="INTEGER" />
+    <result column="totalSuDu" property="totalsudu" jdbcType="INTEGER" />
+    <result column="CreateData" property="createdata" jdbcType="TIMESTAMP" />
+    <result column="zhiye" property="zhiye" jdbcType="VARCHAR" />
+    <result column="chengHao" property="chenghao" jdbcType="VARCHAR" />
+    <result column="shengJiXiaoLv" property="shengjixiaolv" jdbcType="INTEGER" />
+    <result column="tiLiZhi" property="tilizhi" jdbcType="INTEGER" />
+    <result column="jin" property="jin" jdbcType="INTEGER" />
+    <result column="yin" property="yin" jdbcType="INTEGER" />
+    <result column="sex" property="sex" jdbcType="VARCHAR" />
+    <result column="img" property="img" jdbcType="VARCHAR" />
+    <result column="zuoBiao" property="zuobiao" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, account, roleName, status, level, jingYan, shengJiJingYan, sumds, keYongDs, totalJy,
+    qiXueDs, jingLiDs, gongJiDs, suDuDs, totalXue1, totalJing1,
+    totalGong, totalSuDu, CreateData, zhiye, chengHao, shengJiXiaoLv, tiLiZhi, jin, yin, 
+    sex, img, zuoBiao
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+   *
+    from new_role
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+    <select id="queryRoleNameByIdList" resultMap="BaseResultMap"  >
+        select
+        *
+        from new_role
+      where id in
+        <foreach collection="liX" item="employeeId" index="index"
+                 open="(" close=")" separator=",">
+            #{employeeId}
+        </foreach>
+    </select>
+
+    <select id="queryFriends" resultMap="BaseResultMap" parameterType="java.lang.String" >
+        select
+        *
+        from new_role
+        where rolename like #{0,jdbcType=VARCHAR}
+    </select>
+
+    <!--角色属性查询大视图-->
+    <select id="queryTotalShuXingToRole" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+    select
+(case when totalXueZb is null then 0 else totalXueZb end)+totalXue2 as totalXue2,
+(case when totalJingZb is null then 0 else totalJingZb end)+totalJing2 as totalJing2,
+(case when totalSuDuZb is null then 0 else totalSuDuZb end)+totalSuDu as totalSuDu,
+(case when totalGongZb is null then 0 else totalGongZb end)+totalGong as totalGong,
+id,account,roleName,status,level,jingYan,shengJiJingYan,sumds,keYongDs,totalJy,qiXueDs,jingLiDs,gongJiDs,suDuDs,totalXue1,totalJing1,zhiye,chengHao,shengJiXiaoLv,
+tiLiZhi,jin,yin,sex,img,zuoBiao
+from
+(select
+
+(
+<!--11111111111-->
+        select kangXingTotal from(select kangXing,sum(xiaoGuo)kangXingTotal from (
+        SELECT kangXing,xiaoGuo
+        FROM baoshi b where exists
+        ( select * from ( SELECT baoShi1 FROM role_new_zhuangbei r where roleid=#{0,jdbcType=INTEGER} and zb=1
+        union
+        all SELECT baoShi2 FROM role_new_zhuangbei r where roleid=#{0,jdbcType=INTEGER} and zb=1 union all SELECT
+        baoShi3 FROM role_new_zhuangbei r where roleid=#{0,jdbcType=INTEGER} and zb=1
+        )A where b.id=A.baoshi1) and status=1
+
+
+        union all select kangXing,wqXiaoGuo xiaoGuo FROM role_new_zhuangbei r where roleid=#{0,jdbcType=INTEGER}
+        and zb=1) a group by kangXing) a where a.kangXing ='气血'
+
+        ) as totalXueZb,
+        round(r.level*r.chengzhang*(r.qiXueDs+r.chuxue*0.8)) as totalXue2,
+        (
+        select kangXingTotal from(select kangXing,sum(xiaoGuo)kangXingTotal from (
+        <!--11111111111-->
+        SELECT kangXing,xiaoGuo
+        FROM baoshi b where exists
+        ( select * from ( SELECT baoShi1 FROM role_new_zhuangbei r where roleid=#{0,jdbcType=INTEGER} and zb=1
+        union
+        all SELECT baoShi2 FROM role_new_zhuangbei r where roleid=#{0,jdbcType=INTEGER} and zb=1 union all SELECT
+        baoShi3 FROM role_new_zhuangbei r where roleid=#{0,jdbcType=INTEGER} and zb=1
+        )A where b.id=A.baoshi1) and status=1
+
+
+        union all select kangXing,wqXiaoGuo xiaoGuo FROM role_new_zhuangbei r where roleid=#{0,jdbcType=INTEGER} and zb=1) a group by kangXing) a where a.kangXing ='精力'
+)as totalJingZb,
+round(r.level*r.chengzhang*(r.jingLiDs+r.chujing*0.8)) as totalJing2,
+(
+select kangXingTotal   from(select kangXing,sum(xiaoGuo)kangXingTotal from (
+        <!--11111111111-->
+        SELECT kangXing,xiaoGuo
+        FROM baoshi b where exists
+        ( select * from ( SELECT baoShi1 FROM role_new_zhuangbei r where roleid=#{0,jdbcType=INTEGER} and zb=1
+        union
+        all SELECT baoShi2 FROM role_new_zhuangbei r where roleid=#{0,jdbcType=INTEGER} and zb=1 union all SELECT
+        baoShi3 FROM role_new_zhuangbei r where roleid=#{0,jdbcType=INTEGER} and zb=1
+        )A where b.id=A.baoshi1) and status=1
+
+        union all select kangXing,wqXiaoGuo xiaoGuo FROM role_new_zhuangbei r where roleid=#{0,jdbcType=INTEGER} and zb=1) a group by kangXing) a where a.kangXing ='速度'
+
+) as totalSuDuZb,
+round(r.chengzhang*(r.suDuDs+r.chusu)) as totalSuDu,
+(
+select  kangXingTotal  from(select kangXing,sum(xiaoGuo)kangXingTotal from (
+        <!--11111111111-->
+        SELECT kangXing,xiaoGuo
+        FROM baoshi b where exists
+        ( select * from ( SELECT baoShi1 FROM role_new_zhuangbei r where roleid=#{0,jdbcType=INTEGER} and zb=1
+        union
+        all SELECT baoShi2 FROM role_new_zhuangbei r where roleid=#{0,jdbcType=INTEGER} and zb=1 union all SELECT
+        baoShi3 FROM role_new_zhuangbei r where roleid=#{0,jdbcType=INTEGER} and zb=1
+        )A where b.id=A.baoshi1) and status=1
+
+
+        union all select kangXing,wqXiaoGuo xiaoGuo FROM role_new_zhuangbei r where roleid=#{0,jdbcType=INTEGER} and zb=1) a group by kangXing) a where a.kangXing ='攻击'
+
+) as totalGongZb,
+round((r.level*r.chengzhang*r.chugong/7)+r.chugong*r.chengzhang*0.5+r.level*r.chengzhang*r.gongJiDs*0.2) as totalGong,
+r.*
+ from (select m.*,n.chengzhang,n.chuxue,n.chugong,n.chujing,n.chusu from new_role m,role_jichu n where m.zhiye=n.zhiye)  r where id=#{0,jdbcType=INTEGER}) role
+
+
+    </select>
+    <!--角色属性查询大视图-->
+    <!--角色属性查询大视图-->
+    <select id="queryRoleMsgQx" resultMap="BaseResultMap" parameterType="com.hxsg.po.NewRole" >
+        select
+        (case when totalXueZb is null then 0 else totalXueZb end)+totalXue2 as totalXue2,
+        (case when totalJingZb is null then 0 else totalJingZb end)+totalJing2 as totalJing2,
+        id,account,roleName,status,level,jingYan,shengJiJingYan,sumds,keYongDs,totalJy,qiXueDs,jingLiDs,gongJiDs,suDuDs,totalXue1,totalJing1,zhiye,chengHao,shengJiXiaoLv,
+        tiLiZhi,jin,yin,sex,img,zuoBiao
+        from
+        (select
+        (
+        <!--11111111111-->
+        select kangXingTotal from(select kangXing,sum(xiaoGuo)kangXingTotal from (
+        SELECT kangXing,xiaoGuo
+        FROM baoshi b where exists
+        ( select * from ( SELECT baoShi1 FROM role_new_zhuangbei r where roleid=#{0,jdbcType=INTEGER} and zb=1
+        union
+        all SELECT baoShi2 FROM role_new_zhuangbei r where roleid=#{0,jdbcType=INTEGER} and zb=1 union all SELECT
+        baoShi3 FROM role_new_zhuangbei r where roleid=#{0,jdbcType=INTEGER} and zb=1
+        )A where b.id=A.baoshi1) and status=1
+
+
+        union all select kangXing,wqXiaoGuo xiaoGuo FROM role_new_zhuangbei r where roleid=#{0,jdbcType=INTEGER}
+        and zb=1) a group by kangXing) a where a.kangXing ='气血'
+
+        ) as totalXueZb,
+        round(r.level*r.chengzhang*(r.qiXueDs+r.chuxue*0.8)) as totalXue2,
+        (
+        select kangXingTotal from(select kangXing,sum(xiaoGuo)kangXingTotal from (
+        <!--11111111111-->
+        SELECT kangXing,xiaoGuo
+        FROM baoshi b where exists
+        ( select * from ( SELECT baoShi1 FROM role_new_zhuangbei r where roleid=#{0,jdbcType=INTEGER} and zb=1
+        union
+        all SELECT baoShi2 FROM role_new_zhuangbei r where roleid=#{0,jdbcType=INTEGER} and zb=1 union all SELECT
+        baoShi3 FROM role_new_zhuangbei r where roleid=#{0,jdbcType=INTEGER} and zb=1
+        )A where b.id=A.baoshi1) and status=1
+
+
+        union all select kangXing,wqXiaoGuo xiaoGuo FROM role_new_zhuangbei r where roleid=#{0,jdbcType=INTEGER} and zb=1) a group by kangXing) a where a.kangXing ='精力'
+        )as totalJingZb,
+        round(r.level*r.chengzhang*(r.jingLiDs+r.chujing*0.8)) as totalJing2,
+
+        r.*
+        from (select m.*,n.chengzhang,n.chuxue,n.chugong,n.chujing,n.chusu from new_role m,role_jichu n where m.zhiye=n.zhiye)  r where id=#{0,jdbcType=INTEGER}) role
+
+    </select>
+
+
+
+    <!--selectAll通用方法-->
+    <select id="selectAll" resultMap="BaseResultMap" parameterType="com.hxsg.po.NewRole" >
+        select
+        *
+        from new_role
+        <where>
+            <if test="id!= null" >
+              and   id = #{id,jdbcType=VARCHAR}
+            </if>
+            <if test="account != null" >
+              and  account = #{account,jdbcType=VARCHAR}
+            </if>
+            <if test="rolename != null" >
+              and  roleName = #{rolename,jdbcType=VARCHAR}
+            </if>
+            <if test="status != null" >
+              and  status = #{status,jdbcType=VARCHAR}
+            </if>
+            <if test="level != null" >
+              and  level = #{level,jdbcType=INTEGER}
+            </if>
+            <if test="zhiye != null" >
+               and  zhiye = #{zhiye,jdbcType=VARCHAR}
+            </if>
+            <if test="chenghao != null" >
+               and    chengHao = #{chenghao,jdbcType=VARCHAR}
+            </if>
+            <if test="jin != null" >
+                and   jin = #{jin,jdbcType=INTEGER}
+            </if>
+            <if test="yin != null" >
+                and   yin = #{yin,jdbcType=INTEGER}
+            </if>
+            <if test="sex != null" >
+                and   sex = #{sex,jdbcType=VARCHAR}
+            </if>
+            <if test="zuobiao != null" >
+                and    zuoBiao = #{zuobiao,jdbcType=VARCHAR}
+            </if>
+
+        </where>
+    </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from new_role
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.hxsg.po.NewRole" useGeneratedKeys="true" keyProperty="id" >
+    insert into new_role (id, account, roleName, 
+      status, level, jingYan, 
+      shengJiJingYan, sumds, keYongDs, 
+      totalJy, qiXueDs, jingLiDs, 
+      gongJiDs, suDuDs, totalXue1, 
+      totalXue2, totalJing1, totalJing2, 
+      totalGong, totalSuDu, CreateData, 
+      zhiye, chengHao, shengJiXiaoLv, 
+      tiLiZhi, jin, yin, 
+      sex, img, zuoBiao)
+    values (#{id,jdbcType=INTEGER}, #{account,jdbcType=VARCHAR}, #{rolename,jdbcType=VARCHAR}, 
+      #{status,jdbcType=VARCHAR}, #{level,jdbcType=INTEGER}, #{jingyan,jdbcType=INTEGER}, 
+      #{shengjijingyan,jdbcType=INTEGER}, #{sumds,jdbcType=INTEGER}, #{keyongds,jdbcType=INTEGER}, 
+      #{totaljy,jdbcType=INTEGER}, #{qixueds,jdbcType=INTEGER}, #{jinglids,jdbcType=INTEGER}, 
+      #{gongjids,jdbcType=INTEGER}, #{sududs,jdbcType=INTEGER}, #{totalxue1,jdbcType=INTEGER}, 
+      #{totalxue2,jdbcType=INTEGER}, #{totaljing1,jdbcType=INTEGER}, #{totaljing2,jdbcType=INTEGER}, 
+      #{totalgong,jdbcType=INTEGER}, #{totalsudu,jdbcType=INTEGER}, #{createdata,jdbcType=TIMESTAMP}, 
+      #{zhiye,jdbcType=VARCHAR}, #{chenghao,jdbcType=VARCHAR}, #{shengjixiaolv,jdbcType=INTEGER}, 
+      #{tilizhi,jdbcType=INTEGER}, #{jin,jdbcType=INTEGER}, #{yin,jdbcType=INTEGER}, 
+      #{sex,jdbcType=VARCHAR}, #{img,jdbcType=VARCHAR}, #{zuobiao,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hxsg.po.NewRole" useGeneratedKeys="true" keyProperty="id" >
+    insert into new_role
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="account != null" >
+        account,
+      </if>
+      <if test="rolename != null" >
+        roleName,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="level != null" >
+        level,
+      </if>
+      <if test="jingyan != null" >
+        jingYan,
+      </if>
+      <if test="shengjijingyan != null" >
+        shengJiJingYan,
+      </if>
+      <if test="sumds != null" >
+        sumds,
+      </if>
+      <if test="keyongds != null" >
+        keYongDs,
+      </if>
+      <if test="totaljy != null" >
+        totalJy,
+      </if>
+      <if test="qixueds != null" >
+        qiXueDs,
+      </if>
+      <if test="jinglids != null" >
+        jingLiDs,
+      </if>
+      <if test="gongjids != null" >
+        gongJiDs,
+      </if>
+      <if test="sududs != null" >
+        suDuDs,
+      </if>
+      <if test="totalxue1 != null" >
+        totalXue1,
+      </if>
+      <if test="totalxue2 != null" >
+        totalXue2,
+      </if>
+      <if test="totaljing1 != null" >
+        totalJing1,
+      </if>
+      <if test="totaljing2 != null" >
+        totalJing2,
+      </if>
+      <if test="totalgong != null" >
+        totalGong,
+      </if>
+      <if test="totalsudu != null" >
+        totalSuDu,
+      </if>
+      <if test="createdata != null" >
+        CreateData,
+      </if>
+      <if test="zhiye != null" >
+        zhiye,
+      </if>
+      <if test="chenghao != null" >
+        chengHao,
+      </if>
+      <if test="shengjixiaolv != null" >
+        shengJiXiaoLv,
+      </if>
+      <if test="tilizhi != null" >
+        tiLiZhi,
+      </if>
+      <if test="jin != null" >
+        jin,
+      </if>
+      <if test="yin != null" >
+        yin,
+      </if>
+      <if test="sex != null" >
+        sex,
+      </if>
+      <if test="img != null" >
+        img,
+      </if>
+      <if test="zuobiao != null" >
+        zuoBiao,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="account != null" >
+        #{account,jdbcType=VARCHAR},
+      </if>
+      <if test="rolename != null" >
+        #{rolename,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="level != null" >
+        #{level,jdbcType=INTEGER},
+      </if>
+      <if test="jingyan != null" >
+        #{jingyan,jdbcType=INTEGER},
+      </if>
+      <if test="shengjijingyan != null" >
+        #{shengjijingyan,jdbcType=INTEGER},
+      </if>
+      <if test="sumds != null" >
+        #{sumds,jdbcType=INTEGER},
+      </if>
+      <if test="keyongds != null" >
+        #{keyongds,jdbcType=INTEGER},
+      </if>
+      <if test="totaljy != null" >
+        #{totaljy,jdbcType=INTEGER},
+      </if>
+      <if test="qixueds != null" >
+        #{qixueds,jdbcType=INTEGER},
+      </if>
+      <if test="jinglids != null" >
+        #{jinglids,jdbcType=INTEGER},
+      </if>
+      <if test="gongjids != null" >
+        #{gongjids,jdbcType=INTEGER},
+      </if>
+      <if test="sududs != null" >
+        #{sududs,jdbcType=INTEGER},
+      </if>
+      <if test="totalxue1 != null" >
+        #{totalxue1,jdbcType=INTEGER},
+      </if>
+      <if test="totalxue2 != null" >
+        #{totalxue2,jdbcType=INTEGER},
+      </if>
+      <if test="totaljing1 != null" >
+        #{totaljing1,jdbcType=INTEGER},
+      </if>
+      <if test="totaljing2 != null" >
+        #{totaljing2,jdbcType=INTEGER},
+      </if>
+      <if test="totalgong != null" >
+        #{totalgong,jdbcType=INTEGER},
+      </if>
+      <if test="totalsudu != null" >
+        #{totalsudu,jdbcType=INTEGER},
+      </if>
+      <if test="createdata != null" >
+        #{createdata,jdbcType=TIMESTAMP},
+      </if>
+      <if test="zhiye != null" >
+        #{zhiye,jdbcType=VARCHAR},
+      </if>
+      <if test="chenghao != null" >
+        #{chenghao,jdbcType=VARCHAR},
+      </if>
+      <if test="shengjixiaolv != null" >
+        #{shengjixiaolv,jdbcType=INTEGER},
+      </if>
+      <if test="tilizhi != null" >
+        #{tilizhi,jdbcType=INTEGER},
+      </if>
+      <if test="jin != null" >
+        #{jin,jdbcType=INTEGER},
+      </if>
+      <if test="yin != null" >
+        #{yin,jdbcType=INTEGER},
+      </if>
+      <if test="sex != null" >
+        #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="img != null" >
+        #{img,jdbcType=VARCHAR},
+      </if>
+      <if test="zuobiao != null" >
+        #{zuobiao,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hxsg.po.NewRole" >
+    update new_role
+    <set >
+      <if test="account != null" >
+        account = #{account,jdbcType=VARCHAR},
+      </if>
+      <if test="rolename != null" >
+        roleName = #{rolename,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="level != null" >
+        level = #{level,jdbcType=INTEGER},
+      </if>
+      <if test="jingyan != null" >
+        jingYan = #{jingyan,jdbcType=INTEGER},
+      </if>
+      <if test="shengjijingyan != null" >
+        shengJiJingYan = #{shengjijingyan,jdbcType=INTEGER},
+      </if>
+      <if test="sumds != null" >
+        sumds = #{sumds,jdbcType=INTEGER},
+      </if>
+      <if test="keyongds != null" >
+        keYongDs = #{keyongds,jdbcType=INTEGER},
+      </if>
+      <if test="totaljy != null" >
+        totalJy = #{totaljy,jdbcType=INTEGER},
+      </if>
+      <if test="qixueds != null" >
+        qiXueDs = #{qixueds,jdbcType=INTEGER},
+      </if>
+      <if test="jinglids != null" >
+        jingLiDs = #{jinglids,jdbcType=INTEGER},
+      </if>
+      <if test="gongjids != null" >
+        gongJiDs = #{gongjids,jdbcType=INTEGER},
+      </if>
+      <if test="sududs != null" >
+        suDuDs = #{sududs,jdbcType=INTEGER},
+      </if>
+      <if test="totalxue1 != null" >
+        totalXue1 = #{totalxue1,jdbcType=INTEGER},
+      </if>
+      <if test="totalxue2 != null" >
+        totalXue2 = #{totalxue2,jdbcType=INTEGER},
+      </if>
+      <if test="totaljing1 != null" >
+        totalJing1 = #{totaljing1,jdbcType=INTEGER},
+      </if>
+      <if test="totaljing2 != null" >
+        totalJing2 = #{totaljing2,jdbcType=INTEGER},
+      </if>
+      <if test="totalgong != null" >
+        totalGong = #{totalgong,jdbcType=INTEGER},
+      </if>
+      <if test="totalsudu != null" >
+        totalSuDu = #{totalsudu,jdbcType=INTEGER},
+      </if>
+      <if test="createdata != null" >
+        CreateData = #{createdata,jdbcType=TIMESTAMP},
+      </if>
+      <if test="zhiye != null" >
+        zhiye = #{zhiye,jdbcType=VARCHAR},
+      </if>
+      <if test="chenghao != null" >
+        chengHao = #{chenghao,jdbcType=VARCHAR},
+      </if>
+      <if test="shengjixiaolv != null" >
+        shengJiXiaoLv = #{shengjixiaolv,jdbcType=INTEGER},
+      </if>
+      <if test="tilizhi != null" >
+        tiLiZhi = #{tilizhi,jdbcType=INTEGER},
+      </if>
+      <if test="jin != null" >
+        jin = #{jin,jdbcType=INTEGER},
+      </if>
+      <if test="yin != null" >
+        yin = #{yin,jdbcType=INTEGER},
+      </if>
+      <if test="sex != null" >
+        sex = #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="img != null" >
+        img = #{img,jdbcType=VARCHAR},
+      </if>
+      <if test="zuobiao != null" >
+        zuoBiao = #{zuobiao,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hxsg.po.NewRole" >
+    update new_role
+    set account = #{account,jdbcType=VARCHAR},
+      roleName = #{rolename,jdbcType=VARCHAR},
+      status = #{status,jdbcType=VARCHAR},
+      level = #{level,jdbcType=INTEGER},
+      jingYan = #{jingyan,jdbcType=INTEGER},
+      shengJiJingYan = #{shengjijingyan,jdbcType=INTEGER},
+      sumds = #{sumds,jdbcType=INTEGER},
+      keYongDs = #{keyongds,jdbcType=INTEGER},
+      totalJy = #{totaljy,jdbcType=INTEGER},
+      qiXueDs = #{qixueds,jdbcType=INTEGER},
+      jingLiDs = #{jinglids,jdbcType=INTEGER},
+      gongJiDs = #{gongjids,jdbcType=INTEGER},
+      suDuDs = #{sududs,jdbcType=INTEGER},
+      totalXue1 = #{totalxue1,jdbcType=INTEGER},
+      totalXue2 = #{totalxue2,jdbcType=INTEGER},
+      totalJing1 = #{totaljing1,jdbcType=INTEGER},
+      totalJing2 = #{totaljing2,jdbcType=INTEGER},
+      totalGong = #{totalgong,jdbcType=INTEGER},
+      totalSuDu = #{totalsudu,jdbcType=INTEGER},
+      CreateData = #{createdata,jdbcType=TIMESTAMP},
+      zhiye = #{zhiye,jdbcType=VARCHAR},
+      chengHao = #{chenghao,jdbcType=VARCHAR},
+      shengJiXiaoLv = #{shengjixiaolv,jdbcType=INTEGER},
+      tiLiZhi = #{tilizhi,jdbcType=INTEGER},
+      jin = #{jin,jdbcType=INTEGER},
+      yin = #{yin,jdbcType=INTEGER},
+      sex = #{sex,jdbcType=VARCHAR},
+      img = #{img,jdbcType=VARCHAR},
+      zuoBiao = #{zuobiao,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

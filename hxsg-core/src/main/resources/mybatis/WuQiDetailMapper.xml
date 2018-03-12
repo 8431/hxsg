@@ -1,0 +1,557 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hxsg.Dao.WuQiDetailMapper" >
+  <resultMap id="BaseResultMap" type="com.hxsg.po.WuQiDetail" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="zbid" property="zbid" jdbcType="INTEGER" />
+    <result column="level" property="level" jdbcType="VARCHAR" />
+    <result column="gongji" property="gongji" jdbcType="INTEGER" />
+    <result column="baoji" property="baoji" jdbcType="INTEGER" />
+    <result column="zhiming" property="zhiming" jdbcType="INTEGER" />
+    <result column="fanji" property="fanji" jdbcType="INTEGER" />
+    <result column="bs1" property="bs1" jdbcType="INTEGER" />
+    <result column="bs2" property="bs2" jdbcType="INTEGER" />
+    <result column="bs3" property="bs3" jdbcType="INTEGER" />
+    <result column="qixue" property="qixue" jdbcType="INTEGER" />
+    <result column="jingli" property="jingli" jdbcType="INTEGER" />
+    <result column="sudu" property="sudu" jdbcType="INTEGER" />
+    <result column="fangyu" property="fangyu" jdbcType="INTEGER" />
+    <result column="jnjc" property="jnjc" jdbcType="INTEGER" />
+    <result column="jnid" property="jnid" jdbcType="INTEGER" />
+    <result column="pinzhi" property="pinzhi" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="addgongji" property="addgongji" jdbcType="INTEGER" />
+    <result column="data" property="data" jdbcType="TIMESTAMP" />
+    <result column="wuli" property="wuli" jdbcType="INTEGER" />
+    <result column="lei" property="lei" jdbcType="INTEGER" />
+    <result column="hufeng" property="hufeng" jdbcType="INTEGER" />
+    <result column="du" property="du" jdbcType="INTEGER" />
+    <result column="luan" property="luan" jdbcType="INTEGER" />
+    <result column="wei" property="wei" jdbcType="INTEGER" />
+    <result column="feng" property="feng" jdbcType="INTEGER" />
+    <result column="mingzhong" property="mingzhong" jdbcType="INTEGER" />
+    <result column="fashubao" property="fashubao" jdbcType="INTEGER" />
+    <result column="yaohuo" property="yaohuo" jdbcType="INTEGER" />
+    <result column="fanzhen" property="fanzhen" jdbcType="INTEGER" />
+    <result column="duobi" property="duobi" jdbcType="INTEGER" />
+    <result column="xuanji" property="xuanji" jdbcType="INTEGER" />
+    <result column="type" property="type" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, zbid, level, gongji, baoji, zhiming, fanji, bs1, bs2, bs3, qixue, jingli, sudu, 
+    fangyu, jnjc, jnid, pinzhi, status, name, addgongji, data, wuli, lei, hufeng, du, 
+    luan, wei, feng, mingzhong, fashubao, yaohuo, fanzhen, duobi, xuanji, type
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from wuqidetail
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+    <select id="selectAll" resultMap="BaseResultMap" parameterType="com.hxsg.po.WuQiDetail" >
+        select
+        <include refid="Base_Column_List" />
+        from wuqidetail
+       <where>
+           <if test="zbid != null" >
+               zbid = #{zbid,jdbcType=INTEGER}
+           </if>
+           <if test="level != null" >
+           and    level = #{level,jdbcType=VARCHAR}
+           </if>
+           <if test="gongji != null" >
+               and    gongji = #{gongji,jdbcType=INTEGER}
+           </if>
+           <if test="baoji != null" >
+               and    baoji = #{baoji,jdbcType=INTEGER}
+           </if>
+           <if test="zhiming != null" >
+               and    zhiming = #{zhiming,jdbcType=INTEGER}
+           </if>
+           <if test="fanji != null" >
+               and   fanji = #{fanji,jdbcType=INTEGER}
+           </if>
+           <if test="bs1 != null" >
+               and   bs1 = #{bs1,jdbcType=INTEGER}
+           </if>
+           <if test="bs2 != null" >
+               and  bs2 = #{bs2,jdbcType=INTEGER}
+           </if>
+           <if test="bs3 != null" >
+               and   bs3 = #{bs3,jdbcType=INTEGER}
+           </if>
+           <if test="qixue != null" >
+               and   qixue = #{qixue,jdbcType=INTEGER}
+           </if>
+           <if test="jingli != null" >
+               and   jingli = #{jingli,jdbcType=INTEGER}
+           </if>
+           <if test="sudu != null" >
+               and    sudu = #{sudu,jdbcType=INTEGER}
+           </if>
+           <if test="fangyu != null" >
+               and   fangyu = #{fangyu,jdbcType=INTEGER}
+           </if>
+           <if test="jnjc != null" >
+               and   jnjc = #{jnjc,jdbcType=INTEGER}
+           </if>
+           <if test="jnid != null" >
+               and   jnid = #{jnid,jdbcType=INTEGER}
+           </if>
+           <if test="pinzhi != null" >
+               and   pinzhi = #{pinzhi,jdbcType=VARCHAR}
+           </if>
+           <if test="status != null" >
+               and  status = #{status,jdbcType=VARCHAR}
+           </if>
+           <if test="name != null" >
+               and  name = #{name,jdbcType=VARCHAR}
+           </if>
+           <if test="addgongji != null" >
+               and   addgongji = #{addgongji,jdbcType=INTEGER}
+           </if>
+           <if test="data != null" >
+               and    data = #{data,jdbcType=TIMESTAMP}
+           </if>
+           <if test="wuli != null" >
+               and  wuli = #{wuli,jdbcType=INTEGER}
+           </if>
+           <if test="lei != null" >
+               and   lei = #{lei,jdbcType=INTEGER}
+           </if>
+           <if test="hufeng != null" >
+               and  hufeng = #{hufeng,jdbcType=INTEGER}
+           </if>
+           <if test="du != null" >
+               and   du = #{du,jdbcType=INTEGER}
+           </if>
+           <if test="luan != null" >
+               and   luan = #{luan,jdbcType=INTEGER}
+           </if>
+           <if test="wei != null" >
+               and   wei = #{wei,jdbcType=INTEGER}
+           </if>
+           <if test="feng != null" >
+               and  feng = #{feng,jdbcType=INTEGER}
+           </if>
+           <if test="mingzhong != null" >
+               and  mingzhong = #{mingzhong,jdbcType=INTEGER}
+           </if>
+           <if test="fashubao != null" >
+               and   fashubao = #{fashubao,jdbcType=INTEGER}
+           </if>
+           <if test="yaohuo != null" >
+               and  yaohuo = #{yaohuo,jdbcType=INTEGER}
+           </if>
+           <if test="fanzhen != null" >
+               and  fanzhen = #{fanzhen,jdbcType=INTEGER}
+           </if>
+           <if test="duobi != null" >
+               and  duobi = #{duobi,jdbcType=INTEGER}
+           </if>
+           <if test="xuanji != null" >
+               and  xuanji = #{xuanji,jdbcType=INTEGER}
+           </if>
+           <if test="type != null" >
+               and  type = #{type,jdbcType=VARCHAR}
+           </if>
+
+
+
+       </where>
+    </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from wuqidetail
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.hxsg.po.WuQiDetail" >
+    insert into wuqidetail (id, zbid, level, 
+      gongji, baoji, zhiming, 
+      fanji, bs1, bs2, bs3, 
+      qixue, jingli, sudu, 
+      fangyu, jnjc, jnid, 
+      pinzhi, status, name, 
+      addgongji, data, wuli, 
+      lei, hufeng, du, luan, 
+      wei, feng, mingzhong, 
+      fashubao, yaohuo, fanzhen, 
+      duobi, xuanji, type
+      )
+    values (#{id,jdbcType=INTEGER}, #{zbid,jdbcType=INTEGER}, #{level,jdbcType=VARCHAR}, 
+      #{gongji,jdbcType=INTEGER}, #{baoji,jdbcType=INTEGER}, #{zhiming,jdbcType=INTEGER}, 
+      #{fanji,jdbcType=INTEGER}, #{bs1,jdbcType=INTEGER}, #{bs2,jdbcType=INTEGER}, #{bs3,jdbcType=INTEGER}, 
+      #{qixue,jdbcType=INTEGER}, #{jingli,jdbcType=INTEGER}, #{sudu,jdbcType=INTEGER}, 
+      #{fangyu,jdbcType=INTEGER}, #{jnjc,jdbcType=INTEGER}, #{jnid,jdbcType=INTEGER}, 
+      #{pinzhi,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
+      #{addgongji,jdbcType=INTEGER}, #{data,jdbcType=TIMESTAMP}, #{wuli,jdbcType=INTEGER}, 
+      #{lei,jdbcType=INTEGER}, #{hufeng,jdbcType=INTEGER}, #{du,jdbcType=INTEGER}, #{luan,jdbcType=INTEGER}, 
+      #{wei,jdbcType=INTEGER}, #{feng,jdbcType=INTEGER}, #{mingzhong,jdbcType=INTEGER}, 
+      #{fashubao,jdbcType=INTEGER}, #{yaohuo,jdbcType=INTEGER}, #{fanzhen,jdbcType=INTEGER}, 
+      #{duobi,jdbcType=INTEGER}, #{xuanji,jdbcType=INTEGER}, #{type,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.hxsg.po.WuQiDetail" >
+    insert into wuqidetail
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="zbid != null" >
+        zbid,
+      </if>
+      <if test="level != null" >
+        level,
+      </if>
+      <if test="gongji != null" >
+        gongji,
+      </if>
+      <if test="baoji != null" >
+        baoji,
+      </if>
+      <if test="zhiming != null" >
+        zhiming,
+      </if>
+      <if test="fanji != null" >
+        fanji,
+      </if>
+      <if test="bs1 != null" >
+        bs1,
+      </if>
+      <if test="bs2 != null" >
+        bs2,
+      </if>
+      <if test="bs3 != null" >
+        bs3,
+      </if>
+      <if test="qixue != null" >
+        qixue,
+      </if>
+      <if test="jingli != null" >
+        jingli,
+      </if>
+      <if test="sudu != null" >
+        sudu,
+      </if>
+      <if test="fangyu != null" >
+        fangyu,
+      </if>
+      <if test="jnjc != null" >
+        jnjc,
+      </if>
+      <if test="jnid != null" >
+        jnid,
+      </if>
+      <if test="pinzhi != null" >
+        pinzhi,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="addgongji != null" >
+        addgongji,
+      </if>
+      <if test="data != null" >
+        data,
+      </if>
+      <if test="wuli != null" >
+        wuli,
+      </if>
+      <if test="lei != null" >
+        lei,
+      </if>
+      <if test="hufeng != null" >
+        hufeng,
+      </if>
+      <if test="du != null" >
+        du,
+      </if>
+      <if test="luan != null" >
+        luan,
+      </if>
+      <if test="wei != null" >
+        wei,
+      </if>
+      <if test="feng != null" >
+        feng,
+      </if>
+      <if test="mingzhong != null" >
+        mingzhong,
+      </if>
+      <if test="fashubao != null" >
+        fashubao,
+      </if>
+      <if test="yaohuo != null" >
+        yaohuo,
+      </if>
+      <if test="fanzhen != null" >
+        fanzhen,
+      </if>
+      <if test="duobi != null" >
+        duobi,
+      </if>
+      <if test="xuanji != null" >
+        xuanji,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="zbid != null" >
+        #{zbid,jdbcType=INTEGER},
+      </if>
+      <if test="level != null" >
+        #{level,jdbcType=VARCHAR},
+      </if>
+      <if test="gongji != null" >
+        #{gongji,jdbcType=INTEGER},
+      </if>
+      <if test="baoji != null" >
+        #{baoji,jdbcType=INTEGER},
+      </if>
+      <if test="zhiming != null" >
+        #{zhiming,jdbcType=INTEGER},
+      </if>
+      <if test="fanji != null" >
+        #{fanji,jdbcType=INTEGER},
+      </if>
+      <if test="bs1 != null" >
+        #{bs1,jdbcType=INTEGER},
+      </if>
+      <if test="bs2 != null" >
+        #{bs2,jdbcType=INTEGER},
+      </if>
+      <if test="bs3 != null" >
+        #{bs3,jdbcType=INTEGER},
+      </if>
+      <if test="qixue != null" >
+        #{qixue,jdbcType=INTEGER},
+      </if>
+      <if test="jingli != null" >
+        #{jingli,jdbcType=INTEGER},
+      </if>
+      <if test="sudu != null" >
+        #{sudu,jdbcType=INTEGER},
+      </if>
+      <if test="fangyu != null" >
+        #{fangyu,jdbcType=INTEGER},
+      </if>
+      <if test="jnjc != null" >
+        #{jnjc,jdbcType=INTEGER},
+      </if>
+      <if test="jnid != null" >
+        #{jnid,jdbcType=INTEGER},
+      </if>
+      <if test="pinzhi != null" >
+        #{pinzhi,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="addgongji != null" >
+        #{addgongji,jdbcType=INTEGER},
+      </if>
+      <if test="data != null" >
+        #{data,jdbcType=TIMESTAMP},
+      </if>
+      <if test="wuli != null" >
+        #{wuli,jdbcType=INTEGER},
+      </if>
+      <if test="lei != null" >
+        #{lei,jdbcType=INTEGER},
+      </if>
+      <if test="hufeng != null" >
+        #{hufeng,jdbcType=INTEGER},
+      </if>
+      <if test="du != null" >
+        #{du,jdbcType=INTEGER},
+      </if>
+      <if test="luan != null" >
+        #{luan,jdbcType=INTEGER},
+      </if>
+      <if test="wei != null" >
+        #{wei,jdbcType=INTEGER},
+      </if>
+      <if test="feng != null" >
+        #{feng,jdbcType=INTEGER},
+      </if>
+      <if test="mingzhong != null" >
+        #{mingzhong,jdbcType=INTEGER},
+      </if>
+      <if test="fashubao != null" >
+        #{fashubao,jdbcType=INTEGER},
+      </if>
+      <if test="yaohuo != null" >
+        #{yaohuo,jdbcType=INTEGER},
+      </if>
+      <if test="fanzhen != null" >
+        #{fanzhen,jdbcType=INTEGER},
+      </if>
+      <if test="duobi != null" >
+        #{duobi,jdbcType=INTEGER},
+      </if>
+      <if test="xuanji != null" >
+        #{xuanji,jdbcType=INTEGER},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hxsg.po.WuQiDetail" >
+    update wuqidetail
+    <set >
+      <if test="zbid != null" >
+        zbid = #{zbid,jdbcType=INTEGER},
+      </if>
+      <if test="level != null" >
+        level = #{level,jdbcType=VARCHAR},
+      </if>
+      <if test="gongji != null" >
+        gongji = #{gongji,jdbcType=INTEGER},
+      </if>
+      <if test="baoji != null" >
+        baoji = #{baoji,jdbcType=INTEGER},
+      </if>
+      <if test="zhiming != null" >
+        zhiming = #{zhiming,jdbcType=INTEGER},
+      </if>
+      <if test="fanji != null" >
+        fanji = #{fanji,jdbcType=INTEGER},
+      </if>
+      <if test="bs1 != null" >
+        bs1 = #{bs1,jdbcType=INTEGER},
+      </if>
+      <if test="bs2 != null" >
+        bs2 = #{bs2,jdbcType=INTEGER},
+      </if>
+      <if test="bs3 != null" >
+        bs3 = #{bs3,jdbcType=INTEGER},
+      </if>
+      <if test="qixue != null" >
+        qixue = #{qixue,jdbcType=INTEGER},
+      </if>
+      <if test="jingli != null" >
+        jingli = #{jingli,jdbcType=INTEGER},
+      </if>
+      <if test="sudu != null" >
+        sudu = #{sudu,jdbcType=INTEGER},
+      </if>
+      <if test="fangyu != null" >
+        fangyu = #{fangyu,jdbcType=INTEGER},
+      </if>
+      <if test="jnjc != null" >
+        jnjc = #{jnjc,jdbcType=INTEGER},
+      </if>
+      <if test="jnid != null" >
+        jnid = #{jnid,jdbcType=INTEGER},
+      </if>
+      <if test="pinzhi != null" >
+        pinzhi = #{pinzhi,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="addgongji != null" >
+        addgongji = #{addgongji,jdbcType=INTEGER},
+      </if>
+      <if test="data != null" >
+        data = #{data,jdbcType=TIMESTAMP},
+      </if>
+      <if test="wuli != null" >
+        wuli = #{wuli,jdbcType=INTEGER},
+      </if>
+      <if test="lei != null" >
+        lei = #{lei,jdbcType=INTEGER},
+      </if>
+      <if test="hufeng != null" >
+        hufeng = #{hufeng,jdbcType=INTEGER},
+      </if>
+      <if test="du != null" >
+        du = #{du,jdbcType=INTEGER},
+      </if>
+      <if test="luan != null" >
+        luan = #{luan,jdbcType=INTEGER},
+      </if>
+      <if test="wei != null" >
+        wei = #{wei,jdbcType=INTEGER},
+      </if>
+      <if test="feng != null" >
+        feng = #{feng,jdbcType=INTEGER},
+      </if>
+      <if test="mingzhong != null" >
+        mingzhong = #{mingzhong,jdbcType=INTEGER},
+      </if>
+      <if test="fashubao != null" >
+        fashubao = #{fashubao,jdbcType=INTEGER},
+      </if>
+      <if test="yaohuo != null" >
+        yaohuo = #{yaohuo,jdbcType=INTEGER},
+      </if>
+      <if test="fanzhen != null" >
+        fanzhen = #{fanzhen,jdbcType=INTEGER},
+      </if>
+      <if test="duobi != null" >
+        duobi = #{duobi,jdbcType=INTEGER},
+      </if>
+      <if test="xuanji != null" >
+        xuanji = #{xuanji,jdbcType=INTEGER},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hxsg.po.WuQiDetail" >
+    update wuqidetail
+    set zbid = #{zbid,jdbcType=INTEGER},
+      level = #{level,jdbcType=VARCHAR},
+      gongji = #{gongji,jdbcType=INTEGER},
+      baoji = #{baoji,jdbcType=INTEGER},
+      zhiming = #{zhiming,jdbcType=INTEGER},
+      fanji = #{fanji,jdbcType=INTEGER},
+      bs1 = #{bs1,jdbcType=INTEGER},
+      bs2 = #{bs2,jdbcType=INTEGER},
+      bs3 = #{bs3,jdbcType=INTEGER},
+      qixue = #{qixue,jdbcType=INTEGER},
+      jingli = #{jingli,jdbcType=INTEGER},
+      sudu = #{sudu,jdbcType=INTEGER},
+      fangyu = #{fangyu,jdbcType=INTEGER},
+      jnjc = #{jnjc,jdbcType=INTEGER},
+      jnid = #{jnid,jdbcType=INTEGER},
+      pinzhi = #{pinzhi,jdbcType=VARCHAR},
+      status = #{status,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      addgongji = #{addgongji,jdbcType=INTEGER},
+      data = #{data,jdbcType=TIMESTAMP},
+      wuli = #{wuli,jdbcType=INTEGER},
+      lei = #{lei,jdbcType=INTEGER},
+      hufeng = #{hufeng,jdbcType=INTEGER},
+      du = #{du,jdbcType=INTEGER},
+      luan = #{luan,jdbcType=INTEGER},
+      wei = #{wei,jdbcType=INTEGER},
+      feng = #{feng,jdbcType=INTEGER},
+      mingzhong = #{mingzhong,jdbcType=INTEGER},
+      fashubao = #{fashubao,jdbcType=INTEGER},
+      yaohuo = #{yaohuo,jdbcType=INTEGER},
+      fanzhen = #{fanzhen,jdbcType=INTEGER},
+      duobi = #{duobi,jdbcType=INTEGER},
+      xuanji = #{xuanji,jdbcType=INTEGER},
+      type = #{type,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

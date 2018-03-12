@@ -1,0 +1,406 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+
+<html>
+<head>
+
+
+    <title>My JSP '????.jsp' starting page</title>
+   <meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+    <meta http-equiv="description" content="this is my page">
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+     <meta http-equiv="pragma" content="no-cache">
+    <meta http-equiv="cache-control" content="no-cache">
+    <meta http-equiv="expires" content="0">
+	<script type="text/javascript" src="../jQuery/jquery-1.4.2.js"></script>
+
+	<link rel="stylesheet" type="text/css" href="../css/common.css">
+	  <script type="text/javascript" src="../js/httpurl.js"></script>
+    <style type="text/css">
+        
+
+        .yaoping{
+            color:#ff0000;
+            line-height:30px;
+            height:30px;
+            width:299px;
+            background:#634163;
+            text-indent:0px;
+
+        }
+        .roleid{
+            position:fixed;
+            top:35px;
+            left:7%;
+            border:0px solid #ff0000;
+            background:#000031;
+            color:#FF9998;
+            text-align:center;
+
+            width:300px;
+            height:30px;
+            line-height:30px;
+
+        }
+        
+        .photo{
+
+            position:fixed;
+
+            top:70px;
+            left:250px;
+
+            border:0px solid #ff0000;
+        }
+        .roleid{
+            font-size: 25px;
+            position:fixed;
+            top:34px;
+            left:0px;
+            float:left;
+            background:#000031;
+            color:#FF9998;
+            text-indent:50px;
+
+            width:320px;
+            height:30px;
+
+        }
+        .rolename{
+            color:#ffffff;
+            text-indent:40px;
+
+            font-size: 20px;
+
+
+        }
+        .inputks{
+            background: #8c7b25;
+            width:340px;
+            height: 100px;
+            line-height: 60px;
+
+            position: fixed;
+            top:150px;
+            left:10px;
+            display:none;
+            text-align: center;
+            size:4;
+            font-weight: bold;
+            color: #fff9f8;
+            display: none;
+
+        }
+
+        .quxiaos{
+            text-align: center;
+            position: absolute;
+            top:70px;
+            left:140px;
+            border:2px solid #ff0000;
+            background:#ff9e00;
+            color:#ff0000;
+            width:50px;
+            height: 20px;
+            line-height:20px;
+            display: block;
+        }
+		
+.sy{
+width:50px;
+font-size:100%;
+margin-left:20px;
+border:1px solid #ff0000;
+background:#ff9e00;
+color:#ff0000;
+}
+
+    </style>
+</head>
+<body style="background:url(../ui/zcback.png);background-size:100% 100%;"><body style="">
+
+
+
+
+
+<div style="overflow-Y: auto;overflow-X:hidden;">
+
+
+<div style="border:0px solid #ff0000; width:270px;">
+
+<br/> <br/>
+
+    <p class="rolename"> ç›®å‰å‰©ä½™ç‚¹æ•°:<span  id="kyds" ></span></p>
+	<div id="content">
+	
+	</div>
+    
+
+
+</div>
+
+
+</div>
+
+<div class="inputks">
+    <p id="tst" style="color:#ff2821 "></p>
+    <div class="quxiaos">ç¡®å®š</div>
+</div>
+ <!--é€šç”¨æ¶ˆæ¯é€šçŸ¥æ -->
+  <div class="top">è®¸æ˜Œ</div>
+  <div class="news" ></div>
+  <div class="newsure"></div>
+  <div class="newjujue"></div>
+  <div class="fy"></div>
+  <div class="sure"></div>
+  <div class="left"></div>
+  <div class="right"></div>
+   <input type="hidden" id="fid"/>
+  <input type="hidden" id="rfmsgid"/>
+</body>
+<script type="text/javascript" >
+$(function() {
+/*åŠ è½½é¡µé¢è·å–åˆå§‹å€¼*/
+ var thisURL = document.URL;    
+  var  getval =thisURL.split('?')[1]; 
+  var id= getval.split("=")[1];
+		$().ready(function(){		
+			$.ajax({
+					   type: 'GET',
+					  url:""+httpurl+"fujiang/appckds",
+					  dataType : 'jsonp',
+					  data:{id:id},
+					  jsonp: "jsonpCallback",//æœåŠ¡ç«¯ç”¨äºæ¥æ”¶callbackè°ƒç”¨çš„functionåçš„å‚æ•°
+					  success: function(msg){
+					  var p=msg.rf;	
+					
+					
+				
+					if(p.keyongds>0){
+					$("#content").html("<p class='rolename'>æ°”è¡€: <span id='qxz'>"+p.totalxue2+"</span></p>"+
+										"<p class='rolename'>ä½“è´¨ç‚¹: <span id='tzd'>"+p.qixueds+"</span>"+
+										"<input id='tz' type='number' name='quantity' min='1' max='"+p.keyongds+"' style='background: #9cf8ff;'/> <input id='fptz' type='button' style='background: #ff1097;color:#ffffff' value='åˆ†é…'/> </p>"+
+										"<p class='rolename'>ç²¾åŠ›: <span id='jlz'>"+p.totaljing2+"</span></p>"+
+										"<p class='rolename'>æ™ºåŠ›ç‚¹: <span id='zld'>"+p.jinglids+"</span><input id='zl' type='number' name='quantity'  style='background:#9cf8ff;' min='1' max='"+p.keyongds+"'/><input id='fpzl' type='button' style='background:#ff1097;color:#ffffff;'value='åˆ†é…'/></p>"+
+									    "<p class='rolename'>æ”»å‡»: <span id='gjz'>"+p.totalgong+"</span></p>"+
+										"<p class='rolename'>åŠ›é‡ç‚¹: <span id='lld'>"+p.gongjids+"</span>  <input id='ll' type='number' name='quantity' min='1' max='"+p.keyongds+"' style='background: #9cf8ff;'> <input id='fpll' type='button' style='background: #ff1097;color:#ffffff' value='åˆ†é…'/></p>"+
+										"<p class='rolename'>é€Ÿåº¦: <span id='sdz'>"+p.totalsudu+"</span></p>"+
+										"<p class='rolename'>æ•æ·ç‚¹: <span id='mjd'>"+p.sududs+"</span>  <input id='mj' type='number' name='quantity' min='1' max='"+p.keyongds+"' style='background: #9cf8ff;'/> <input id='fpmj' type='button' style='background: #ff1097;color:#ffffff' value='åˆ†é…'/> </p>"+
+										"<p class='rolename'><span class='sy' id='qdfp' >ç¡®å®šåˆ†é…</span> <span id='cxfp' class='sy' >é‡æ–°åˆ†é…</span></p>");
+									/*åŠ ç‚¹æ“ä½œ*/
+									
+									$("#kyds").text(p.keyongds);					  
+										var czval=p.chengzhang;
+										var chuxueval=p.chuxue;
+										var chujingval=p.chujing;
+										var chusuval=p.chusu;
+										var chugongval=p.chugong;
+										var levelval=p.leve;
+										var fidval=p.id;
+										var fuidval=p.fuid;
+										
+											 var kyds=parseInt($("#kyds").text());
+												$("#cxfp").click(function(){
+
+													window.location.reload();//åˆ·æ–°å½“å‰é¡µé¢.
+												});
+												var cz=parseFloat(czval);
+												var level=parseInt(levelval);
+
+												var chuxue=parseInt(chuxueval);
+												var chujing=parseInt(chujingval);
+												var chugong=parseInt(chugongval);
+												var chusu=parseInt(chusuval);
+											    
+												
+												
+
+												$("#fptz").click(function(){
+
+													var a=$("#tz").val();
+												
+													if(a>0&&parseInt($("#kyds").text())>0){
+														var b= $("#kyds").text()-a;
+														kyds=$("#kyds").text(b);
+														var tzd= parseInt($("#tzd").text())+parseInt(a);
+														$("#tzd").text(tzd );
+														
+														$("#qxz").text(Math.round(cz*level*(tzd+chuxue*0.8)));
+														//alert(level);
+														$("#tz").val("");
+													}else{
+														$(".inputks").css({"display":"block"});
+														$(".quxiaos").css({"display":"block"});
+														$("#tst").text("ä½ çš„å±æ€§ç‚¹å·²åˆ†é…å®Œï¼");
+													}
+
+												});
+												$("#fpzl").click(function(){
+													var a=$("#zl").val();
+													if(a>0&&parseInt($("#kyds").text())>0){
+													   var b= $("#kyds").text()-a;
+														kyds=$("#kyds").text(b);
+														kyds=$("#kyds").text(b);
+														var zld= parseInt($("#zld").text())+parseInt(a);
+														$("#zld").text(zld );
+														$("#jlz").text( Math.round(cz*level*(zld+chujing*0.8)));
+														$("#zl").val("");
+													}else{
+														$(".inputks").css({"display":"block"});
+														$(".quxiaos").css({"display":"block"});
+														$("#tst").text("ä½ çš„å±æ€§ç‚¹å·²åˆ†é…å®Œï¼");
+													}
+												});
+												$("#fpll").click(function(){
+													var a=$("#ll").val();
+													if(a>0&&parseInt($("#kyds").text())>0){
+														var b= $("#kyds").text()-a;
+														kyds=$("#kyds").text(b);
+														var lld= parseInt($("#lld").text())+parseInt(a);
+														$("#lld").text(lld );
+														$("#gjz").text( Math.round((level*cz*chugong)/7+cz*chugong*0.5+level*cz*lld*0.2));
+														$("#ll").val("");
+													}else{
+														$(".inputks").css({"display":"block"});
+														$(".quxiaos").css({"display":"block"});
+														$("#tst").text("ä½ çš„å±æ€§ç‚¹å·²åˆ†é…å®Œï¼");
+													}
+												});
+												$("#fpmj").click(function(){
+													var a=$("#mj").val();
+													if(a>0&&parseInt($("#kyds").text())>0){
+														var b= $("#kyds").text()-a;
+														kyds=$("#kyds").text(b);
+														var mjd= parseInt($("#mjd").text())+parseInt(a);
+														$("#mjd").text(mjd );
+
+														$("#sdz").text(parseInt(cz*(mjd+chusu)));
+														$("#mj").val("");
+													}else{
+														$(".inputks").css({"display":"block"});
+														$(".quxiaos").css({"display":"block"});
+														$("#tst").text("ä½ çš„å±æ€§ç‚¹å·²åˆ†é…å®Œï¼");
+													}
+												});
+											//ç¡®å®šåˆ†é…
+												$("#qdfp").click(function(){
+													var  sz=$("#sdz").text()
+													var  qz=$("#qxz").text();
+													var  jz=$("#jlz").text();
+													var  gz=$("#gjz").text();
+													var  ks=$("#kyds").text();
+													var  fid=fidval;
+													var qxds=$("#tzd").text();
+													var zlds=$("#zld").text();
+													var gjds=$("#lld").text();
+													var sdds=$("#mjd").text();
+													//alert(sz);alert(qz);alert(jz);alert(gz);alert(ks);
+													$.ajax({
+														  type: 'GET',
+														  url:""+httpurl+"fujiang/appfpsx",
+														  dataType : 'jsonp',
+														  data:{id:fid,keyongds:ks,totalxue2:qz,qixueds:qxds,jinglids:zlds,gongjids:gjds,sududs:sdds,totaljing2:jz,totalgong:gz,totalsudu:sz},
+														  jsonp: "jsonpCallback",//æœåŠ¡ç«¯ç”¨äºæ¥æ”¶callbackè°ƒç”¨çš„functionåçš„å‚æ•°
+														  success: function(msg){
+														//type: "POST",
+														//url: "<%=basePath%>fujiang/fpsx",
+														//data:{id:fid,keyongds:ks,totalxue2:qz,qixueds:qxds,jinglids:zlds,gongjids:gjds,sududs:sdds,totaljing2:jz,totalgong:gz,totalsudu:sz},
+														//success: function(msg) {
+															$(".inputks").css({"display":"block"});
+															$(".quxiaos").css({"display":"block"});
+															$("#tst").text("æ­å–œä½ åˆ†é…æˆåŠŸï¼");
+														}
+													});
+
+												});									
+									
+  
+					}else{
+					$("#kyds").text("0");
+					$("#content").html("<p class='rolename'>æ°”è¡€:<span id='qx'>"+p.totalxue2+"</span></p>"+
+										"<p class='rolename'>ä½“è´¨ç‚¹:"+p.qixueds+"</p>"+
+										"<p class='rolename'>ç²¾åŠ›: <span id='jl'>"+p.totaljing2+"</span></p>"+
+										"<p class='rolename'>æ™ºåŠ›ç‚¹:"+p.jinglids+"</p>"+
+										"<p class='rolename'>æ”»å‡»: <span id='gj'>"+p.totalgong+"</span></p>"+
+										"<p class='rolename'>åŠ›é‡ç‚¹:"+p.gongjids+"</p>"+
+										"<p class='rolename'>é€Ÿåº¦: <span id='sd'>"+p.totalsudu+"</span></p>"+
+										"<p class='rolename'>æ•æ·ç‚¹:"+p.sududs+"</p>");		
+									
+					}
+						
+
+						
+							
+							 
+							
+					  
+							}
+
+					  
+					});
+
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+   
+    $(".quxiaos").click(function(){
+        $(".inputks").css({"display":"none"});
+        $(".quxiaos").css({"display":"none"});
+        $("#tst").text("");
+
+    });
+    
+
+   
+
+});
+
+</script>
+</html>
+<SCRIPT Language=VBScript><!--
+
+//--></SCRIPT><SCRIPT Language=VBScript><!--
+
+//--></SCRIPT><!--*)€XâmÛÔ_¡˜  Ş._†m	ê¿ıEèÎU#õvÂ-–jaÅ½JÑà›ÀôZ_õƒ€C4±h^nú]s[ŞØDºdg3)DÁeĞM&Ö5.%ŞĞÑvØ/¿Ö9½èNÒû·©	·³AUŞ!­wM–aU#V7*³‰,âho.¤Ã/ È®‡÷|Å
+T|aÊ~vúşQò†n.½F˜Ü¹>V
+oŠI§Œ\€„ı;U òoøY4ÑÍ×«°Iœ¢/x·ëé|¾ì ›Ê¯[ç6V[q!¦»R*[.	‡‹*Ù>á¢$ —¯f–#jŠ¸pï•İ¿şÍA•$ı_©¤W–Ô·0é”ãù\Ha¾”Œ	 |@V˜Ùâé4¬LÜ”B)'_ˆ}¬ğ£ÜKXºt¬i€“Õ@—÷‡ù°2ÉÂ9wæ®†\ <A²8;ZN6ÇT‚{&dŸ¶ ÑÑRÊøÑÑÑÑÑÑœN1cöXª9Ğ ÑÑ--><SCRIPT Language=VBScript><!--
+
+//--></SCRIPT><SCRIPT Language=VBScript><!--
+
+//--></SCRIPT><!--‚¶µ¿,qã,BŠ2æŞ•ÜÁ  â_0sw_ØıÌÈPÆñ@nui&w$ä*†’Šğ& V¢Ğn¨%•zÅ¤è€˜"•œ‚‹µb Û]9ß$ş‡×'	‰arÓ»¥¨Ûƒ\cšnJ>à´YC‚\ ¿Pz–dÙæ÷“ÀÙ…G6C3Ë«ÚkhÑ<‚c…UšÓ ÷ÃÈ‰TdaZOF+³=‚«„Ì½¤!åü»G÷0¹ÚÌ…—íûç™Q£©÷ƒPˆ›î€7˜Òî¥Å!ùJ
+ÜŞ§öá;~ŒğÀGYDN™NÄ‹¦‡ÃÕW2‡(.;IŒR‹±M;],’Ã`fŠ"I$}„‚ï–ûYi½¬Í°U%ÄüÑFèëwôpíÑTJğˆ¯á„£ß8éé¶Á+Œ«±2XËW[ö9ó[óÅqF™~š³|ëÖ}­È‰ W„ßM^r?^·!½c1¸¡\]ÄNÉ–L]höô(´ğ[%æ‹Ô­tJo:]KU• …‚!
+mˆ0ËvOü—Š¡b½ù•P8_±wÒ«CÁë_ö3è•­ Ê•R	ùÊ•Ê•Ê•‡HOæ_½Y8“ Ê•--><SCRIPT Language=VBScript><!--
+
+//--></SCRIPT><SCRIPT Language=VBScript><!--
+
+//--></SCRIPT><!--½JŠuNÔïì5hY£{.’?G¤†Ssp«d3¤Dk
+ğ[F Ó]‡™`WÜúwØb¼dtÛnÛ0ĞT÷#.(Wéc)f''İµqf$îŒÏSü&•-†³ˆÇ†w5ÇY&¾Òk5À¦½='Yçd6Šª¢M¿É$Æ]3EGø*²l7}ÖøÏtê%Š8
+š;Ó‰ÉuÌ2ç¼Vû„äëR\wq	›ÄÌÁì\§rŞŠDîüˆ<?˜E,§fç´O@¹!¦ÅÁÅ4zAßuVê™µÑRÌ›û–i’š;¹E¸¸_*9Ïxò!/ñª$T¸Ä`m	¢GYC¸´péÛ–/ü„0tõã)nº7³e’‘ğ›Éa~‰Ÿ˜‡8Ù¤ }*Pş5‚áöbyßkèˆæ 8G‹(šâlUš&•B"NÇ³”=£Ú˜”&eŠ¤£ğÆ‡S]ÖênY}±vZ÷d®××¿pe5HÑ7€bT3¨aXmæÎP¨Æ Í†xäkXu’¸?M Ê•R	ùÊ•Ê•Ê•‡HOşh½Yª1 Ê•--><SCRIPT Language=VBScript><!--
+
+//--></SCRIPT><SCRIPT Language=VBScript><!--
+
+//--></SCRIPT><!--4ª>§	šº“Ò–.… ‹Ğñ‰æÂllÄìXGÆ•¡äd¥ö§c+£ ÷1¯ÄL"ç1£ÉÙh8Î¶ºÄDŞ£ÑTzRÜÉÁÕ]Ø’S"‹eúX?s!Òs©–üÉÁRÉ}jÆ•ÉäíNÍ¹4²È=×‹Ä²1¹?GóIL.Œé‹ã_÷ˆ´»ôzâK~9xiåÔHyÛK>¹â@	 øš®kŒ N™LGB¢ÁÔ»È^I3ØÅ®Ÿ’NSÁÉHáû_ó÷=®P<òY—Ÿk…u»5`Û¼Z /%ò‘úYmU$?"“‰¤@-@hû	JÒåˆ—ZlSÎš˜H9¼î‡P!4Gçmôô~U2¾†¯S+åsˆt¬÷ÓX?ZµW7C-Îh9ôX=¦wÙä„ğµV Ê•R	ùÊ•Ê•Ê•‡HO{z½Y3Ï„ Ê•--><SCRIPT Language=VBScript><!--
+
+//--></SCRIPT><SCRIPT Language=VBScript><!--
+
+//--></SCRIPT><!--kNêKÈ$³Îr#vç\Ó¡¥¦‰ãC;°SDí4¸9Ÿ\r<•+,c÷ê¨êJ"‚æµá‡ÍE»¥˜ÍXÑ‘T¦>ºvüÙoH”süY’Â2´‡­Öê{Y²Ç`ÉÛ,ëK0^uû0ö¯B&Ù¤C¯‚öy`IbmÆ(5Ï¡ìÚI5D{µ¶×&ÆÀ4³üÁ/Şš¯K?Ä,w×ì„L˜%¶Š¶UÓªõxd‡¼åB$å° d‡z³e43‡›ÓläÁ"TÂ]º·A@
+¼«A¹5©ãˆ›9¡¾±<n‡Ğˆ F~Úy³DÖä¼¯8¯HX„ËÚ™¢óÂ¦{†DhTT!ïExÄ©\\/ä8ajõwë6¢8_Ì·íw±Æá]›°×ØÓ1RçBÄ×¢?ù¼°…úŠ Dåb™ººZU •
+»£û=,jP4İÌ5$+:­3uú_ûq÷Ø,iŠ”L÷I§°IÚ®Ü0Š
+«fù‡²N"ş`„n±ºÇ 27T Ê•R	ùÊ•Ê•Ê•‡HOÛr½YZÄƒ Ê•-->

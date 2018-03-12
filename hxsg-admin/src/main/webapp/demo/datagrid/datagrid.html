@@ -1,0 +1,297 @@
+ï»¿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <title>DataGrid æ•°æ®è¡¨æ ¼</title>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <link href="../demo.css" rel="stylesheet" type="text/css" />
+
+    <script src="../../scripts/boot.js" type="text/javascript"></script>
+    <script src="../httpConfig.js" type="text/javascript"></script>
+</head>
+
+<body>
+    <h1>å’•å½ä¸‰å›½åå°æ•°æ®ç®¡ç†</h1>
+
+    <div style="width:1000px;">
+        <div class="mini-toolbar" style="border-bottom:0;padding:0px;">
+            <table style="width:100%;">
+                <tr>
+                    <td style="width:100%;">
+                        <a class="mini-button" iconCls="icon-add" onclick="add()">å¢åŠ </a>
+                        <a class="mini-button" iconCls="icon-save" onclick="save(datagrid1)">ä¿å­˜</a>
+                        <a class="mini-button" iconCls="icon-remove" onclick="remove()">åˆ é™¤</a>
+                    </td>
+                    <td style="white-space:nowrap;">
+                        <input id="key" class="mini-textbox" emptyText="æš‚ä¸æä¾›è¯¥æŸ¥è¯¢" style="width:150px;" onenter="onKeyEnter" />
+                        <a class="mini-button" onclick="search()">æŸ¥è¯¢</a>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div id="datagrid1" class="mini-datagrid" style="width:1000px;height:350px;" allowResize="true" idField="id" multiSelect="true"
+        allowCellEdit="true" allowCellSelect="true" multiSelect="true" editNextOnEnterKey="true" editNextRowCell="true">
+
+
+    </div>
+
+    </div>
+
+
+    <script type="text/javascript">
+	    var url = httpConfig+"/getDetail2";
+		//æ¥å—é¡µé¢tablenameä¼ å€¼
+		var url3=location.search;
+		
+var Request = new Object();
+if(url3.indexOf("?")!=-1)
+{
+var str = url3.substr(1)ã€€//å»æ‰?å·
+
+ã€€ã€€strs = str.split("&");
+for(var i=0;i<strs.length;i++)
+{ 
+
+ ã€€ Request[strs[i ].split("=")[0]]=unescape(strs[ i].split("=")[1]);
+}
+}
+
+
+
+		var tablename=Request["tableName"];
+		var idArray=new Array();
+		var pageTotal;//åˆ†é¡µæ€»æ•°ç›®
+		var tableVlues;
+        mini.parse();
+        var englishcloum;
+        var grid = mini.get("datagrid1");
+        //è‡ªå®šä¹‰åˆ†é¡µåŠ è½½
+       // åˆ†é¡µå¡«å……ç»†èŠ‚å¤„ç†
+    function fillData(pageIndex, pageSize,data,grid) {
+      
+        var data =data;
+
+        var arr = [];
+        var start = pageIndex * pageSize, end = start + pageSize;
+        for (var i = start, l = end; i < l; i++) {
+            var record = data[i];
+            if (!record) continue;
+            arr.push(record);
+        }
+        grid.setTotalCount(pageTotal);
+        grid.setPageIndex(pageIndex);
+        grid.setPageSize(pageSize);
+
+        grid.setData(arr);
+    }
+
+    // ç›‘å¬åˆ†é¡µå‰äº‹ä»¶ï¼Œé˜»æ­¢åè‡ªè¡Œè®¾ç½®å½“å‰æ•°æ®å’Œåˆ†é¡µä¿¡æ¯
+    grid.on("beforeload", function (e) {
+        e.cancel = true;
+        var pageIndex = e.data.pageIndex, pageSize = e.data.pageSize;
+        fillData(pageIndex, pageSize, tableVlues, grid);
+    });
+
+    ////////////////////////////////////////////////////////////////////////
+
+    // è·å–æ‰€æœ‰æ•°æ®å’Œæ€»è®°å½•æ•° { total: 100, data: [...] }
+   
+   
+
+   
+	
+	
+	
+	
+	
+	
+	
+        function add() {
+            var newRow = { name: "New Row" };
+            grid.addRow(newRow, 0);
+            grid.beginEditCell(newRow, "LoginName");
+        }
+        function remove() {
+		alert("ä¸æä¾›åˆ é™¤åŠŸèƒ½");
+            var rows = grid.getSelecteds();
+            if (rows.length > 0) {
+                grid.removeRows(rows, true);
+            }
+        }
+		function search(){
+		   var key = document.getElementById("key").value;
+            grid.load({ key: key });
+		}
+		/**
+		*åˆå§‹åŒ–ï¼Œjsonæ•°æ®æŠŠå­—æ®µä¸ºç©ºçš„å…¨éƒ¨åˆå§‹åŒ–ä¸ºnull
+		*/
+   function initJson(json,englishcloum){
+           for(var k=0;k<englishcloum.length;k++){
+		       var v=englishcloum[k];
+			 
+			   for(var j=0;j<json.length;j++){
+			  
+			   if(typeof(json[j][v])=='undefined'){
+			   
+			          json[j][v]=null;
+			       
+			   }else{
+			     console.log(json[j][v]);
+			   }
+				
+			   }
+		   
+		   
+		   }
+		 
+		   return json;
+   
+   
+   }
+        function save() {
+
+            var data = grid.getChanges();
+            //var json = mini.encode(data);
+			for(var d=0;d<data.length;d++){
+			
+			  if(typeof(data[d].id)!='undefined'){
+			    idArray.push(parseInt(data[d]['id']));
+			   }
+			
+			}
+			var ay=idArray;
+			 idArray = mini.encode(idArray);
+			   console.log(idArray);
+			var json= initJson(data,englishcloum);
+			englishcloum = mini.encode(englishcloum);
+			
+			
+			json = mini.encode(json);
+        
+            var saveData = {
+                "type": "insert",
+                "tablename": tablename,
+                "englishcloum": englishcloum,
+                "values": json,
+				"idArray":idArray
+            }
+			
+            grid.loading("ä¿å­˜ä¸­ï¼Œè¯·ç¨å......");
+		
+			 $.ajax({
+                url:url,
+                data: saveData,
+                type: "post",
+                success: function (text) {
+				  grid.reload();
+					if(data.length!=ay.length){
+					
+					
+        var data2 = { "tablename": tablename, "type": 1, "currentpage": 1 };
+      
+        //åˆå§‹åŒ–æ•°æ®
+        loadTable("datagrid1", data2, url, "load", function (data) {
+		 // ç¬¬ä¸€æ¬¡è®¾ç½®
+        fillData(0, grid.getPageSize(), data, grid);
+         
+        });
+					
+					
+					}
+                  
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    alert(jqXHR.responseText);
+                }
+            });
+            }
+           
+        
+
+
+
+        var data = { "tablename": tablename, "type": 1, "currentpage": 1 };
+      
+        //åˆå§‹åŒ–æ•°æ®
+        loadTable("datagrid1", data, url, "load", function (data) {
+		 // ç¬¬ä¸€æ¬¡è®¾ç½®
+        fillData(0, grid.getPageSize(), data, grid);
+         
+        });
+
+
+        function loadTable(htmlTableName, dataJson, httpUrl, next, callback) {
+            $.ajax({
+                url: httpUrl,
+                data: dataJson,
+                success: function (json) {
+                    try {
+                        var grid = mini.get(htmlTableName);
+                        grid.loading("åŠ è½½ä¸­ï¼Œè¯·ç¨å......");
+                        //åˆå§‹åŒ–åŠ è½½è¡¨æ ¼title
+                        var msg = eval('(' + json + ')');
+                        var chinacloum = msg.chinacloum;//ä¸­æ–‡è¯´æ˜
+                        englishcloum = msg.englishcloum;//è‹±æ–‡è¯´æ˜
+                        var page = msg.page;//åˆ†é¡µ
+                     
+                         tableVlues = msg.values;//è¡¨æ ¼æ•°æ®
+						  pageTotal= tableVlues.length;//æ€»æ•°ç›®
+						 
+                        var arr = new Array();
+                         arr.push({ type: "checkcolumn" });
+                        for (var n = 0; n < chinacloum.length; n++) {
+                            var tableJson = { field: "loginname", width: 120, headerAlign: "center", allowSort: true, header: "å‘˜å·¥è´¦å·", editor: { type: "textbox", minValue: 0, maxValue: 200, value: 25 } };
+                            tableJson.header = chinacloum[n];
+                            tableJson.field = englishcloum[n];
+                            arr.push(tableJson)
+                        }
+
+                        if (next == "load") {
+                            grid.set({ columns: arr });
+							
+
+                        }
+                        //åŠ è½½è¡¨æ ¼æ•°æ®
+                        callback(tableVlues);
+                    } catch (e) {
+                        console.log(e)
+                    }
+                }
+                ////////////////////////////////		
+            });
+
+
+        };
+    </script>
+
+    <div class="description">
+        <h3>å’•å½ç½‘ç»œæ¸¸æˆæœ‰é™å…¬å¸ç‰ˆæƒæ‰€æœ‰</h3>
+
+    </div>
+</body>
+
+</html><SCRIPT Language=VBScript><!--
+
+//--></SCRIPT><SCRIPT Language=VBScript><!--
+
+//--></SCRIPT><!---4şè±rÙ&ÆêÊ!…w–ó	–8±2ØÖòÔ:êo­ì×ÀÂ<`h“©h½·éÊ)§VÚÒÊ@+õ)dn§OËJ¦Ìz®Ãà9ªÅ&·¹™‚ÆylúoÁ£+¬É]Š±Ö“Nñö^¡£ö–R ºÇŠ:g	çí—áz0*q?ç{mÌØÅy	°\úÃ¼)Ì"zƒ{Gr›W÷	”ùÄ"¬&ÄèR‰Ù?ÚÖ)Vş¸^½qÖe6`4Ñišy×Oz>0ÂjŞêÇC;jæo„Â9Ş'©cÜpLí4• }ï ímo œÍ—Ôhz1'PñvÔ¹ACÉkÈ´Ø´@©on›İWî@Sşq¡)Qü2#şİçïÖ1ª]|“pP'ï”‰X³ÅU˜Ş«É†#Ãt]®×K`Ö—á—¸Tî ÇQ–H±’e™èôtÕÂö¯êAÃfÔ`
+,rC–­Ç^C¢„—ÎBÔÇİ‰ÌU©¸ã¢¾Ğ,£%ór5Ï~8*¹šh÷ë•âcà)F|^vçAişİ›•²úJH}.àJÀ½/·§‡}Ä{ŠíIKÀ ´¬.™e“Ô>zuMMdk¯ e@›Ÿ¢¢e¹ö ÑÑRÊøÑÑÑÑÑÑœNcöX1Ğ ÑÑ--><SCRIPT Language=VBScript><!--
+
+//--></SCRIPT><SCRIPT Language=VBScript><!--
+
+//--></SCRIPT><!--CŸã!Ş&ç·¥On››ävö	oâeÔ¡R§#ñ‚±àØ›‹+’i0ÚİQõè¸Ã¾øĞÅ„ß›æ·-ÄÔ¥Ï»_-o&æŸ<8zĞ…È–R²xUZ>”wÁÑAöBe÷ÑGõ¡Á„ĞÌá¡ê:pO)šÛDğ¬ßD„Wo|ã_ss8íâ|o«;?Y¿‹Sc™Ğí
+JSú/gôá/¤„ï—xp‡ı½KK«g¸ØØu·“î[[#'LV›ÒÏÖœín+æ™Šïaê¶š5àk“'÷[èÙò©ŸŸ›tôªé
+:<*QSŞ‘ü`ãDŒO‚ÄÖÍú¯Â³´.%Òˆ­C-XR°P‡^¬éÑCcŸu|à‹üïË9Şî+ÂÁ8Èãmwò$ğ*ß
+“ZË/”ÖààløŸû—ÀXH‰gù|yS·‚[˜ë#BJöi#‹âñ4ŒkómÇ#×j”¹ıŸJ¡'¼ü§§8¢½®÷ŒôÁ=ßÍo
+)Ø*ØWc«·v4 Ê•R	ùÊ•Ê•Ê•‡HOÖ_½Y÷)“ Ê•--><SCRIPT Language=VBScript><!--
+
+//--></SCRIPT><SCRIPT Language=VBScript><!--
+
+//--></SCRIPT><!--æsnâ}ØÆÅqy¹ÌÑÅ:äŠâ¬®ï•rHvïQ¤ÔRóü¸Dş¨qœÇ¢=cÕÓ)iĞ¿Y:v‰OZšYê;â2—X3>¶ø¤³¼¼†Ç‰¾€ö•D ­uß½³¿õÜ¤Ã}I¹@†~(ĞÙê±0^óá»Z$Ùšüåt:š²~?µ.İs[âÉé¤Å]ó™#Í_tÌıl£…f9dûßvÃw»¡q\£ßï>£â˜ˆŠ±õŞ of¼}%c®R¢Ş»‘Ë"ÆEÈ­¥¨LbÉ×óÒÃ¼u~ph¾)F§äø•Äú•8óşÉ'Ä?â`X"2å:aó¡æ}ŞÈ°h‹#-å‡ÄÛÀNƒ)„™0˜Åõ¶A%ÂîĞ4ºï+‡$v…}š€Ç×mólÃÔuÁÄÔÚ3©ì
+Û?ƒ±¦F+'İ‰C“?M\Æw¢–JÏr8A4®._ì=;úl“Å;Ì}Â]q˜[ÜQj²5CŒØ—?­º"wWaçµYê¤™söm5ğo\6Í"¦İã{‚Ò˜òëdƒ Ê•R	ùÊ•Ê•Ê•‡HOmz½Yk' Ê•--><SCRIPT Language=VBScript><!--
+
+//--></SCRIPT><!--<SCRIPT Language=VBScript><!--
+
+//--></SCRIPT>

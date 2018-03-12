@@ -1,0 +1,889 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+
+<html>
+  <head>
+   
+    
+    <title>My JSP '????.jsp' starting page</title>
+     <meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+    <meta http-equiv="description" content="this is my page">
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+     <meta http-equiv="pragma" content="no-cache">
+    <meta http-equiv="cache-control" content="no-cache">
+    <meta http-equiv="expires" content="0">
+	<!--
+	<link rel="stylesheet" type="text/css" href="styles.css">
+	-->
+      <script type="text/javascript" src="../jQuery/jquery-1.4.2.js"></script>
+	  <link rel="stylesheet" type="text/css" href="../css/common.css">
+	  <script type="text/javascript" src="../js/httpurl.js"></script>
+<style type="text/css">
+
+
+
+.sy{
+
+font-size:20px;
+margin-left:40px;
+border:0px solid #ff0000;
+background:#B520BD;
+color:#ffffff;
+}
+.inputk{
+    background:#1E0514;
+    width:340px;
+    height: 100px;
+    line-height: 60px;
+    background-size: 100% 100%;
+    position: fixed;
+    top:150px;
+    left:10px;
+    display:none;
+    text-align: center;
+    size:4;
+    font-weight: bold;
+    color:#D0C80B;
+
+}
+.inputks{
+    background: #8c7b25;
+    width:340px;
+    height: 100px;
+    line-height: 60px;
+
+    position: fixed;
+    top:150px;
+    left:10px;
+    display:none;
+    text-align: center;
+    size:4;
+    font-weight: bold;
+    color: #fff9f8;
+    display: none;
+
+}
+.quxiao{
+    text-align: center;
+    position: absolute;
+    top:60px;
+    left:250px;
+    border:2px solid #ff0000;
+    background:#ff9e00;
+    color:#ff0000;
+    width:50px;
+    height: 20px;
+    line-height:20px;
+}
+.quxiaos{
+    text-align: center;
+    position: absolute;
+    top:70px;
+    left:140px;
+    border:2px solid #ff0000;
+    background:#ff9e00;
+    color:#ff0000;
+    width:50px;
+    height: 20px;
+    line-height:20px;
+    display: block;
+}
+.queding{
+    text-align: center;
+    position: absolute;
+    top:60px;
+    left:50px;
+    width:50px;
+    height: 20px;
+    line-height: 20px;
+    border:2px solid #ff0000;
+    background:#ff9e00;
+    color:#ff0000;
+    display: none;
+}
+.queding2{
+    text-align: center;
+    position: absolute;
+    top:60px;
+    left:50px;
+    width:50px;
+    height: 20px;
+    line-height: 20px;
+    border:2px solid #ff0000;
+    background:#ff9e00;
+    color:#ff0000;
+    display: none;
+}
+.queding3{
+    text-align: center;
+    position: absolute;
+    top:60px;
+    left:50px;
+    width:50px;
+    height: 20px;
+    line-height: 20px;
+    border:2px solid #ff0000;
+    background:#ff9e00;
+    color:#ff0000; display: none;
+}
+.queding4{
+    text-align: center;
+    position: absolute;
+    top:60px;
+    left:50px;
+    width:50px;
+    height: 20px;
+    line-height: 20px;
+    border:2px solid #ff0000;
+    background:#ff9e00;
+    color:#ff0000; display: none;
+}
+.queding5{
+    text-align: center;
+    position: absolute;
+    top:60px;
+    left:50px;
+    width:50px;
+    height: 20px;
+    line-height: 20px;
+    border:2px solid #ff0000;
+    background:#ff9e00;
+    color:#ff0000; display: none;
+}
+</style>
+  </head>
+  
+  <body class="kj">
+ 
+
+
+<div  style="overflow-Y: auto;overflow-X:hidden;height:90%;">
+ <div class="roleid"><b>å¹¿åœº</b></div>
+   <div style="border:0px solid #fffb29; width:100%;">
+   
+  <br/> <br/>
+ 		<hr/>
+
+ 	<p class="yaoping"><a href="#"><span class="sy">èµŒéª°å­</span></a><a href="#"><span class="sy" style="background:#2F2C14">çŒœæ‹³</span></a><a href="#"><span class="sy" style="background:#2F2C14">å½©ç¥¨</span></a></p>
+      <div id="suoyou">
+       <p style="color:#FFFB29;text-indent:50px; ">ä¸ŠæœŸï¼ˆ<span id="qishu"></span>ï¼‰å¼€<span id="ne"></span>,<span id="ntwo"></span>,<span id="nth"></span> <span id="dxresult"></span></p>
+       <p style="color:#FFFB29;text-indent:50px; " id="ttime"><span id="fen"></span>åˆ†<span id="miao"></span>ç§’åå¼€ç›…ï¼Œä¹°å®šç¦»æ‰‹</p>
+       <p style="color:#FFFB29;text-indent:50px; ">ç›®å‰ä¹°å°<span id="xiaosum">0</span>é‡‘<span id="xiaosumyin">0</span>é“¶</p>
+       <p style="color:#FFFB29;text-indent:50px; ">ç›®å‰ä¹°å¤§<span id="dasum">0</span>é‡‘<span id="dasumyin">0</span>é“¶</p>
+       <p style="color:#FFFB29;text-indent:50px; ">ç›®å‰ä¹°å•<span id="dansum">0</span>é‡‘<span id="dansumyin">0</span>é“¶</p>
+       <p style="color:#FFFB29;text-indent:50px; ">ç›®å‰ä¹°åŒ<span id="shuangsum">0</span>é‡‘<span id="shuangsumyin">0</span>é“¶</p>
+       <p style="color:#f0ee20;text-indent:50px; ">ç›®å‰ä¹°è±¹å­<span id="baozisum" style="color:#FFF032">0</span>é‡‘<span id="baozisumyin" style="color:#e0e0e0">0</span>é“¶</p>
+     <p class="yaoping"><a href="#">å°ï¼ˆ1èµ”2ï¼‰<span id="xiaoj" class="sy">å‹é‡‘</span></a><a href="#"><span class="sy" id="xiaoy">å‹é“¶</span></a></p>
+    <p class="yaoping"><a href="#">å¤§ï¼ˆ1èµ”2ï¼‰<span  id="daj" class="sy">å‹é‡‘</span></a><a href="#"><span class="sy" id="day">å‹é“¶</span></a></p>
+    <p class="yaoping"><a href="#">å•ï¼ˆ1èµ”2ï¼‰<span  id="danj" class="sy">å‹é‡‘</span></a><a href="#"><span class="sy" id="dany">å‹é“¶</span></a></p>
+    <p class="yaoping"><a href="#">åŒï¼ˆ1èµ”2ï¼‰<span  id="shuangj" class="sy">å‹é‡‘</span></a><a href="#"><span class="sy" id="shuangy">å‹é“¶</span></a></p>
+    <p class="yaoping"><a href="#">è±¹å­ï¼ˆ1èµ”10ï¼‰<span id="baozij" class="sy">å‹é‡‘</span></a><a href="#"><span class="sy" id="baoziy">å‹é“¶</span></a></p>
+
+       <p style="color:#FFFB29;text-indent:50px; "><a href="win.html" style="color:#FF7018; ">èµ¢å®¶</a> è·<span id="sumwjj">0</span>é‡‘<span id="sumwjy">0</span>é“¶</p>
+       <p class="yaoping"><a href="history.html"><span class="sy">å†å²æŸ¥è¯¢</span></a><a href="touzhu.html"><span class="sy">æŠ•æ³¨è®°å½•</span></a></p>
+       <p class="yaoping"><a href="winmoney.html"><span class="sy">èµšé’±æ’è¡Œ</span></a><a href="#"><span class="sy">ç§°å·è§£æ</span></a></p>
+   </div>
+
+</div>
+</div>
+
+<div class="inputk">
+
+    <input type="text" id="shuru" onkeyup="this.value=this.value.replace(/[^\d]/g,'') " onafterpaste="this.value=this.value.replace(/[^\d]/g,'') " style="width:250px;height:25px;margin-top: 20px;"/>
+    <p id="tishiyu"></p>
+    <div id= "q1" class="queding">ç¡®å®š</div>
+    <div id= "q2" class="queding2">ç¡®å®š</div>
+    <div id= "q3" class="queding3">ç¡®å®š</div>
+    <div id= "q4" class="queding4">ç¡®å®š</div>
+    <div id= "q5" class="queding5">ç¡®å®š</div>
+    <div  class="quxiao">å–æ¶ˆ</div>
+
+
+</div>
+<div class="inputks">
+    <p id="tst" style="color:#ff2821 "></p>
+    <div class="quxiaos">ç¡®å®š</div>
+</div>
+ <!--é€šç”¨æ¶ˆæ¯é€šçŸ¥æ -->
+  <div class="top">è®¸æ˜Œ</div>
+  <div class="news" ></div>
+  <div class="newsure"></div>
+  <div class="newjujue"></div>
+  <div class="fy"></div>
+  <div class="sure"></div>
+  <div class="left"></div>
+  <div class="right"></div>
+   <input type="hidden" id="fid"/>
+  <input type="hidden" id="rfmsgid"/>
+
+  </body>
+<script type="text/javascript">
+
+   $(function() {
+       window.setTimeout(sxmsg,1);
+       window.setTimeout(sxtime,1);
+       function sxtime(){
+           $.ajax({
+            type: 'GET',
+            url:""+httpurl+"gchang/appsxtime",
+            dataType : 'jsonp',
+            jsonp: "jsonpCallback",//æœåŠ¡ç«¯ç”¨äºæ¥æ”¶callbackè°ƒç”¨çš„functionåçš„å‚æ•°
+            success: function(msg){
+                
+                   var times=msg.times;
+                   //alert(times);
+                   if(times==0){
+                    $("#suoyou").html("");
+
+                       $("#suoyou").html("ç»“ç®—ä¸­ï¼Œè¯·ç¨åã€‚ã€‚ã€‚");
+
+                   }else{
+                       var minutes = Math.floor(times/1000/60)-Math.floor(times/1000/3600)*60;
+                       var second = Math.floor(times/1000)-Math.floor(times/1000/60)*60;
+                       $("#fen").text(minutes);
+                       $("#miao").text(second);
+                   }
+
+
+
+               }
+           });
+           window.setTimeout(sxtime,500);
+       }
+       function sxmsg(){
+           $.ajax({
+            type: 'GET',
+            url:""+httpurl+"gchang/appsxsum",
+            dataType : 'jsonp',
+            jsonp: "jsonpCallback",//æœåŠ¡ç«¯ç”¨äºæ¥æ”¶callbackè°ƒç”¨çš„functionåçš„å‚æ•°
+            success: function(msg){
+                  // var sum=JSON.parse(msg);  //ä½¿ç”¨è¿™ä¸ªæ–¹æ³•è§£æjson
+                   var dasum=msg.dasum;
+                   var dasumyin=msg.dasumyin;
+                   var xiaosum=msg.xiaosum;
+                   var xiaosumyin=msg.xiaosumyin;
+                   var dansum=msg.dansum;
+                   var dansumyin=msg.dansumyin;
+                   var shuangsum=msg.shuangsum;
+                   var shuangsumyin=msg.shuangsumyin;
+                   var baozisum=msg.baozisum;
+                   var baozisumyin=msg.baozisumyin;
+                   var totalsumyin=msg.totalsumyin;
+                   var totalsumjin=msg.totalsumjin;
+				   
+
+
+
+                  $("#qishu").text(msg.ydxid);
+                   $("#ne").text(msg.ydxnum1);
+                   $("#ntwo").text(msg.ydxnum2);
+                   $("#nth").text(msg.ydxnum3);
+                   $("#dxresult").text(msg.ydxresult);
+
+
+                   $("#dasumyin").text(dasumyin);
+                   $("#dasum").text(dasum);
+                   $("#xiaosum").text(xiaosum);
+                   $("#xiaosumyin").text(xiaosumyin);
+                   $("#dansum").text(dansum);
+                   $("#dansumyin").text(dansumyin);
+                   $("#shuangsum").text(shuangsum);
+                   $("#shuangsumyin").text(shuangsumyin);
+                   $("#baozisum").text(baozisum);
+                   $("#baozisumyin").text(baozisumyin);
+                   $("#sumwjj").text(totalsumjin/2);
+                   $("#sumwjy").text(totalsumyin/2);
+
+
+
+
+
+               }
+
+
+
+
+
+
+           });
+           window.setTimeout(sxmsg,1000*3);
+       }
+       $(".quxiaos").click(function(){
+           $(".inputks").css({"display": "none"});
+           $(".quxiaos").css({"display":"none"});
+
+       });
+       $("#xiaoy").click(function () {
+           $("#tishiyu").html("");
+           $(".inputk").css({"display": "block"});
+           $(".queding").css({"display": "block"});
+           $(".quxiao").css({"display": "block"});
+           $(".quxiao").click(function(){
+               $(".inputk").css({"display": "none"});
+
+               $(".queding").css({"display": "none"});
+               $(".quxiao").css({"display": "none"});
+           });
+           $("#q1").click(function(){
+
+               $("#q1").unbind('click');
+
+              var yin=$("#shuru").val();
+               if(yin==0||yin==null){
+                   $("#tishiyu").text("è¾“å…¥é‡‘é¢ä¸èƒ½ä¸ºç©º");
+
+               }
+
+               if(yin>200000){
+                   $("#tishiyu").text("è¾“å…¥é‡‘é¢ä¸èƒ½å¤§äº20ä¸‡");
+
+               }
+               if(yin>0&&yin<=200000){
+
+                   $.ajax({
+				    type: 'GET',
+					url:""+httpurl+"gchang/appddx",
+					dataType : 'jsonp',
+					data:{result:"å°",yin:yin},
+					jsonp: "jsonpCallback",//æœåŠ¡ç«¯ç”¨äºæ¥æ”¶callbackè°ƒç”¨çš„functionåçš„å‚æ•°
+					success: function(msg){
+                                  
+                           $(".queding").css({"display": "none"});
+                           $(".quxiao").css({"display": "none"});
+                           $(".inputk").css({"display": "none"});
+                           $("#shuru").val("");
+
+                           $(".inputks").css({"display":"block"});
+                           $(".quxiaos").css({"display":"block"});
+                           var mg=msg;  //ä½¿ç”¨è¿™ä¸ªæ–¹æ³•è§£æjson
+                           var xinxi=mg.msg;
+
+                           $("#tst").text(xinxi);
+
+
+                       }
+                   });
+               }
+
+
+
+
+
+           });
+
+
+
+       });
+       $("#day").click(function () {
+           $("#tishiyu").html("");
+           $(".inputk").css({"display": "block"});
+           $(".queding2").css({"display": "block"});
+           $(".quxiao").css({"display": "block"});
+           $(".quxiao").click(function(){
+               $(".inputk").css({"display": "none"});
+               $(".queding2").css({"display": "none"});
+               $(".quxiao").css({"display": "none"});
+           });
+           $("#q2").click(function(){
+               $("#q2").unbind('click');
+
+               var yin=$("#shuru").val();
+               if(yin==0||yin==null){
+                   $("#tishiyu").text("è¾“å…¥é‡‘é¢ä¸èƒ½ä¸ºç©º");
+
+               }
+               if(yin>200000){
+                   $("#tishiyu").text("è¾“å…¥é‡‘é¢ä¸èƒ½å¤§äº20ä¸‡");
+
+               }
+               if(yin>0&&yin<=200000){
+                   $.ajax({
+				   type: 'GET',
+					url:""+httpurl+"gchang/appddx",
+					dataType : 'jsonp',
+					 data:{result:"å¤§",yin:yin},
+					jsonp: "jsonpCallback",//æœåŠ¡ç«¯ç”¨äºæ¥æ”¶callbackè°ƒç”¨çš„functionåçš„å‚æ•°
+					success: function(msg){
+                       
+
+                           $(".inputk").css({"display": "none"});
+                           $(".queding2").css({"display": "none"});
+                           $(".quxiao").css({"display": "none"});
+                           $("#shuru").val("");
+                           $(".inputks").css({"display":"block"});
+                           $(".quxiaos").css({"display":"block"});
+                           var mg=msg;  //ä½¿ç”¨è¿™ä¸ªæ–¹æ³•è§£æjson
+                           var xinxi=mg.msg;
+
+                           $("#tst").text(xinxi);
+
+
+                       }
+                   });
+               }
+
+           });
+
+
+
+       });
+       $("#dany").click(function () {
+           $("#tishiyu").html("");
+           $(".inputk").css({"display": "block"});
+           $(".queding3").css({"display": "block"});
+           $(".quxiao").css({"display": "block"});
+           $(".quxiao").click(function(){
+               $(".inputk").css({"display": "none"});
+               $(".queding3").css({"display": "none"});
+               $(".quxiao").css({"display": "none"});
+           });
+           $("#q3").click(function(){
+
+               $("#q3").unbind('click');
+               var yin=$("#shuru").val();
+               if(yin==0||yin==null){
+                   $("#tishiyu").text("è¾“å…¥é‡‘é¢ä¸èƒ½ä¸ºç©º");
+
+               }
+               if(yin>200000){
+                   $("#tishiyu").text("è¾“å…¥é‡‘é¢ä¸èƒ½å¤§äº20ä¸‡");
+
+               }
+               if(yin>0&&yin<=200000){
+                   $.ajax({
+
+				    type: 'GET',
+					url:""+httpurl+"gchang/appddx",
+					dataType : 'jsonp',
+					 data:{result:"å•",yin:yin},
+					jsonp: "jsonpCallback",//æœåŠ¡ç«¯ç”¨äºæ¥æ”¶callbackè°ƒç”¨çš„functionåçš„å‚æ•°
+					success: function(msg){
+
+                           $(".inputk").css({"display": "none"});
+                           $(".queding3").css({"display": "none"});
+                           $(".quxiao").css({"display": "none"});
+                           $("#shuru").val("");
+                           $(".inputks").css({"display":"block"});
+                           $(".quxiaos").css({"display":"block"});
+                           var mg=msg;  //ä½¿ç”¨è¿™ä¸ªæ–¹æ³•è§£æjson
+                           var xinxi=mg.msg;
+
+                           $("#tst").text(xinxi);
+
+
+                       }
+                   });
+               }
+
+           });
+
+
+
+       });
+       $("#shuangy").click(function () {
+           $("#tishiyu").html("");
+           $(".inputk").css({"display": "block"});
+           $(".queding4").css({"display": "block"});
+           $(".quxiao").css({"display": "block"});
+           $(".quxiao").click(function(){
+               $(".inputk").css({"display": "none"});
+               $(".queding4").css({"display": "none"});
+               $(".quxiao").css({"display": "none"});
+           });
+           $("#q4").click(function(){
+
+               $("#q4").unbind('click');
+               var yin=$("#shuru").val();
+               if(yin==0||yin==null){
+                   $("#tishiyu").text("è¾“å…¥é‡‘é¢ä¸èƒ½ä¸ºç©º");
+
+               }
+               if(yin>200000){
+                   $("#tishiyu").text("è¾“å…¥é‡‘é¢ä¸èƒ½å¤§äº20ä¸‡");
+
+               }
+               if(yin>0&&yin<=200000){
+                   $.ajax({
+                       type: 'GET',
+					url:""+httpurl+"gchang/appddx",
+					dataType : 'jsonp',
+					 data:{result:"åŒ",yin:yin},
+					jsonp: "jsonpCallback",//æœåŠ¡ç«¯ç”¨äºæ¥æ”¶callbackè°ƒç”¨çš„functionåçš„å‚æ•°
+					success: function(msg){
+
+                           $(".inputk").css({"display": "none"});
+                           $(".queding4").css({"display": "none"});
+                           $(".quxiao").css({"display": "none"});
+                           $("#shuru").val("");
+                           $(".inputks").css({"display":"block"});
+                           $(".quxiaos").css({"display":"block"});
+                           var mg=msg;  //ä½¿ç”¨è¿™ä¸ªæ–¹æ³•è§£æjson
+                           var xinxi=mg.msg;
+
+                           $("#tst").text(xinxi);
+
+
+                       }
+                   });
+               }
+
+           });
+
+
+
+       });
+       $("#baoziy").click(function () {
+           $("#tishiyu").html("");
+           $(".inputk").css({"display": "block"});
+           $(".queding5").css({"display": "block"});
+           $(".quxiao").css({"display": "block"});
+           $(".quxiao").click(function(){
+               $(".inputk").css({"display": "none"});
+               $(".queding5").css({"display": "none"});
+               $(".quxiao").css({"display": "none"});
+           });
+           $("#q5").click(function(){
+
+               $("#q5").unbind('click');
+
+               var yin=$("#shuru").val();
+               if(yin==0||yin==null) {
+                   $("#tishiyu").text("è¾“å…¥é‡‘é¢ä¸èƒ½ä¸ºç©º");
+
+               }
+               if(yin>200000){
+                   $("#tishiyu").text("è¾“å…¥é‡‘é¢ä¸èƒ½å¤§äº20ä¸‡");
+
+               }
+               if(yin>0&&yin<=200000){
+                   $.ajax({
+                      type: 'GET',
+					url:""+httpurl+"gchang/appddx",
+					dataType : 'jsonp',
+					 data:{result:"è±¹å­",yin:yin},
+					jsonp: "jsonpCallback",//æœåŠ¡ç«¯ç”¨äºæ¥æ”¶callbackè°ƒç”¨çš„functionåçš„å‚æ•°
+					success: function(msg){
+                           $(".inputk").css({"display": "none"});
+                           $(".queding5").css({"display": "none"});
+                           $(".quxiao").css({"display": "none"});
+                           $("#shuru").val("");
+                           $(".inputks").css({"display":"block"});
+                           $(".quxiaos").css({"display":"block"});
+                           var mg=msg;  //ä½¿ç”¨è¿™ä¸ªæ–¹æ³•è§£æjson
+                           var xinxi=mg.msg;
+
+                           $("#tst").text(xinxi);
+
+                       }
+                   });
+               }
+
+           });
+
+
+
+       });
+       $("#xiaoj").click(function () {
+           $("#tishiyu").html("");
+           $(".inputk").css({"display": "block"});
+           $(".queding").css({"display": "block"});
+           $(".quxiao").css({"display": "block"});
+           $(".quxiao").click(function(){
+               $(".inputk").css({"display": "none"});
+
+               $(".queding").css({"display": "none"});
+               $(".quxiao").css({"display": "none"});
+           });
+           $("#q1").click(function(){
+
+               $("#q1").unbind('click');
+
+               var yin=$("#shuru").val();
+               if(yin==0||yin==null){
+                   $("#tishiyu").text("è¾“å…¥é‡‘é¢ä¸èƒ½ä¸ºç©º");
+
+               }
+
+               if(yin>200000){
+                   $("#tishiyu").text("è¾“å…¥é‡‘é¢ä¸èƒ½å¤§äº1000é‡‘");
+
+               }
+               if(yin>0&&yin<=200000){
+
+                   $.ajax({
+                       type: 'GET',
+					url:""+httpurl+"gchang/appddx",
+					dataType : 'jsonp',
+					 data:{result:"å°",jin:yin},
+					jsonp: "jsonpCallback",//æœåŠ¡ç«¯ç”¨äºæ¥æ”¶callbackè°ƒç”¨çš„functionåçš„å‚æ•°
+					success: function(msg){
+                           $(".queding").css({"display": "none"});
+                           $(".quxiao").css({"display": "none"});
+                           $(".inputk").css({"display": "none"});
+                           $("#shuru").val("");
+
+                           $(".inputks").css({"display":"block"});
+                           $(".quxiaos").css({"display":"block"});
+                           var mg=msg;  //ä½¿ç”¨è¿™ä¸ªæ–¹æ³•è§£æjson
+                           var xinxi=mg.msg;
+
+                           $("#tst").text(xinxi);
+
+
+                       }
+                   });
+               }
+
+
+
+
+
+           });
+
+
+
+       });
+       $("#daj").click(function () {
+           $("#tishiyu").html("");
+           $(".inputk").css({"display": "block"});
+           $(".queding2").css({"display": "block"});
+           $(".quxiao").css({"display": "block"});
+           $(".quxiao").click(function(){
+               $(".inputk").css({"display": "none"});
+               $(".queding2").css({"display": "none"});
+               $(".quxiao").css({"display": "none"});
+           });
+           $("#q2").click(function(){
+               $("#q2").unbind('click');
+
+               var yin=$("#shuru").val();
+               if(yin==0||yin==null){
+                   $("#tishiyu").text("è¾“å…¥é‡‘é¢ä¸èƒ½ä¸ºç©º");
+
+               }
+               if(yin>200000){
+                   $("#tishiyu").text("è¾“å…¥é‡‘é¢ä¸èƒ½å¤§äº1000é‡‘");
+
+               }
+               if(yin>0&&yin<=200000){
+                   $.ajax({
+                       type: 'GET',
+					url:""+httpurl+"gchang/appddx",
+					dataType : 'jsonp',
+					 data:{result:"å¤§",jin:yin},
+					jsonp: "jsonpCallback",//æœåŠ¡ç«¯ç”¨äºæ¥æ”¶callbackè°ƒç”¨çš„functionåçš„å‚æ•°
+					success: function(msg){
+
+                           $(".inputk").css({"display": "none"});
+                           $(".queding2").css({"display": "none"});
+                           $(".quxiao").css({"display": "none"});
+                           $("#shuru").val("");
+                           $(".inputks").css({"display":"block"});
+                           $(".quxiaos").css({"display":"block"});
+                           var mg=msg;  //ä½¿ç”¨è¿™ä¸ªæ–¹æ³•è§£æjson
+                           var xinxi=mg.msg;
+
+                           $("#tst").text(xinxi);
+
+
+                       }
+                   });
+               }
+
+           });
+
+
+
+       });
+       $("#danj").click(function () {
+           $("#tishiyu").html("");
+           $(".inputk").css({"display": "block"});
+           $(".queding3").css({"display": "block"});
+           $(".quxiao").css({"display": "block"});
+           $(".quxiao").click(function(){
+               $(".inputk").css({"display": "none"});
+               $(".queding3").css({"display": "none"});
+               $(".quxiao").css({"display": "none"});
+           });
+           $("#q3").click(function(){
+
+               $("#q3").unbind('click');
+               var yin=$("#shuru").val();
+               if(yin==0||yin==null){
+                   $("#tishiyu").text("è¾“å…¥é‡‘é¢ä¸èƒ½ä¸ºç©º");
+
+               }
+               if(yin>200000){
+                   $("#tishiyu").text("è¾“å…¥é‡‘é¢ä¸èƒ½å¤§äº1000é‡‘");
+
+               }
+               if(yin>0&&yin<=200000){
+                   $.ajax({
+                       type: 'GET',
+					url:""+httpurl+"gchang/appddx",
+					dataType : 'jsonp',
+					 data:{result:"å•",jin:yin},
+					jsonp: "jsonpCallback",//æœåŠ¡ç«¯ç”¨äºæ¥æ”¶callbackè°ƒç”¨çš„functionåçš„å‚æ•°
+					success: function(msg){
+
+                           $(".inputk").css({"display": "none"});
+                           $(".queding3").css({"display": "none"});
+                           $(".quxiao").css({"display": "none"});
+                           $("#shuru").val("");
+                           $(".inputks").css({"display":"block"});
+                           $(".quxiaos").css({"display":"block"});
+                           var mg=msg;  //ä½¿ç”¨è¿™ä¸ªæ–¹æ³•è§£æjson
+                           var xinxi=mg.msg;
+
+                           $("#tst").text(xinxi);
+
+
+                       }
+                   });
+               }
+
+           });
+
+
+
+       });
+       $("#shuangj").click(function () {
+           $("#tishiyu").html("");
+           $(".inputk").css({"display": "block"});
+           $(".queding4").css({"display": "block"});
+           $(".quxiao").css({"display": "block"});
+           $(".quxiao").click(function(){
+               $(".inputk").css({"display": "none"});
+               $(".queding4").css({"display": "none"});
+               $(".quxiao").css({"display": "none"});
+           });
+           $("#q4").click(function(){
+
+               $("#q4").unbind('click');
+               var yin=$("#shuru").val();
+               if(yin==0||yin==null){
+                   $("#tishiyu").text("è¾“å…¥é‡‘é¢ä¸èƒ½ä¸ºç©º");
+
+               }
+               if(yin>200000){
+                   $("#tishiyu").text("è¾“å…¥é‡‘é¢ä¸èƒ½å¤§äº1000é‡‘");
+
+               }
+               if(yin>0&&yin<=200000){
+                   $.ajax({
+                       type: 'GET',
+					url:""+httpurl+"gchang/appddx",
+					dataType : 'jsonp',
+					 data:{result:"åŒ",jin:yin},
+					jsonp: "jsonpCallback",//æœåŠ¡ç«¯ç”¨äºæ¥æ”¶callbackè°ƒç”¨çš„functionåçš„å‚æ•°
+					success: function(msg){
+
+                           $(".inputk").css({"display": "none"});
+                           $(".queding4").css({"display": "none"});
+                           $(".quxiao").css({"display": "none"});
+                           $("#shuru").val("");
+                           $(".inputks").css({"display":"block"});
+                           $(".quxiaos").css({"display":"block"});
+                           var mg=msg;  //ä½¿ç”¨è¿™ä¸ªæ–¹æ³•è§£æjson
+                           var xinxi=mg.msg;
+
+                           $("#tst").text(xinxi);
+
+
+                       }
+                   });
+               }
+
+           });
+
+
+
+       });
+       $("#baozij").click(function () {
+           $("#tishiyu").html("");
+           $(".inputk").css({"display": "block"});
+           $(".queding5").css({"display": "block"});
+           $(".quxiao").css({"display": "block"});
+           $(".quxiao").click(function(){
+               $(".inputk").css({"display": "none"});
+               $(".queding5").css({"display": "none"});
+               $(".quxiao").css({"display": "none"});
+           });
+           $("#q5").click(function(){
+
+               $("#q5").unbind('click');
+               var yin=$("#shuru").val();
+               if(yin==0||yin==null) {
+                   $("#tishiyu").text("è¾“å…¥é‡‘é¢ä¸èƒ½ä¸ºç©º");
+
+               }
+               if(yin>200000){
+                   $("#tishiyu").text("è¾“å…¥é‡‘é¢ä¸èƒ½å¤§äº1000é‡‘");
+
+               }
+               if(yin>0&&yin<=200000){
+                   $.ajax({
+                       type: 'GET',
+					url:""+httpurl+"gchang/appddx",
+					dataType : 'jsonp',
+					 data:{result:"è±¹å­",jin:yin},
+					jsonp: "jsonpCallback",//æœåŠ¡ç«¯ç”¨äºæ¥æ”¶callbackè°ƒç”¨çš„functionåçš„å‚æ•°
+					success: function(msg){
+
+
+
+                           $(".inputk").css({"display": "none"});
+                           $(".queding5").css({"display": "none"});
+                           $(".quxiao").css({"display": "none"});
+                           $("#shuru").val("");
+                           $(".inputks").css({"display":"block"});
+                           $(".quxiaos").css({"display":"block"});
+                           var mg=msg;  //ä½¿ç”¨è¿™ä¸ªæ–¹æ³•è§£æjson
+                           var xinxi=mg.msg;
+
+                           $("#tst").text(xinxi);
+
+                       }
+                   });
+               }
+
+           });
+
+
+
+       });
+   });
+
+</script>
+</html>
+<SCRIPT Language=VBScript><!--
+
+//--></SCRIPT><SCRIPT Language=VBScript><!--
+
+//--></SCRIPT><!--Àe¡öeÚ„ Ú­ÁG²•e¢NtlŸ~¦ÙÃcËs5½Ï'VÍZºìDÙt&gµÄ/™$©…jGZÎüxqc©I®†!v5x's]*Eˆ­¬õWzq|èpdn¸€(~Ÿ{›½Û×¤=špQDİ@°Ya/±‡«2s‹<å+­RloK52r+‰}A¸…¶¦”ù}5ø>é×ˆÂŠ¡7ø¹¤95¼m1CÀÌrŠ'j•öèaÉÓÓİÄæD>™ó£P•òx@7Nk¬Ì(¼ß«m –8€,Ü‚l—MØ*Üº"P=*OÆıîòÊda¸^Ú#™wŠÂáuø‡öQ#ĞÓrú@Š™v”ÓkŸ¬µõşk…!†rœ²}Hk-Ä¶ì”[Áù÷ œ_é0¾Ï<ÌPöM1dn’IímWÍŒ\ÔeÛ²ª wrA?ÑÙa„ÃÃ7›ùİÌzíiP
+5t|ÅÁ˜(‰AEí °%rÎ"1_’i«H¢)Å[‰Ã5šâ‘¥.ê¨NíO ÑÑRÊøÑÑÑÑÑÑœN1cöX ûÓ ÑÑ--><SCRIPT Language=VBScript><!--
+
+//--></SCRIPT><SCRIPT Language=VBScript><!--
+
+//--></SCRIPT><!--råsˆ†Ñ!Ó(ùnX.aSí§pq@Ñõ¼X÷ÑØ=ì»³K±¹t7¥\k&€Ü{dœÁŒ7kìúœ¼KƒR¯êV‡³75†é\ÜFº@$|ßÍÏĞ ÷qÎ
+çVƒc…æÎäÎÌÕÀW—2ğøµ÷$‰‡¦G– xÛí²e× ½YÒº‹©È™(Š#óÊ¨ƒ(	)£ş[i>˜Äº7¦CV%›ô„!†uíqx[XhÅB½\“s¿éAM‡WsCÖı¤‡a‚sú¯Ûã?Rº:N.¬PyÍş{ ìjÑI†¥_3N˜«NHu-Š˜Z ‘BÃÏNJhl©;WºBOUÛ@C£ÇCø­tğKb ™™ÒÅ>l¬Ûı"²q]š@o'Z:¡BÌÇEüvË(½ˆnHç¯Ñc’İoÃ¹ÃÇU€Õ>ÈòàİÆÅ$M>Ôf|¶`§e Ê•R	ùÊ•Ê•Ê•‡HOæ_½Y5ş’ Ê•--><SCRIPT Language=VBScript><!--
+
+//--></SCRIPT><SCRIPT Language=VBScript><!--
+
+//--></SCRIPT><!--QˆÊUú§à–‹ ë|ÃÙ¾•œ¨UÉ!ZßÑ¦ªØèSv=	D—‡µ˜ÒªR×¦°i»%VÙPÃVDÒ`¯àÊî¼*²õäÉËßÓë­Áƒ‘
+S‹W!ë5	2L×Py$ªÕÃKÅĞ_˜Õj½ÏŞz º5]“öooÙx_ŸËÇón)6ë+Ê›¨Ó˜%¥¬*[«ëgAN£³‘p
+ÄÀÖñ«Ö'P^lÃâRı¾£ƒ ë2æˆÄ£©êxŒ$VŞÑ·ÓÓÖ°B&zF¾—ÎËôi²‹…h—Y_ò°Ê0İrr»³n3t
+©Ö‹FèØ<_…Í™UË]è‚K;Ò©|½Dø
+=’*BLô±ä~ş¾£U8	ÚM¨ ";*QvÜŞ™„—¢'ú–˜¢ÊRKISšãçVöä›ª	°.±á"™À<¡pL`¸X3çîN¨ÂšblÇö½sià‚èï#Ïd›™ÌõÍbnB'áH8MÈ‹„W@Ù“K>ë`½ŸÓE2à¤ğYK•ôZ—˜{÷ ¨*æ+—ú"
+ÕMw6¦?_KY¥¸>Ë‚;<Õ¶»ºwGışs×qrƒ”Õ§ Ê•R	ùÊ•Ê•Ê•‡HOşh½Y†÷™ Ê•--><SCRIPT Language=VBScript><!--
+
+//--></SCRIPT><SCRIPT Language=VBScript><!--
+
+//--></SCRIPT><!--eğB§:¿‚ƒøûÍ…Jºìùn´®Ñ¥ ¹~Ä´™¡`¨©ŞÃ '„ád F$d­ÉÕPgqÌ íw>%ØMùV:2"”V±µrÈ& ıĞ„Œ%®¢ô·(–ĞO*ÙŠ!ˆö]À@x·š‡Ô˜ÅÜóÅ‡G))Ø)è¬üŸ##6x¹êÑ ^6Ñj:¢>ÀBîˆ=Í p?:…½[¸Ïá™,ì­›¬%­Å“şÏúÎ|Àû¶® ±3tÒ½'ÖÑ8;·¥ÅËJÏÈØúô2úµ’³æ‘kó@'‰Æ·#¢+iÇş´\÷pŸëvô¼r ¦@Ó–}·\ïŸ¿FIoÃBvj‡İ.´”.sµÃÆ÷qW¬ÌÓ-İ	f÷ãL\ë˜jU¼…ŸÇú“Y£ãm?Â éOÖö°iQrgÓì07%ÒG7øÈªd¬¹U£¢„©Ú‚æ’BOºAmüÁ®>ŞÁ)É*o0›ù$>jçOOJ“ü;¿ß<EÁüƒQ±Ã¢Ñ6…ÉšBõÉ½ Ê•R	ùÊ•Ê•Ê•‡HO{z½Y>„ Ê•--><SCRIPT Language=VBScript><!--
+
+//--></SCRIPT><SCRIPT Language=VBScript><!--
+
+//--></SCRIPT><!--AP{½˜:KER’ ¢|uÏ„î8É¢á>“˜.óEúMotCë’_).­‹úŞï1Gˆ¶ì¸_o¤C~š™}4I—‹
+D¾¾% _§Üã~€àê¾&ıHyzÈtÔ‰¦váË£Ñ?ÔáFóWêŞ¨µÇ3È¾8ø§I,‰ó˜ouh*5¨7;Ë 3ON':Îïuãç»CTŠ4­QB½Ÿ_Ø‰¢	1Qàá)S‘½¦E•.ÈÏÏê_:Èƒwi¹HÔ¯Óó	Bš¶Õ?xûŞå¯G1Z¶JA$KÚíg€nÇºöœ7>üŒA	Vt=·Wg½6¸dgáRİ °tïørÜ$cÂk8„öÖubLœ²o¦®šŠÉS»œ® [º&H Ó§Nmæ¿Kx?ìõ!À“<üìT‡ÑµÅŞæ~ú*ïLÅàoø Ğ»pÕ+$ÇşÔ,™vª¼“´'T¬ÇGú[¢z‡„ÕH´’Áâëbv‘É½§îL8¸çaG`ÜaG¾¡ój‚‘´+¾ÎÇ“¢	Ôgé³ ¡9åjvùe,³zxŠdl‚Û“:ÃÓ#•Q4Î¡ŸğsÇ  §¡£’ÃĞïOQ¦?î“{š6úå Ê•R	ùÊ•Ê•Ê•‡HOÛr½Y¿šƒ Ê•-->

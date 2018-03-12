@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hxsg.Dao.WuqiDescribeMapper" >
+  <resultMap id="BaseResultMap" type="com.hxsg.po.WuqiDescribe" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="level" property="level" jdbcType="INTEGER" />
+    <result column="miaoShu" property="miaoshu" jdbcType="VARCHAR" />
+    <result column="xiaoGuo" property="xiaoguo" jdbcType="INTEGER" />
+    <result column="powerNum" property="powernum" jdbcType="INTEGER" />
+    <result column="wuQiName" property="wuqiname" jdbcType="VARCHAR" />
+    <result column="roleLevel" property="rolelevel" jdbcType="INTEGER" />
+    <result column="price" property="price" jdbcType="INTEGER" />
+    <result column="imgUrl" property="imgurl" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="VARCHAR" />
+    <result column="custom1" property="custom1" jdbcType="VARCHAR" />
+    <result column="custom2" property="custom2" jdbcType="VARCHAR" />
+    <result column="custom3" property="custom3" jdbcType="VARCHAR" />
+    <result column="type" property="type" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, level, miaoShu, xiaoGuo, powerNum, wuQiName, roleLevel, price, imgUrl, status, 
+    custom1, custom2, custom3, type
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from wuqi_describe
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from wuqi_describe
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.hxsg.po.WuqiDescribe" >
+    insert into wuqi_describe (id, level, miaoShu, 
+      xiaoGuo, powerNum, wuQiName, 
+      roleLevel, price, imgUrl, 
+      status, custom1, custom2, 
+      custom3, type)
+    values (#{id,jdbcType=INTEGER}, #{level,jdbcType=INTEGER}, #{miaoshu,jdbcType=VARCHAR}, 
+      #{xiaoguo,jdbcType=INTEGER}, #{powernum,jdbcType=INTEGER}, #{wuqiname,jdbcType=VARCHAR}, 
+      #{rolelevel,jdbcType=INTEGER}, #{price,jdbcType=INTEGER}, #{imgurl,jdbcType=VARCHAR}, 
+      #{status,jdbcType=VARCHAR}, #{custom1,jdbcType=VARCHAR}, #{custom2,jdbcType=VARCHAR}, 
+      #{custom3,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hxsg.po.WuqiDescribe" >
+    insert into wuqi_describe
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="level != null" >
+        level,
+      </if>
+      <if test="miaoshu != null" >
+        miaoShu,
+      </if>
+      <if test="xiaoguo != null" >
+        xiaoGuo,
+      </if>
+      <if test="powernum != null" >
+        powerNum,
+      </if>
+      <if test="wuqiname != null" >
+        wuQiName,
+      </if>
+      <if test="rolelevel != null" >
+        roleLevel,
+      </if>
+      <if test="price != null" >
+        price,
+      </if>
+      <if test="imgurl != null" >
+        imgUrl,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="custom1 != null" >
+        custom1,
+      </if>
+      <if test="custom2 != null" >
+        custom2,
+      </if>
+      <if test="custom3 != null" >
+        custom3,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="level != null" >
+        #{level,jdbcType=INTEGER},
+      </if>
+      <if test="miaoshu != null" >
+        #{miaoshu,jdbcType=VARCHAR},
+      </if>
+      <if test="xiaoguo != null" >
+        #{xiaoguo,jdbcType=INTEGER},
+      </if>
+      <if test="powernum != null" >
+        #{powernum,jdbcType=INTEGER},
+      </if>
+      <if test="wuqiname != null" >
+        #{wuqiname,jdbcType=VARCHAR},
+      </if>
+      <if test="rolelevel != null" >
+        #{rolelevel,jdbcType=INTEGER},
+      </if>
+      <if test="price != null" >
+        #{price,jdbcType=INTEGER},
+      </if>
+      <if test="imgurl != null" >
+        #{imgurl,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="custom1 != null" >
+        #{custom1,jdbcType=VARCHAR},
+      </if>
+      <if test="custom2 != null" >
+        #{custom2,jdbcType=VARCHAR},
+      </if>
+      <if test="custom3 != null" >
+        #{custom3,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hxsg.po.WuqiDescribe" >
+    update wuqi_describe
+    <set >
+      <if test="level != null" >
+        level = #{level,jdbcType=INTEGER},
+      </if>
+      <if test="miaoshu != null" >
+        miaoShu = #{miaoshu,jdbcType=VARCHAR},
+      </if>
+      <if test="xiaoguo != null" >
+        xiaoGuo = #{xiaoguo,jdbcType=INTEGER},
+      </if>
+      <if test="powernum != null" >
+        powerNum = #{powernum,jdbcType=INTEGER},
+      </if>
+      <if test="wuqiname != null" >
+        wuQiName = #{wuqiname,jdbcType=VARCHAR},
+      </if>
+      <if test="rolelevel != null" >
+        roleLevel = #{rolelevel,jdbcType=INTEGER},
+      </if>
+      <if test="price != null" >
+        price = #{price,jdbcType=INTEGER},
+      </if>
+      <if test="imgurl != null" >
+        imgUrl = #{imgurl,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="custom1 != null" >
+        custom1 = #{custom1,jdbcType=VARCHAR},
+      </if>
+      <if test="custom2 != null" >
+        custom2 = #{custom2,jdbcType=VARCHAR},
+      </if>
+      <if test="custom3 != null" >
+        custom3 = #{custom3,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hxsg.po.WuqiDescribe" >
+    update wuqi_describe
+    set level = #{level,jdbcType=INTEGER},
+      miaoShu = #{miaoshu,jdbcType=VARCHAR},
+      xiaoGuo = #{xiaoguo,jdbcType=INTEGER},
+      powerNum = #{powernum,jdbcType=INTEGER},
+      wuQiName = #{wuqiname,jdbcType=VARCHAR},
+      roleLevel = #{rolelevel,jdbcType=INTEGER},
+      price = #{price,jdbcType=INTEGER},
+      imgUrl = #{imgurl,jdbcType=VARCHAR},
+      status = #{status,jdbcType=VARCHAR},
+      custom1 = #{custom1,jdbcType=VARCHAR},
+      custom2 = #{custom2,jdbcType=VARCHAR},
+      custom3 = #{custom3,jdbcType=VARCHAR},
+      type = #{type,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

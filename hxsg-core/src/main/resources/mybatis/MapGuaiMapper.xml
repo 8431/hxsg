@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hxsg.Dao.MapGuaiMapper" >
+  <resultMap id="BaseResultMap" type="com.hxsg.po.MapGuai" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="city" property="city" jdbcType="VARCHAR" />
+    <result column="guaiId1" property="guaiid1" jdbcType="VARCHAR" />
+    <result column="guaiId2" property="guaiid2" jdbcType="VARCHAR" />
+    <result column="guaiId3" property="guaiid3" jdbcType="VARCHAR" />
+    <result column="guaiId4" property="guaiid4" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="VARCHAR" />
+    <result column="level" property="level" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, city, guaiId1, guaiId2, guaiId3, guaiId4, status, level
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from map_guai
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+    <select id="selectByCity" resultMap="BaseResultMap" parameterType="java.lang.String" >
+        select
+        <include refid="Base_Column_List" />
+        from map_guai
+        where city = #{0,jdbcType=VARCHAR}
+    </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from map_guai
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.hxsg.po.MapGuai" >
+    insert into map_guai (id, city, guaiId1, 
+      guaiId2, guaiId3, guaiId4, 
+      status, level)
+    values (#{id,jdbcType=INTEGER}, #{city,jdbcType=VARCHAR}, #{guaiid1,jdbcType=VARCHAR}, 
+      #{guaiid2,jdbcType=VARCHAR}, #{guaiid3,jdbcType=VARCHAR}, #{guaiid4,jdbcType=VARCHAR}, 
+      #{status,jdbcType=VARCHAR}, #{level,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hxsg.po.MapGuai" >
+    insert into map_guai
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="city != null" >
+        city,
+      </if>
+      <if test="guaiid1 != null" >
+        guaiId1,
+      </if>
+      <if test="guaiid2 != null" >
+        guaiId2,
+      </if>
+      <if test="guaiid3 != null" >
+        guaiId3,
+      </if>
+      <if test="guaiid4 != null" >
+        guaiId4,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="level != null" >
+        level,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="city != null" >
+        #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="guaiid1 != null" >
+        #{guaiid1,jdbcType=VARCHAR},
+      </if>
+      <if test="guaiid2 != null" >
+        #{guaiid2,jdbcType=VARCHAR},
+      </if>
+      <if test="guaiid3 != null" >
+        #{guaiid3,jdbcType=VARCHAR},
+      </if>
+      <if test="guaiid4 != null" >
+        #{guaiid4,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="level != null" >
+        #{level,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hxsg.po.MapGuai" >
+    update map_guai
+    <set >
+      <if test="city != null" >
+        city = #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="guaiid1 != null" >
+        guaiId1 = #{guaiid1,jdbcType=VARCHAR},
+      </if>
+      <if test="guaiid2 != null" >
+        guaiId2 = #{guaiid2,jdbcType=VARCHAR},
+      </if>
+      <if test="guaiid3 != null" >
+        guaiId3 = #{guaiid3,jdbcType=VARCHAR},
+      </if>
+      <if test="guaiid4 != null" >
+        guaiId4 = #{guaiid4,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="level != null" >
+        level = #{level,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hxsg.po.MapGuai" >
+    update map_guai
+    set city = #{city,jdbcType=VARCHAR},
+      guaiId1 = #{guaiid1,jdbcType=VARCHAR},
+      guaiId2 = #{guaiid2,jdbcType=VARCHAR},
+      guaiId3 = #{guaiid3,jdbcType=VARCHAR},
+      guaiId4 = #{guaiid4,jdbcType=VARCHAR},
+      status = #{status,jdbcType=VARCHAR},
+      level = #{level,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

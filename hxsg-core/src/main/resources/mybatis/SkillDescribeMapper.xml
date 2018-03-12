@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hxsg.Dao.SkillDescribeMapper" >
+  <resultMap id="BaseResultMap" type="com.hxsg.po.SkillDescribe" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="decccribe" property="decccribe" jdbcType="VARCHAR" />
+    <result column="zhiye" property="zhiye" jdbcType="VARCHAR" />
+    <result column="xingBie" property="xingbie" jdbcType="VARCHAR" />
+    <result column="level" property="level" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, name, decccribe, zhiye, xingBie, level
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from skill_describe
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+    <select id="querySkillByZhiYe" resultMap="BaseResultMap" parameterType="java.lang.String" >
+        select
+        <include refid="Base_Column_List" />
+        from skill_describe
+        where zhiye = #{0,jdbcType=VARCHAR} and xingBie in (#{1,jdbcType=VARCHAR},#{2,jdbcType=VARCHAR})
+    </select>
+    <select id="selectAll" resultType="com.hxsg.po.SkillDescribe" parameterType="com.hxsg.po.SkillDescribe" >
+        select* from skill_describe
+        <where>
+            <if test="name != null" >
+              and  name = #{name,jdbcType=VARCHAR}
+            </if>
+            <if test="decccribe != null" >
+                and decccribe = #{decccribe,jdbcType=VARCHAR}
+            </if>
+            <if test="zhiye != null" >
+                and  zhiye = #{zhiye,jdbcType=VARCHAR}
+            </if>
+            <if test="xingbie != null" >
+                and   xingBie = #{xingbie,jdbcType=VARCHAR}
+            </if>
+            <if test="level != null" >
+                and  level = #{level,jdbcType=VARCHAR}
+            </if>
+        </where>
+         </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from skill_describe
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.hxsg.po.SkillDescribe" >
+    insert into skill_describe (id, name, decccribe, 
+      zhiye, xingBie, level
+      )
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{decccribe,jdbcType=VARCHAR}, 
+      #{zhiye,jdbcType=VARCHAR}, #{xingbie,jdbcType=VARCHAR}, #{level,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.hxsg.po.SkillDescribe" >
+    insert into skill_describe
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="decccribe != null" >
+        decccribe,
+      </if>
+      <if test="zhiye != null" >
+        zhiye,
+      </if>
+      <if test="xingbie != null" >
+        xingBie,
+      </if>
+      <if test="level != null" >
+        level,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="decccribe != null" >
+        #{decccribe,jdbcType=VARCHAR},
+      </if>
+      <if test="zhiye != null" >
+        #{zhiye,jdbcType=VARCHAR},
+      </if>
+      <if test="xingbie != null" >
+        #{xingbie,jdbcType=VARCHAR},
+      </if>
+      <if test="level != null" >
+        #{level,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hxsg.po.SkillDescribe" >
+    update skill_describe
+    <set >
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="decccribe != null" >
+        decccribe = #{decccribe,jdbcType=VARCHAR},
+      </if>
+      <if test="zhiye != null" >
+        zhiye = #{zhiye,jdbcType=VARCHAR},
+      </if>
+      <if test="xingbie != null" >
+        xingBie = #{xingbie,jdbcType=VARCHAR},
+      </if>
+      <if test="level != null" >
+        level = #{level,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hxsg.po.SkillDescribe" >
+    update skill_describe
+    set name = #{name,jdbcType=VARCHAR},
+      decccribe = #{decccribe,jdbcType=VARCHAR},
+      zhiye = #{zhiye,jdbcType=VARCHAR},
+      xingBie = #{xingbie,jdbcType=VARCHAR},
+      level = #{level,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

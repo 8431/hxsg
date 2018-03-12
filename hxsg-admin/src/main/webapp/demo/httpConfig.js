@@ -1,0 +1,1 @@
+﻿var httpConfig="http://119.29.234.184:8080/admin/hxsgAdmin"

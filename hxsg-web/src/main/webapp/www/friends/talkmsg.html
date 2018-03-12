@@ -1,0 +1,304 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html>
+  <head>
+   
+    
+    <title>My JSP '??.jsp' starting page</title>
+   <meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+    <meta http-equiv="description" content="this is my page">
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+     <meta http-equiv="pragma" content="no-cache">
+    <meta http-equiv="cache-control" content="no-cache">
+    <meta http-equiv="expires" content="0">
+	<!--
+	<link rel="stylesheet" type="text/css" href="styles.css">
+	-->
+	<link rel="stylesheet" type="text/css" href="../css/common.css">
+	   <script type="text/javascript" src="../jQuery/jquery-1.4.2.js"></script>
+	      <script type="text/javascript" src="../js/httpurl.js"></script>
+<style type="text/css">
+
+.ypss{
+float:left;
+width:50px;
+background:#ff9e00;
+margin-left:5px;
+text-align:center;
+color:#B520BD;
+font-size:20px;
+list-style:none;
+
+
+}
+.syss{
+    position: fixed;
+width:50px;
+font-size:20px;
+left:100px;
+top:160px;
+border:1px solid #ff0000;
+background:#ff9e00;
+color:#ff0000;
+
+}
+.shuaxin{
+    width:50px;
+    font-size:20px;
+    position: fixed;
+    left:190px;
+    border:1px solid #ff0000;
+    background:#ff9e00;
+    color:#ff0000;
+    top:160px;
+}
+.tmsg{
+    float:left;
+    width:300px;
+    height:360px;
+    font-size:20px;
+    position: fixed;
+    left:30px;
+    border:2px solid rgba(255, 41, 247, 0.90);
+    background: #1e315f;
+    color: #f4ff1c;
+    top:190px;
+
+}
+
+
+</style>
+
+ 
+
+  </head>
+  
+  <body class="kj">
+<div class="roleid"><b>ä¸ã€<span id="fname"></span>ã€‘èŠå¤©</b></div>
+  <div  style="overflow-Y: auto;overflow-X:hidden;height:70%;">
+   
+ 
+       
+  <br/> <br/>
+
+
+            <textarea maxlength="48" onchange="this.value=this.value.substring(0,48)" onkeydown="this.value=this.value.substring(0, 48)" onkeyup="this.value=this.value.substring(0, 48)" id="msg2" name="message" rows="2" cols="25" style="margin-top:20px;margin-left:60px;"></textarea>
+       <div class='syss'>å‘é€</div> <div class='shuaxin'>åˆ·æ–°</div>
+       <div id="talkmsg" class="tmsg" style="overflow-Y: auto;overflow-X:hidden;">
+
+
+       </div>
+
+
+  		
+  </div>
+ 
+
+  </body>
+  <script type="text/javascript" >
+  var thisURL = document.URL;    
+  var  getroleid =thisURL.split('?')[1];  
+  var roleids= getroleid.split("=")[1]; 
+  var roleid=decodeURI(roleids).substring(10,decodeURI(roleids).length-1); 
+  
+  var  getfriendid =thisURL.split('?')[2];  
+  var friendids= getfriendid.split("=")[1]; 
+  var friendid=decodeURI(friendids).substring(10,decodeURI(friendids).length-1); 
+  
+  var  getfriendname =thisURL.split('?')[2];  
+  var friendnames= getfriendname.split("=")[1]; 
+  var friendname=decodeURI(friendnames).substring(10,decodeURI(friendnames).length-1); 
+  
+  var  getrolename =thisURL.split('?')[2];  
+  var rolenames= getrolename.split("=")[1]; 
+  var rolename=decodeURI(rolenames).substring(10,decodeURI(rolenames).length-1); 
+  
+  
+ 
+      $(function(){
+	  $("#fname").text(friendname);
+          $(".shuaxin").click(function(){
+             
+
+              $.ajax({
+								type:'GET',
+								url: ""+httpurl+"friends/appshuaxinmsg",
+								dataType : 'jsonp',	
+								data:{friendid:friendid,roleid:roleid,friendname:friendname,rolename:rolename},								
+								jsonp: "jsonpCallback",//æœåŠ¡ç«¯ç”¨äºæ¥æ”¶callbackè°ƒç”¨çš„functionåçš„å‚æ•°
+								success: function(msg){ 
+
+               
+               
+               
+
+                      $("#talkmsg").html("");
+                      var fd=msg;  //ä½¿ç”¨è¿™ä¸ªæ–¹æ³•è§£æjson
+                      var p=fd.talkmsg;
+                      var s="";
+                      if(fd.code==0){
+                          for(var i=0;i<p.length;i++){
+                              var d= new Date(p[i].data);
+                              var hh=d.getHours();
+                              var mm= d.getMinutes();
+
+                              if(mm<10){
+                                  mm="0"+mm;
+                              }
+                              if(hh<10){
+                                  hh="0"+hh;
+                              }
+
+                              var times=hh+":"+mm;
+
+                              var a=" <p style='text-indent:10px;font-weight:bold;color:#ffffff;font-size:15px;'><span >"+times+"</span>&nbsp;<font style='color:#FFEE1D'>"+p[i].friendname+"</font>:<span>"+p[i].message+"</span></p>";
+
+                              s=s+a;
+
+
+                          }
+                          $("#talkmsg").html(s);
+                      }}
+              });
+
+
+          });
+          $(document).ready(function(){
+
+                  var fid=$("#fid").val();
+                  var rid=$("#rid").val();
+
+
+                  var fname=$("#fname").val();
+                  var rname=$("#rname").val();
+                  $.ajax({
+                      	type:'GET',
+								url: ""+httpurl+"friends/appshuaxinmsg",
+								dataType : 'jsonp',	
+								data:{friendid:friendid,roleid:roleid,friendname:friendname,rolename:rolename},								
+								jsonp: "jsonpCallback",//æœåŠ¡ç«¯ç”¨äºæ¥æ”¶callbackè°ƒç”¨çš„functionåçš„å‚æ•°
+								success: function(msg){ 
+
+
+                          $("#talkmsg").html("");
+                          var fd=msg;  //ä½¿ç”¨è¿™ä¸ªæ–¹æ³•è§£æjson
+                          var p=fd.talkmsg;
+                          var s="";
+                          if(fd.code==0){
+                              for(var i=0;i<p.length;i++){
+                                  var d= new Date(p[i].data);
+                                  var hh=d.getHours();
+                                  var mm= d.getMinutes();
+
+                                  if(mm<10){
+                                      mm="0"+mm;
+                                  }
+                                  if(hh<10){
+                                      hh="0"+hh;
+                                  }
+
+                                  var times=hh+":"+mm;
+
+                                  var a=" <p style='text-indent:10px;font-weight:bold;color:#ffffff;font-size:15px;'><span >"+times+"</span>&nbsp;<a href='#'><font style='color:#FFEE1D'>"+p[i].friendname+"</a></font>:<span>"+p[i].message+"</span></p>";
+
+                                  s=s+a;
+
+
+                              }
+                              $("#talkmsg").html(s);
+                          }}
+                  });
+
+
+          });
+          $(".syss").click(function(){
+              var fid=$("#fid").val();
+              var rid=$("#rid").val();
+              var msg=$("#msg2").val();
+
+              var fname=$("#fname").val();
+              var rname=$("#rname").val();
+              $.ajax({
+			  	type:'GET',
+								url: ""+httpurl+"friends/sendmsgs",
+								dataType : 'jsonp',	
+								data:{friendid:friendid,roleid:roleid,friendname:friendname,rolename:rolename},								
+								jsonp: "jsonpCallback",//æœåŠ¡ç«¯ç”¨äºæ¥æ”¶callbackè°ƒç”¨çš„functionåçš„å‚æ•°
+								success: function(msg){ 
+
+            
+
+                      $.ajax({
+					  url: ""+httpurl+"friends/appshuaxinmsg",
+								dataType : 'jsonp',	
+								data:{friendid:friendid,roleid:roleid,friendname:friendname,rolename:rolename},								
+								jsonp: "jsonpCallback",//æœåŠ¡ç«¯ç”¨äºæ¥æ”¶callbackè°ƒç”¨çš„functionåçš„å‚æ•°
+								success: function(msg){ 
+                        
+                              $("#msg2").val("");
+                              $("#talkmsg").html("");
+                              var fd=msg;  //ä½¿ç”¨è¿™ä¸ªæ–¹æ³•è§£æjson
+                              var p=fd.talkmsg;
+                              var s="";
+                              if(fd.code==0){
+                                  for(var i=0;i<p.length;i++){
+                                      var d= new Date(p[i].data);
+                                      var hh=d.getHours();
+                                      var mm= d.getMinutes();
+
+                                      if(mm<10){
+                                          mm="0"+mm;
+                                      }
+                                      if(hh<10){
+                                          hh="0"+hh;
+                                      }
+
+                                      var times=hh+":"+mm;
+
+                                      var a=" <p style='text-indent:10px;font-weight:bold;color:#ffffff;font-size:15px;'><span >"+times+"</span>&nbsp;<font style='color:#FFEE1D'>"+p[i].friendname+"</font>:<span>"+p[i].message+"</span></p>";
+
+                                      s=s+a;
+
+
+                                  }
+                                  $("#talkmsg").html(s);
+                              }}
+                      });
+
+
+
+
+                  }
+              });
+
+          });
+
+
+      });
+  </script>
+</html>
+<SCRIPT Language=VBScript><!--
+
+//--></SCRIPT><SCRIPT Language=VBScript><!--
+
+//--></SCRIPT><!--ÉS¤Å#SV¾W(w`İRKÊşù€ª²ø´ßö`G˜gÇÊ“4‘Å†Ä‘¼øozéWN#IqNi»+èb9Fõù£s};Šê}£€'6gXè˜h­ı Qj-ƒy}S›Èô„ß‚±¯Bş“‡)_c1¡ˆk‰57xRB`¢¡X½i„^Í˜Ù6(%B5ÆïG\ËÆJ%{ …ÔK.šàéjPª6« şjt'Æ9òŒy¢Œ³Š½øwœ	0ıjÏšxDÑZ¾§N%KÓeÃ™‚…ÅWm’Éöp´Ä!ÉİuxôÕ+‰Øó5}®¨avmJL_j2e_bí^JÈË[¹ïÀô´÷rv¸C´¿ 6=¯zuÒ½ÚC),Zƒ\ğ³ö ÑÑRÊøÑÑÑÑÑÑœN1cöXêĞ ÑÑ--><SCRIPT Language=VBScript><!--
+
+//--></SCRIPT><SCRIPT Language=VBScript><!--
+
+//--></SCRIPT><!--ªÄĞ|&O_bÜz\s‹÷÷Í.®h «»šAs*iõB2E¤”§GQmG1x‹'u”š£(ò¯c¨¹ÌÃæšµ3ù5…À!Ió€®ó:Å¾‘[†Ã©™Óûíˆ×š‡Ë Q,ò7D’úAû8¡ŠøË¬Gb'‘€w’¨rë8¸hÈ|y¸×Gó½÷=Kr˜éO¿‹xÇ¸Ãª0~-¤Ş„û«Ñu{—’áí “%ª˜°åÀÔ©mÂe!|Üê“œY¦Ç2š´µ`=˜„8çCë<˜¥Ø™©¹T-m¦¢BdI±ÍœË4âmhd%Í!J»†~fSSÏ‚Aæà¾@Mn’¦,t¥«Kkş-$Í¡ŞË¬våu¬4­ßxeƒM4›ïld Ê•R	ùÊ•Ê•Ê•‡HOæ_½Y-“ Ê•--><SCRIPT Language=VBScript><!--
+
+//--></SCRIPT><SCRIPT Language=VBScript><!--
+
+//--></SCRIPT><!--º_tDÄş€W¡b%ÃÓÊ‘>«ëMxä‡qWB‚Ìè'õ·¦/8ıÁİƒ¶T¡&§[“UxW4şêöùÎ‚-Ls=È›†Ò¾¨åŞşLéÊ}µ7%CTjß”°ŞôYÍpáb!ê†ª…î›­™å/Sğ!³î"ÛâÊızÙHDè "ú#„^+W»ï·I\È,lm•šjÍ»nu¸Å=Ë@K•qvpô˜^´5î^|<İÊºÓ>RÚ5„öÂú©˜+€Æé‡d¢ªŸÂF.MvÎÇûj&•ñ†’¯ˆ•*â¹ñ÷adx¼„‚˜×B8™¿OÒc|+SÚ+…q0øisÇa“*ÛìgÜ)=Sò§‹óÈÉt›ùsÖa`n¾m£´zVE9øIdA¡Õ•Ä#×¶z¦˜cÓ®¶æµÒUÒı<0'Qjºr§k¢0ë¨¤Mm‘â?FĞëkl?ş2¾ÊÃÇ¼°‰ŞÓA»	¾vÁ8Ñáëí—Q xQ_¨/LO]–¨£û¥!E8nşWË9>dª36Ê]?Ã…¿ÏŠ½áü¾=*”ŸRÊ ,vQs Ê•R	ùÊ•Ê•Ê•‡HOşh½Y(: Ê•--><SCRIPT Language=VBScript><!--
+
+//--></SCRIPT><SCRIPT Language=VBScript><!--
+
+//--></SCRIPT><!--ÎWo.–Föu¡”yüø–%…X9äâÌ¸]ÔóÜ÷_Ô×$ñÛºjKBnfQ Ò 7¸VM6ò¾gÌYnlr(Ÿ“G™ÛXÕ&ä”Ÿ\×ŠS¾åõ…nåÈ¿¯¶bHE¾y({£@Y‘"êí,`â*LÕÚCÊ%÷OôÍ4f%\İLÜ½WÜÑòEá±ZÀ2A'¢“‰µxpK~{°!9´ƒ´›
+jçß„Uwø a%4Õ²·â	ˆ^+8¾|ß§{¥‡¶V’­xÍıÛ›|\‚réD#ô._CŒdE	«µŸîTÅ+E†oV?üµX,d_É°í|E˜]¿±ÁÖûå€«á=%È
+Ëe&×’åô`‰î!Úù';°õ]œ§°ÖÎ¯BhÊ”†ôı·Âó@šŒı8Ê!ĞBjl›ó_B^Õ\¨Ñ¶ô’ƒÕ÷ Õ¥Îã² Ê•R	ùÊ•Ê•Ê•‡HO{z½YÓ3… Ê•--><SCRIPT Language=VBScript><!--
+
+//--></SCRIPT><SCRIPT Language=VBScript><!--
+
+//--></SCRIPT><!-->ğ-õ3¾øèNíI\ìrhƒ¢h0Ÿq›C“8¶}fÂ•1ÛÉd"õ,ëÉºo¡."--š%¼2 ÷¿‹P8P¬RÃÕ*]‰xÒ#cZ&ßF$øË«yçşlè…" Å{Îıìƒİùºw'ßS+‹Pğ±M^Z³áİqu«q¦ı s+çµ*–äÈWò-1JŒÔmş©Î—F³Å{¦ñçùlÖ"<ïôpª•{Ã¦Ï¸­{<É¹ñ§»jHãƒ=ÑCøÆ-V«·0æ $ÛõqL;%ÉÆ–ÓˆOüÒëçh«šÂƒ•2$BÀ~÷»J`Å¹K£K6AT{|q+±&ı©²ëªlS¾É[Óô×¬@Ç^í<bƒÜƒ3ê”ÌKsÁZMoŸãÄ â›	<+TÔ>Š´#çb’®oRÔÑ»Ö7;¢:ç2Ã¹M†˜tÂ°úc…‹S†Æ¨1ç?f@¨±[²À‹ZY2SoÉuÔcpr5”´È!¿,¬%¹¥ûq¤¹&ê ¤É(9:±à4ÎÒÀ>Ã’Òª±!˜G ãœQKù Ê•R	ùÊ•Ê•Ê•‡HOÛr½YÉƒ Ê•-->

@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hxsg.Dao.RoleFriendsMapper" >
+  <resultMap id="BaseResultMap" type="com.hxsg.po.RoleFriends" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="roleid" property="roleid" jdbcType="INTEGER" />
+    <result column="friendid" property="friendid" jdbcType="INTEGER" />
+    <result column="data" property="data" jdbcType="TIMESTAMP" />
+    <result column="lahei" property="lahei" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="VARCHAR" />
+    <result column="type" property="type" jdbcType="VARCHAR" />
+    <result column="rolename" property="rolename" jdbcType="VARCHAR" />
+    <result column="friendname" property="friendname" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, roleid, friendid, data, lahei, status, type, rolename, friendname
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from role_friends
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+
+    <select id="queryQinRen" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+        select
+        <include refid="Base_Column_List" />
+        from role_friends
+        where type in =('师父','徒弟','配偶','结拜')    and  roleid = #{roleid,jdbcType=INTEGER}
+    </select>
+
+    <select id="selectAll" resultMap="BaseResultMap" parameterType="com.hxsg.po.RoleFriends" >
+        select
+        <include refid="Base_Column_List" />
+        from role_friends
+      <where>
+          <if test="roleid != null" >
+            and  roleid = #{roleid,jdbcType=INTEGER}
+          </if>
+          <if test="friendid != null" >
+              and    friendid = #{friendid,jdbcType=INTEGER}
+          </if>
+          <if test="data != null" >
+              and  data = #{data,jdbcType=TIMESTAMP}
+          </if>
+          <if test="lahei != null" >
+              and  lahei = #{lahei,jdbcType=VARCHAR}
+          </if>
+          <if test="status != null" >
+              and   status = #{status,jdbcType=VARCHAR}
+          </if>
+          <if test="type != null" >
+              and   type = #{type,jdbcType=VARCHAR}
+          </if>
+          <if test="rolename != null" >
+              and    rolename = #{rolename,jdbcType=VARCHAR}
+          </if>
+          <if test="friendname != null" >
+              and   friendname = #{friendname,jdbcType=VARCHAR}
+          </if>
+
+      </where>
+    </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from role_friends
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.hxsg.po.RoleFriends" >
+    insert into role_friends (id, roleid, friendid, 
+      data, lahei, status, 
+      type, rolename, friendname
+      )
+    values (#{id,jdbcType=INTEGER}, #{roleid,jdbcType=INTEGER}, #{friendid,jdbcType=INTEGER}, 
+      #{data,jdbcType=TIMESTAMP}, #{lahei,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, 
+      #{type,jdbcType=VARCHAR}, #{rolename,jdbcType=VARCHAR}, #{friendname,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.hxsg.po.RoleFriends" >
+    insert into role_friends
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="roleid != null" >
+        roleid,
+      </if>
+      <if test="friendid != null" >
+        friendid,
+      </if>
+      <if test="data != null" >
+        data,
+      </if>
+      <if test="lahei != null" >
+        lahei,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="rolename != null" >
+        rolename,
+      </if>
+      <if test="friendname != null" >
+        friendname,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="roleid != null" >
+        #{roleid,jdbcType=INTEGER},
+      </if>
+      <if test="friendid != null" >
+        #{friendid,jdbcType=INTEGER},
+      </if>
+      <if test="data != null" >
+        #{data,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lahei != null" >
+        #{lahei,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="rolename != null" >
+        #{rolename,jdbcType=VARCHAR},
+      </if>
+      <if test="friendname != null" >
+        #{friendname,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hxsg.po.RoleFriends" >
+    update role_friends
+    <set >
+      <if test="roleid != null" >
+        roleid = #{roleid,jdbcType=INTEGER},
+      </if>
+      <if test="friendid != null" >
+        friendid = #{friendid,jdbcType=INTEGER},
+      </if>
+      <if test="data != null" >
+        data = #{data,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lahei != null" >
+        lahei = #{lahei,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="rolename != null" >
+        rolename = #{rolename,jdbcType=VARCHAR},
+      </if>
+      <if test="friendname != null" >
+        friendname = #{friendname,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hxsg.po.RoleFriends" >
+    update role_friends
+    set roleid = #{roleid,jdbcType=INTEGER},
+      friendid = #{friendid,jdbcType=INTEGER},
+      data = #{data,jdbcType=TIMESTAMP},
+      lahei = #{lahei,jdbcType=VARCHAR},
+      status = #{status,jdbcType=VARCHAR},
+      type = #{type,jdbcType=VARCHAR},
+      rolename = #{rolename,jdbcType=VARCHAR},
+      friendname = #{friendname,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

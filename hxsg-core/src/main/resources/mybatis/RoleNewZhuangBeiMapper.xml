@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hxsg.Dao.RoleNewZhuangBeiMapper" >
+  <resultMap id="BaseResultMap" type="com.hxsg.po.RoleNewZhuangBei" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="roleId" property="roleid" jdbcType="INTEGER" />
+    <result column="wqId" property="wqid" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="wqXiaoGuo" property="wqxiaoguo" jdbcType="INTEGER" />
+    <result column="status" property="status" jdbcType="VARCHAR" />
+    <result column="type" property="type" jdbcType="VARCHAR" />
+    <result column="date" property="date" jdbcType="TIMESTAMP" />
+    <result column="baoShi1" property="baoshi1" jdbcType="INTEGER" />
+    <result column="baoShi2" property="baoshi2" jdbcType="INTEGER" />
+    <result column="baoShi3" property="baoshi3" jdbcType="INTEGER" />
+    <result column="zb" property="zb" jdbcType="INTEGER" />
+    <result column="kangXing" property="kangxing" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, roleId, wqId, name, wqXiaoGuo, status, type, date, baoShi1, baoShi2, baoShi3, 
+    zb, kangXing
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from role_new_zhuangbei
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+    <select id="queryRoleZhaungBei" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select * from role_new_zhuangbei  where  roleId=#{0,jdbcType=INTEGER} and zb=#{1,jdbcType=INTEGER}
+    </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from role_new_zhuangbei
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.hxsg.po.RoleNewZhuangBei" >
+    insert into role_new_zhuangbei (id, roleId, wqId, 
+      name, wqXiaoGuo, status, 
+      type, date, baoShi1, 
+      baoShi2, baoShi3, zb, 
+      kangXing)
+    values (#{id,jdbcType=INTEGER}, #{roleid,jdbcType=INTEGER}, #{wqid,jdbcType=INTEGER}, 
+      #{name,jdbcType=VARCHAR}, #{wqxiaoguo,jdbcType=INTEGER}, #{status,jdbcType=VARCHAR}, 
+      #{type,jdbcType=VARCHAR}, #{date,jdbcType=TIMESTAMP}, #{baoshi1,jdbcType=INTEGER}, 
+      #{baoshi2,jdbcType=INTEGER}, #{baoshi3,jdbcType=INTEGER}, #{zb,jdbcType=INTEGER}, 
+      #{kangxing,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hxsg.po.RoleNewZhuangBei" >
+    insert into role_new_zhuangbei
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="roleid != null" >
+        roleId,
+      </if>
+      <if test="wqid != null" >
+        wqId,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="wqxiaoguo != null" >
+        wqXiaoGuo,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="date != null" >
+        date,
+      </if>
+      <if test="baoshi1 != null" >
+        baoShi1,
+      </if>
+      <if test="baoshi2 != null" >
+        baoShi2,
+      </if>
+      <if test="baoshi3 != null" >
+        baoShi3,
+      </if>
+      <if test="zb != null" >
+        zb,
+      </if>
+      <if test="kangxing != null" >
+        kangXing,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="roleid != null" >
+        #{roleid,jdbcType=INTEGER},
+      </if>
+      <if test="wqid != null" >
+        #{wqid,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="wqxiaoguo != null" >
+        #{wqxiaoguo,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="date != null" >
+        #{date,jdbcType=TIMESTAMP},
+      </if>
+      <if test="baoshi1 != null" >
+        #{baoshi1,jdbcType=INTEGER},
+      </if>
+      <if test="baoshi2 != null" >
+        #{baoshi2,jdbcType=INTEGER},
+      </if>
+      <if test="baoshi3 != null" >
+        #{baoshi3,jdbcType=INTEGER},
+      </if>
+      <if test="zb != null" >
+        #{zb,jdbcType=INTEGER},
+      </if>
+      <if test="kangxing != null" >
+        #{kangxing,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hxsg.po.RoleNewZhuangBei" >
+    update role_new_zhuangbei
+    <set >
+      <if test="roleid != null" >
+        roleId = #{roleid,jdbcType=INTEGER},
+      </if>
+      <if test="wqid != null" >
+        wqId = #{wqid,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="wqxiaoguo != null" >
+        wqXiaoGuo = #{wqxiaoguo,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="date != null" >
+        date = #{date,jdbcType=TIMESTAMP},
+      </if>
+      <if test="baoshi1 != null" >
+        baoShi1 = #{baoshi1,jdbcType=INTEGER},
+      </if>
+      <if test="baoshi2 != null" >
+        baoShi2 = #{baoshi2,jdbcType=INTEGER},
+      </if>
+      <if test="baoshi3 != null" >
+        baoShi3 = #{baoshi3,jdbcType=INTEGER},
+      </if>
+      <if test="zb != null" >
+        zb = #{zb,jdbcType=INTEGER},
+      </if>
+      <if test="kangxing != null" >
+        kangXing = #{kangxing,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hxsg.po.RoleNewZhuangBei" >
+    update role_new_zhuangbei
+    set roleId = #{roleid,jdbcType=INTEGER},
+      wqId = #{wqid,jdbcType=INTEGER},
+      name = #{name,jdbcType=VARCHAR},
+      wqXiaoGuo = #{wqxiaoguo,jdbcType=INTEGER},
+      status = #{status,jdbcType=VARCHAR},
+      type = #{type,jdbcType=VARCHAR},
+      date = #{date,jdbcType=TIMESTAMP},
+      baoShi1 = #{baoshi1,jdbcType=INTEGER},
+      baoShi2 = #{baoshi2,jdbcType=INTEGER},
+      baoShi3 = #{baoshi3,jdbcType=INTEGER},
+      zb = #{zb,jdbcType=INTEGER},
+      kangXing = #{kangxing,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hxsg.Dao.wuqiMapper" >
+  <resultMap id="BaseResultMap" type="com.hxsg.po.wuqi" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="dengji" property="dengji" jdbcType="INTEGER" />
+    <result column="jiehsao" property="jiehsao" jdbcType="VARCHAR" />
+    <result column="gongji" property="gongji" jdbcType="INTEGER" />
+    <result column="liliang" property="liliang" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="role_dengji" property="roleDengji" jdbcType="INTEGER" />
+    <result column="shuxing" property="shuxing" jdbcType="VARCHAR" />
+    <result column="price" property="price" jdbcType="INTEGER" />
+    <result column="img" property="img" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, dengji, jiehsao, gongji, liliang, name, role_dengji, shuxing, price, img, status
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from wuqi
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+    <select id="selectByAll" resultMap="BaseResultMap" parameterType="com.hxsg.po.wuqi" >
+        select
+        <include refid="Base_Column_List" />
+        from wuqi
+     <where>
+         <if test="dengji != null" >
+             dengji = #{dengji,jdbcType=INTEGER}
+         </if>
+        <if test="jiehsao != null" >
+           and jiehsao = #{jiehsao,jdbcType=VARCHAR}
+        </if>
+        <if test="gongji != null" >
+            and  gongji = #{gongji,jdbcType=INTEGER}
+        </if>
+        <if test="liliang != null" >
+            and liliang = #{liliang,jdbcType=INTEGER}
+        </if>
+        <if test="name != null" >
+            and name = #{name,jdbcType=VARCHAR}
+        </if>
+        <if test="roleDengji != null" >
+            and role_dengji = #{roleDengji,jdbcType=INTEGER}
+        </if>
+        <if test="shuxing != null" >
+            and  shuxing = #{shuxing,jdbcType=VARCHAR}
+        </if>
+        <if test="price != null" >
+            and  price = #{price,jdbcType=INTEGER}
+        </if>
+        <if test="img != null" >
+            and img = #{img,jdbcType=VARCHAR}
+        </if>
+        <if test="status != null" >
+            and   status = #{status,jdbcType=VARCHAR}
+        </if>
+
+     </where>
+    </select>
+    <select id="selectAll" resultMap="BaseResultMap" parameterType="com.hxsg.po.wuqi" >
+        select
+        <include refid="Base_Column_List" />
+        from wuqi
+
+    </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from wuqi
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.hxsg.po.wuqi" >
+    insert into wuqi (id, dengji, jiehsao, 
+      gongji, liliang, name, 
+      role_dengji, shuxing, price, 
+      img, status)
+    values (#{id,jdbcType=INTEGER}, #{dengji,jdbcType=INTEGER}, #{jiehsao,jdbcType=VARCHAR}, 
+      #{gongji,jdbcType=INTEGER}, #{liliang,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, 
+      #{roleDengji,jdbcType=INTEGER}, #{shuxing,jdbcType=VARCHAR}, #{price,jdbcType=INTEGER}, 
+      #{img,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hxsg.po.wuqi" >
+    insert into wuqi
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="dengji != null" >
+        dengji,
+      </if>
+      <if test="jiehsao != null" >
+        jiehsao,
+      </if>
+      <if test="gongji != null" >
+        gongji,
+      </if>
+      <if test="liliang != null" >
+        liliang,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="roleDengji != null" >
+        role_dengji,
+      </if>
+      <if test="shuxing != null" >
+        shuxing,
+      </if>
+      <if test="price != null" >
+        price,
+      </if>
+      <if test="img != null" >
+        img,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="dengji != null" >
+        #{dengji,jdbcType=INTEGER},
+      </if>
+      <if test="jiehsao != null" >
+        #{jiehsao,jdbcType=VARCHAR},
+      </if>
+      <if test="gongji != null" >
+        #{gongji,jdbcType=INTEGER},
+      </if>
+      <if test="liliang != null" >
+        #{liliang,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="roleDengji != null" >
+        #{roleDengji,jdbcType=INTEGER},
+      </if>
+      <if test="shuxing != null" >
+        #{shuxing,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null" >
+        #{price,jdbcType=INTEGER},
+      </if>
+      <if test="img != null" >
+        #{img,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hxsg.po.wuqi" >
+    update wuqi
+    <set >
+      <if test="dengji != null" >
+        dengji = #{dengji,jdbcType=INTEGER},
+      </if>
+      <if test="jiehsao != null" >
+        jiehsao = #{jiehsao,jdbcType=VARCHAR},
+      </if>
+      <if test="gongji != null" >
+        gongji = #{gongji,jdbcType=INTEGER},
+      </if>
+      <if test="liliang != null" >
+        liliang = #{liliang,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="roleDengji != null" >
+        role_dengji = #{roleDengji,jdbcType=INTEGER},
+      </if>
+      <if test="shuxing != null" >
+        shuxing = #{shuxing,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null" >
+        price = #{price,jdbcType=INTEGER},
+      </if>
+      <if test="img != null" >
+        img = #{img,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hxsg.po.wuqi" >
+    update wuqi
+    set dengji = #{dengji,jdbcType=INTEGER},
+      jiehsao = #{jiehsao,jdbcType=VARCHAR},
+      gongji = #{gongji,jdbcType=INTEGER},
+      liliang = #{liliang,jdbcType=INTEGER},
+      name = #{name,jdbcType=VARCHAR},
+      role_dengji = #{roleDengji,jdbcType=INTEGER},
+      shuxing = #{shuxing,jdbcType=VARCHAR},
+      price = #{price,jdbcType=INTEGER},
+      img = #{img,jdbcType=VARCHAR},
+      status = #{status,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

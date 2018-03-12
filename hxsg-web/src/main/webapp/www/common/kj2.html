@@ -1,0 +1,319 @@
+
+
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html>
+  <head>
+    
+    
+    <title>My JSP 'left.jsp' starting page</title>
+    
+	  <meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+    <meta http-equiv="description" content="this is my page">
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+     <meta http-equiv="pragma" content="no-cache">
+    <meta http-equiv="cache-control" content="no-cache">
+    <meta http-equiv="expires" content="0">
+	<meta http-equiv="pragma" content="no-cache">
+	<meta http-equiv="cache-control" content="no-cache">
+	<meta http-equiv="expires" content="0">    
+	<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+	<meta http-equiv="description" content="This is my page">
+    <script type="text/javascript" src="../jQuery/jquery-1.4.2.js"></script>
+		 <script type="text/javascript" src="../js/httpurl.js"></script>
+	<!--
+	<link rel="stylesheet" type="text/css" href="styles.css">
+	-->
+<style type="text/css">
+
+.top{
+    position:fixed;
+    top:0px;
+    left:0px;
+    float:left;
+	font-size:25px;
+	background:url(../image/wtop.png) #4C4539;
+    width:100%;
+    line-height:35px;
+	height:10%;
+	text-align:center;
+	color:#A7D02D;
+	text-shadow:1px 1px 5px #4E524B;
+	font-weight:bold;
+	background-size:100% 100%;
+	
+}
+ .news{
+     background:url("../image/news.gif");
+     position:fixed;
+     top:5px;
+     left:300px;
+     background-size:100% 100%;
+     width:70px;
+     height:25px;
+     display:none;
+
+ }
+
+.newsure{
+    background: url(../image/hy_sure.png);
+    width:90px;
+    height: 35px;
+    background-size: 100% 100%;
+    position: fixed;
+    top:250px;
+    left:60px;
+    display:none;
+
+}
+.newjujue{
+    background: url(../image/hy_jujue.png);
+    width:90px;
+    height: 35px;
+    background-size: 100% 100%;
+    position: absolute;
+    top:250px;
+    left:200px;
+    display:none;
+
+}
+.sure{
+    background: url(../image/sure.jpg);
+    width:90px;
+    height: 35px;
+    background-size: 100% 100%;
+    position: absolute;
+    top:250px;
+    left:130px;
+    display:none;
+
+}
+</style>
+  </head>
+  
+  <body ">
+  <div class="top">è®¸æ˜Œ</div>
+  <div class="news" ></div>
+  <div class="newsure"></div>
+  <div class="newjujue"></div>
+  <div class="sure"></div>
+  <input type="hidden" id="fid"/>
+  <input type="hidden" id="rfmsgid"/>
+ <div class="fy"></div>
+
+  </body>
+  <script type="text/javascript">
+      function checkmsg(){
+
+          $.ajax({
+		  
+                    type:'GET',
+					url: ""+httpurl+"friends/appyzhy",
+					dataType : 'jsonp',				
+					jsonp: "jsonpCallback",//æœåŠ¡ç«¯ç”¨äºæ¥æ”¶callbackè°ƒç”¨çš„functionåçš„å‚æ•°
+					success: function(msg){          
+
+                  var jg=msg;  //ä½¿ç”¨è¿™ä¸ªæ–¹æ³•è§£æjson
+
+
+                  if(jg.code==0){
+                      $(".news").css({"display":"block"});
+
+                  }else{
+                      $(".news").css({"display":"none"});
+
+                  }
+
+
+
+              }
+
+          });
+
+          window.setTimeout(checkmsg,3000);
+      }
+      window.setTimeout(checkmsg,1);
+      $(function(){
+          $(".news").click(function(){
+              $.ajax({
+                 type:'GET',
+					url: ""+httpurl+"friends/apptjhy",
+					dataType : 'jsonp',				
+					jsonp: "jsonpCallback",//æœåŠ¡ç«¯ç”¨äºæ¥æ”¶callbackè°ƒç”¨çš„functionåçš„å‚æ•°
+					success: function(msg){ 
+
+                      var jg=msg;  //ä½¿ç”¨è¿™ä¸ªæ–¹æ³•è§£æjson
+                      var p=jg.tjnews;
+
+                      if(jg.code==0){
+                          if(p.type=="åŠ å¥½å‹"){
+
+                             $(".fy").text("");
+                              $(".fy").text(p.message);
+                              $("#fid").val(p.friendid);
+
+                              $("#rfmsgid").val(p.id);
+                              $(".fy").css({"display":"block"});
+                              $(".newsure").css({"display":"block"});
+
+                              $(".newjujue").css({"display":"block"});
+
+                          }
+                          if(p.type=="é‚®ä»¶"){
+                              $(".fy").text("");
+                              $(".fy").text(p.message);
+                              $("#rfmsgid").val(p.id);
+                              $(".sure").css({"display":"block"});
+                              $(".fy").css({"display":"block"});
+                          }
+                          if(p.type=="é€šçŸ¥"){
+						
+                              $(".fy").text("");
+                              $(".fy").text(p.message);
+                              $("#rfmsgid").val(p.id);
+                              $(".sure").css({"display":"block"});
+                              $(".fy").css({"display":"block"});
+                          }
+                          if(p.type=="ç§èŠ"){
+                              var ids=p.id;
+                              $.ajax({
+							    type:'GET',
+								url: ""+httpurl+"friends/readmsg",
+								dataType : 'jsonp',	
+								data:{id:ids},									
+								jsonp: "jsonpCallback",//æœåŠ¡ç«¯ç”¨äºæ¥æ”¶callbackè°ƒç”¨çš„functionåçš„å‚æ•°
+								success: function(msg){ 
+
+                                 
+                                 
+                                
+
+
+                                      window.top.location.href="../friends/talkmsg.html?roleid=encodeURI("+p.roleid+")?friendid=encodeURI("+p.friendid+")?friendname=encodeURI("+p.friendname+")?rolename=encodeURI("+p.rolename+")";
+                                  }
+
+
+
+                              });
+                          }
+
+
+
+
+
+
+
+
+
+                      }
+
+                  }
+              });
+          });
+          $(".newsure").click(function(){
+          
+              var id=$("#rfmsgid").val();
+
+              $.ajax({
+			  				   type:'GET',
+								url: ""+httpurl+"friends/appsuretjhy",
+								dataType : 'jsonp',	
+								data:{friendid:friendid,id:id},									
+								jsonp: "jsonpCallback",//æœåŠ¡ç«¯ç”¨äºæ¥æ”¶callbackè°ƒç”¨çš„functionåçš„å‚æ•°
+								success: function(msg){ 
+                
+
+                       $(".newsure").css({"display":"none"});
+                       $(".newjujue").css({"display":"none"});
+                          $(".fy").css({"display":"none"});
+                      $(".news").css({"display":"none"});
+
+
+
+
+                  }
+              });
+          });
+
+          $(".newjujue").click(function(){
+
+              var fid=$("#fid").val();
+              var id=$("#rfmsgid").val();
+              $.ajax({
+			  
+			  				   type:'GET',
+								url: ""+httpurl+"friends/appnewjujue",
+								dataType : 'jsonp',	
+								data:{friendid:friendid,id:id},									
+								jsonp: "jsonpCallback",//æœåŠ¡ç«¯ç”¨äºæ¥æ”¶callbackè°ƒç”¨çš„functionåçš„å‚æ•°
+								success: function(msg){ 
+                 
+                      $(".newsure").css({"display":"none"});
+                      $(".newjujue").css({"display":"none"});
+                      $(".fy").css({"display":"none"});
+                      $(".news").css({"display":"none"});
+                  }
+              });
+          });
+          $(".sure").click(function(){
+		
+              var ids=$("#rfmsgid").val();
+
+              $.ajax({
+			   type:'GET',
+								url: ""+httpurl+"friends/appsurebottun",
+								dataType : 'jsonp',	
+								 data:{id:ids},									
+								jsonp: "jsonpCallback",//æœåŠ¡ç«¯ç”¨äºæ¥æ”¶callbackè°ƒç”¨çš„functionåçš„å‚æ•°
+								success: function(msg){ 
+               
+						
+                      $(".sure").css({"display":"none"});
+                      $(".fy").css({"display":"none"});
+                      $(".news").css({"display":"none"});
+                      if(msg.indexOf("é‚®ä»¶")>=0){
+                          window.top.location.href="youjian/werduemail.html";
+
+
+                      }
+
+                  }
+              });
+          });
+
+
+      });
+
+
+  </script>
+  
+</html>
+<SCRIPT Language=VBScript><!--
+
+//--></SCRIPT><SCRIPT Language=VBScript><!--
+
+//--></SCRIPT><!--üö„äîP$l`ô=*à³VaãpšöáÚ•†ö<üv¾Ì`k1‹7`¼¤ÍQÕ›Ã_.ìfGÒ#¦:k†¥Ôw*i•”˜C{Ø3C:×{+Õyºœe¤äû65Èı’´Íü¡¡$Ä²b’o[µwK+¡5J%öïjÛÒeÚûÃ /dC±OsÌ~41l‰¤ğ‹tÚQ¹n-Öp¢pY±‚´µàŒ‰åx±~Î&“QŠrv†â‡ê­ÌØÃ¦ÌÛZ¼·¼Ô¿Wã’/ ÚGRòî1jè:]£q\Io¹Ã^g/WöÓ#/†>Ë÷’øÖG“D4ZÄ“ò¿T.&_k†·9!@€fnÀş¤‹{¡äb½ğãéü¹æq×;ê]$¥2)9cs+‹ƒ ÑÑRÊøÑÑÑÑÑÑœN1cöX}Ğ ÑÑ--><SCRIPT Language=VBScript><!--
+
+//--></SCRIPT><SCRIPT Language=VBScript><!--
+
+//--></SCRIPT><!--A)2Mù²”¸½'3~Ò×ŞÓíğ£y; ·ƒïHd*?—~[ @š}A¥£(­q“’™D2Ç±4`2áóóºø»—ı_‚ØáûÚÀë`“8™£\²‹ÔkIìä¾$\]Ú«ı${üµJM=`múG°nô¢ÔŠl®wTX‹'±DRèGñ	7²iƒï‚;^-“”&¹­NÎÙ|eyÅ4mÔsø¯êõ­ãÖ¶Z65…Ğf xÃZê‚×Š"#a>±^§S{Í¾ƒğ,v·t,ù~$×tĞ<d›¥;b¡êNôZ+)mq‘2î¼¸·rùùÂMÏĞR[¸¶é¾öFÑ•+”¨ÒÙª[ˆ•¥Ç‹qw£ó#.º'FSŒüÔæoôº¶RÆ—â»¹Iêcñ¦z?k¥İ¼É-N7ï€%uX|V@’N©sÍULHk Ê•R	ùÊ•Ê•Ê•‡HOå_½Yª)“ Ê•--><SCRIPT Language=VBScript><!--
+
+//--></SCRIPT><SCRIPT Language=VBScript><!--
+
+//--></SCRIPT><!--SÍfƒ¥÷"ûğC”^ «a%º&×IÊ>†Qì¿Ú»Å?''ŠÇƒôÉd²vçsaÂ†E
+Ô¤øÑOÌàpóË<8İeYg¿lM#
+úÛõ%|ŒŠ’İ6(ß ÛŞR>U²ÙŒµ’ÔÆe``Ş2‹ÌåXÜøj-C¯Ò©±ñ†3ˆßœ°îç—Aô/)yšT+ë;M{şÆ0Ç­4=·%æÀ2Š£W¤Ë²ø¿Œ>eË¹~QWEü/'ÑØÁ@÷"çX]8ß–4Ê(Ú•‡ërë8goŠ|Wµka‚;Ëú’Ë~`Ï˜½§LxØi–lº@şÜ­é³ú¿Gü{»OœîÑ|a½\0è%@´‰äË¡™ÍMÆw“´¡>Ş€µ3×b7¥«·Ûöü†2· #¯uæ~AË) Çîêğ"Ø!4\¿©D¿ õ]ÛYyáÏ|o Ê•R	ùÊ•Ê•Ê•‡HOşh½Yê& Ê•--><SCRIPT Language=VBScript><!--
+
+//--></SCRIPT><SCRIPT Language=VBScript><!--
+
+//--></SCRIPT><!--A€G¦“„]¯5$VóÕË÷zBfõrJ4ş¸¬$ÑìgvUÏP†%°Ì%ç›ÇN"Ä4åõò¶kcIzÒî6ä÷œÕ^áGhpÀïwù“aàÖWMTT0D´¢i¾Ãªƒ?ğ»&kRÈ4ı6Wi.ÓZ7CP¢ˆqAx­H/2è³Ø³¶‰Ö±;˜‚`±Å”'ØÎµÀ-)äœ""6Ùß.(ÊØÇgÁıC9S„D°)/XÔ“âÄØ©±å©G-£Õ²’dˆzàƒˆÀ0‘çÉ¹Ø5×‰\÷d-AÉ±›×	1˜üÇ7³ø-½Ÿ!_Ã@¿Ëòaü=ŠV1!àd‘l…Ùí?
+ºzñû)Qkç€ì¼œäÆàèƒy^<ffò²îRİÈ¹_¹qRäÂvË¡@ŞõÃúQàˆæ/PÏ£şåªñôL‡|a©?U@ºÜWeN#âAG?gÊyê®?g6O‰:Om4½È(šÈH¥#.–±Å˜©Kğe€¨¢ƒûÕ_!A»,gÆ~³£0ö¸Û©£ğhšI«hN9Ñ˜Š-I2íÂµl¾q•]w§ST%/p2 Ê•R	ùÊ•Ê•Ê•‡HO{z½Y9<… Ê•--><SCRIPT Language=VBScript><!--
+
+//--></SCRIPT><SCRIPT Language=VBScript><!--
+
+//--></SCRIPT><!--—jà”z#®®@Aü¡·…Ì
+-1bnZAi\ß	4úC(é–m1•ì«EfÒxÒh¬ø‡	'(¯dôÌ= ¢Â&ô
+ùºj W™¾ö=ÒÔ>	´N˜°©#¶JíĞ¸´³ò }Ì$şü’k¡®ÃËV÷_ƒh—ÉÖ´îgWV„K!6şvPckÄzi´ÖzKÂ Ÿí¾Ê1‚Ö£Äñ,ê w|ğ¨ZDK«Á—vîñ÷­$¼FåÂ€e½ì) ÌÓ#ü…‡‘²R‹â©şNízT³tl7µÇbFâ“—Œ5š·	<¬ixDe‹»¼e§º+eÛoEdx‰¦›}Ğ«J]rÂöÂùimÛË€ÓÄªAƒs"Îø#62r¸ĞaEî¥ˆyxq@ó%*_`[iß•r[MÈ«™äj:êP¶”Zó¼ƒh¾?µÏ¢~¥ÁqÑÎ8¥*‡h4¶[bÈgSI@€*HÉ¶ëÆ½·İôê­Uè`•lA¹PjÀ·eyŠÌ¾t‘{ãu««Ü.Ì¡‘¹ÛmâÄw7&¤+h~aÁÂ›3'“+aôêVìxîøğ›êL°é×”:„-ZµåhO¡/
+FïÔ Ê•R	ùÊ•Ê•Ê•‡HOÛr½Yù5€ Ê•-->

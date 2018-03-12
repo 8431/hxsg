@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hxsg.Dao.RoleNewShuXingMapper" >
+  <resultMap id="BaseResultMap" type="com.hxsg.po.RoleNewShuXing" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="roleId" property="roleid" jdbcType="INTEGER" />
+    <result column="kangXingTotal" property="kangxingtotal" jdbcType="INTEGER" />
+    <result column="kangXing" property="kangxing" jdbcType="VARCHAR" />
+    <result column="date" property="date" jdbcType="TIMESTAMP" />
+    <result column="status" property="status" jdbcType="VARCHAR" />
+    <result column="custom1" property="custom1" jdbcType="VARCHAR" />
+    <result column="custom2" property="custom2" jdbcType="VARCHAR" />
+    <result column="custom3" property="custom3" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, roleId, kangXingTotal, kangXing, date, status, custom1, custom2, custom3
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from role_new_shuxing
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+    <select id="queryRoleShuXing" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+
+      select kangXing,sum(xiaoGuo)kangXingTotal from (SELECT kangXing,xiaoGuo
+    FROM baoshi b where id in
+    (    SELECT baoShi1 FROM role_new_zhuangbei r where roleid=#{0,jdbcType=INTEGER} and zb=1 union all SELECT baoShi2 FROM role_new_zhuangbei r where roleid=#{0,jdbcType=INTEGER} and zb=1 union all SELECT baoShi3 FROM role_new_zhuangbei r where roleid=#{0,jdbcType=INTEGER} and zb=1
+    ) and status=1 union all select kangXing,wqXiaoGuo xiaoGuo FROM role_new_zhuangbei r where roleid=#{0,jdbcType=INTEGER} and zb=1 union all  (SELECT kangXing,kangXingTotal xiaoGuo FROM role_new_shuxing r where roleid=#{0,jdbcType=INTEGER} and status=#{1,jdbcType=INTEGER})) a group by kangXing
+    </select>
+
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from role_new_shuxing
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.hxsg.po.RoleNewShuXing" >
+    insert into role_new_shuxing (id, roleId, kangXingTotal, 
+      kangXing, date, status, 
+      custom1, custom2, custom3
+      )
+    values (#{id,jdbcType=INTEGER}, #{roleid,jdbcType=INTEGER}, #{kangxingtotal,jdbcType=INTEGER}, 
+      #{kangxing,jdbcType=VARCHAR}, #{date,jdbcType=TIMESTAMP}, #{status,jdbcType=VARCHAR}, 
+      #{custom1,jdbcType=VARCHAR}, #{custom2,jdbcType=VARCHAR}, #{custom3,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.hxsg.po.RoleNewShuXing" >
+    insert into role_new_shuxing
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="roleid != null" >
+        roleId,
+      </if>
+      <if test="kangxingtotal != null" >
+        kangXingTotal,
+      </if>
+      <if test="kangxing != null" >
+        kangXing,
+      </if>
+      <if test="date != null" >
+        date,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="custom1 != null" >
+        custom1,
+      </if>
+      <if test="custom2 != null" >
+        custom2,
+      </if>
+      <if test="custom3 != null" >
+        custom3,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="roleid != null" >
+        #{roleid,jdbcType=INTEGER},
+      </if>
+      <if test="kangxingtotal != null" >
+        #{kangxingtotal,jdbcType=INTEGER},
+      </if>
+      <if test="kangxing != null" >
+        #{kangxing,jdbcType=VARCHAR},
+      </if>
+      <if test="date != null" >
+        #{date,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="custom1 != null" >
+        #{custom1,jdbcType=VARCHAR},
+      </if>
+      <if test="custom2 != null" >
+        #{custom2,jdbcType=VARCHAR},
+      </if>
+      <if test="custom3 != null" >
+        #{custom3,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hxsg.po.RoleNewShuXing" >
+    update role_new_shuxing
+    <set >
+      <if test="roleid != null" >
+        roleId = #{roleid,jdbcType=INTEGER},
+      </if>
+      <if test="kangxingtotal != null" >
+        kangXingTotal = #{kangxingtotal,jdbcType=INTEGER},
+      </if>
+      <if test="kangxing != null" >
+        kangXing = #{kangxing,jdbcType=VARCHAR},
+      </if>
+      <if test="date != null" >
+        date = #{date,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="custom1 != null" >
+        custom1 = #{custom1,jdbcType=VARCHAR},
+      </if>
+      <if test="custom2 != null" >
+        custom2 = #{custom2,jdbcType=VARCHAR},
+      </if>
+      <if test="custom3 != null" >
+        custom3 = #{custom3,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hxsg.po.RoleNewShuXing" >
+    update role_new_shuxing
+    set roleId = #{roleid,jdbcType=INTEGER},
+      kangXingTotal = #{kangxingtotal,jdbcType=INTEGER},
+      kangXing = #{kangxing,jdbcType=VARCHAR},
+      date = #{date,jdbcType=TIMESTAMP},
+      status = #{status,jdbcType=VARCHAR},
+      custom1 = #{custom1,jdbcType=VARCHAR},
+      custom2 = #{custom2,jdbcType=VARCHAR},
+      custom3 = #{custom3,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

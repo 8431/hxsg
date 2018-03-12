@@ -1,0 +1,721 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hxsg.Dao.RoleFujiangMapper" >
+  <resultMap id="BaseResultMap" type="com.hxsg.po.RoleFujiang" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="roleid" property="roleid" jdbcType="INTEGER" />
+    <result column="fuid" property="fuid" jdbcType="INTEGER" />
+    <result column="chengzhang" property="chengzhang" jdbcType="REAL" />
+    <result column="chuxue" property="chuxue" jdbcType="INTEGER" />
+    <result column="chusu" property="chusu" jdbcType="INTEGER" />
+    <result column="chufang" property="chufang" jdbcType="INTEGER" />
+    <result column="chugong" property="chugong" jdbcType="INTEGER" />
+    <result column="touxiang" property="touxiang" jdbcType="VARCHAR" />
+    <result column="touxian" property="touxian" jdbcType="VARCHAR" />
+    <result column="fujiangname" property="fujiangname" jdbcType="VARCHAR" />
+    <result column="sex" property="sex" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="VARCHAR" />
+    <result column="chujing" property="chujing" jdbcType="INTEGER" />
+    <result column="shuxing" property="shuxing" jdbcType="INTEGER" />
+    <result column="leve" property="leve" jdbcType="INTEGER" />
+    <result column="jingyan" property="jingyan" jdbcType="INTEGER" />
+    <result column="sjJinYan" property="sjjinyan" jdbcType="INTEGER" />
+    <result column="sumds" property="sumds" jdbcType="INTEGER" />
+    <result column="keyongds" property="keyongds" jdbcType="INTEGER" />
+    <result column="totajy" property="totajy" jdbcType="INTEGER" />
+    <result column="jyid" property="jyid" jdbcType="INTEGER" />
+    <result column="qixueds" property="qixueds" jdbcType="INTEGER" />
+    <result column="jinglids" property="jinglids" jdbcType="INTEGER" />
+    <result column="gongjids" property="gongjids" jdbcType="INTEGER" />
+    <result column="sududs" property="sududs" jdbcType="INTEGER" />
+    <result column="totalxue1" property="totalxue1" jdbcType="INTEGER" />
+    <result column="totalxue2" property="totalxue2" jdbcType="INTEGER" />
+    <result column="totaljing1" property="totaljing1" jdbcType="INTEGER" />
+    <result column="totaljing2" property="totaljing2" jdbcType="INTEGER" />
+    <result column="totalgong" property="totalgong" jdbcType="INTEGER" />
+    <result column="totalsudu" property="totalsudu" jdbcType="INTEGER" />
+    <result column="zbid1" property="zbid1" jdbcType="INTEGER" />
+    <result column="zbid2" property="zbid2" jdbcType="INTEGER" />
+    <result column="zbid3" property="zbid3" jdbcType="INTEGER" />
+    <result column="kangxingid" property="kangxingid" jdbcType="INTEGER" />
+    <result column="jinengid1" property="jinengid1" jdbcType="INTEGER" />
+    <result column="jinengid2" property="jinengid2" jdbcType="INTEGER" />
+    <result column="jinengid3" property="jinengid3" jdbcType="INTEGER" />
+    <result column="moqiduid" property="moqiduid" jdbcType="INTEGER" />
+    <result column="zhongchengdu" property="zhongchengdu" jdbcType="INTEGER" />
+    <result column="zhen" property="zhen" jdbcType="VARCHAR" />
+    <result column="zhuansheng" property="zhuansheng" jdbcType="INTEGER" />
+      <result column="sell" property="sell" jdbcType="VARCHAR" />
+      <result column="date" property="date" jdbcType="TIMESTAMP" />
+      <result column="zhiye" property="zhiye" jdbcType="VARCHAR" />
+  </resultMap>
+    <sql id="Base_Column_List" >
+    id, roleid, fuid, chengzhang, chuxue, chusu, chufang, chugong, touxiang, touxian,
+    fujiangname, sex, status, chujing, shuxing, leve, jingyan, sjJinYan, sumds, keyongds,
+    totajy, jyid, qixueds, jinglids, gongjids, sududs, totalxue1, totalxue2, totaljing1,
+    totaljing2, totalgong, totalsudu, zbid1, zbid2, zbid3, kangxingid, jinengid1, jinengid2,
+    jinengid3, moqiduid, zhongchengdu, zhen, zhuansheng, sell, date, zhiye
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from role_fujiang
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+    <select id="selectAll" resultMap="BaseResultMap" parameterType="com.hxsg.po.RoleFujiang" >
+        select
+        <include refid="Base_Column_List" />
+        from role_fujiang
+     <where>
+         <if test="id != null" >
+             and    id = #{id,jdbcType=INTEGER}
+         </if>
+         <if test="roleid != null" >
+             and    roleid = #{roleid,jdbcType=INTEGER}
+         </if>
+         <if test="fuid != null" >
+          and   fuid = #{fuid,jdbcType=INTEGER}
+         </if>
+
+         <if test="fujiangname != null" >
+             and  fujiangname = #{fujiangname,jdbcType=VARCHAR}
+         </if>
+         <if test="sex != null" >
+             and  sex = #{sex,jdbcType=VARCHAR}
+         </if>
+         <if test="status != null" >
+             and  status = #{status,jdbcType=VARCHAR}
+         </if>
+         <if test="chujing != null" >
+             and  chujing = #{chujing,jdbcType=INTEGER}
+         </if>
+         <if test="shuxing != null" >
+             and shuxing = #{shuxing,jdbcType=INTEGER}
+         </if>
+         <if test="leve != null" >
+             and  leve = #{leve,jdbcType=INTEGER}
+         </if>
+         <if test="jingyan != null" >
+             and  jingyan = #{jingyan,jdbcType=INTEGER}
+         </if>
+         <if test="sjjinyan != null" >
+             and  sjJinYan = #{sjjinyan,jdbcType=INTEGER}
+         </if>
+         <if test="sumds != null" >
+             and  sumds = #{sumds,jdbcType=INTEGER}
+         </if>
+         <if test="keyongds != null" >
+             and  keyongds = #{keyongds,jdbcType=INTEGER}
+         </if>
+         <if test="totajy != null" >
+             and  totajy = #{totajy,jdbcType=INTEGER}
+         </if>
+         <if test="jyid != null" >
+             and  jyid = #{jyid,jdbcType=INTEGER}
+         </if>
+         <if test="qixueds != null" >
+             and   qixueds = #{qixueds,jdbcType=INTEGER}
+         </if>
+         <if test="jinglids != null" >
+             and jinglids = #{jinglids,jdbcType=INTEGER}
+         </if>
+         <if test="gongjids != null" >
+             and gongjids = #{gongjids,jdbcType=INTEGER}
+         </if>
+         <if test="sududs != null" >
+             and  sududs = #{sududs,jdbcType=INTEGER}
+         </if>
+         <if test="totalxue1 != null" >
+             and totalxue1 = #{totalxue1,jdbcType=INTEGER}
+         </if>
+         <if test="totalxue2 != null" >
+             and  totalxue2 = #{totalxue2,jdbcType=INTEGER}
+         </if>
+         <if test="totaljing1 != null" >
+             and  totaljing1 = #{totaljing1,jdbcType=INTEGER}
+         </if>
+         <if test="totaljing2 != null" >
+             and  totaljing2 = #{totaljing2,jdbcType=INTEGER}
+         </if>
+         <if test="totalgong != null" >
+             and  totalgong = #{totalgong,jdbcType=INTEGER}
+         </if>
+         <if test="totalsudu != null" >
+             and  totalsudu = #{totalsudu,jdbcType=INTEGER}
+         </if>
+         <if test="zbid1 != null" >
+             and   zbid1 = #{zbid1,jdbcType=INTEGER}
+         </if>
+         <if test="zbid2 != null" >
+             and  zbid2 = #{zbid2,jdbcType=INTEGER}
+         </if>
+         <if test="zbid3 != null" >
+             and  zbid3 = #{zbid3,jdbcType=INTEGER}
+         </if>
+         <if test="kangxingid != null" >
+             and  kangxingid = #{kangxingid,jdbcType=INTEGER}
+         </if>
+         <if test="jinengid1 != null" >
+             and  jinengid1 = #{jinengid1,jdbcType=INTEGER}
+         </if>
+         <if test="jinengid2 != null" >
+             and  jinengid2 = #{jinengid2,jdbcType=INTEGER}
+         </if>
+         <if test="jinengid3 != null" >
+             and  jinengid3 = #{jinengid3,jdbcType=INTEGER}
+         </if>
+         <if test="moqiduid != null" >
+             and moqiduid = #{moqiduid,jdbcType=INTEGER}
+         </if>
+         <if test="zhongchengdu != null" >
+             and  zhongchengdu = #{zhongchengdu,jdbcType=INTEGER}
+         </if>
+         <if test="zhen != null" >
+             and  zhen = #{zhen,jdbcType=VARCHAR}
+         </if>
+         <if test="zhuansheng != null" >
+             and   zhuansheng = #{zhuansheng,jdbcType=INTEGER}
+         </if>
+         <if test="zhiye != null" >
+             and   zhiye = #{zhiye,jdbcType=VARCHAR}
+         </if>
+
+     </where>
+    </select>
+    <select id="getByRoleIdShux" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+        select
+        <include refid="Base_Column_List" />
+        from role_fujiang
+        where roleid = #{0} and shuxing=#{1} order by status
+    </select>
+    <select id="getByRoleIdShuxLevel" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+        select
+        <include refid="Base_Column_List" />
+        from role_fujiang
+        where roleid = #{0} and shuxing=#{1} and leve&gt;=#{2} and leve&lt;=#{3} order by status
+    </select>
+    <select id="getByRoleIdShuxStatus" resultMap="BaseResultMap" parameterType="com.hxsg.po.RoleFujiang" >
+        select
+        <include refid="Base_Column_List" />
+        from role_fujiang
+        where roleid = #{roleid,jdbcType=INTEGER} and shuxing=#{shuxing,jdbcType=INTEGER} and status=#{status,jdbcType=VARCHAR}
+    </select>
+    <select id="getByRoleIdStatus" resultMap="BaseResultMap" parameterType="com.hxsg.po.RoleFujiang" >
+        select
+        <include refid="Base_Column_List" />
+        from role_fujiang
+        where roleid = #{roleid,jdbcType=INTEGER}  and status=#{status,jdbcType=VARCHAR}
+    </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from role_fujiang
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.hxsg.po.RoleFujiang" useGeneratedKeys="true" keyProperty="id" >
+    insert into role_fujiang (id, roleid, fuid,
+      chengzhang, chuxue, chusu,
+      chufang, chugong, touxiang,
+      touxian, fujiangname, sex,
+      status, chujing, shuxing,
+      leve, jingyan, sjJinYan,
+      sumds, keyongds, totajy,
+      jyid, qixueds, jinglids,
+      gongjids, sududs, totalxue1,
+      totalxue2, totaljing1, totaljing2,
+      totalgong, totalsudu, zbid1,
+      zbid2, zbid3, kangxingid,
+      jinengid1, jinengid2, jinengid3,
+      moqiduid, zhongchengdu, zhen,
+      zhuansheng, sell, date,
+      zhiye)
+    values (#{id,jdbcType=INTEGER}, #{roleid,jdbcType=INTEGER}, #{fuid,jdbcType=INTEGER},
+      #{chengzhang,jdbcType=REAL}, #{chuxue,jdbcType=INTEGER}, #{chusu,jdbcType=INTEGER},
+      #{chufang,jdbcType=INTEGER}, #{chugong,jdbcType=INTEGER}, #{touxiang,jdbcType=VARCHAR},
+      #{touxian,jdbcType=VARCHAR}, #{fujiangname,jdbcType=VARCHAR}, #{sex,jdbcType=VARCHAR},
+      #{status,jdbcType=VARCHAR}, #{chujing,jdbcType=INTEGER}, #{shuxing,jdbcType=INTEGER},
+      #{leve,jdbcType=INTEGER}, #{jingyan,jdbcType=INTEGER}, #{sjjinyan,jdbcType=INTEGER},
+      #{sumds,jdbcType=INTEGER}, #{keyongds,jdbcType=INTEGER}, #{totajy,jdbcType=INTEGER},
+      #{jyid,jdbcType=INTEGER}, #{qixueds,jdbcType=INTEGER}, #{jinglids,jdbcType=INTEGER},
+      #{gongjids,jdbcType=INTEGER}, #{sududs,jdbcType=INTEGER}, #{totalxue1,jdbcType=INTEGER},
+      #{totalxue2,jdbcType=INTEGER}, #{totaljing1,jdbcType=INTEGER}, #{totaljing2,jdbcType=INTEGER},
+      #{totalgong,jdbcType=INTEGER}, #{totalsudu,jdbcType=INTEGER}, #{zbid1,jdbcType=INTEGER},
+      #{zbid2,jdbcType=INTEGER}, #{zbid3,jdbcType=INTEGER}, #{kangxingid,jdbcType=INTEGER},
+      #{jinengid1,jdbcType=INTEGER}, #{jinengid2,jdbcType=INTEGER}, #{jinengid3,jdbcType=INTEGER},
+      #{moqiduid,jdbcType=INTEGER}, #{zhongchengdu,jdbcType=INTEGER}, #{zhen,jdbcType=VARCHAR},
+      #{zhuansheng,jdbcType=INTEGER}, #{sell,jdbcType=VARCHAR}, #{date,jdbcType=TIMESTAMP},
+      #{zhiye,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hxsg.po.RoleFujiang" useGeneratedKeys="true" keyProperty="id">
+      insert into role_fujiang
+      <trim prefix="(" suffix=")" suffixOverrides="," >
+          <if test="id != null" >
+              id,
+          </if>
+          <if test="roleid != null" >
+              roleid,
+          </if>
+          <if test="fuid != null" >
+              fuid,
+          </if>
+          <if test="chengzhang != null" >
+              chengzhang,
+          </if>
+          <if test="chuxue != null" >
+              chuxue,
+          </if>
+          <if test="chusu != null" >
+              chusu,
+          </if>
+          <if test="chufang != null" >
+              chufang,
+          </if>
+          <if test="chugong != null" >
+              chugong,
+          </if>
+          <if test="touxiang != null" >
+              touxiang,
+          </if>
+          <if test="touxian != null" >
+              touxian,
+          </if>
+          <if test="fujiangname != null" >
+              fujiangname,
+          </if>
+          <if test="sex != null" >
+              sex,
+          </if>
+          <if test="status != null" >
+              status,
+          </if>
+          <if test="chujing != null" >
+              chujing,
+          </if>
+          <if test="shuxing != null" >
+              shuxing,
+          </if>
+          <if test="leve != null" >
+              leve,
+          </if>
+          <if test="jingyan != null" >
+              jingyan,
+          </if>
+          <if test="sjjinyan != null" >
+              sjJinYan,
+          </if>
+          <if test="sumds != null" >
+              sumds,
+          </if>
+          <if test="keyongds != null" >
+              keyongds,
+          </if>
+          <if test="totajy != null" >
+              totajy,
+          </if>
+          <if test="jyid != null" >
+              jyid,
+          </if>
+          <if test="qixueds != null" >
+              qixueds,
+          </if>
+          <if test="jinglids != null" >
+              jinglids,
+          </if>
+          <if test="gongjids != null" >
+              gongjids,
+          </if>
+          <if test="sududs != null" >
+              sududs,
+          </if>
+          <if test="totalxue1 != null" >
+              totalxue1,
+          </if>
+          <if test="totalxue2 != null" >
+              totalxue2,
+          </if>
+          <if test="totaljing1 != null" >
+              totaljing1,
+          </if>
+          <if test="totaljing2 != null" >
+              totaljing2,
+          </if>
+          <if test="totalgong != null" >
+              totalgong,
+          </if>
+          <if test="totalsudu != null" >
+              totalsudu,
+          </if>
+          <if test="zbid1 != null" >
+              zbid1,
+          </if>
+          <if test="zbid2 != null" >
+              zbid2,
+          </if>
+          <if test="zbid3 != null" >
+              zbid3,
+          </if>
+          <if test="kangxingid != null" >
+              kangxingid,
+          </if>
+          <if test="jinengid1 != null" >
+              jinengid1,
+          </if>
+          <if test="jinengid2 != null" >
+              jinengid2,
+          </if>
+          <if test="jinengid3 != null" >
+              jinengid3,
+          </if>
+          <if test="moqiduid != null" >
+              moqiduid,
+          </if>
+          <if test="zhongchengdu != null" >
+              zhongchengdu,
+          </if>
+          <if test="zhen != null" >
+              zhen,
+          </if>
+          <if test="zhuansheng != null" >
+              zhuansheng,
+          </if>
+          <if test="sell != null" >
+              sell,
+          </if>
+          <if test="date != null" >
+              date,
+          </if>
+          <if test="zhiye != null" >
+              zhiye,
+          </if>
+      </trim>
+      <trim prefix="values (" suffix=")" suffixOverrides="," >
+          <if test="id != null" >
+              #{id,jdbcType=INTEGER},
+          </if>
+          <if test="roleid != null" >
+              #{roleid,jdbcType=INTEGER},
+          </if>
+          <if test="fuid != null" >
+              #{fuid,jdbcType=INTEGER},
+          </if>
+          <if test="chengzhang != null" >
+              #{chengzhang,jdbcType=REAL},
+          </if>
+          <if test="chuxue != null" >
+              #{chuxue,jdbcType=INTEGER},
+          </if>
+          <if test="chusu != null" >
+              #{chusu,jdbcType=INTEGER},
+          </if>
+          <if test="chufang != null" >
+              #{chufang,jdbcType=INTEGER},
+          </if>
+          <if test="chugong != null" >
+              #{chugong,jdbcType=INTEGER},
+          </if>
+          <if test="touxiang != null" >
+              #{touxiang,jdbcType=VARCHAR},
+          </if>
+          <if test="touxian != null" >
+              #{touxian,jdbcType=VARCHAR},
+          </if>
+          <if test="fujiangname != null" >
+              #{fujiangname,jdbcType=VARCHAR},
+          </if>
+          <if test="sex != null" >
+              #{sex,jdbcType=VARCHAR},
+          </if>
+          <if test="status != null" >
+              #{status,jdbcType=VARCHAR},
+          </if>
+          <if test="chujing != null" >
+              #{chujing,jdbcType=INTEGER},
+          </if>
+          <if test="shuxing != null" >
+              #{shuxing,jdbcType=INTEGER},
+          </if>
+          <if test="leve != null" >
+              #{leve,jdbcType=INTEGER},
+          </if>
+          <if test="jingyan != null" >
+              #{jingyan,jdbcType=INTEGER},
+          </if>
+          <if test="sjjinyan != null" >
+              #{sjjinyan,jdbcType=INTEGER},
+          </if>
+          <if test="sumds != null" >
+              #{sumds,jdbcType=INTEGER},
+          </if>
+          <if test="keyongds != null" >
+              #{keyongds,jdbcType=INTEGER},
+          </if>
+          <if test="totajy != null" >
+              #{totajy,jdbcType=INTEGER},
+          </if>
+          <if test="jyid != null" >
+              #{jyid,jdbcType=INTEGER},
+          </if>
+          <if test="qixueds != null" >
+              #{qixueds,jdbcType=INTEGER},
+          </if>
+          <if test="jinglids != null" >
+              #{jinglids,jdbcType=INTEGER},
+          </if>
+          <if test="gongjids != null" >
+              #{gongjids,jdbcType=INTEGER},
+          </if>
+          <if test="sududs != null" >
+              #{sududs,jdbcType=INTEGER},
+          </if>
+          <if test="totalxue1 != null" >
+              #{totalxue1,jdbcType=INTEGER},
+          </if>
+          <if test="totalxue2 != null" >
+              #{totalxue2,jdbcType=INTEGER},
+          </if>
+          <if test="totaljing1 != null" >
+              #{totaljing1,jdbcType=INTEGER},
+          </if>
+          <if test="totaljing2 != null" >
+              #{totaljing2,jdbcType=INTEGER},
+          </if>
+          <if test="totalgong != null" >
+              #{totalgong,jdbcType=INTEGER},
+          </if>
+          <if test="totalsudu != null" >
+              #{totalsudu,jdbcType=INTEGER},
+          </if>
+          <if test="zbid1 != null" >
+              #{zbid1,jdbcType=INTEGER},
+          </if>
+          <if test="zbid2 != null" >
+              #{zbid2,jdbcType=INTEGER},
+          </if>
+          <if test="zbid3 != null" >
+              #{zbid3,jdbcType=INTEGER},
+          </if>
+          <if test="kangxingid != null" >
+              #{kangxingid,jdbcType=INTEGER},
+          </if>
+          <if test="jinengid1 != null" >
+              #{jinengid1,jdbcType=INTEGER},
+          </if>
+          <if test="jinengid2 != null" >
+              #{jinengid2,jdbcType=INTEGER},
+          </if>
+          <if test="jinengid3 != null" >
+              #{jinengid3,jdbcType=INTEGER},
+          </if>
+          <if test="moqiduid != null" >
+              #{moqiduid,jdbcType=INTEGER},
+          </if>
+          <if test="zhongchengdu != null" >
+              #{zhongchengdu,jdbcType=INTEGER},
+          </if>
+          <if test="zhen != null" >
+              #{zhen,jdbcType=VARCHAR},
+          </if>
+          <if test="zhuansheng != null" >
+              #{zhuansheng,jdbcType=INTEGER},
+          </if>
+          <if test="sell != null" >
+              #{sell,jdbcType=VARCHAR},
+          </if>
+          <if test="date != null" >
+              #{date,jdbcType=TIMESTAMP},
+          </if>
+          <if test="zhiye != null" >
+              #{zhiye,jdbcType=VARCHAR},
+          </if>
+      </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hxsg.po.RoleFujiang" >
+      update role_fujiang
+      <set >
+          <if test="roleid != null" >
+              roleid = #{roleid,jdbcType=INTEGER},
+          </if>
+          <if test="fuid != null" >
+              fuid = #{fuid,jdbcType=INTEGER},
+          </if>
+          <if test="chengzhang != null" >
+              chengzhang = #{chengzhang,jdbcType=REAL},
+          </if>
+          <if test="chuxue != null" >
+              chuxue = #{chuxue,jdbcType=INTEGER},
+          </if>
+          <if test="chusu != null" >
+              chusu = #{chusu,jdbcType=INTEGER},
+          </if>
+          <if test="chufang != null" >
+              chufang = #{chufang,jdbcType=INTEGER},
+          </if>
+          <if test="chugong != null" >
+              chugong = #{chugong,jdbcType=INTEGER},
+          </if>
+          <if test="touxiang != null" >
+              touxiang = #{touxiang,jdbcType=VARCHAR},
+          </if>
+          <if test="touxian != null" >
+              touxian = #{touxian,jdbcType=VARCHAR},
+          </if>
+          <if test="fujiangname != null" >
+              fujiangname = #{fujiangname,jdbcType=VARCHAR},
+          </if>
+          <if test="sex != null" >
+              sex = #{sex,jdbcType=VARCHAR},
+          </if>
+          <if test="status != null" >
+              status = #{status,jdbcType=VARCHAR},
+          </if>
+          <if test="chujing != null" >
+              chujing = #{chujing,jdbcType=INTEGER},
+          </if>
+          <if test="shuxing != null" >
+              shuxing = #{shuxing,jdbcType=INTEGER},
+          </if>
+          <if test="leve != null" >
+              leve = #{leve,jdbcType=INTEGER},
+          </if>
+          <if test="jingyan != null" >
+              jingyan = #{jingyan,jdbcType=INTEGER},
+          </if>
+          <if test="sjjinyan != null" >
+              sjJinYan = #{sjjinyan,jdbcType=INTEGER},
+          </if>
+          <if test="sumds != null" >
+              sumds = #{sumds,jdbcType=INTEGER},
+          </if>
+          <if test="keyongds != null" >
+              keyongds = #{keyongds,jdbcType=INTEGER},
+          </if>
+          <if test="totajy != null" >
+              totajy = #{totajy,jdbcType=INTEGER},
+          </if>
+          <if test="jyid != null" >
+              jyid = #{jyid,jdbcType=INTEGER},
+          </if>
+          <if test="qixueds != null" >
+              qixueds = #{qixueds,jdbcType=INTEGER},
+          </if>
+          <if test="jinglids != null" >
+              jinglids = #{jinglids,jdbcType=INTEGER},
+          </if>
+          <if test="gongjids != null" >
+              gongjids = #{gongjids,jdbcType=INTEGER},
+          </if>
+          <if test="sududs != null" >
+              sududs = #{sududs,jdbcType=INTEGER},
+          </if>
+          <if test="totalxue1 != null" >
+              totalxue1 = #{totalxue1,jdbcType=INTEGER},
+          </if>
+          <if test="totalxue2 != null" >
+              totalxue2 = #{totalxue2,jdbcType=INTEGER},
+          </if>
+          <if test="totaljing1 != null" >
+              totaljing1 = #{totaljing1,jdbcType=INTEGER},
+          </if>
+          <if test="totaljing2 != null" >
+              totaljing2 = #{totaljing2,jdbcType=INTEGER},
+          </if>
+          <if test="totalgong != null" >
+              totalgong = #{totalgong,jdbcType=INTEGER},
+          </if>
+          <if test="totalsudu != null" >
+              totalsudu = #{totalsudu,jdbcType=INTEGER},
+          </if>
+          <if test="zbid1 != null" >
+              zbid1 = #{zbid1,jdbcType=INTEGER},
+          </if>
+          <if test="zbid2 != null" >
+              zbid2 = #{zbid2,jdbcType=INTEGER},
+          </if>
+          <if test="zbid3 != null" >
+              zbid3 = #{zbid3,jdbcType=INTEGER},
+          </if>
+          <if test="kangxingid != null" >
+              kangxingid = #{kangxingid,jdbcType=INTEGER},
+          </if>
+          <if test="jinengid1 != null" >
+              jinengid1 = #{jinengid1,jdbcType=INTEGER},
+          </if>
+          <if test="jinengid2 != null" >
+              jinengid2 = #{jinengid2,jdbcType=INTEGER},
+          </if>
+          <if test="jinengid3 != null" >
+              jinengid3 = #{jinengid3,jdbcType=INTEGER},
+          </if>
+          <if test="moqiduid != null" >
+              moqiduid = #{moqiduid,jdbcType=INTEGER},
+          </if>
+          <if test="zhongchengdu != null" >
+              zhongchengdu = #{zhongchengdu,jdbcType=INTEGER},
+          </if>
+          <if test="zhen != null" >
+              zhen = #{zhen,jdbcType=VARCHAR},
+          </if>
+          <if test="zhuansheng != null" >
+              zhuansheng = #{zhuansheng,jdbcType=INTEGER},
+          </if>
+          <if test="sell != null" >
+              sell = #{sell,jdbcType=VARCHAR},
+          </if>
+          <if test="date != null" >
+              date = #{date,jdbcType=TIMESTAMP},
+          </if>
+          <if test="zhiye != null" >
+              zhiye = #{zhiye,jdbcType=VARCHAR},
+          </if>
+      </set>
+      where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hxsg.po.RoleFujiang" >
+     update role_fujiang
+    set roleid = #{roleid,jdbcType=INTEGER},
+      fuid = #{fuid,jdbcType=INTEGER},
+      chengzhang = #{chengzhang,jdbcType=REAL},
+      chuxue = #{chuxue,jdbcType=INTEGER},
+      chusu = #{chusu,jdbcType=INTEGER},
+      chufang = #{chufang,jdbcType=INTEGER},
+      chugong = #{chugong,jdbcType=INTEGER},
+      touxiang = #{touxiang,jdbcType=VARCHAR},
+      touxian = #{touxian,jdbcType=VARCHAR},
+      fujiangname = #{fujiangname,jdbcType=VARCHAR},
+      sex = #{sex,jdbcType=VARCHAR},
+      status = #{status,jdbcType=VARCHAR},
+      chujing = #{chujing,jdbcType=INTEGER},
+      shuxing = #{shuxing,jdbcType=INTEGER},
+      leve = #{leve,jdbcType=INTEGER},
+      jingyan = #{jingyan,jdbcType=INTEGER},
+      sjJinYan = #{sjjinyan,jdbcType=INTEGER},
+      sumds = #{sumds,jdbcType=INTEGER},
+      keyongds = #{keyongds,jdbcType=INTEGER},
+      totajy = #{totajy,jdbcType=INTEGER},
+      jyid = #{jyid,jdbcType=INTEGER},
+      qixueds = #{qixueds,jdbcType=INTEGER},
+      jinglids = #{jinglids,jdbcType=INTEGER},
+      gongjids = #{gongjids,jdbcType=INTEGER},
+      sududs = #{sududs,jdbcType=INTEGER},
+      totalxue1 = #{totalxue1,jdbcType=INTEGER},
+      totalxue2 = #{totalxue2,jdbcType=INTEGER},
+      totaljing1 = #{totaljing1,jdbcType=INTEGER},
+      totaljing2 = #{totaljing2,jdbcType=INTEGER},
+      totalgong = #{totalgong,jdbcType=INTEGER},
+      totalsudu = #{totalsudu,jdbcType=INTEGER},
+      zbid1 = #{zbid1,jdbcType=INTEGER},
+      zbid2 = #{zbid2,jdbcType=INTEGER},
+      zbid3 = #{zbid3,jdbcType=INTEGER},
+      kangxingid = #{kangxingid,jdbcType=INTEGER},
+      jinengid1 = #{jinengid1,jdbcType=INTEGER},
+      jinengid2 = #{jinengid2,jdbcType=INTEGER},
+      jinengid3 = #{jinengid3,jdbcType=INTEGER},
+      moqiduid = #{moqiduid,jdbcType=INTEGER},
+      zhongchengdu = #{zhongchengdu,jdbcType=INTEGER},
+      zhen = #{zhen,jdbcType=VARCHAR},
+      zhuansheng = #{zhuansheng,jdbcType=INTEGER},
+      sell = #{sell,jdbcType=VARCHAR},
+      date = #{date,jdbcType=TIMESTAMP},
+      zhiye = #{zhiye,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

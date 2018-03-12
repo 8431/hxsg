@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hxsg.Dao.RoleVipMapper" >
+  <resultMap id="BaseResultMap" type="com.hxsg.po.RoleVip" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="roleid" property="roleid" jdbcType="INTEGER" />
+    <result column="level" property="level" jdbcType="INTEGER" />
+    <result column="data" property="data" jdbcType="TIMESTAMP" />
+    <result column="money" property="money" jdbcType="INTEGER" />
+    <result column="status" property="status" jdbcType="VARCHAR" />
+    <result column="supervip" property="supervip" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, roleid, level, data, money, status, supervip
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from rolevip
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+    <select id="selectAll" resultMap="BaseResultMap" parameterType="com.hxsg.po.RoleVip" >
+        select
+        <include refid="Base_Column_List" />
+        from rolevip
+       <where>
+           <if test="roleid != null" >
+               roleid = #{roleid,jdbcType=INTEGER}
+           </if>
+           <if test="level != null" >
+              and level = #{level,jdbcType=INTEGER}
+           </if>
+           <if test="data != null" >
+              and data = #{data,jdbcType=TIMESTAMP}
+           </if>
+           <if test="money != null" >
+              and money = #{money,jdbcType=INTEGER}
+           </if>
+           <if test="status != null" >
+            and   status = #{status,jdbcType=VARCHAR}
+           </if>
+           <if test="supervip != null" >
+             and  supervip = #{supervip,jdbcType=VARCHAR}
+           </if>
+
+       </where>
+    </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from rolevip
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.hxsg.po.RoleVip" >
+    insert into rolevip (id, roleid, level, 
+      data, money, status, 
+      supervip)
+    values (#{id,jdbcType=INTEGER}, #{roleid,jdbcType=INTEGER}, #{level,jdbcType=INTEGER}, 
+      #{data,jdbcType=TIMESTAMP}, #{money,jdbcType=INTEGER}, #{status,jdbcType=VARCHAR}, 
+      #{supervip,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hxsg.po.RoleVip" >
+    insert into rolevip
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="roleid != null" >
+        roleid,
+      </if>
+      <if test="level != null" >
+        level,
+      </if>
+      <if test="data != null" >
+        data,
+      </if>
+      <if test="money != null" >
+        money,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="supervip != null" >
+        supervip,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="roleid != null" >
+        #{roleid,jdbcType=INTEGER},
+      </if>
+      <if test="level != null" >
+        #{level,jdbcType=INTEGER},
+      </if>
+      <if test="data != null" >
+        #{data,jdbcType=TIMESTAMP},
+      </if>
+      <if test="money != null" >
+        #{money,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="supervip != null" >
+        #{supervip,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hxsg.po.RoleVip" >
+    update rolevip
+    <set >
+      <if test="roleid != null" >
+        roleid = #{roleid,jdbcType=INTEGER},
+      </if>
+      <if test="level != null" >
+        level = #{level,jdbcType=INTEGER},
+      </if>
+      <if test="data != null" >
+        data = #{data,jdbcType=TIMESTAMP},
+      </if>
+      <if test="money != null" >
+        money = #{money,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="supervip != null" >
+        supervip = #{supervip,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hxsg.po.RoleVip" >
+    update rolevip
+    set roleid = #{roleid,jdbcType=INTEGER},
+      level = #{level,jdbcType=INTEGER},
+      data = #{data,jdbcType=TIMESTAMP},
+      money = #{money,jdbcType=INTEGER},
+      status = #{status,jdbcType=VARCHAR},
+      supervip = #{supervip,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hxsg.Dao.RoleZhuangbeiMsMapper" >
+  <resultMap id="BaseResultMap" type="com.hxsg.po.RoleZhuangbeiMs" >
+    <result column="id" property="id" jdbcType="INTEGER" />
+    <result column="roleId" property="roleid" jdbcType="INTEGER" />
+    <result column="wqId" property="wqid" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="wqXiaoGuo" property="wqxiaoguo" jdbcType="INTEGER" />
+    <result column="status" property="status" jdbcType="VARCHAR" />
+    <result column="type" property="type" jdbcType="VARCHAR" />
+    <result column="date" property="date" jdbcType="TIMESTAMP" />
+    <result column="baoShi1" property="baoshi1" jdbcType="INTEGER" />
+    <result column="baoShi2" property="baoshi2" jdbcType="INTEGER" />
+    <result column="baoShi3" property="baoshi3" jdbcType="INTEGER" />
+    <result column="level" property="level" jdbcType="INTEGER" />
+    <result column="miaoShu" property="miaoshu" jdbcType="VARCHAR" />
+    <result column="xiaoGuo" property="xiaoguo" jdbcType="INTEGER" />
+    <result column="powerNum" property="powernum" jdbcType="INTEGER" />
+    <result column="wuQiName" property="wuqiname" jdbcType="VARCHAR" />
+    <result column="roleLevel" property="rolelevel" jdbcType="INTEGER" />
+    <result column="wuqiType" property="wuqitype" jdbcType="VARCHAR" />
+    <result column="imgUrl" property="imgurl" jdbcType="VARCHAR" />
+      <result column="kangXing" property="kangxing" jdbcType="VARCHAR" />
+  </resultMap>
+  <insert id="insert" parameterType="com.hxsg.po.RoleZhuangbeiMs" >
+    insert into role_zhuangbei_ms (id, roleId, wqId, 
+      name, wqXiaoGuo, status, 
+      type, date, baoShi1, 
+      baoShi2, baoShi3, level, 
+      miaoShu, xiaoGuo, powerNum, 
+      wuQiName, roleLevel, wuqiType, 
+      imgUrl)
+    values (#{id,jdbcType=INTEGER}, #{roleid,jdbcType=INTEGER}, #{wqid,jdbcType=INTEGER}, 
+      #{name,jdbcType=VARCHAR}, #{wqxiaoguo,jdbcType=INTEGER}, #{status,jdbcType=VARCHAR}, 
+      #{type,jdbcType=VARCHAR}, #{date,jdbcType=TIMESTAMP}, #{baoshi1,jdbcType=INTEGER}, 
+      #{baoshi2,jdbcType=INTEGER}, #{baoshi3,jdbcType=INTEGER}, #{level,jdbcType=INTEGER}, 
+      #{miaoshu,jdbcType=VARCHAR}, #{xiaoguo,jdbcType=INTEGER}, #{powernum,jdbcType=INTEGER}, 
+      #{wuqiname,jdbcType=VARCHAR}, #{rolelevel,jdbcType=INTEGER}, #{wuqitype,jdbcType=VARCHAR}, 
+      #{imgurl,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hxsg.po.RoleZhuangbeiMs" >
+    insert into role_zhuangbei_ms
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="roleid != null" >
+        roleId,
+      </if>
+      <if test="wqid != null" >
+        wqId,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="wqxiaoguo != null" >
+        wqXiaoGuo,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="date != null" >
+        date,
+      </if>
+      <if test="baoshi1 != null" >
+        baoShi1,
+      </if>
+      <if test="baoshi2 != null" >
+        baoShi2,
+      </if>
+      <if test="baoshi3 != null" >
+        baoShi3,
+      </if>
+      <if test="level != null" >
+        level,
+      </if>
+      <if test="miaoshu != null" >
+        miaoShu,
+      </if>
+      <if test="xiaoguo != null" >
+        xiaoGuo,
+      </if>
+      <if test="powernum != null" >
+        powerNum,
+      </if>
+      <if test="wuqiname != null" >
+        wuQiName,
+      </if>
+      <if test="rolelevel != null" >
+        roleLevel,
+      </if>
+      <if test="wuqitype != null" >
+        wuqiType,
+      </if>
+      <if test="imgurl != null" >
+        imgUrl,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="roleid != null" >
+        #{roleid,jdbcType=INTEGER},
+      </if>
+      <if test="wqid != null" >
+        #{wqid,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="wqxiaoguo != null" >
+        #{wqxiaoguo,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="date != null" >
+        #{date,jdbcType=TIMESTAMP},
+      </if>
+      <if test="baoshi1 != null" >
+        #{baoshi1,jdbcType=INTEGER},
+      </if>
+      <if test="baoshi2 != null" >
+        #{baoshi2,jdbcType=INTEGER},
+      </if>
+      <if test="baoshi3 != null" >
+        #{baoshi3,jdbcType=INTEGER},
+      </if>
+      <if test="level != null" >
+        #{level,jdbcType=INTEGER},
+      </if>
+      <if test="miaoshu != null" >
+        #{miaoshu,jdbcType=VARCHAR},
+      </if>
+      <if test="xiaoguo != null" >
+        #{xiaoguo,jdbcType=INTEGER},
+      </if>
+      <if test="powernum != null" >
+        #{powernum,jdbcType=INTEGER},
+      </if>
+      <if test="wuqiname != null" >
+        #{wuqiname,jdbcType=VARCHAR},
+      </if>
+      <if test="rolelevel != null" >
+        #{rolelevel,jdbcType=INTEGER},
+      </if>
+      <if test="wuqitype != null" >
+        #{wuqitype,jdbcType=VARCHAR},
+      </if>
+      <if test="imgurl != null" >
+        #{imgurl,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+    <select id="queryRoleZhuangbeiForBaoShi" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select * from role_zhuangbei_ms re where  id not in
+    (SELECT id FROM role_zhuangbei_ms r where  r.baoShi1 is not null and  r.baoShi2 is not  null and  r.baoShi3 is  not null) and roleid=#{roleid,jdbcType=INTEGER}
+    </select>
+    <select id="queryZhuangBeiKx" parameterType="java.lang.Integer" resultType="com.hxsg.po.BaoShiTotalKx">
+     SELECT kangXing,count(kangXing) num,sum(xiaoGuo)kangXingTotal  FROM baoshi b where id in(#{0,jdbcType=INTEGER},#{1,jdbcType=INTEGER},#{2,jdbcType=INTEGER}) group by kangXing
+    </select>
+    <select id="queryRoleZhuangbeiMsByRoleid" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        SELECT kangXing,count(kangXing) num,sum(xiaoGuo)kangXingTotal  FROM baoshi b where id in(#{0,jdbcType=INTEGER},#{1,jdbcType=INTEGER},#{2,jdbcType=INTEGER}) group by kangXing
+    </select>
+
+    <select id="queryRoleZhuangBei" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select * from role_zhuangbei_ms  where  roleid=#{0,jdbcType=INTEGER} and zb=1
+    </select>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select * from role_zhuangbei_ms  where  id=#{0,jdbcType=INTEGER}
+    </select>
+
+</mapper>

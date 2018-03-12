@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hxsg.Dao.WaBaoMiaoShuMapper" >
+  <resultMap id="BaseResultMap" type="com.hxsg.po.WaBaoMiaoShu" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="roleid" property="roleid" jdbcType="INTEGER" />
+    <result column="rolename" property="rolename" jdbcType="VARCHAR" />
+    <result column="baoid" property="baoid" jdbcType="INTEGER" />
+    <result column="baoname" property="baoname" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="VARCHAR" />
+    <result column="date" property="date" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, roleid, rolename, baoid, baoname, status, date
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from wabao_miaoshu
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+    <select id="getWbByTime" resultMap="BaseResultMap"  >
+        select
+        <include refid="Base_Column_List" />
+        from wabao_miaoshu order by date desc limit 0,20
+
+    </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from wabao_miaoshu
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.hxsg.po.WaBaoMiaoShu" >
+    insert into wabao_miaoshu (id, roleid, rolename, 
+      baoid, baoname, status, 
+      date)
+    values (#{id,jdbcType=INTEGER}, #{roleid,jdbcType=INTEGER}, #{rolename,jdbcType=VARCHAR}, 
+      #{baoid,jdbcType=INTEGER}, #{baoname,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, 
+      #{date,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hxsg.po.WaBaoMiaoShu" >
+    insert into wabao_miaoshu
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="roleid != null" >
+        roleid,
+      </if>
+      <if test="rolename != null" >
+        rolename,
+      </if>
+      <if test="baoid != null" >
+        baoid,
+      </if>
+      <if test="baoname != null" >
+        baoname,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="date != null" >
+        date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="roleid != null" >
+        #{roleid,jdbcType=INTEGER},
+      </if>
+      <if test="rolename != null" >
+        #{rolename,jdbcType=VARCHAR},
+      </if>
+      <if test="baoid != null" >
+        #{baoid,jdbcType=INTEGER},
+      </if>
+      <if test="baoname != null" >
+        #{baoname,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="date != null" >
+        #{date,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hxsg.po.WaBaoMiaoShu" >
+    update wabao_miaoshu
+    <set >
+      <if test="roleid != null" >
+        roleid = #{roleid,jdbcType=INTEGER},
+      </if>
+      <if test="rolename != null" >
+        rolename = #{rolename,jdbcType=VARCHAR},
+      </if>
+      <if test="baoid != null" >
+        baoid = #{baoid,jdbcType=INTEGER},
+      </if>
+      <if test="baoname != null" >
+        baoname = #{baoname,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="date != null" >
+        date = #{date,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hxsg.po.WaBaoMiaoShu" >
+    update wabao_miaoshu
+    set roleid = #{roleid,jdbcType=INTEGER},
+      rolename = #{rolename,jdbcType=VARCHAR},
+      baoid = #{baoid,jdbcType=INTEGER},
+      baoname = #{baoname,jdbcType=VARCHAR},
+      status = #{status,jdbcType=VARCHAR},
+      date = #{date,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

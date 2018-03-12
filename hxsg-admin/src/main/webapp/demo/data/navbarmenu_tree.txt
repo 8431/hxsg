@@ -1,0 +1,15 @@
+﻿[
+	{ text: "用户管理",
+		children: [
+			{ id: "addUser", text: "增加用户", iconCls: "icon-add", url: "../navbartree/navbartree.html" },
+			{ id: "editUser", text: "修改用户", iconCls: "icon-edit", url: "../buttonedit/openwindow.html" },
+			{ id: "removeUser", text: "删除用户", iconCls: "icon-remove", url: "../datagrid/datagrid.html" }
+		]
+	},
+	{ text: "权限管理",
+		children: [
+			{ id: "addRight", text: "查询权限", iconCls: "Note", url: "../navbartree/navbartree.html", iconPosition: "top" },
+			{ id: "editRight", text: "操作权限", iconCls: "Reports", url: "../buttonedit/openwindow.html", iconPosition: "top" }			
+		]
+	}
+]

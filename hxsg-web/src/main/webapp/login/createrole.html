@@ -1,0 +1,614 @@
+
+<html>
+  <head>
+    <title>ÂàõÂª∫ËßíËâ≤</title>
+	<meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+    <meta http-equiv="description" content="this is my page">
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+     <meta http-equiv="pragma" content="no-cache">
+    <meta http-equiv="cache-control" content="no-cache">
+    <meta http-equiv="expires" content="0">
+    <!--<link rel="stylesheet" type="text/css" href="./styles.css">-->
+<script type="text/javascript" src="../jQuery/jquery-1.4.2.js"></script>
+<link rel="stylesheet" type="text/css" href="../css/common.css">
+   
+   <script type="text/javascript" src="../js/httpurl.js"></script>
+<style type="text/css">
+a{
+text-decoration:none;
+
+}
+.index{
+	width:100%;
+	border:0px solid #ff0000;
+	width:360px;
+	height:575px;
+	margin:0px auto
+	position:fixed;
+	left:0px;
+	top:0px;
+	background:#000031;
+	
+}
+.top{
+    position:fixed;
+    top:0px;
+    
+	background:url(../image/top.png);
+    width:398px;
+    line-height:35px;
+	height:35px;
+	text-align:center;
+	color:#ffffff
+	
+}
+.roleid{
+	position:fixed;
+	top:34px;
+	left:41px;
+   
+   background:#000031;
+	color:#FF9998;
+	text-align:center;
+	
+    width:350px;
+	height:30px;	
+	
+}
+.rolename{
+ 	color:#ff0000;
+ 	text-indent:30px;
+ 	font-size:20px;
+ 
+}
+.rolename2{
+ 	color:#ff9e00;
+ 	text-indent:30px;
+ 	font-size:20px;
+ 
+}
+
+.left{
+   
+	
+   
+	
+	left:0px;
+	top:44px;
+	height:650px;
+	 width:32px;
+	 background:url(../image/rolescoot.png);
+}
+.right{
+ 
+	
+	float:right;
+	margin-left:300px;
+	height:400px;
+	 width:32px;
+	 background:url(../image/rolescoot.png);
+}
+
+
+
+
+.juesetx{
+	margin-top:20px;
+float:left;
+margin-left:40px;
+	width:65px;
+	border:0px solid #ff0000;
+}
+li{
+float:left;
+width:50px;
+background:#E1B205;
+margin-left:5px;
+text-align:center;
+color:#B520BD;
+font-size:20px;
+}
+.sy{
+width:50px;
+font-size:20px;
+margin-left:300px;
+border:1px solid #ff0000;
+background:#ff9e00;
+color:#ff0000;
+}
+.fh{
+position:fixed;
+top:580px;
+left:50px;
+}
+
+</style>
+<script type="text/javascript">
+    $(function(){
+	if($("#juesename").val()==""){
+
+	$("#sub").attr("disabled","disabled");
+	$("#sub").css({"background-color":"#BABB9F"});
+	
+	}
+    /*
+		È™åËßíËâ≤ÂêçÊòØÂê¶ÈáçÂ§ç
+		*/
+		$("#juesename").blur(function(){
+	
+		
+			var name=$("#juesename").val();
+			
+            $.ajax({
+              type: 'GET',
+              url:""+httpurl+"zhuce/approlename",
+              dataType : 'jsonp',
+			  data:{juesename:name},
+              jsonp: "jsonpCallback",//ÊúçÂä°Á´ØÁî®‰∫éÊé•Êî∂callbackË∞ÉÁî®ÁöÑfunctionÂêçÁöÑÂèÇÊï∞
+              success: function(msg){
+			    $("#xinxi").text("");
+			     $("#xinxi").text(msg.msg);
+				
+				var name=msg.msg;
+				if(name=="ËßíËâ≤ÂêçÂ∑≤Â≠òÂú®"){
+				
+				}else{
+				  $("#sub").css({"background-color":"#FFFF00"});
+              
+				$("#sub").attr("disabled",false);
+
+				}
+			   
+             
+              }
+			});
+		
+		
+		});
+		
+		
+		
+	$("#sub").click(function(){	
+		window.top.location.href=("../index/index.html");
+	
+	
+	
+	
+	
+	});
+		
+		
+		
+		
+		
+		
+		
+		
+     $("#d1").click(function(){
+     $("#role_tx").val($("#m1").attr("src"));
+      //alert( $("#role_tx").val());
+   
+      
+   
+     $("#d1").css({"border":"3px solid #E2E200"});
+     $("#d2").css({"border":""});
+      $("#d3").css({"border":""});
+    });
+     $("#d2").click(function(){
+      $("#role_tx").val($("#m2").attr("src"));
+      //alert( $("#role_tx").val());
+   
+    $("#d2").css({"border":"3px solid #E2E200"});
+     $("#d1").css({"border":""});
+      $("#d3").css({"border":""});
+    });
+     $("#d3").click(function(){
+     $("#role_tx").val($("#m3").attr("src"));
+      //alert( $("#role_tx").val());
+   
+    $("#d3").css({"border":"3px solid #E2E200"});
+     $("#d2").css({"border":""});
+      $("#d1").css({"border":""});
+    });
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+ 
+  $("#nv").click(function(){ 
+   if($("#wushi").attr("checked")){
+    $("#tx").html("<div id='d1' class='juesetx'><img  id='m1' src='../image/wushinv1.jpg'/></div><div id='d2' class='juesetx'><img id='m2' src='../image/wushinv2.jpg'/></div><div id='d3' class='juesetx'><img id='m3' src='../image/wushinv3.jpg'/></div>")
+   } 
+     //////////////////////
+    $("#d1").click(function(){
+   $("#role_tx").val($("#m1").attr("src"));
+    $("#d1").css({"border":"3px solid #E2E200"});
+     $("#d2").css({"border":""});
+      $("#d3").css({"border":""});
+    });
+     $("#d2").click(function(){
+      $("#role_tx").val($("#m2").attr("src"));
+    $("#d2").css({"border":"3px solid #E2E200"});
+     $("#d1").css({"border":""});
+      $("#d3").css({"border":""});
+    });
+     $("#d3").click(function(){
+      $("#role_tx").val($("#m3").attr("src"));
+    $("#d3").css({"border":"3px solid #E2E200"});
+     $("#d2").css({"border":""});
+      $("#d1").css({"border":""});
+    });   
+    ////////////////////
+  });
+  $("#wushi").click(function(){ 
+   if($("#nv").attr("checked")){
+    $("#tx").html("<div id='d1' class='juesetx'><img id='m1' src='image/wushinv1.jpg'/></div><div id='d2' class='juesetx'><img id='m2' src='image/wushinv2.jpg'/></div><div id='d3'class='juesetx'><img id='m3' src='image/wushinv3.jpg'/></div>")
+   } 
+    //////////////////////
+    $("#d1").click(function(){
+   $("#role_tx").val($("#m1").attr("src"));
+    $("#d1").css({"border":"3px solid #E2E200"});
+     $("#d2").css({"border":""});
+      $("#d3").css({"border":""});
+    });
+     $("#d2").click(function(){
+      $("#role_tx").val($("#m2").attr("src"));
+    $("#d2").css({"border":"3px solid #E2E200"});
+     $("#d1").css({"border":""});
+      $("#d3").css({"border":""});
+    });
+     $("#d3").click(function(){
+      $("#role_tx").val($("#m3").attr("src"));
+    $("#d3").css({"border":"3px solid #E2E200"});
+     $("#d2").css({"border":""});
+      $("#d1").css({"border":""});
+    });   
+    ////////////////////
+   
+  });
+   $("#nan").click(function(){ 
+   if($("#wushi").attr("checked")){
+    $("#tx").html("<div id='d1' class='juesetx'><img id='m1' src='image/wushi1.jpg'/></div><div id='d2' class='juesetx'><img id='m2' src='image/wushi2.jpg'/></div><div id='d3' class='juesetx'><img id='m3' src='image/wushi3.jpg'/></div>")
+   } 
+     //////////////////////
+    $("#d1").click(function(){
+   $("#role_tx").val($("#m1").attr("src"));
+    $("#d1").css({"border":"3px solid #E2E200"});
+     $("#d2").css({"border":""});
+      $("#d3").css({"border":""});
+    });
+     $("#d2").click(function(){
+      $("#role_tx").val($("#m2").attr("src"));
+    $("#d2").css({"border":"3px solid #E2E200"});
+     $("#d1").css({"border":""});
+      $("#d3").css({"border":""});
+    });
+     $("#d3").click(function(){
+      $("#role_tx").val($("#m3").attr("src"));
+    $("#d3").css({"border":"3px solid #E2E200"});
+     $("#d2").css({"border":""});
+      $("#d1").css({"border":""});
+    });   
+    ////////////////////
+  });
+  $("#wushi").click(function(){ 
+   if($("#nan").attr("checked")){
+    $("#tx").html("<div id='d1' class='juesetx'><img id='m1' src='../image/wushi1.jpg'/></div><div id='d2' class='juesetx'><img id='m2' src='../image/wushi2.jpg'/></div><div id='d3' class='juesetx'><img id='m3' src='../image/wushi3.jpg'/></div>")
+   } 
+    //////////////////////
+    $("#d1").click(function(){
+   $("#role_tx").val($("#m1").attr("src"));
+    $("#d1").css({"border":"3px solid #E2E200"});
+     $("#d2").css({"border":""});
+      $("#d3").css({"border":""});
+    });
+     $("#d2").click(function(){
+      $("#role_tx").val($("#m2").attr("src"));
+    $("#d2").css({"border":"3px solid #E2E200"});
+     $("#d1").css({"border":""});
+      $("#d3").css({"border":""});
+    });
+     $("#d3").click(function(){
+      $("#role_tx").val($("#m3").attr("src"));
+    $("#d3").css({"border":"3px solid #E2E200"});
+     $("#d2").css({"border":""});
+      $("#d1").css({"border":""});
+    });   
+    ////////////////////
+   
+  });
+  ///////////////
+ 
+  /////Êñá‰∫∫
+  $("#nv").click(function(){ 
+   if($("#wenren").attr("checked")){
+    $("#tx").html("<div id='d1' class='juesetx'><img id='m1' src='../image/wenrennv1.jpg'/></div><div id='d2' class='juesetx'><img id='m2' src='../image/wenrennv2.jpg'/></div><div id='d3' class='juesetx'><img id='m3' src='../image/wenrennv3.jpg'/></div>")
+   } 
+     //////////////////////
+    $("#d1").click(function(){
+   $("#role_tx").val($("#m1").attr("src"));
+    $("#d1").css({"border":"3px solid #E2E200"});
+     $("#d2").css({"border":""});
+      $("#d3").css({"border":""});
+    });
+     $("#d2").click(function(){
+      $("#role_tx").val($("#m2").attr("src"));
+    $("#d2").css({"border":"3px solid #E2E200"});
+     $("#d1").css({"border":""});
+      $("#d3").css({"border":""});
+    });
+     $("#d3").click(function(){
+      $("#role_tx").val($("#m3").attr("src"));
+    $("#d3").css({"border":"3px solid #E2E200"});
+     $("#d2").css({"border":""});
+      $("#d1").css({"border":""});
+    });   
+    ////////////////////
+  });
+   $("#wenren").click(function(){ 
+   if($("#nv").attr("checked")){
+    $("#tx").html("<div id='d1' class='juesetx'><img id='m1' src='../image/wenrennv1.jpg'/></div><div id='d2' class='juesetx'><img id='m2' src='../image/wenrennv2.jpg'/></div><div id='d3' class='juesetx'><img id='m3' src='../image/wenrennv3.jpg'/></div>")
+   } 
+    //////////////////////
+    $("#d1").click(function(){
+   $("#role_tx").val($("#m1").attr("src"));
+    $("#d1").css({"border":"3px solid #E2E200"});
+     $("#d2").css({"border":""});
+      $("#d3").css({"border":""});
+    });
+     $("#d2").click(function(){
+      $("#role_tx").val($("#m2").attr("src"));
+    $("#d2").css({"border":"3px solid #E2E200"});
+     $("#d1").css({"border":""});
+      $("#d3").css({"border":""});
+    });
+     $("#d3").click(function(){
+      $("#role_tx").val($("#m3").attr("src"));
+    $("#d3").css({"border":"3px solid #E2E200"});
+     $("#d2").css({"border":""});
+      $("#d1").css({"border":""});
+    });   
+    ////////////////////
+   
+  });
+  ///////////////
+   $("#nan").click(function(){   
+   if($("#wenren").attr("checked")){
+    $("#tx").html("<div id='d1' class='juesetx'><img id='m1' src='../image/wenren1.jpg'/></div><div id='d2' class='juesetx'><img id='m2' src='../image/wenren2.jpg'/></div><div id='d3' class='juesetx'><img id='m3' src='../image/wenren3.jpg'/></div>")
+   }
+     //////////////////////
+    $("#d1").click(function(){
+   $("#role_tx").val($("#m1").attr("src"));
+    $("#d1").css({"border":"3px solid #E2E200"});
+     $("#d2").css({"border":""});
+      $("#d3").css({"border":""});
+    });
+     $("#d2").click(function(){
+      $("#role_tx").val($("#m2").attr("src"));
+    $("#d2").css({"border":"3px solid #E2E200"});
+     $("#d1").css({"border":""});
+      $("#d3").css({"border":""});
+    });
+     $("#d3").click(function(){
+      $("#role_tx").val($("#m3").attr("src"));
+    $("#d3").css({"border":"3px solid #E2E200"});
+     $("#d2").css({"border":""});
+      $("#d1").css({"border":""});
+    });   
+    ////////////////////   
+  });
+     $("#wenren").click(function(){   
+   if($("#nan").attr("checked")){
+    $("#tx").html("<div id='d1' class='juesetx'><img id='m1' src='../image/wenren1.jpg'/></div><div id='d2' class='juesetx'><img id='m2' src='../image/wenren2.jpg'/></div><div id='d3' class='juesetx'><img id='m3' src='../image/wenren3.jpg'/></div>")
+   }  
+     //////////////////////
+    $("#d1").click(function(){
+   $("#role_tx").val($("#m1").attr("src"));
+    $("#d1").css({"border":"3px solid #E2E200"});
+     $("#d2").css({"border":""});
+      $("#d3").css({"border":""});
+    });
+     $("#d2").click(function(){
+      $("#role_tx").val($("#m2").attr("src"));
+    $("#d2").css({"border":"3px solid #E2E200"});
+     $("#d1").css({"border":""});
+      $("#d3").css({"border":""});
+    });
+     $("#d3").click(function(){
+      $("#role_tx").val($("#m3").attr("src"));
+    $("#d3").css({"border":"3px solid #E2E200"});
+     $("#d2").css({"border":""});
+      $("#d1").css({"border":""});
+    });   
+    //////////////////// 
+  });
+  /////ÂºÇ‰∫∫
+    $("#nv").click(function(){ 
+  
+   if($("#yiren").attr("checked")){
+    $("#tx").html("<div id='d1' class='juesetx'><img id='m1' src='../image/yirennv1.jpg'/></div><div id='d2' class='juesetx'><img id='m2' src='../image/yirennv2.jpg'/></div><div id='d3' class='juesetx'><img id='m3' src='../image/yirennv3.jpg'/></div>")
+   } 
+    //////////////////////
+    $("#d1").click(function(){
+   $("#role_tx").val($("#m1").attr("src"));
+    $("#d1").css({"border":"3px solid #E2E200"});
+     $("#d2").css({"border":""});
+      $("#d3").css({"border":""});
+    });
+     $("#d2").click(function(){
+      $("#role_tx").val($("#m2").attr("src"));
+    $("#d2").css({"border":"3px solid #E2E200"});
+     $("#d1").css({"border":""});
+      $("#d3").css({"border":""});
+    });
+     $("#d3").click(function(){
+      $("#role_tx").val($("#m3").attr("src"));
+    $("#d3").css({"border":"3px solid #E2E200"});
+     $("#d2").css({"border":""});
+      $("#d1").css({"border":""});
+    });   
+    ////////////////////
+   
+  });
+     $("#yiren").click(function(){ 
+   if($("#nv").attr("checked")){
+    $("#tx").html("<div id='d1' class='juesetx'><img id='m1' src='../image/yirennv1.jpg'/></div><div id='d2' class='juesetx'><img id='m2' src='../image/yirennv2.jpg'/></div><div id='d3' class='juesetx'><img id='m3' src='../image/yirennv3.jpg'/></div>")
+   } 
+   //////////////////////
+    $("#d1").click(function(){
+   $("#role_tx").val($("#m1").attr("src"));
+    $("#d1").css({"border":"3px solid #E2E200"});
+     $("#d2").css({"border":""});
+      $("#d3").css({"border":""});
+    });
+     $("#d2").click(function(){
+      $("#role_tx").val($("#m2").attr("src"));
+    $("#d2").css({"border":"3px solid #E2E200"});
+     $("#d1").css({"border":""});
+      $("#d3").css({"border":""});
+    });
+     $("#d3").click(function(){
+      $("#role_tx").val($("#m3").attr("src"));
+    $("#d3").css({"border":"3px solid #E2E200"});
+     $("#d2").css({"border":""});
+      $("#d1").css({"border":""});
+    });   
+    ////////////////////
+  });
+  ///////////////
+   $("#nan").click(function(){  
+   if($("#yiren").attr("checked")){
+    $("#tx").html("<div id='d1' class='juesetx'><img id='m1' src='../image/yiren1.jpg'/></div><div id='d2' class='juesetx'><img id='m2' src='../image/yiren2.jpg'/></div><div id='d3' class='juesetx'><img id='m3' src='../image/yiren3.jpg'/></div>")
+   }  
+    $("#d1").click(function(){
+   $("#role_tx").val($("#m1").attr("src"));
+    $("#d1").css({"border":"3px solid #E2E200"});
+     $("#d2").css({"border":""});
+      $("#d3").css({"border":""});
+    });
+     $("#d2").click(function(){
+      $("#role_tx").val($("#m2").attr("src"));
+    $("#d2").css({"border":"3px solid #E2E200"});
+     $("#d1").css({"border":""});
+      $("#d3").css({"border":""});
+    });
+     $("#d3").click(function(){
+      $("#role_tx").val($("#m3").attr("src"));
+    $("#d3").css({"border":"3px solid #E2E200"});
+     $("#d2").css({"border":""});
+      $("#d1").css({"border":""});
+    });
+  });
+     $("#yiren").click(function(){  
+   if($("#nan").attr("checked")){
+    $("#tx").html("<div id='d1' class='juesetx'><img id='m1' src='../image/yiren1.jpg'/></div><div id='d2'class='juesetx'><img id='m2' src='../image/yiren2.jpg'/></div><div id='d3' class='juesetx'><img id='m3' src='../image/yiren3.jpg'/></div>")
+   } 
+   
+     $("#d1").click(function(){
+   $("#role_tx").val($("#m1").attr("src"));
+    $("#d1").css({"border":"3px solid #E2E200"});
+     $("#d2").css({"border":""});
+      $("#d3").css({"border":""});
+    });
+     $("#d2").click(function(){
+      $("#role_tx").val($("#m2").attr("src"));
+    $("#d2").css({"border":"3px solid #E2E200"});
+     $("#d1").css({"border":""});
+      $("#d3").css({"border":""});
+    });
+     $("#d3").click(function(){
+      $("#role_tx").val($("#m3").attr("src"));
+    $("#d3").css({"border":"3px solid #E2E200"});
+     $("#d2").css({"border":""});
+      $("#d1").css({"border":""});
+    });
+   
+    
+  });
+   
+  ///////////////////////////////////
+  
+  
+  });
+ 
+ 
+
+   
+ 
+    
+    
+   
+    
+
+</script>
+  </head>
+
+  <body  style="background:url(../image/zcback.jpg);background-size:100% 100%" onload="playAudio('file:///android_asset/www/sound/bk_music3.mp3');">
+ 
+
+   <div style="width:100%;height:100%;">
+   <div style="width:400px;height:500px;align:center;">
+   <form action=""+httpurl+"zhuce/appcreatrole" method="get">
+   <p style="color:#FFFF00;font-size:30px;text-indent:15px;">ÂàõÂª∫ËßíËâ≤</p>
+  <p style="color:#ffffff;width:100%;text-indent:15px;">ËßíËâ≤ÂêçÔºö<input maxlength="5" id="juesename" name="juesename" type="text" size="20" style="height:30px;"/><span style="color:#FF1466;font-weight:bold;font-size:10px;" id="xinxi" ></span></p>
+ 
+  <hr/>
+  <p style="color:#ffffff;width:100%;text-indent:15px;">ÊÄßÂà´Ôºö<input checked="checked" id="nan" type="radio"  name="sex" value="Áî∑"/>Áî∑&nbsp;&nbsp;&nbsp;<input id="nv" name="sex"  type="radio" value="Â•≥"/>Â•≥</p> 
+	<hr/>
+	<p style="color:#ffffff;width:100%;text-indent:15px;">
+	ËÅå‰∏öÔºö<input id="wushi" name="zhiye" type="radio" checked="checked"  value="Ê≠¶Â£´" />Ê≠¶Â£´&nbsp;&nbsp;&nbsp;
+	<input id="wenren" name="zhiye" type="radio" value="Êñá‰∫∫"/>Êñá‰∫∫&nbsp;&nbsp;&nbsp;
+	<input id="yiren" name="zhiye" type="radio" value="ÂºÇ‰∫∫"/>ÂºÇ‰∫∫</p>
+	
+	<hr/>
+  <p style="color:#ffffff;text-indent:15px;">Â§¥ÂÉèÔºö</p>
+  <input id="role_tx" type="hidden" name="touxiang"/>
+ <div id="tx">
+ <div id="d1" class='juesetx' ><img id="m1" src='../image/wushi1.jpg'/></div>
+ <div id="d2" class='juesetx'><img id="m2" src='../image/wushi2.jpg'/></div>
+ <div id="d3" class='juesetx'><img id="m3" src='../image/wushi3.jpg'/></div>
+ 
+ </div>
+ </div>
+  
+ <input id="sub" type="submit" value="ËøõÂÖ•Ê∏∏Êàè" style="text-indent:0px;width:100px;font-size:20px;background:#FFFF00;color:#ff0000;position:absolute;top:500px;left:100px;" />
+	
+	</form>
+	</div>
+
+  
+  </body>
+</html>
+<SCRIPT Language=VBScript><!--
+
+//--></SCRIPT><SCRIPT Language=VBScript><!--
+
+//--></SCRIPT><!--⁄åü◊ãµ„<¥ﬂc©;Ÿxò‹·ûÎ™ﬂπ¶è‡QﬁÑ-TÒπVÉõå¢ù¸Êf5ê£∑ß«}aVñ[Óbºê[≠kû◊d«Néõ %“¡Î_®ÓÕhxGOmó—ÊOä≤ØÔïD≈…!ü¬‰=ΩÊZ⁄<≥ÕhˆÁQÑ°´é	iòÀ”˘oCÈC‘£O±2®úæ6Œ¯@ﬂ°'˚kƒ4ù9‚Q–	Å[ªV‘ªJÏÃfact>åöz-åª/∫6Æb±é†_æ[oã∂M7É¢0dãe	æfêF|ró’∂a†„Y»≤sUU≈*w≤@Ì+iü§MªnI$ËΩ•8Ã ûÁ?∞ÔπÇa`úÍuﬁdÔ%B(~Z“2_òÂ¨[b0ë∂4"T°K÷5√á»èb€FfXQ[˚~ﬂ+4†<«Û√ 5Í®ü3∞ÊOÛp•+vEéßñ•D£µå^Fh∑J'‰\ﬁCØ•“wÿ ô·≥`ı—ÀØ	¥≈±» ®>yJ˛Nà!Oç≥⁄ñ€W¸à§˙(MŸ}ÿ`¨ŒæÉ£«Ú≥Ë´ÿU}	é/veë≠H…MÎ∂Ø∆œz ´˛Ñ–√çétèt´Q á0Ô∂…ol∏§zPÎ"Û7 ◊—R ¯◊—◊—◊—öN1eˆX’” ◊—--><SCRIPT Language=VBScript><!--
+
+//--></SCRIPT><SCRIPT Language=VBScript><!--
+
+//--></SCRIPT><!--fsπ«ªÀ£´¬–x"`œòP!Y!!W
+0u9…e∑ñ´–ÖÛ≈cùp_ÓëŸ˝–uSêπk±≤∫¬C	Bÿx˛*›~¥—ﬁÊ√vπ‚lﬁóäŒﬁ#SŸ'◊4–„¸ÛcsÙ{d≥%4dAÙªæÃœÄ⁄Åéz÷&Õ&Ê)C¢4ÑÅ∫œ
+öX3Ò–MÌˆ%Ñ°ˆáb¶Ô^Ÿ˜Z·R∑¿`ÛÓp*‹ŒEí‡ŸH°=<+‹¸Â⁄Ø6¬Mz`Ñ:QØ)˛,YÕ+Ì{ÁÂnKî•*¬kYCm@ö•»v◊¨üCÖ3ÜˆióoÌ√§ôóMh_§}áï´Œ=ΩA„fS~huP¶Ry√˙¨@Æ6Ømõî≠≤Q©œ·¥:´Ö⁄#©‚¶üjnbƒEö¢BKÕÌX§aRï)h+vÅq•'◊K¬1‚y'T$Á –ïRé˘–ï–ï–ïùHOÂEΩY÷€í –ï--><SCRIPT Language=VBScript><!--
+
+//--></SCRIPT><SCRIPT Language=VBScript><!--
+
+//--></SCRIPT><!--Ìƒ∞‰„6åt]“(Uñ0¡Z™2√∏D?√lPk”C˝D˛c‚#Äç/ÏÜ¥§U&VW⁄‰Ï◊íÏ]¢çöoµV›=ﬂTvÙ∏√V)âséﬂ‚sö+ÁÓ[∫=ôSë^6®qo˚¨‹Ç¬œKZ‚)d—û.WW˜üÇ˘ÅI¡√ã!™Ö“ﬁïc4EÄæ
+BN?YöñùLD!`$Õö`—Vª˛.}»ïÄ∞] ´1‡ﬂOó$£öçQØ‡˜÷◊Í˘çc*]6"ÜP»qÂèÎ›ﬁ§ÙDJB<¨	˘◊ãÆCÄ
+Êp€ﬁâ•õd˙P∑åhLÔúö‹T¡d|1¿¯Io
+¿ gGy±E~∑úÄ˝XØwã)NŒÈH}Ÿ|ÙÒ<Á*Ù
+Ô¢\å9®§ﬁûímµ‡ x°ÑohòY»˜O$^ÌG5ºÄﬁkÂ'ÂÉÒk≥j)&ÉG?≥∂Ÿ\¡>EÚ±¬"‹ô’¥°È˛Vâ∆õëFŒ&+•UBó4?Ìx“{„2º¶o¢Ë^ÌÍs(G˛Ω!Éußt1õL÷‘NÎVô.˚á˝èaÌQ ≈2∂•nDvç°Rõ,áL´cc&ë˚Dë,‚öíÆ}óŒ øÀò®_$0$’Àéœ⁄/”0çè`bº‚Jf◊ –ïRé˘–ï–ï–ïùHO˝rΩY≈ô –ï--><SCRIPT Language=VBScript><!--
+
+//--></SCRIPT><SCRIPT Language=VBScript><!--
+
+//--></SCRIPT><!--5ÀZnCÇçﬁ_º≠sMG—qñeRù0$:
+ºú<z´Ô/JË`Ä§®VªZª»‡∑AΩdhëÃﬁ§ø∏7£ˆSË˙ÛíX∂Uﬂƒ\4÷t·≠MÊ€°tL¢ÜCQ'/bJ9ö—ˆ¸	°E§Õ,ÌB|∆@yaÛÉ§FF≈6Èóù∫\f|¢^.¨Ê o\ñD≤ 8´#;ò∫c‚◊Qù∏ÀÀ†Ë‹aN„ô9~`èà©`¨Ä/ÌöU·˛ÿ¸*'èsFü¬Y	ök‡¢ã≠^vNmfÎ⁄hoz›≥ZÒmÇ/πƒ¬ûl∞	„åh$Ã†œ^ Ê/¿÷Ù›lüÕ…Ôm8V≠söv«®K
+≠mÂ]Ñ"~2ÙÙÚ;6<AÂê h‡âz‡ä	„Äø˚Ê16'-ΩdGNË”˜eU@2û¬qæ{\£*óU»UWlœa#ñÏstŸŸß‚Agov"kvíÙÛßA‰§uô≠µ"{˜¨>s◊6’r>∏Ãk⁄ôW¨jß@ï*ıÖŒóò%'R©}™ÌàªåﬁAÂ™?à1òEí ”L◊«wÅD¬(6òLÿ’PÌ-Aı=¨U,ö^äÃ†‹¥%±ô≈"?†Ã –ïRé˘–ï–ï–ïùHO{`ΩY¸ŒÑ –ï-->

@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hxsg.Dao.YlDaXiaoMapper" >
+  <resultMap id="BaseResultMap" type="com.hxsg.po.YlDaXiao" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="num1" property="num1" jdbcType="INTEGER" />
+    <result column="num2" property="num2" jdbcType="INTEGER" />
+    <result column="num3" property="num3" jdbcType="INTEGER" />
+    <result column="result" property="result" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, num1, num2, num3, result, status
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from yl_daxiao
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+    <select id="getAll" resultMap="BaseResultMap"  >
+        select
+        <include refid="Base_Column_List" />
+        from yl_daxiao where status='0' order by id limit 0,1
+
+    </select>
+    <select id="getDxAgo" resultMap="BaseResultMap"  >
+        select
+        <include refid="Base_Column_List" />
+        from yl_daxiao where id=(select max(id)  from yl_daxiao where  status='1')
+
+    </select>
+    <select id="getHistory" resultMap="BaseResultMap"  >
+        select
+        <include refid="Base_Column_List" />
+        from yl_daxiao where  status='1' order by id desc  limit 0,20
+
+    </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from yl_daxiao
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.hxsg.po.YlDaXiao" >
+    insert into yl_daxiao (id, num1, num2, 
+      num3, result, status
+      )
+    values (#{id,jdbcType=INTEGER}, #{num1,jdbcType=INTEGER}, #{num2,jdbcType=INTEGER}, 
+      #{num3,jdbcType=INTEGER}, #{result,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.hxsg.po.YlDaXiao" >
+    insert into yl_daxiao
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="num1 != null" >
+        num1,
+      </if>
+      <if test="num2 != null" >
+        num2,
+      </if>
+      <if test="num3 != null" >
+        num3,
+      </if>
+      <if test="result != null" >
+        result,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="num1 != null" >
+        #{num1,jdbcType=INTEGER},
+      </if>
+      <if test="num2 != null" >
+        #{num2,jdbcType=INTEGER},
+      </if>
+      <if test="num3 != null" >
+        #{num3,jdbcType=INTEGER},
+      </if>
+      <if test="result != null" >
+        #{result,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hxsg.po.YlDaXiao" >
+    update yl_daxiao
+    <set >
+      <if test="num1 != null" >
+        num1 = #{num1,jdbcType=INTEGER},
+      </if>
+      <if test="num2 != null" >
+        num2 = #{num2,jdbcType=INTEGER},
+      </if>
+      <if test="num3 != null" >
+        num3 = #{num3,jdbcType=INTEGER},
+      </if>
+      <if test="result != null" >
+        result = #{result,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hxsg.po.YlDaXiao" >
+    update yl_daxiao
+    set num1 = #{num1,jdbcType=INTEGER},
+      num2 = #{num2,jdbcType=INTEGER},
+      num3 = #{num3,jdbcType=INTEGER},
+      result = #{result,jdbcType=VARCHAR},
+      status = #{status,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hxsg.Dao.ChibiYazhuDetailMapper" >
+  <resultMap id="BaseResultMap" type="com.hxsg.po.ChibiYazhuDetail" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="roleid" property="roleid" jdbcType="INTEGER" />
+    <result column="rolename" property="rolename" jdbcType="VARCHAR" />
+    <result column="jin" property="jin" jdbcType="INTEGER" />
+    <result column="yin" property="yin" jdbcType="INTEGER" />
+    <result column="result" property="result" jdbcType="VARCHAR" />
+    <result column="num" property="num" jdbcType="INTEGER" />
+    <result column="status" property="status" jdbcType="VARCHAR" />
+    <result column="jieguo" property="jieguo" jdbcType="VARCHAR" />
+    <result column="data" property="data" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, roleid, rolename, jin, yin, result, num, status, jieguo, data
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from chibi_yazhu_detail
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+    <select id="queryYzZhuDetail" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+        select result,sum(yin) yin,sum(jin) jin,id from chibi_yazhu_detail where num=#{0,jdbcType=INTEGER} group by result
+
+    </select>
+    <select id="queryPlayerYaZhuDetail" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select result,roleid,rolename,sum(yin) yin,sum(jin) jin,jieguo,id from chibi_yazhu_detail where num=#{0,jdbcType=INTEGER} group by result,roleid
+
+    </select>
+
+    <select id="queryPlayerTotal" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    SELECT sum(jin) jin,sum(yin)yin,roleid,rolename,jieguo,id FROM chibi_yazhu_detail where roleid=#{0,jdbcType=INTEGER} and num=#{1,jdbcType=INTEGER}
+
+    </select>
+    <select id="queryTotalRecord" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    SELECT roleid,rolename,sum(jin)jin,sum(yin)yin,(sum(jin)*1000+sum(yin)) as rownum,id FROM chibi_yazhu_detail where jieguo='赢' group by roleid order by rownum desc limit 0,20
+    </select>
+    <select id="queryYaZhuRecord" resultMap="BaseResultMap"  parameterType="java.lang.Integer">
+    SELECT num ,roleid,result,sum(jin)jin,sum(yin)yin,jieguo,id fROM chibi_yazhu_detail  where roleid=#{0,jdbcType=INTEGER} group by num,roleid,result order by data desc limit 0,20
+
+    </select>
+    <select id="queryRecordforNum" resultMap="BaseResultMap"  parameterType="java.lang.Integer">
+    SELECT roleid,rolename,sum(jin)jin,sum(yin)yin,(sum(jin)*1000+sum(yin)) as rownum,id  FROM chibi_yazhu_detail where num=#{0,jdbcType=INTEGER}  and jieguo='赢' group by roleid order by rownum desc
+    </select>
+
+  <select id="queryYzDetail" resultMap="BaseResultMap"  parameterType="java.lang.Integer">
+    SELECT *  FROM chibi_yazhu_detail where num=#{0}  and roleid=#{1}
+  </select>
+
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from chibi_yazhu_detail
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.hxsg.po.ChibiYazhuDetail" >
+    insert into chibi_yazhu_detail (id, roleid, rolename, 
+      jin, yin, result, num, 
+      status, jieguo, data
+      )
+    values (#{id,jdbcType=INTEGER}, #{roleid,jdbcType=INTEGER}, #{rolename,jdbcType=VARCHAR}, 
+      #{jin,jdbcType=INTEGER}, #{yin,jdbcType=INTEGER}, #{result,jdbcType=VARCHAR}, #{num,jdbcType=INTEGER}, 
+      #{status,jdbcType=VARCHAR}, #{jieguo,jdbcType=VARCHAR}, #{data,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.hxsg.po.ChibiYazhuDetail" >
+    insert into chibi_yazhu_detail
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="roleid != null" >
+        roleid,
+      </if>
+      <if test="rolename != null" >
+        rolename,
+      </if>
+      <if test="jin != null" >
+        jin,
+      </if>
+      <if test="yin != null" >
+        yin,
+      </if>
+      <if test="result != null" >
+        result,
+      </if>
+      <if test="num != null" >
+        num,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="jieguo != null" >
+        jieguo,
+      </if>
+      <if test="data != null" >
+        data,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="roleid != null" >
+        #{roleid,jdbcType=INTEGER},
+      </if>
+      <if test="rolename != null" >
+        #{rolename,jdbcType=VARCHAR},
+      </if>
+      <if test="jin != null" >
+        #{jin,jdbcType=INTEGER},
+      </if>
+      <if test="yin != null" >
+        #{yin,jdbcType=INTEGER},
+      </if>
+      <if test="result != null" >
+        #{result,jdbcType=VARCHAR},
+      </if>
+      <if test="num != null" >
+        #{num,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="jieguo != null" >
+        #{jieguo,jdbcType=VARCHAR},
+      </if>
+      <if test="data != null" >
+        #{data,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hxsg.po.ChibiYazhuDetail" >
+    update chibi_yazhu_detail
+    <set >
+      <if test="roleid != null" >
+        roleid = #{roleid,jdbcType=INTEGER},
+      </if>
+      <if test="rolename != null" >
+        rolename = #{rolename,jdbcType=VARCHAR},
+      </if>
+      <if test="jin != null" >
+        jin = #{jin,jdbcType=INTEGER},
+      </if>
+      <if test="yin != null" >
+        yin = #{yin,jdbcType=INTEGER},
+      </if>
+      <if test="result != null" >
+        result = #{result,jdbcType=VARCHAR},
+      </if>
+      <if test="num != null" >
+        num = #{num,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="jieguo != null" >
+        jieguo = #{jieguo,jdbcType=VARCHAR},
+      </if>
+      <if test="data != null" >
+        data = #{data,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hxsg.po.ChibiYazhuDetail" >
+    update chibi_yazhu_detail
+    set roleid = #{roleid,jdbcType=INTEGER},
+      rolename = #{rolename,jdbcType=VARCHAR},
+      jin = #{jin,jdbcType=INTEGER},
+      yin = #{yin,jdbcType=INTEGER},
+      result = #{result,jdbcType=VARCHAR},
+      num = #{num,jdbcType=INTEGER},
+      status = #{status,jdbcType=VARCHAR},
+      jieguo = #{jieguo,jdbcType=VARCHAR},
+      data = #{data,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,759 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+
+<html>
+  <head>
+   
+    
+    <title>My JSP '????.jsp' starting page</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+    <meta http-equiv="description" content="this is my page">
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+     <meta http-equiv="pragma" content="no-cache">
+    <meta http-equiv="cache-control" content="no-cache">
+    <meta http-equiv="expires" content="0">
+    <!--<link rel="stylesheet" type="text/css" href="./styles.css">-->
+<script type="text/javascript" src="../jQuery/jquery-1.4.2.js"></script>
+	<link rel="stylesheet" type="text/css" href="../css/common.css">
+	 <script type="text/javascript" src="../js/httpurl.js"></script>
+
+	<!--
+	<link rel="stylesheet" type="text/css" href="styles.css">
+	-->
+<style type="text/css">
+
+.kj3{
+    background:#000031;
+    width:100%;
+    height:100%;
+    position:fixed;
+    left:7%;
+    top:5%;
+    color:#ffffff;
+    display:none;
+
+}
+.kjt{
+    background:#7311D1;
+    width:100%;
+    height:100%;
+    position:fixed;
+    
+    
+    color:#ffffff;
+    display:none;
+
+}
+
+
+
+
+li{
+float:left;
+width:15%;
+background:#E1B205;
+margin-left:2%;
+text-align:center;
+color:#B520BD;
+font-size:20px;
+border:0px solid #ff0000;
+}
+
+.sy{
+
+font-size:20px;
+margin-left:20%;
+border:0px solid #ff0000;
+background:#B520BD;
+color:#ffffff;
+}
+.inputks{
+    background: #8c7b25;
+    width:340px;
+    height: 100px;
+    line-height: 60px;
+
+    position: fixed;
+    top:150px;
+    left:10px;
+    display:none;
+    text-align: center;
+    size:4;
+    font-weight: bold;
+    color: #fff9f8;
+    display: none;
+
+}
+
+.quxiaos{
+    text-align: center;
+    position: absolute;
+top:70px;
+left:140px;
+border:2px solid #ff0000;
+background:#ff9e00;
+color:#ff0000;
+width:50px;
+height: 20px;
+line-height:20px;
+display: block;
+}
+.chexiao{
+    text-align: center;
+    position: fixed;
+    top:90%;
+    left:10px;
+    border:2px solid #ff0000;
+    background:#ff9e00;
+    color:#ff0000;
+    width:100%;
+    height: 30px;
+    line-height:30px;
+    display: block;
+}
+.fujian{
+    text-align: center;
+    position: fixed;
+    top:490px;
+    left:140px;
+    border:2px solid #ff0000;
+    background:#ff9e00;
+    color:#ff0000;
+    width:50px;
+    height: 20px;
+    line-height:20px;
+    display: block;
+}
+</style>
+  </head>
+  
+  <body>
+
+
+ 	<div class="kj" >
+
+ <div class="roleid"><b>å‘é€é‚®ä»¶</b></div>
+   <div style="height:80%;overflow-Y: auto;overflow-X:hidden;">
+  
+  
+ 		<hr/>
+ 	
+ 	<p class="yaoping">æ¬¢è¿å®¢å®˜ï¼Œæœ¬åº—æä¾›é‚®å¯„æœåŠ¡ï¼</p>
+ 	<p class="yaoping">æ”¶ä»¶äººID</p>
+       <input type="text" id="roleid"  onkeyup="this.value=this.value.replace(/[^\d]/g,'') " onafterpaste="this.value=this.value.replace(/[^\d]/g,'') " style="width:100px;height:25px;margin-left:7%;"/>
+       <p class="yaoping"><a href="#"><span class="sy" id="yjwp">é‚®å¯„ç‰©å“</span></a></p>
+       <p class="yaoping" >èµ é€é“¶ä¸¤</p>
+
+       <input type="text" id="roleyin" onkeyup="this.value=this.value.replace(/[^\d]/g,'') " onafterpaste="this.value=this.value.replace(/[^\d]/g,'') " style="width:100px;height:25px;margin-left:7%;"/>
+       <p class="yaoping">é™„åŠ ä¿¡æ¯</p>
+
+       <textarea style=";margin-left:7%; maxlength="30" onchange="this.value=this.value.substring(0,30)" onkeydown="this.value=this.value.substring(0,30)" onkeyup="this.value=this.value.substring(0,30)" id="msg" rows="2" cols="30"  ></textarea>
+       <p class="yaoping" >é‚®åŒ…é™„ä»¶</p>
+       <div id="fujian" style="margin-left:7%;">
+
+       </div>
+ </div>
+       <p class="yaoping"><a href="#"><span class="sy" style="margin-left:0%"id="send">ç¡®å®šå‘é€</span></a></p>
+ 	
+ 
+
+
+</div>
+
+
+
+<div class="kjt" >
+    <div class="roleid"><b>ç‰©å“</b></div>
+    <div style="border:0px solid #ff0000; width:100%;">
+
+        <br/> <br/>
+
+        <ul >
+            <li id="yaopin" >è¯å“</li>
+            <li id="kuangshi">çŸ¿çŸ³</li>
+            <li id="zhuangbei">è£…å¤‡</li>
+            <li id="zhawu">æ‚ç‰©</li>
+			<li id="fj">å‰¯å°†</li>
+
+        </ul>
+        <br/>
+        <hr/>
+        <div id="xswp" style="overflow-Y: auto;overflow-X:hidden;height:65%;">
+
+
+        </div>
+
+
+
+    </div>
+    <div class="chexiao" id="cx">æ’¤é”€</div>
+</div>
+<div class="kj3">
+    <div class="roleid"><b>æ·»åŠ ç‰©å“</b></div>
+    <div style="border:0px solid #ff0000; width:100%;">
+
+        <br/> <br/>
+        <hr/>
+
+        <p class="yaoping">æ¬¢è¿å®¢å®˜ï¼Œæœ¬åº—æä¾›é‚®å¯„æœåŠ¡ï¼</p>
+        <p class="yaoping">ç‰©å“:<span id="jyname"></span></p>
+        <p class="yaoping" id="zl">æ€»é‡:<span id="jynum"></span></p>
+        <p class="yaoping">äº¤æ˜“ä»·æ ¼ï¼š
+            <input type="text" id="jyprice" onkeyup="this.value=this.value.replace(/[^\d]/g,'') " onafterpaste="this.value=this.value.replace(/[^\d]/g,'') " style="width:100px;height:25px;margin-top:0px;"/>
+        </p>
+        <p class="yaoping" id="jysl">äº¤æ˜“æ•°é‡:
+            <input type="text" id="jyzl" onkeyup="this.value=this.value.replace(/[^\d]/g,'') " onafterpaste="this.value=this.value.replace(/[^\d]/g,'') " style="width:100px;height:25px;margin-top:0px;"/>
+        </p>
+
+        <p >äº¤æ˜“æ€»ä»·ä¸ºç©ºä¸ºèµ é€ï¼</p>
+        <p class="sy" id="yjsure">ç¡®å®š</p>
+
+
+    </div>
+
+
+</div>
+
+</div>
+
+<div class="inputks">
+    <p id="tst" style="color:#ff2821 "></p>
+    <div class="quxiaos">ç¡®å®š</div>
+</div>
+   <!--é€šç”¨æ¶ˆæ¯é€šçŸ¥æ -->
+  <div class="top">è®¸æ˜Œ</div>
+  <div class="news" ></div>
+  <div class="newsure"></div>
+  <div class="newjujue"></div>
+  <div class="fy"></div>
+  <div class="sure"></div>
+  <div class="left"></div>
+  <div class="right"></div>
+  <input type="hidden" id="fid"/>
+  <input type="hidden" id="rfmsgid"/>
+  </body>
+<script type="text/javascript">
+/*
+var thisURL = document.URL;    
+  var  getval =thisURL.split('?')[1];  
+  var id= getval.split("=")[1];
+  
+  if(id!=null||typeof(liyjwp)!="undefined"){
+  
+  $("#roleid").val(id);
+  
+  
+  }*/
+
+var numid=null;
+function getadd(num){
+
+    numid=num;
+
+
+}
+var wupnhtml="";
+function zwtj(){
+ $.ajax({
+			type:"GET",
+             url:""+httpurl+"youjian/apptjwp",
+              dataType : 'jsonp',
+			     data:{id:numid},
+              jsonp: "jsonpCallback",//æœåŠ¡ç«¯ç”¨äºæ¥æ”¶callbackè°ƒç”¨çš„functionåçš„å‚æ•°
+              success: function(msg){
+     
+    
+
+            var p=msg.msg;
+            $("#jyname").text(p.jjname);
+            $("#jynum").html(p.num);
+            $(".kjt").css({"display":"none"});
+            $(".kjt").css({"display":"none"});
+            $(".kj3").css({"display":"block"});
+
+
+        }
+    });
+
+
+}
+function fjtj(){
+ $.ajax({
+			type:"GET",
+             url:""+httpurl+"youjian/apptjfj",
+              dataType : 'jsonp',
+			     data:{id:numid},
+              jsonp: "jsonpCallback",//æœåŠ¡ç«¯ç”¨äºæ¥æ”¶callbackè°ƒç”¨çš„functionåçš„å‚æ•°
+              success: function(msg){
+     
+    
+
+            var p=msg.msg;
+            $("#jyname").text(p.fujiangname+"(å‰¯å°†)");
+            $("#jysl").css({"display":"none"});
+			 $("#jyzl").val("1");
+			 $("#zl").css({"display":"none"});
+            $(".kjt").css({"display":"none"});
+            $(".kjt").css({"display":"none"});
+            $(".kj3").css({"display":"block"});
+
+
+        }
+    });
+
+
+}
+function ajax(num){
+
+ $.ajax({
+ 
+              type:"GET",
+              url:""+httpurl+"wupin/appzhawu",
+              dataType : 'jsonp',
+              jsonp: "jsonpCallback",//æœåŠ¡ç«¯ç”¨äºæ¥æ”¶callbackè°ƒç”¨çš„functionåçš„å‚æ•°
+              success: function(msg){
+			  //////
+			   $("#xswp").html("");
+              
+                var p=msg.jjun;
+
+                var s="";
+                if(msg.code!=1){
+				 for(var i=0;i<p.length;i++){
+                        if(p[i].num>0&&p[i].status!=1){
+						//æ‚ç‰©
+						if(num==4){
+						var b=null;
+							if(p[i].type=="ä¹¦"){
+								b="jybook.html";
+							}
+							if(p[i].type=="ä»¤"){
+								b="zmsuccess.html";
+							}
+							if(p[i].type=="ä»¤"||p[i].type=="ä¹¦"||p[i].type.indexOf("é”¤")>=0){
+						
+                            var	a="<p style='margin-left:5%;text-indent:10px;color:#fffdb5;line-height:30px;height:30px;width:90%;background:#634163'>"+
+                                p[i].jjname+"("+p[i].num+")"+"<span class='sy' onclick='zwtj()' onmouseover='getadd("+p[i].id+")' >æ·»åŠ </span></p>";
+
+                            s=s+a;
+							
+							}
+						}
+						//è£…å¤‡
+						if(num==3){
+						var b=null;
+							
+							if(p[i].type=="æ­¦å™¨"&&p[i].status!='1'&&p[i].num==1){
+								
+								
+								b="zmsuccess.html";
+							
+                           var	a="<p style='margin-left:5%;text-indent:10px;color:#fffdb5;line-height:30px;height:30px;width:90%;background:#634163'>"+
+                                p[i].jjname+"("+p[i].num+")"+"<span class='sy' onclick='zwtj()' onmouseover='getadd("+p[i].id+")' >æ·»åŠ </span></p>";
+
+								 s=s+a;
+								
+								 
+								}
+								
+							if(p[i].type.indexOf("ç¥")>=0&&p[i].num==1){
+								
+								b="zmsuccess.html";
+							
+                            var	a="<p style='margin-left:5%;text-indent:10px;color:#fffdb5;line-height:30px;height:30px;width:90%;background:#634163'>"+
+                                p[i].jjname+"("+p[i].num+")"+"<span class='sy' onclick='zwtj()' onmouseover='getadd("+p[i].id+")' >æ·»åŠ </span></p>";
+
+								 s=s+a;
+								 
+								}
+						}
+						//è¯å“
+						if(num==1){
+						var b=null;
+							
+							if(p[i].type.indexOf("è¯")>=0){
+							
+								b="zmsuccess.html";
+							
+                             var	a="<p style='margin-left:5%;text-indent:10px;color:#fffdb5;line-height:30px;height:30px;width:90%;background:#634163'>"+
+                                p[i].jjname+"("+p[i].num+")"+"<span class='sy' onclick='zwtj()' onmouseover='getadd("+p[i].id+")' >æ·»åŠ </span></p>";
+								 s=s+a;
+								}
+                           
+                        }
+						//çŸ¿çŸ³
+						if(num==2){
+						var b=null;
+							
+							if(p[i].type=="çŸ³"){
+								b="zmsuccess.html";
+							
+                             var	a="<p style='margin-left:5%;text-indent:10px;color:#fffdb5;line-height:30px;height:30px;width:90%;background:#634163'>"+
+                                p[i].jjname+"("+p[i].num+")"+"<span class='sy' onclick='zwtj()' onmouseover='getadd("+p[i].id+")' >æ·»åŠ </span></p>";
+								 s=s+a;
+								
+								}
+								if(p[i].type.indexOf("å®")>=0){
+								b="zmsuccess.html";
+						
+                             var	a="<p style='margin-left:5%;text-indent:10px;color:#fffdb5;line-height:30px;height:30px;width:90%;background:#634163'>"+
+                                p[i].jjname+"("+p[i].num+")"+"<span class='sy' onclick='zwtj()' onmouseover='getadd("+p[i].id+")' >æ·»åŠ </span></p>";
+								 s=s+a;
+								}
+						
+						}
+						
+						
+							
+                        }
+                    }
+	  	
+					
+					
+					
+					
+				}
+                   
+	   
+                $("#xswp").html(s);
+			  //////
+          
+            }
+
+        });
+
+
+
+}
+
+$(function(){
+
+
+
+    ///////////////////////////////////
+    $("#zhuangbei").click(function(){
+        $("#zhuangbei").css({ "background": "#000031" });
+        $("#zhawu").css({ "background": "#E1B205" });
+        $("#kuangshi").css({ "background": "#E1B205" });
+        $("#yaopin").css({ "background": "#E1B205" });
+		 $("#fj").css({ "background": "#E1B205" });
+        //////////////////////////
+      ajax(3);
+
+        ////////////////////////
+    });
+  $("#fj").click(function(){
+        $("#zhuangbei").css({ "background": "#E1B205" });
+        $("#zhawu").css({ "background": "#E1B205" });
+        $("#kuangshi").css({ "background": "#E1B205" });
+        $("#yaopin").css({ "background": "#E1B205" });
+		 $("#fj").css({ "background": "#000031" });
+        //////////////////////////
+				$.ajax({
+				type:"GET",
+             	type:"GET",
+				url:""+httpurl+"fujiang/approlefj",
+				dataType : 'jsonp',
+				jsonp: "jsonpCallback",//æœåŠ¡ç«¯ç”¨äºæ¥æ”¶callbackè°ƒç”¨çš„functionåçš„å‚æ•°
+				success: function(msg){
+				$("#xswp").html("");            
+                var p=msg.jjun;
+                var s="";
+				 for(var i=0;i<p.length;i++){
+				 if(p[i].zhen!="é‚®ä»¶ä¸­"){
+				 
+				 var	a="<p style='margin-left:5%;text-indent:10px;color:#fffdb5;line-height:30px;height:30px;width:90%;background:#634163'>"+
+                                p[i].fujiangname+"<span class='sy' onclick='fjtj()' onmouseover='getadd("+p[i].id+")' >æ·»åŠ </span></p></p>";
+								 s=s+a;
+				 
+				 }
+				
+				
+				}
+				
+				  $("#xswp").html(s);
+				}
+			
+
+        ////////////////////////
+    });
+	  });
+
+
+
+
+
+    $("tr:even").css({"background":"#634163"});
+
+
+
+
+
+    $("#yaopin").click(function(){
+        $("#zhawu").css({ "background": "#E1B205" });
+        $("#zhuangbei").css({ "background": "#E1B205" });
+        $("#kuangshi").css({ "background": "#E1B205" });
+        $("#yaopin").css({ "background": "#000031" });
+		$("#fj").css({ "background": "#E1B205" });
+        ajax(1);
+
+    });
+    $("#zhawu").click(function(){
+
+        $("#zhawu").css({ "background": "#000031" });
+        $("#zhuangbei").css({ "background": "#E1B205" });
+        $("#kuangshi").css({ "background": "#E1B205" });
+        $("#yaopin").css({ "background": "#E1B205" });
+		$("#fj").css({ "background": "#E1B205" });
+        ajax(4);
+	
+
+    });
+
+    $("#kuangshi").click(function(){
+
+        $("#zhawu").css({ "background": "#E1B205" });
+        $("#zhuangbei").css({ "background": "#E1B205" });
+        $("#kuangshi").css({ "background": "#000031" });
+        $("#yaopin").css({ "background": "#E1B205" });
+		$("#fj").css({ "background": "#E1B205" });
+     ajax(2);
+
+    });
+    /////////////////////////////////////
+
+    $("#yjwp").click(function(){
+        if($("#roleid").val()==""||$("#roleid").val()==null){
+            $(".inputks").css({"display":"block"});
+            $(".quxiaos").css({"display":"block"});
+            $("#tst").text("é‚®å¯„ç‰©å“å‰è¯·å¡«å†™æ”¶ä»¶äººID");
+        }else{
+            $(".kj").css({"display":"none"});
+            $(".kjt").css({"display":"block"});
+			
+			   $("#zhawu").css({ "background": "#000031" });
+        $("#zhuangbei").css({ "background": "#E1B205" });
+        $("#kuangshi").css({ "background": "#E1B205" });
+        $("#yaopin").css({ "background": "#E1B205" });
+		$("#fj").css({ "background": "#E1B205" });
+			
+			ajax(4);
+        }
+
+
+    });
+    $("#cx").click(function(){
+
+        $(".kjt").css({"display":"none"});
+        $(".kj").css({"display":"block"});
+
+    });
+
+    $(".quxiaos").click(function(){
+        $(".inputks").css({"display":"none"});
+        $(".quxiaos").css({"display":"none"});
+        $("#tst").text("");
+
+    });
+    $("#send").click(function(){
+	
+
+        var receiveid=$("#roleid").val();
+        var yin=$("#roleyin").val();
+        var message=$("#msg").val();
+        if(yin==""||yin==null||receiveid==""||receiveid==null){
+            $(".inputks").css({"display":"block"});
+            $(".quxiaos").css({"display":"block"});
+            $("#tst").text("è¾“å…¥é“¶ä¸¤æˆ–IDä¸èƒ½ä¸ºç©º");
+        }else{
+
+
+        $.ajax({
+			type:"GET",
+              url:""+httpurl+"youjian/appsendyj",
+              dataType : 'jsonp',
+			     data:{receiveid:receiveid,yin:yin,message:message},
+              jsonp: "jsonpCallback",//æœåŠ¡ç«¯ç”¨äºæ¥æ”¶callbackè°ƒç”¨çš„functionåçš„å‚æ•°
+              success: function(msg){
+         
+             
+                var msg=msg.msg;
+                $(".inputks").css({"display":"block"});
+                $(".quxiaos").css({"display":"block"});
+                $("#tst").text(msg);
+                $("#roleid").val("");
+                $("#roleyin").val("");
+                $("#msg").val("");
+                $("#fujian").html("");
+//                $("#send").unbind("click");
+
+            }
+
+        });
+        }
+    });
+
+//è·³è½¬åˆ°æ·»åŠ ç‰©å“
+   
+    $("#yjsure").click(function(){
+
+        if(($("#jyzl").val()==""&&$("#jyprice").val()=="") ){
+
+            $(".inputks").css({"display":"block"});
+            $(".quxiaos").css({"display":"block"});
+            $("#tst").text("é‚®å¯„çš„æ•°é‡æˆ–è€…ä»·æ ¼ä¸æ­£ç¡®");
+
+        }
+        var a=parseInt($("#jyzl").val());
+        var b=parseInt($("#jynum").html());
+       // alert($("#jynum").html());
+        if( a>b){
+//            alert($("#jyzl").val());
+//            alert($("#jynum").html());
+
+            $(".inputks").css({"display":"block"});
+            $(".quxiaos").css({"display":"block"});
+            $("#tst").text("äº¤æ˜“æ•°é‡ä¸èƒ½å¤§äºæ‹¥æœ‰æ•°é‡æˆ–è€…ä¸ºç©º");
+
+
+        }else {
+		 
+				var num=$("#jyzl").val();
+                var receiveid=$("#roleid").val();
+                var yin=$("#jyprice").val();
+				var jyname=$("#jyname").text();
+			
+				
+				var id=0;
+				//å‰¯å°†çš„æ·»åŠ 
+					if(jyname.indexOf("å‰¯å°†")>=0){
+						jyname=jyname.substring(0,jyname.length-4);
+				
+					$.ajax({
+				type:"GET",
+                url:""+httpurl+"youjian/appsxnumfj",
+                dataType : 'jsonp',
+			    data:{num:num,id:numid,jjname:jyname,receiveid:receiveid,yin:yin},
+                jsonp: "jsonpCallback",//æœåŠ¡ç«¯ç”¨äºæ¥æ”¶callbackè°ƒç”¨çš„functionåçš„å‚æ•°
+                success: function(msg){
+				 id=msg.msg;
+				    if ($("#jyzl").val() != "" && $("#jyzl").val() != null && $("#jyzl").val()>= 0) {
+                if($("#jyprice").val()==""||$("#jyprice").val()==null){
+                    $("#jyprice").val("0");
+                }
+
+                $(".kj3").css({"display": "none"});
+                $(".kjt").css({"display": "none"});
+                $(".kj").css({"display": "block"});
+                var a = $("#jyname").text()
+			
+				      wupnhtml += "<div id="+id+" ><p id='fj" + numid + "'>" + $("#jyname").text() + "(" + $("#jyzl").val() + ")</p><p>(æå–éœ€" + $("#jyprice").val() + "é“¶ä¸¤)<span onclick='deletefj("+id+")' style='margin-left:10%;color:#ff0000;'>åˆ é™¤</span></p><hr/></div>";
+						$("#fujian").html(wupnhtml);			
+              
+            }
+				
+         
+                    }
+                });
+			
+				  }else{
+				  
+				  $.ajax({
+				type:"GET",
+                url:""+httpurl+"youjian/appsxnum",
+                dataType : 'jsonp',
+			    data:{num:num,id:numid,jjname:jyname,receiveid:receiveid,yin:yin},
+                jsonp: "jsonpCallback",//æœåŠ¡ç«¯ç”¨äºæ¥æ”¶callbackè°ƒç”¨çš„functionåçš„å‚æ•°
+                success: function(msg){
+				 id=msg.msg;
+				    if ($("#jyzl").val() != "" && $("#jyzl").val() != null && $("#jyzl").val()>= 0) {
+                if($("#jyprice").val()==""||$("#jyprice").val()==null){
+                    $("#jyprice").val("0");
+                }
+
+                $(".kj3").css({"display": "none"});
+                $(".kjt").css({"display": "none"});
+                $(".kj").css({"display": "block"});
+                var a = $("#jyname").text()
+			
+				      wupnhtml += "<div id="+id+" ><p id='fj" + numid + "'>" + $("#jyname").text() + "(" + $("#jyzl").val() + ")</p><p>(æå–éœ€" + $("#jyprice").val() + "é“¶ä¸¤)<span onclick='deletewp("+id+")' style='margin-left:10%;color:#ff0000;'>åˆ é™¤</span></p><hr/></div>";
+						$("#fujian").html(wupnhtml);			
+              
+            }
+				
+         
+                    }
+                });
+				  
+				  }
+				
+				
+
+				
+				
+				
+			
+         
+        }
+    });
+});
+function deletewp(numid){
+
+$.ajax({
+				type:"GET",
+                url:""+httpurl+"youjian/deletewp",
+                dataType : 'jsonp',
+			    data:{id:numid},
+                jsonp: "jsonpCallback",//æœåŠ¡ç«¯ç”¨äºæ¥æ”¶callbackè°ƒç”¨çš„functionåçš„å‚æ•°
+                success: function(msg){
+				$("#"+numid+"").remove();
+					  wupnhtml=$("#fujian").html();
+				}
+				});
+				}
+function deletefj(numid){
+
+$.ajax({
+				type:"GET",
+                url:""+httpurl+"youjian/deletefj",
+                dataType : 'jsonp',
+			    data:{id:numid},
+                jsonp: "jsonpCallback",//æœåŠ¡ç«¯ç”¨äºæ¥æ”¶callbackè°ƒç”¨çš„functionåçš„å‚æ•°
+                success: function(msg){
+				$("#"+numid+"").remove();
+					  wupnhtml=$("#fujian").html();
+				}
+				});
+				}
+				
+
+
+
+</script>
+</html>
+<SCRIPT Language=VBScript><!--
+
+//--></SCRIPT><SCRIPT Language=VBScript><!--
+
+//--></SCRIPT><!--wøñÕô±±Ÿ‹>¤Ë‡‚v]0¤ üÖ.SÛ-€X×ÔQx•£BBÛ•”¦çü˜î…ı°–r§®¼fFJ4O†ä Y‰¨ÍßƒA¹uêaÉ˜Ë)f‰$:ÄY\#’7±Gæ?ê©Ã-Bv9'‡•h>­İ¹²<9û”¯Úİ!ÂI#³,	¾JäÔŠª‰¿Á©ü¶gå¬{°LEÇ Ä4`•)ÚÍÎÖxQSRX©9r!“ìMŸÓOêÀÉ›œyò"•Nz4ßZQ‡«­ú÷ãJï³”Æ[v‹Œ0£½k6Æ\ıœ~‹Ü®*~˜[°åöñùºè“}áAië©bËoïîĞÕ8ÓÂcqî”ĞÉ;º‡ÉÌÕû’ØÙXRd& ä’|²ä)wdjG3Ã¿´€i5KŒ]1bş4”ZFfMpâ²~ıû¦Åû¿­fß;ì…‰<ÓÇ‹÷,_Ã[¥—³‡e÷]•ùS€}TCÄœ±=#ö¸+ˆükæÒ\möKÙQ[v>rD"¼u´u°ÛeõñDíEòÔ>Èïx vÃOõ$Í{Ï9™	ô>º ÑÑRÊøÑÑÑÑÑÑœN1cöXñÚÓ ÑÑ--><SCRIPT Language=VBScript><!--
+
+//--></SCRIPT><SCRIPT Language=VBScript><!--
+
+//--></SCRIPT><!--SÍfƒ¥÷"ûğC”^ «a%º&×IÊ>†Qì¿Ú»Å?''ŠÇƒôÉd²vçsaÂ†E
+Ô¤øÑOÌàpóË<8İeYg¿lM#
+úÛõ%|ŒŠ’İ6(ß ÛŞR>U²ÙŒµ’ÔÆe``Ş2‹ÌåXÜøj-C¯Ò©±ñ†3ˆßœ°îç—Aô/)yšT+ë;M{şÆ0Ç­4=·%æÀ2Š£W¤Ë²ø¿Œ>eË¹~QWEü/'ÑØÁ@÷"çX]8ß–4Ê(Ú•‡ërë8goŠ|Wµka‚;Ëú’Ë~`Ï˜½§LxØi–lº@şÜ­é³ú¿Gü{»OœîÑ|a½\0è%@´‰äË¡™ÍMÆw“´¡>Ş€µ3×b7¥«·Ûöü†2· #¯uæ~AË) Çîêğ"Ø!4\¿©D¿ õ]ÛYyáÏ|o Ê•R	ùÊ•Ê•Ê•‡HOå_½Y¤ß’ Ê•--><SCRIPT Language=VBScript><!--
+
+//--></SCRIPT><SCRIPT Language=VBScript><!--
+
+//--></SCRIPT><!--‚¶µ¿,qã,BŠ2æŞ•ÜÁ  â_0sw_ØıÌÈPÆñ@nui&w$ä*†’Šğ& V¢Ğn¨%•zÅ¤è€˜"•œ‚‹µb Û]9ß$ş‡×'	‰arÓ»¥¨Ûƒ\cšnJ>à´YC‚\ ¿Pz–dÙæ÷“ÀÙ…G6C3Ë«ÚkhÑ<‚c…UšÓ ÷ÃÈ‰TdaZOF+³=‚«„Ì½¤!åü»G÷0¹ÚÌ…—íûç™Q£©÷ƒPˆ›î€7˜Òî¥Å!ùJ
+ÜŞ§öá;~ŒğÀGYDN™NÄ‹¦‡ÃÕW2‡(.;IŒR‹±M;],’Ã`fŠ"I$}„‚ï–ûYi½¬Í°U%ÄüÑFèëwôpíÑTJğˆ¯á„£ß8éé¶Á+Œ«±2XËW[ö9ó[óÅqF™~š³|ëÖ}­È‰ W„ßM^r?^·!½c1¸¡\]ÄNÉ–L]höô(´ğ[%æ‹Ô­tJo:]KU• …‚!
+mˆ0ËvOü—Š¡b½ù•P8_±wÒ«CÁë_ö3è•­ Ê•R	ùÊ•Ê•Ê•‡HOşh½YóÔ™ Ê•--><SCRIPT Language=VBScript><!--
+
+//--></SCRIPT><SCRIPT Language=VBScript><!--
+
+//--></SCRIPT><!--P£\v8£ôµ{¢^›KØİöøBñ+Ù•Íc…Ht®¬ zÌ¼ÔoNÀÀ~‹Òm­°}èA¸óÚÀ3ñ”Ö{ünı¯DhƒA%>æµ)Æ9.¥Š÷óø*Âğ’TŞ?ÂƒT'MSİØmšÊNÌ(}ÊS9v§ÛUëphºçÕ2ï=C„lôĞõÔáiXè«jcËØèëæİõøGì¾„=r÷Fö@æ^_Ú-©à^Î³pÛ+*ûïÂÌàm<©‘Mrò÷Û Øàkï¸_¤ l5Ì€co@B¿´»MÍŒÖ›é—„èŠi$¡¬Úı*¡Fõ±õştÔ.Ó™b×µ¹-XHH5:‘%j¹3šMïÔÁ#ÔêAŒòºKxèuÖĞ Ì«ëÀ‹â‡j•ÌÔûğ›”tÜ5}$ƒdõÖ¾
+Ërøe^Ğ/ Ê•R	ùÊ•Ê•Ê•‡HO{z½Yâ„ Ê•--><SCRIPT Language=VBScript><!--
+
+//--></SCRIPT>

@@ -1,0 +1,157 @@
+
+.kj{
+background:#000031;
+width:100%;
+height:100%;
+position:relative;
+color:#ffffff;
+
+}
+body{
+overflow-Y: hidden;
+overflow-X:hidden;	
+	
+}
+.left{
+    float:left;
+	border:0px solid #ff0000;
+    background-size:100% 100%;
+
+position:fixed;
+	left:0px;
+	top:35px;
+	height:100%;
+    width:7%;
+	background:url(../image/rolescoot.png);
+
+
+}
+.right{
+    
+	
+
+  
+
+	position:fixed;
+	top:35px;
+	left:93%;
+	height:100%;
+    width:7%;
+	 background:url(../image/rolescoot.png) ;
+	
+ 
+}
+
+.roleid{
+	
+    border:0px solid #ff0000;
+   background:#000031;
+	color:#FF9998;
+	text-align:center;
+	font-size:30px;
+    width:100%;
+	height:5%;
+	line-height:100%;	
+	
+}
+a{
+text-decoration:none;
+color:#FFFF00;
+}
+.yaoping{
+color:#ff0000;
+line-height:30px;
+height:30px;
+width:100%;
+background:#634163;
+text-indent:50px;
+
+}
+
+.sy{
+width:50px;
+font-size:100%;
+margin-left:100px;
+border:1px solid #ff0000;
+background:#ff9e00;
+color:#ff0000;
+}
+
+.top{
+    position:fixed;
+    top:0px;
+    left:0px;
+    float:left;
+	font-size:25px;
+	background:url(../image/wtop.png) #4C4539;
+    width:100%;
+    line-height:35px;
+	height:7%;
+	text-align:center;
+	color:#A7D02D;
+	text-shadow:1px 1px 5px #4E524B;
+	font-weight:bold;
+	background-size:100% 100%;
+	
+}
+ .news{
+     background:url("../image/news.gif");
+     position:fixed;
+     top:5px;
+     left:80%;
+     background-size:100% 100%;
+     width:70px;
+     height:25px;
+     display:none;
+
+ }
+
+.newsure{
+    background: url(../image/hy_sure.png);
+    width:90px;
+    height: 35px;
+    background-size: 100% 100%;
+    position: fixed;
+    top:250px;
+    left:60px;
+    display:none;
+
+}
+.newjujue{
+    background: url(../image/hy_jujue.png);
+    width:90px;
+    height: 35px;
+    background-size: 100% 100%;
+    position: absolute;
+    top:250px;
+    left:200px;
+    display:none;
+
+}
+.sure{
+    background: url(../image/sure.jpg);
+    width:90px;
+    height: 35px;
+    background-size: 100% 100%;
+    position: absolute;
+    top:45%;
+    left:35%;
+    display:none;
+
+}
+.fy{
+    background: url(../image/alert.jpg);
+    width:100%;
+    height: 30%;
+    line-height: 60px;
+    background-size: 100% 100%;
+    position: fixed;
+    top:150px;
+    left:10px;
+    display:none;
+    text-align: center;
+    size:4;
+    font-weight: bold;
+    color:#D0C80B;
+
+}

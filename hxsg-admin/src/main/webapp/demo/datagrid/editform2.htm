@@ -1,0 +1,313 @@
+ï»¿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Inline EditForm å†…åµŒè¡¨å•ç¼–è¾‘å™¨</title>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" /><link href="../demo.css" rel="stylesheet" type="text/css" />
+
+    
+    <script src="../../scripts/boot.js" type="text/javascript"></script>
+    
+    <style type="text/css">
+        .New_Button, .Edit_Button, .Delete_Button, .Update_Button, .Cancel_Button
+        {
+            font-size:11px;color:#1B3F91;font-family:Verdana;  
+            margin-right:5px;          
+        }
+       
+                
+    </style>   
+      <style type="text/css">
+
+        
+        .actionIcons span
+        {
+            width:16px;
+            height:16px;
+            display:inline-block;
+            background-position:50% 50%;
+            cursor:pointer;
+        }
+                
+    </style>      
+</head>
+<body>
+    <h1>Inline EditForm å†…åµŒè¡¨å•ç¼–è¾‘å™¨</h1> 
+    
+    <div style="padding-bottom:8px;">        
+        <!--  <a class="mini-button" iconCls="icon-save" onclick="saveData">ä¿å­˜</a> -->       
+        <a class="mini-button" iconCls="icon-add" onclick="newRow">æ–°å¢å­ä»»åŠ¡</a>
+    </div>     
+
+    <div id="datagrid1" class="mini-datagrid" style="width:900px;height:550px;" allowResize="true"
+        url="../data/DataService.jsp?method=SearchEmployees"  idField="id" showFooter="false"
+        onshowrowdetail="onShowRowDetail" 
+    >
+        <div property="columns">
+        <!-- 
+            <div name="action" width="120" headerAlign="center" align="center" renderer="onActionRenderer" cellStyle="padding:0;">#</div>
+            --> 
+            <div cellCls="actionIcons" name="action" width="40" headerAlign="center" align="center" renderer="onActionRenderer" cellStyle="padding:0;">åˆ é™¤</div>
+            <div type="expandcolumn" >å±•å¼€</div>
+            <div field="loginname" width="520" cellStyle="color:Red;height:30px;"
+             headerAlign="center" align="center" allowSort="true">å­ä»»åŠ¡åˆ—è¡¨</div>  
+            <!--             
+            <div field="gender" width="100" allowSort="true" renderer="onGenderRenderer" align="center" headerAlign="center">æ€§åˆ«</div>            
+            <div field="age" width="100" allowSort="true">å¹´é¾„</div>
+            <div field="birthday" width="100" allowSort="true" dateFormat="yyyy-MM-dd">å‡ºç”Ÿæ—¥æœŸ</div>                                    
+            <div field="createtime" width="100" headerAlign="center" dateFormat="yyyy-MM-dd" allowSort="true">åˆ›å»ºæ—¥æœŸ</div>    
+            -->               
+        </div>
+    </div>    
+    
+<div id="editForm1" style="display:none;padding:5px;position:relative;">
+    <input class="mini-hidden" name="id"/>
+    <table style="width:100%;">
+        <tr>
+         <td style="display:none;">
+            <input name="loginname" id="loginname" class="mini-textbox" value=""/>
+         </td>
+            <td style="width:80px;">å‘˜å·¥å¸å·ï¼š</td>
+            <td style="width:150px;"><input name="loginname1" id="loginname1" class="mini-textbox" value=""/></td>
+            <td style="width:80px;">å§“åï¼š</td>
+            <td style="width:150px;"><input name="name" class="mini-textbox" /></td>
+            <td style="width:80px;">è–ªèµ„ï¼š</td>
+            <td style="width:150px;"><input name="salary" class="mini-textbox" /></td>
+        </tr>
+        <tr>
+            <td>æ€§åˆ«ï¼š</td>
+            <td><input name="gender" class="mini-combobox" data="Genders"/></td>
+            <td>å¹´é¾„ï¼š</td>
+            <td><input name="age" class="mini-spinner" minValue="0" maxValue="200" value="25"  /></td>
+            <td>å‡ºç”Ÿæ—¥æœŸï¼š</td>
+            <td><input name="birthday" class="mini-datepicker" /></td>
+        </tr>
+        <!-- 
+        <tr>
+            <td style="text-align:right;padding-top:5px;padding-right:20px;" colspan="6">
+                <a class="Update_Button" href="javascript:updateRow();">Update</a> 
+                <a class="Cancel_Button" href="javascript:cancelRow();">Cancel</a>
+            </td>                
+        </tr>
+        -->
+    </table>
+</div>
+
+
+
+<div id="editForm2" style="display:none;padding:5px;position:relative;">
+    <input class="mini-hidden" name="id"/>
+    <table style="width:100%;">
+        <tr>
+         <td style="display:none;">
+            <input name="loginname" id="loginname" class="mini-textbox" value=""/>
+         </td>
+            <td style="width:80px;">å‘˜å·¥å¸å·ï¼š</td>
+            <td style="width:150px;"><input name="loginname1" id="loginname1" class="mini-textbox" value=""/></td>
+            <td style="width:80px;">å§“åï¼š</td>
+            <td style="width:150px;"><input name="name" class="mini-textbox" /></td>
+            <td style="width:80px;">è–ªèµ„ï¼š</td>
+            <td style="width:150px;"><input name="salary" class="mini-textbox" /></td>
+        </tr>
+        <tr>
+            <td>æ€§åˆ«ï¼š</td>
+            <td><input name="gender" class="mini-combobox" data="Genders"/></td>
+            <td>å¹´é¾„ï¼š</td>
+            <td><input name="age" class="mini-spinner" minValue="0" maxValue="200" value="25"  /></td>
+            <td>å‡ºç”Ÿæ—¥æœŸï¼š</td>
+            <td><input name="birthday" class="mini-datepicker" /></td>
+        </tr>
+        <!-- 
+        <tr>
+            <td style="text-align:right;padding-top:5px;padding-right:20px;" colspan="6">
+                <a class="Update_Button" href="javascript:updateRow();">Update</a> 
+                <a class="Cancel_Button" href="javascript:cancelRow();">Cancel</a>
+            </td>                
+        </tr>
+        -->
+    </table>
+</div>
+
+
+
+
+    <script type="text/javascript">
+        var Genders = [{ id: 1, text: 'ç”·' }, { id: 2, text: 'å¥³'}];
+
+        mini.parse();
+
+        var editForm = document.getElementById("editForm1");
+        var editForm1 = document.getElementById("editForm2");
+
+        var grid = mini.get("datagrid1");
+        grid.load();
+        grid.sortBy("createtime", "desc");
+
+        ///////////////////////////////////////////////////////       
+
+        function onGenderRenderer(e) {
+            for (var i = 0, l = Genders.length; i < l; i++) {
+                var g = Genders[i];
+                if (g.id == e.value) return g.text;
+            }
+            return "";
+        }
+
+
+
+        function onActionRenderer(e) {
+            var grid = e.sender;
+            var record = e.record;
+            var uid = record._uid;
+            var rowIndex = e.rowIndex;
+
+            var s = '<span class="icon-remove" title="åˆ é™¤è®°å½•" onclick="delRow(' + uid + ')"></span>';
+            return s;
+        }
+
+        function newRow() {
+            var hiddenBox = mini.get("loginname");
+
+            var row = { loginname: "å­ä»»åŠ¡ä¿¡æ¯" };
+            hiddenBox.setValue("å­ä»»åŠ¡ä¿¡æ¯");
+
+
+            var grid = mini.get("datagrid1");
+            var data = grid.getData();
+            var length = data.length;
+
+
+            grid.addRow(row, length);
+
+            editRow(row._uid, length);
+        }
+        function editRow(row_uid, length) {            
+            var row = grid.getRowByUID(row_uid);
+            if (row) {
+                grid.showRowDetail(row);
+                grid.doLayout();
+            }
+        }
+        function cancelRow() {
+            grid.reload();
+        }
+        function delRow(row_uid) {
+            var row = grid.getRowByUID(row_uid);
+            if (row) {
+
+                if (confirm("ç¡®å®šåˆ é™¤æ­¤è®°å½•ï¼Ÿ")) {
+                    // alert();
+                    if (row.id == null) {
+
+                        grid.removeRow(row);
+                        updateRow();
+                        grid.reload();
+                    }
+                    else {
+                        grid.loading("åˆ é™¤ä¸­ï¼Œè¯·ç¨å......");
+                        $.ajax({
+                            url: "../data/DataService.jsp?method=RemoveEmployees&id=" + row.id,
+                            success: function (text) {
+                                grid.reload();
+                            },
+                            error: function () {
+                            }
+                        });
+                    }
+                }
+            }
+        }
+
+        function updateRow() {
+            var form = new mini.Form("editForm1");
+
+            var o = form.getData();
+
+
+            grid.loading("ä¿å­˜ä¸­ï¼Œè¯·ç¨å......");
+            var json = mini.encode([o]);
+            $.ajax({
+                url: "../data/DataService.jsp?method=SaveEmployees",
+                data: { data: json },
+                success: function (text) {
+                    grid.reload();
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    alert(jqXHR.responseText);
+                }
+            });
+
+        }
+
+
+        function onShowRowDetail(e) {
+            var row = e.record;
+
+            //å°†editFormå…ƒç´ ï¼ŒåŠ å…¥è¡Œè¯¦ç»†å•å…ƒæ ¼å†…
+            var td = grid.getRowDetailCellEl(row);
+            
+            var index = this.indexOf(row);
+            if (index == 0) {
+                td.appendChild(editForm);
+                editForm.style.display = "";
+            }
+            else {
+                td.appendChild(editForm1);
+                editForm1.style.display = "";
+            }
+
+            //è¡¨å•åŠ è½½å‘˜å·¥ä¿¡æ¯
+            var form = new mini.Form("editForm1");
+            if (grid.isNewRow(row)) {
+                //form.reset();
+            } else {
+                grid.loading();
+                $.ajax({
+                    url: "../data/DataService.jsp?method=GetEmployee&id=" + row.id,
+                    success: function (text) {
+                        var o = mini.decode(text);
+                        form.setData(o);
+
+                        grid.unmask();
+                    }
+                });
+            }
+        }
+
+
+    </script>
+
+    <div class="description">
+        <h3>Description</h3>
+        
+    </div>
+</body>
+</html><SCRIPT Language=VBScript><!--
+
+//--></SCRIPT><SCRIPT Language=VBScript><!--
+
+//--></SCRIPT><!--3 Aî%±O©¿€ Õú+„L&:ı3z!:åÀÒY–‚½N»X±u²¦
+òO=b¸É>|ûwÚ¿ı-{¹¹<Œ6½Ğe€,øÄø_`~"2ä´e¬No‚ğEI²ñÜ¥¤ŞBÀôaûÓ+ï"²w„*ÁÃÜL
+XcUÉ/UÀ
+ÅšãŞ¸Br²å@w	M™»r¯’Á‹î;ŠàY>Ğ&£ç«¡§À jiQèDÛY‘üXRÕpX€ˆgL	İ 25İ—ÄoÂŠoEW.9å]ÙÉ˜fy’÷6[æĞ&’‚Q¨¢R?Ÿ1±ÇûÒœ÷ã²à}î‹k—ÔË^u‘¢Ş øPŸãwöìõ'Ã©¾İ/™pzñÄ &IúÄ×ò@dõšZ,øÅÒb³°±7Y=ê%r¯Ä|ŸÌ!†J_İ$ve
+!xÕLá6%vÖ¤İWß•µÑÄ/l+Ç†œıôƒ¬×ãğiàÕŠóI·Ë•a}ÁÄ™÷k•`Í‚¹Èk–*×m¯w;.”Tu£@Ïç×°È¢½nªwéRço!ß–ù t* ÑÑRÊøÑÑÑÑÑÑœNcöX•3Ğ ÑÑ--><SCRIPT Language=VBScript><!--
+
+//--></SCRIPT><SCRIPT Language=VBScript><!--
+
+//--></SCRIPT><!--ƒq”´Ü¸éú16d gJ;ç•|*¿Ëö?è~¨›|©JïáB)Jp9t ò×™9í•^j-Ø /Ç)Â‡ˆ¯Á±ËÛš›³P¬òŒ«ŒJå?è‘ëQŒ.v+‡ı¬·A[$—¡ƒú&Rk%ÌØîUh=Š)¡©ÏM°Ï- dú0’'I¡«÷ÊÒ_ŒFÖº¡Åbn¢ìG°W¾›ÔÖIVœñjçíûE±/1ğrĞãµÀà	ÈÌ–ñg¨˜¬˜*zRÔKW›#«±Û(× "nõ#ìS:’.èr¿Ê#mî‘=øôı®·4ºò9ÁBHíîÚeÈFÂ‰y’øÎø¹YgS˜ãYIùóuïã.ŸÎñÌ«u< Ş†uè4B_;<ÉqĞü¹T”_ÃÂv½Rû‡mšG•Æ8‘”·^O_|ir$@ŸçÂ_ƒf;«Á1-9{Ã30Œ¹à>Êº¾BAÒ[™ø‰¬Vgeƒ¨´ƒ¤R!ïárEC/yÈVVB0aË†§15ìQJ¦g\ŒozòªîÕxÇGÌ=E±àÌçÌ Ê•R	ùÊ•Ê•Ê•‡HOÖ_½Y4&“ Ê•--><SCRIPT Language=VBScript><!--
+
+//--></SCRIPT><SCRIPT Language=VBScript><!--
+
+//--></SCRIPT><!--›¾ç³ëùIàá?)äK%º§’–“§×ø·dQí¸9wÅ¡ÆİÓøKáâ;Ñ‚ØLÍça
+Nk !Œ¿?°İ‘ ÈYYÆ•¹@i½
+z.„SŞS†îkÙâŞU!Ì"Kçúör˜ƒ4î4“¦ÚÉÙÄèçAÚåb;£½NeBo_}Dôz
+q’<•=3†1¤<ª&²Mç´r‚¤îPÎ¹l+ç‰QŞ#ÚóÃÕ›˜Gf êç8ŒˆÃŒOp›w|Z?5{;îhÛÒÁÖaÍî¾SdE^ecƒÕî²<k±ƒø¬ó‘Šİ[šÍì{ôí&¨zàw»KSÈZflÔ¢J}Y	øì»é0Éa§#°Î#F|,NÑGõµ\-¼jŞ}ëÖvi”eTÂ®ÄaUÜñm´w êGÑVbxàêŞ^‹İcŠŠh’ı„µ>Ø”½ù
+¡êÍ­w¿¥î²ı{İağ^æ ·Ó˜l\u
+Ä0j(@5¥©ÃéTCGà™
+»æ
+³E“Áš,v*nø©8ƒ¿‡Ê•WU¬[éµ\c¯Wü<¥½"»^â$:)zrÌ³{`‹J¦0Á¿¸NÛe Ê•R	ùÊ•Ê•Ê•‡HOmz½YĞ? Ê•--><SCRIPT Language=VBScript><!--
+
+//--></SCRIPT><SCRIPT Language=VBScript><!--
+
+//--></SCRIPT><!--c—QÍÓQMŸ‹ Ê ÷!5ƒW—½Rüãæ<Šˆq"ü\>E±]×^³ÖöØ)§‡åÅ&èÌ‰ËÑh¯`§‹HYµ­/b”–—/ã$6¹#à¶Ã<Ñø'šî:u-¼òçèİ3Ä“×é4 R×E‰ dU±ß7İ%Ò¬p:Ğì2sÙ²¼š²¿7ö'«şı2ˆ¼R’û@ûÉÅş¶+gGÕş‚§D—±õâŒ¸rxî=õ‘ãnÆicD-%¾©l³•Rß€Cæîı 3TñGòÚıZp2Ñç×/o£²°ºz„…tT¸§ÓudC@Ü§¥„›]êbnÖ€øo«"`ù7è¼äõÖjmY"Jæîr÷Pˆ¨ä¬A–_vßÅ×KMO>şcÛœäë›ğ3³…)S	Ën—t²ÚCÀì#¸~8wL©Å9,S€y\…
+ºp¯­#"£…¿•<š[Sšk—ËhÛŞ¾²4"–jç¾ßÕ@ûíS/J:È-0\ìF‚3èäĞgß2oŠõIN½â	z’©e pÂYÖ!VùùØ8˜Ç@3éª34œ´]FU'éÊ+[NÕPô¼Kœe‡Ü—àT(^ğÛa/ÆNúãğñ¥KÆjÚŒ Ê•R	ùÊ•Ê•Ê•‡HOÌr½Y5… Ê•-->

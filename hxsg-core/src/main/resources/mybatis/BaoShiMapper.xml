@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hxsg.Dao.BaoShiMapper" >
+  <resultMap id="BaseResultMap" type="com.hxsg.po.BaoShi" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="xiaoGuo" property="xiaoguo" jdbcType="INTEGER" />
+    <result column="kangXing" property="kangxing" jdbcType="VARCHAR" />
+    <result column="data" property="data" jdbcType="TIMESTAMP" />
+    <result column="status" property="status" jdbcType="VARCHAR" />
+    <result column="miaoShuId" property="miaoshuid" jdbcType="VARCHAR" />
+    <result column="zbType" property="zbtype" jdbcType="VARCHAR" />
+    <result column="img" property="img" jdbcType="VARCHAR" />
+    <result column="roleId" property="roleid" jdbcType="INTEGER" />
+    <result column="wqId" property="wqid" jdbcType="INTEGER" />
+    <result column="sell" property="sell" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, name, xiaoGuo, kangXing, data, status, miaoShuId, zbType, img, roleId, wqId, 
+    sell
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from baoshi
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+    <select id="queryWuPinByBaoShi" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+        select
+        <include refid="Base_Column_List" />
+        from baoshi
+        where roleId = #{0,jdbcType=INTEGER} and status='0'
+    </select>
+    <select id="selectBaoShiForStatus" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+        select
+        <include refid="Base_Column_List" />
+        from baoshi
+        where id = #{0,jdbcType=INTEGER} and status=#{1,jdbcType=INTEGER}
+    </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from baoshi
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.hxsg.po.BaoShi" >
+    insert into baoshi (id, name, xiaoGuo, 
+      kangXing, data, status, 
+      miaoShuId, zbType, img, 
+      roleId, wqId, sell)
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{xiaoguo,jdbcType=INTEGER}, 
+      #{kangxing,jdbcType=VARCHAR}, #{data,jdbcType=TIMESTAMP}, #{status,jdbcType=VARCHAR}, 
+      #{miaoshuid,jdbcType=VARCHAR}, #{zbtype,jdbcType=VARCHAR}, #{img,jdbcType=VARCHAR}, 
+      #{roleid,jdbcType=INTEGER}, #{wqid,jdbcType=INTEGER}, #{sell,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hxsg.po.BaoShi" >
+    insert into baoshi
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="xiaoguo != null" >
+        xiaoGuo,
+      </if>
+      <if test="kangxing != null" >
+        kangXing,
+      </if>
+      <if test="data != null" >
+        data,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="miaoshuid != null" >
+        miaoShuId,
+      </if>
+      <if test="zbtype != null" >
+        zbType,
+      </if>
+      <if test="img != null" >
+        img,
+      </if>
+      <if test="roleid != null" >
+        roleId,
+      </if>
+      <if test="wqid != null" >
+        wqId,
+      </if>
+      <if test="sell != null" >
+        sell,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="xiaoguo != null" >
+        #{xiaoguo,jdbcType=INTEGER},
+      </if>
+      <if test="kangxing != null" >
+        #{kangxing,jdbcType=VARCHAR},
+      </if>
+      <if test="data != null" >
+        #{data,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="miaoshuid != null" >
+        #{miaoshuid,jdbcType=VARCHAR},
+      </if>
+      <if test="zbtype != null" >
+        #{zbtype,jdbcType=VARCHAR},
+      </if>
+      <if test="img != null" >
+        #{img,jdbcType=VARCHAR},
+      </if>
+      <if test="roleid != null" >
+        #{roleid,jdbcType=INTEGER},
+      </if>
+      <if test="wqid != null" >
+        #{wqid,jdbcType=INTEGER},
+      </if>
+      <if test="sell != null" >
+        #{sell,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hxsg.po.BaoShi" >
+    update baoshi
+    <set >
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="xiaoguo != null" >
+        xiaoGuo = #{xiaoguo,jdbcType=INTEGER},
+      </if>
+      <if test="kangxing != null" >
+        kangXing = #{kangxing,jdbcType=VARCHAR},
+      </if>
+      <if test="data != null" >
+        data = #{data,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="miaoshuid != null" >
+        miaoShuId = #{miaoshuid,jdbcType=VARCHAR},
+      </if>
+      <if test="zbtype != null" >
+        zbType = #{zbtype,jdbcType=VARCHAR},
+      </if>
+      <if test="img != null" >
+        img = #{img,jdbcType=VARCHAR},
+      </if>
+      <if test="roleid != null" >
+        roleId = #{roleid,jdbcType=INTEGER},
+      </if>
+      <if test="wqid != null" >
+        wqId = #{wqid,jdbcType=INTEGER},
+      </if>
+      <if test="sell != null" >
+        sell = #{sell,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hxsg.po.BaoShi" >
+    update baoshi
+    set name = #{name,jdbcType=VARCHAR},
+      xiaoGuo = #{xiaoguo,jdbcType=INTEGER},
+      kangXing = #{kangxing,jdbcType=VARCHAR},
+      data = #{data,jdbcType=TIMESTAMP},
+      status = #{status,jdbcType=VARCHAR},
+      miaoShuId = #{miaoshuid,jdbcType=VARCHAR},
+      zbType = #{zbtype,jdbcType=VARCHAR},
+      img = #{img,jdbcType=VARCHAR},
+      roleId = #{roleid,jdbcType=INTEGER},
+      wqId = #{wqid,jdbcType=INTEGER},
+      sell = #{sell,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

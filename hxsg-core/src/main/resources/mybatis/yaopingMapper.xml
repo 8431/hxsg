@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hxsg.Dao.yaopingMapper" >
+  <resultMap id="BaseResultMap" type="com.hxsg.po.yaoping" >
+    <id column="yaoid" property="yaoid" jdbcType="INTEGER" />
+    <result column="yaoname" property="yaoname" jdbcType="VARCHAR" />
+    <result column="yaoprice" property="yaoprice" jdbcType="INTEGER" />
+    <result column="qixuezhi" property="qixuezhi" jdbcType="DOUBLE" />
+    <result column="dengji" property="dengji" jdbcType="VARCHAR" />
+    <result column="sx" property="sx" jdbcType="INTEGER" />
+    <result column="touxiang" property="touxiang" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    yaoid, yaoname, yaoprice, qixuezhi, dengji, sx, touxiang
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select
+    <include refid="Base_Column_List" />
+    from yaoping
+    where yaoid = #{yaoid,jdbcType=INTEGER}
+  </select>
+    <select id="selectBySx" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+        select
+        <include refid="Base_Column_List" />
+        from yaoping
+        where sx = #{sx,jdbcType=INTEGER}
+    </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from yaoping
+    where sx = #{sx,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.hxsg.po.yaoping" >
+    insert into yaoping (yaoid, yaoname, yaoprice, 
+      qixuezhi, dengji, sx, 
+      touxiang)
+    values (#{yaoid,jdbcType=INTEGER}, #{yaoname,jdbcType=VARCHAR}, #{yaoprice,jdbcType=INTEGER}, 
+      #{qixuezhi,jdbcType=DOUBLE}, #{dengji,jdbcType=VARCHAR}, #{sx,jdbcType=INTEGER}, 
+      #{touxiang,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hxsg.po.yaoping" >
+    insert into yaoping
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="yaoid != null" >
+        yaoid,
+      </if>
+      <if test="yaoname != null" >
+        yaoname,
+      </if>
+      <if test="yaoprice != null" >
+        yaoprice,
+      </if>
+      <if test="qixuezhi != null" >
+        qixuezhi,
+      </if>
+      <if test="dengji != null" >
+        dengji,
+      </if>
+      <if test="sx != null" >
+        sx,
+      </if>
+      <if test="touxiang != null" >
+        touxiang,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="yaoid != null" >
+        #{yaoid,jdbcType=INTEGER},
+      </if>
+      <if test="yaoname != null" >
+        #{yaoname,jdbcType=VARCHAR},
+      </if>
+      <if test="yaoprice != null" >
+        #{yaoprice,jdbcType=INTEGER},
+      </if>
+      <if test="qixuezhi != null" >
+        #{qixuezhi,jdbcType=DOUBLE},
+      </if>
+      <if test="dengji != null" >
+        #{dengji,jdbcType=VARCHAR},
+      </if>
+      <if test="sx != null" >
+        #{sx,jdbcType=INTEGER},
+      </if>
+      <if test="touxiang != null" >
+        #{touxiang,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hxsg.po.yaoping" >
+    update yaoping
+    <set >
+      <if test="yaoname != null" >
+        yaoname = #{yaoname,jdbcType=VARCHAR},
+      </if>
+      <if test="yaoprice != null" >
+        yaoprice = #{yaoprice,jdbcType=INTEGER},
+      </if>
+      <if test="qixuezhi != null" >
+        qixuezhi = #{qixuezhi,jdbcType=DOUBLE},
+      </if>
+      <if test="dengji != null" >
+        dengji = #{dengji,jdbcType=VARCHAR},
+      </if>
+      <if test="sx != null" >
+        sx = #{sx,jdbcType=INTEGER},
+      </if>
+      <if test="touxiang != null" >
+        touxiang = #{touxiang,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where yaoid = #{yaoid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hxsg.po.yaoping" >
+    update yaoping
+    set yaoname = #{yaoname,jdbcType=VARCHAR},
+      yaoprice = #{yaoprice,jdbcType=INTEGER},
+      qixuezhi = #{qixuezhi,jdbcType=DOUBLE},
+      dengji = #{dengji,jdbcType=VARCHAR},
+      sx = #{sx,jdbcType=INTEGER},
+      touxiang = #{touxiang,jdbcType=VARCHAR}
+    where yaoid = #{yaoid,jdbcType=INTEGER}
+  </update>
+</mapper>

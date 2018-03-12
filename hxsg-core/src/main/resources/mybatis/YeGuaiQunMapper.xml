@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hxsg.Dao.YeGuaiQunMapper" >
+  <resultMap id="BaseResultMap" type="com.hxsg.po.YeGuaiQun" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="guai1" property="guai1" jdbcType="VARCHAR" />
+    <result column="guai2" property="guai2" jdbcType="VARCHAR" />
+    <result column="guai3" property="guai3" jdbcType="VARCHAR" />
+    <result column="guai4" property="guai4" jdbcType="VARCHAR" />
+    <result column="guai5" property="guai5" jdbcType="VARCHAR" />
+    <result column="guai6" property="guai6" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, name, guai1, guai2, guai3, guai4, guai5, guai6
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from yeguai_qun
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+    <select id="selectByName" resultMap="BaseResultMap" parameterType="java.lang.String" >
+        select
+        <include refid="Base_Column_List" />
+        from yeguai_qun
+        where name = #{0,jdbcType=VARCHAR}
+    </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from yeguai_qun
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.hxsg.po.YeGuaiQun" >
+    insert into yeguai_qun (id, name, guai1, 
+      guai2, guai3, guai4, 
+      guai5, guai6)
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{guai1,jdbcType=VARCHAR}, 
+      #{guai2,jdbcType=VARCHAR}, #{guai3,jdbcType=VARCHAR}, #{guai4,jdbcType=VARCHAR}, 
+      #{guai5,jdbcType=VARCHAR}, #{guai6,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hxsg.po.YeGuaiQun" >
+    insert into yeguai_qun
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="guai1 != null" >
+        guai1,
+      </if>
+      <if test="guai2 != null" >
+        guai2,
+      </if>
+      <if test="guai3 != null" >
+        guai3,
+      </if>
+      <if test="guai4 != null" >
+        guai4,
+      </if>
+      <if test="guai5 != null" >
+        guai5,
+      </if>
+      <if test="guai6 != null" >
+        guai6,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="guai1 != null" >
+        #{guai1,jdbcType=VARCHAR},
+      </if>
+      <if test="guai2 != null" >
+        #{guai2,jdbcType=VARCHAR},
+      </if>
+      <if test="guai3 != null" >
+        #{guai3,jdbcType=VARCHAR},
+      </if>
+      <if test="guai4 != null" >
+        #{guai4,jdbcType=VARCHAR},
+      </if>
+      <if test="guai5 != null" >
+        #{guai5,jdbcType=VARCHAR},
+      </if>
+      <if test="guai6 != null" >
+        #{guai6,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hxsg.po.YeGuaiQun" >
+    update yeguai_qun
+    <set >
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="guai1 != null" >
+        guai1 = #{guai1,jdbcType=VARCHAR},
+      </if>
+      <if test="guai2 != null" >
+        guai2 = #{guai2,jdbcType=VARCHAR},
+      </if>
+      <if test="guai3 != null" >
+        guai3 = #{guai3,jdbcType=VARCHAR},
+      </if>
+      <if test="guai4 != null" >
+        guai4 = #{guai4,jdbcType=VARCHAR},
+      </if>
+      <if test="guai5 != null" >
+        guai5 = #{guai5,jdbcType=VARCHAR},
+      </if>
+      <if test="guai6 != null" >
+        guai6 = #{guai6,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hxsg.po.YeGuaiQun" >
+    update yeguai_qun
+    set name = #{name,jdbcType=VARCHAR},
+      guai1 = #{guai1,jdbcType=VARCHAR},
+      guai2 = #{guai2,jdbcType=VARCHAR},
+      guai3 = #{guai3,jdbcType=VARCHAR},
+      guai4 = #{guai4,jdbcType=VARCHAR},
+      guai5 = #{guai5,jdbcType=VARCHAR},
+      guai6 = #{guai6,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

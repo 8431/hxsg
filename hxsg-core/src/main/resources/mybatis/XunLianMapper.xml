@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hxsg.Dao.XunLianMapper" >
+  <resultMap id="BaseResultMap" type="com.hxsg.po.XunLian" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="roleid" property="roleid" jdbcType="INTEGER" />
+    <result column="date" property="date" jdbcType="TIMESTAMP" />
+    <result column="status" property="status" jdbcType="VARCHAR" />
+    <result column="type" property="type" jdbcType="VARCHAR" />
+    <result column="jingYan" property="jingyan" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, roleid, date, status, type, jingYan
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from xun_lian
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+    <select id="queryTraining" resultType="com.hxsg.po.XunLian" parameterType="java.lang.String" >
+     SELECT x.*,n.rolename FROM xun_lian x,new_role n where x.roleid=n.id and x.status=#{0,jdbcType=VARCHAR} and x.type=#{1,jdbcType=VARCHAR}
+    </select>
+    <select id="selectAll" resultMap="BaseResultMap" parameterType="com.hxsg.po.XunLian" >
+        select
+        <include refid="Base_Column_List" />
+        from xun_lian
+       <where>
+           <if test="roleid != null" >
+              and roleid = #{roleid,jdbcType=INTEGER}
+           </if>
+           <if test="date != null" >
+               and   date = #{date,jdbcType=TIMESTAMP}
+           </if>
+           <if test="status != null" >
+               and  status = #{status,jdbcType=VARCHAR}
+           </if>
+           <if test="type != null" >
+               and  type = #{type,jdbcType=VARCHAR}
+           </if>
+           <if test="jingyan != null" >
+               and   jingYan = #{jingyan,jdbcType=INTEGER}
+           </if>
+
+
+       </where>
+    </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from xun_lian
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.hxsg.po.XunLian" >
+    insert into xun_lian (id, roleid, date, 
+      status, type, jingYan
+      )
+    values (#{id,jdbcType=INTEGER}, #{roleid,jdbcType=INTEGER}, #{date,jdbcType=TIMESTAMP}, 
+      #{status,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR}, #{jingyan,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.hxsg.po.XunLian" >
+    insert into xun_lian
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="roleid != null" >
+        roleid,
+      </if>
+      <if test="date != null" >
+        date,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="jingyan != null" >
+        jingYan,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="roleid != null" >
+        #{roleid,jdbcType=INTEGER},
+      </if>
+      <if test="date != null" >
+        #{date,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="jingyan != null" >
+        #{jingyan,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hxsg.po.XunLian" >
+    update xun_lian
+    <set >
+      <if test="roleid != null" >
+        roleid = #{roleid,jdbcType=INTEGER},
+      </if>
+      <if test="date != null" >
+        date = #{date,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="jingyan != null" >
+        jingYan = #{jingyan,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hxsg.po.XunLian" >
+    update xun_lian
+    set roleid = #{roleid,jdbcType=INTEGER},
+      date = #{date,jdbcType=TIMESTAMP},
+      status = #{status,jdbcType=VARCHAR},
+      type = #{type,jdbcType=VARCHAR},
+      jingYan = #{jingyan,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

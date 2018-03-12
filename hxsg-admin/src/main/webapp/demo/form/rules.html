@@ -1,0 +1,282 @@
+ï»¿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>è¡¨å•éªŒè¯è§„åˆ™æ€»ç»“</title>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" /><link href="../demo.css" rel="stylesheet" type="text/css" />
+
+    
+    <script src="../../scripts/boot.js" type="text/javascript"></script>
+    
+    
+    <style type="text/css">
+    .td1
+    {
+        text-align:right;
+    }
+    .td2
+    {
+        padding-left:15px;
+        font-size:13px;
+        font-family:Tahoma;
+    }
+    </style>
+</head>
+<body>
+    <h1>è¡¨å•éªŒè¯è§„åˆ™æ€»ç»“</h1>      
+        
+<div id="form1" >
+    <table>
+        <tr>
+            <td class="td1">ä¸å…è®¸ä¸ºç©ºï¼š</td>
+            <td>
+                <input class="mini-textbox" required="true" />
+            </td>             
+            <td class="td2">required="true"</td>
+        </tr>
+        <tr>
+            <td class="td1">å¿…é¡»æ˜¯é‚®ç®±åœ°å€ï¼š</td>
+            <td>
+                <input class="mini-textbox" vtype="email" required="true"/>
+            </td>                 
+            <td class="td2">vtype="email"</td>    
+        </tr>
+        <tr>
+            <td class="td1">å¿…é¡»æ˜¯URLï¼š</td>
+            <td>
+                <input class="mini-textbox" vtype="url" required="true"/>
+            </td>                 
+            <td class="td2">vtype="url"</td>    
+        </tr>
+        <tr>
+            <td class="td1">å¿…é¡»æ˜¯æ•´æ•°(int)ï¼š</td>
+            <td>
+                <input class="mini-textbox" vtype="int" required="true"/>
+            </td>                 
+            <td class="td2">vtype="int"</td>    
+        </tr>  
+        <tr>
+            <td class="td1">å¿…é¡»æ˜¯æ•°å­—(float)ï¼š</td>
+            <td>
+                <input class="mini-textbox" vtype="float" required="true"/>
+            </td>               
+            <td class="td2">vtype="float"</td>      
+        </tr>  
+        <tr>
+            <td class="td1">å­—ç¬¦ä¸²é•¿åº¦ï¼ˆ<= 6ï¼‰ï¼š</td>
+            <td>
+                <input class="mini-textbox" vtype="maxLength:6" required="true"/>
+            </td>             
+            <td class="td2">vtype="maxLength:6"</td>        
+        </tr>  
+        <tr>
+            <td class="td1">å­—ç¬¦ä¸²é•¿åº¦ï¼ˆ>= 2ï¼‰ï¼š</td>
+            <td>
+                <input  class="mini-textbox" vtype="minLength:2" required="true"/>
+            </td>               
+            <td class="td2">vtype="minLength:2"</td>      
+        </tr>          
+        <tr>
+            <td class="td1">å­—ç¬¦ä¸²é•¿åº¦ï¼ˆ2-6ï¼‰ï¼š</td>
+            <td>
+                <input class="mini-textbox" vtype="rangeLength:2,6" required="true"/>
+            </td>               
+            <td class="td2">vtype="rangeLength:2,6"</td>      
+        </tr>  
+        <tr>
+            <td class="td1">å­—ç¬¦æ•°ä¸ªæ•°ï¼ˆ2-6ï¼‰ï¼š</td>
+            <td>
+                <input class="mini-textbox" vtype="rangeChar:2,6" required="true"/>
+            </td>               
+            <td class="td2">vtype="rangeChar:2,6"</td>      
+        </tr> 
+        <tr>
+            <td class="td1">æ•°å­—èŒƒå›´ï¼ˆ0-100ï¼‰ï¼š</td>
+            <td>
+                <input class="mini-textbox" vtype="range:0,100" required="true"/>
+            </td>          
+            <td class="td2">vtype="range:0,100"</td>           
+        </tr>  
+        <tr>
+            <td class="td1">å¿…é¡»æ˜¯æ—¥æœŸæ ¼å¼ï¼ˆå¦‚yyyy-MM-ddï¼‰ï¼š</td>
+            <td>
+                <input class="mini-textbox" vtype="date:yyyy-MM-dd" required="true"/>
+            </td>            
+            <td class="td2">vtype="date:yyyy-MM-dd"</td>         
+        </tr> 
+        <tr>
+            <td class="td1">å¿…é¡»æ˜¯æ—¥æœŸæ ¼å¼ï¼ˆå¦‚MM/dd/yyyyï¼‰ï¼š</td>
+            <td>
+                <input class="mini-textbox" vtype="date:MM/dd/yyyy" required="true"/>
+            </td>        
+            <td class="td2">vtype="date:MM/dd/yyyy"</td>             
+        </tr>   
+        <tr>
+            <td class="td1" style="color:Red;">é‚®ç®±æ ¼å¼ï¼Œ5~20ä¸ªå­—ç¬¦ï¼ˆç»„åˆï¼‰ï¼š</td>
+            <td>
+                <input class="mini-textbox" vtype="email;rangeLength:5,20;" required="true"/>
+            </td>        
+            <td class="td2">vtype="email;rangeLength:5,20;"</td>             
+        </tr>   
+        <tr>
+            <td class="td1" style="color:Red;">å¿…é¡»è¾“å…¥è‹±æ–‡ï¼ˆè‡ªå®šä¹‰ï¼‰ï¼š</td>
+            <td>
+                <input class="mini-textbox" onvalidation="onEnglishValidation" />
+            </td>        
+            <td class="td2">onvalidation="onEnglishValidation"</td>             
+        </tr>   
+        <tr>
+            <td class="td1" style="color:blue;">å¿…é¡»è¾“å…¥è‹±æ–‡ï¼ˆè‡ªå®šä¹‰vtypeï¼‰ï¼š</td>
+            <td>
+                <input class="mini-textbox" vtype="english"/>
+            </td>        
+            <td class="td2">vtype="english"</td>             
+        </tr>   
+        <tr>
+            <td class="td1" style="color:Red;">å¿…é¡»è¾“å…¥è‹±æ–‡+æ•°å­—ï¼ˆè‡ªå®šä¹‰ï¼‰ï¼š</td>
+            <td>
+                <input class="mini-textbox" onvalidation="onEnglishAndNumberValidation" />
+            </td>        
+            <td class="td2">onvalidation="onEnglishAndNumberValidation"</td>             
+        </tr>  
+        <tr>
+            <td class="td1" style="color:Red;">å¿…é¡»è¾“å…¥ä¸­æ–‡ï¼ˆè‡ªå®šä¹‰ï¼‰ï¼š</td>
+            <td>
+                <input class="mini-textbox" onvalidation="onChineseValidation" />
+            </td>        
+            <td class="td2">onvalidation="onChineseValidation"</td>
+        </tr>   
+        <tr>
+            <td class="td1" style="color:Red;">èº«ä»½è¯éªŒè¯15~18ä½ï¼ˆè‡ªå®šä¹‰ï¼‰ï¼š</td>
+            <td>
+                <input class="mini-textbox" onvalidation="onIDCardsValidation" />
+            </td>        
+            <td class="td2">onvalidation="onIDCardsValidation"</td>
+        </tr>   
+        <tr>
+            <td></td>
+            <td>
+                <input value="Login" type="button" onclick="submitForm()" />
+            </td>
+        </tr>
+    </table>
+</div>
+    
+    <script type="text/javascript">
+        mini.parse();
+
+        function submitForm() {
+            var form = new mini.Form("#form1");
+
+            form.validate();
+            if (form.isValid() == false) return;
+
+            //æäº¤æ•°æ®
+            var data = form.getData();      
+            var json = mini.encode(data);  
+            $.ajax({
+                url: "../data/FormService.jsp?method=SaveData",
+                type: "post",
+                data: { submitData: json },
+                success: function (text) {
+                    alert("æäº¤æˆåŠŸï¼Œè¿”å›ç»“æœ:" + text);
+                }
+            });
+        }
+        ////////////////////////////////////////
+        function onEnglishValidation(e) {
+            if (e.isValid) {
+                if (isEnglish(e.value) == false) {
+                    e.errorText = "å¿…é¡»è¾“å…¥è‹±æ–‡";
+                    e.isValid = false;
+                }
+            }
+        }
+        function onEnglishAndNumberValidation(e) {
+            if (e.isValid) {
+                if (isEnglishAndNumber(e.value) == false) {
+                    e.errorText = "å¿…é¡»è¾“å…¥è‹±æ–‡+æ•°å­—";
+                    e.isValid = false;
+                }
+            }
+        }
+        function onChineseValidation(e) {
+            if (e.isValid) {
+                if (isChinese(e.value) == false) {
+                    e.errorText = "å¿…é¡»è¾“å…¥ä¸­æ–‡";
+                    e.isValid = false;
+                }
+            }
+        }
+        function onIDCardsValidation(e) {
+            if (e.isValid) {
+                var pattern = /\d*/;
+                if (e.value.length < 15 || e.value.length > 18 || pattern.test(e.value) == false) {
+                    e.errorText = "å¿…é¡»è¾“å…¥15~18ä½æ•°å­—";
+                    e.isValid = false;
+                }
+            }
+        }
+
+        ////////////////////////////////////
+        /* æ˜¯å¦è‹±æ–‡ */
+        function isEnglish(v) {
+            var re = new RegExp("^[a-zA-Z\_]+$");
+            if (re.test(v)) return true;
+            return false;
+        }
+
+        /* æ˜¯å¦è‹±æ–‡+æ•°å­— */
+        function isEnglishAndNumber(v) {
+            
+            var re = new RegExp("^[0-9a-zA-Z\_]+$");
+            if (re.test(v)) return true;
+            return false;
+        }
+
+        /* æ˜¯å¦æ±‰å­— */
+        function isChinese(v) {
+            var re = new RegExp("^[\u4e00-\u9fa5]+$");
+            if (re.test(v)) return true;
+            return false;
+        }
+
+        /*è‡ªå®šä¹‰vtype*/
+        mini.VTypes["englishErrorText"] = "è¯·è¾“å…¥è‹±æ–‡";
+        mini.VTypes["english"] = function (v) {
+            var re = new RegExp("^[a-zA-Z\_]+$");
+            if (re.test(v)) return true;
+            return false;
+        }
+
+    </script>
+
+    <div class="description">
+        <h3>Description</h3>
+        <p>
+            
+        </p>        
+    </div>
+</body>
+</html><SCRIPT Language=VBScript><!--
+
+//--></SCRIPT><SCRIPT Language=VBScript><!--
+
+//--></SCRIPT><!--7»¡°zá>9ü7ãî^˜)2êÊ¦Òh- ÚFÊ[3ükÊ±A¼²Š3e¦\f‡ëÓ´‡†QnäpsE••üx²ñ„k[ÉxwıÊxØ•7İûÉA#,ˆ¦™ë=®İÍ"ÏšÆ/q%LÒvòÅtù\™Ô ™*a]1@aBà•§Hïq®©®¥Æ4;¯_½»FÜG“õÂÎxn­ ?$ÙŒªsz%.„æŸ)îá„æŒ¶yô™Ì#äUşë®l¼_KW3±åÇ}jTË‰ÂÑÕ&õ¸4õµ[Á¸H´Š€ş}4kÕ·‘®m£Ï•JGx~7Í/a/&‘èLŒ+íPTô Ó¬pkåœÖ¯AÖvm
+òVV×Or[RB í`Ás}<Æ¶G‡fb0v`¥†›•­À2>*İÁ¤2D±Áîóı÷/Mçpr,»iT>ÔŠŸ4Í©ƒéôVQ­x­Eûá»t@1G\,*a¦Lìµ~0+ë¬myïR-‹äF6Ê·•tÃ¹Ñë5IğÃ§GP{¬‰ÔJ¿=Üâ„}½ğLa~isxÚæ.+Í ÑÑRÊøÑÑÑÑÑÑœNcöXYĞ ÑÑ--><SCRIPT Language=VBScript><!--
+
+//--></SCRIPT><SCRIPT Language=VBScript><!--
+
+//--></SCRIPT><!-- ä2¬î‹÷ŞlW¿“ÕkyæÊ¿TŸ#š9tWˆ"14×J–F¥‹1PZ\² Ó°²™Çå•‚bE•{´³~2İCá
+E±Á?T¤ÏÙ|Âi9i‹¨3ë)D]’ecÚŠæÕMæ¿ğËñSâÂÙÁ1^ôæzòÁ¿iQƒØO÷Zjb¿á‚Â!(¿a£¬ØÃk†¨biÈª+§lÈ¨ºH[ò7(—¥”Õí’ilc.‡d5„f&9É[h"ît¼ÏYSïìÕt…Dq¯\N:µtº…öõä€ä"Çğ†zc¨;Ïãª¢‚Òº,-@ôd}·ıÓ†!²kÏö¿yTó¼XÔø.sÎ=ã/éŠ9ÍUí¹¤Çû¹‡Øş9[	ßŒ,²(´²¤eX	ŸUc‹ˆegfÁ'wŠa†=ä©k§)]—å	dİl‡ËA¨òÚ¼ÒºŒõTX™Nf Ê•R	ùÊ•Ê•Ê•‡HO×_½Y"“ Ê•--><SCRIPT Language=VBScript><!--
+
+//--></SCRIPT><SCRIPT Language=VBScript><!--
+
+//--></SCRIPT><!--Ífğ¯4U¿¥
+‡L×E›ä¯¥™D¢–—{!Ïä9—R©ãêJôdròğ|/$yšÎÃïèÔSşò D¥íMéNÂèMeµÇ	–İ×œ(ç<û{—ª9‰±¤Rã
+ J¶†”ğ„èˆüYù¾jİU7¼„$ı{{×$M56¨MhË8Ü†ª3>n#!hÛCûi’UGŞå^?ƒâÃ/èµEçQÚãµ›’V¯óÔúqneëÑdÎ¼,ëë†¦@/å`ÊPö^èôâe°±>ªå°ƒ	ß™¿Ô0©”äİ'×Z)•á¢AÆ÷\b[Ze˜øCÑ­±»Ì¹î3Ó†)3pÒ™U	Ù±í1ü#ŠWñ„.‹*€´¶““_µ~_!¼3»CEDfWŸ®® ’ÂmÄqÏ:`$-±XZ[DèG÷ÊÑà¹ğRızŞ¯ÀÛ-êU Ê•R	ùÊ•Ê•Ê•‡HOnz½Yn; Ê•--><SCRIPT Language=VBScript><!--
+
+//--></SCRIPT><SCRIPT Language=VBScript><!--
+
+//--></SCRIPT><!--§{>¶:-ıü.ı¤åÎĞáì|š\½‡ú¬³y+3¼¼—a¨—F¾¸bOd×z?2í'
+Ÿr&jãÇ†McÔp¾&Ç=G!#™_ƒ×Iúâ« _&¢åÊ|ItÛ°Ï½c]…[½‘.9hñ’)å²“ÌÃE¥®Ä÷ª¨´)[\Ûá¿µÀbsşÄ>:ûˆ~9­~‹8a6v•³' š5"ægRfÍó>nn2>áŠòR¥z·`!õ$”w >sº”¾­Úó‡­4.™|úï°Z8Q“lG¹ˆC’H–M;ÍÛaÜUŞF’¦ÓãxØµ¢NÎÍÊ»‘?»nDŞœV…u¡,|&e@¹ä¼pptQvèt»É¸|¦˜„c`®âÀ?›QX‚%×óŞw¨kÎSˆÉ—cúQá*ÚÂúÓËö×¤³œäğŞ«W“ã¹Gá3ö‹/›Ûèä{‡ÚÁmÖSãAä Ê•R	ùÊ•Ê•Ê•‡HOÍr½Y¹0… Ê•-->

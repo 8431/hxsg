@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hxsg.Dao.YouJianMapper" >
+  <resultMap id="BaseResultMap" type="com.hxsg.po.YouJian" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="roleid" property="roleid" jdbcType="INTEGER" />
+    <result column="rolename" property="rolename" jdbcType="VARCHAR" />
+    <result column="receiveId" property="receiveid" jdbcType="INTEGER" />
+    <result column="receivedname" property="receivedname" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="VARCHAR" />
+    <result column="data" property="data" jdbcType="TIMESTAMP" />
+    <result column="data2" property="data2" jdbcType="TIMESTAMP" />
+    <result column="yin" property="yin" jdbcType="INTEGER" />
+    <result column="message" property="message" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, roleid, rolename, receiveId, receivedname, status, data, data2, yin, message
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from youjian
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+
+    <select id="selectStatus" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+        select
+        <include refid="Base_Column_List" />
+        from youjian
+        where status in('已读','已领取')  and  receiveId = #{receiveid,jdbcType=INTEGER}  order by data desc
+    </select>
+    <select id="selectAllBytime" resultMap="BaseResultMap"  >
+        select
+        <include refid="Base_Column_List" />
+        from youjian
+        where status not in('已领取','已退回')
+    </select>
+    <select id="selectAll" resultMap="BaseResultMap" parameterType="com.hxsg.po.YouJian" >
+        select
+        <include refid="Base_Column_List" />
+        from youjian
+        <where>
+            <if test="roleid != null" >
+                roleid = #{roleid,jdbcType=INTEGER}
+            </if>
+            <if test="rolename != null" >
+              and  rolename = #{rolename,jdbcType=VARCHAR}
+            </if>
+            <if test="receiveid != null" >
+                and  receiveId = #{receiveid,jdbcType=INTEGER}
+            </if>
+            <if test="receivedname != null" >
+                and receivedname = #{receivedname,jdbcType=VARCHAR}
+            </if>
+            <if test="status != null" >
+                and status = #{status,jdbcType=VARCHAR}
+            </if>
+            <if test="data != null" >
+                and data = #{data,jdbcType=TIMESTAMP}
+            </if>
+            <if test="data2 != null" >
+                and  data2 = #{data2,jdbcType=TIMESTAMP}
+            </if>
+            <if test="yin != null" >
+                and  yin = #{yin,jdbcType=INTEGER}
+            </if>
+            <if test="message != null" >
+                and  message = #{message,jdbcType=VARCHAR}
+            </if>
+        </where>
+    </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from youjian
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.hxsg.po.YouJian" useGeneratedKeys="true" keyProperty="id" >
+    insert into youjian ( roleid, rolename,
+      receiveId, receivedname, status, 
+      data, data2, yin, 
+      message)
+    values (#{roleid,jdbcType=INTEGER}, #{rolename,jdbcType=VARCHAR},
+      #{receiveid,jdbcType=INTEGER}, #{receivedname,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, 
+      #{data,jdbcType=TIMESTAMP}, #{data2,jdbcType=TIMESTAMP}, #{yin,jdbcType=INTEGER}, 
+      #{message,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hxsg.po.YouJian"  useGeneratedKeys="true" keyProperty="id">
+    insert into youjian
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="roleid != null" >
+        roleid,
+      </if>
+      <if test="rolename != null" >
+        rolename,
+      </if>
+      <if test="receiveid != null" >
+        receiveId,
+      </if>
+      <if test="receivedname != null" >
+        receivedname,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="data != null" >
+        data,
+      </if>
+      <if test="data2 != null" >
+        data2,
+      </if>
+      <if test="yin != null" >
+        yin,
+      </if>
+      <if test="message != null" >
+        message,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="roleid != null" >
+        #{roleid,jdbcType=INTEGER},
+      </if>
+      <if test="rolename != null" >
+        #{rolename,jdbcType=VARCHAR},
+      </if>
+      <if test="receiveid != null" >
+        #{receiveid,jdbcType=INTEGER},
+      </if>
+      <if test="receivedname != null" >
+        #{receivedname,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="data != null" >
+        #{data,jdbcType=TIMESTAMP},
+      </if>
+      <if test="data2 != null" >
+        #{data2,jdbcType=TIMESTAMP},
+      </if>
+      <if test="yin != null" >
+        #{yin,jdbcType=INTEGER},
+      </if>
+      <if test="message != null" >
+        #{message,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hxsg.po.YouJian" >
+    update youjian
+    <set >
+      <if test="roleid != null" >
+        roleid = #{roleid,jdbcType=INTEGER},
+      </if>
+      <if test="rolename != null" >
+        rolename = #{rolename,jdbcType=VARCHAR},
+      </if>
+      <if test="receiveid != null" >
+        receiveId = #{receiveid,jdbcType=INTEGER},
+      </if>
+      <if test="receivedname != null" >
+        receivedname = #{receivedname,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="data != null" >
+        data = #{data,jdbcType=TIMESTAMP},
+      </if>
+      <if test="data2 != null" >
+        data2 = #{data2,jdbcType=TIMESTAMP},
+      </if>
+      <if test="yin != null" >
+        yin = #{yin,jdbcType=INTEGER},
+      </if>
+      <if test="message != null" >
+        message = #{message,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hxsg.po.YouJian" >
+    update youjian
+    set roleid = #{roleid,jdbcType=INTEGER},
+      rolename = #{rolename,jdbcType=VARCHAR},
+      receiveId = #{receiveid,jdbcType=INTEGER},
+      receivedname = #{receivedname,jdbcType=VARCHAR},
+      status = #{status,jdbcType=VARCHAR},
+      data = #{data,jdbcType=TIMESTAMP},
+      data2 = #{data2,jdbcType=TIMESTAMP},
+      yin = #{yin,jdbcType=INTEGER},
+      message = #{message,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

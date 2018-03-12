@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hxsg.Dao.FjLevelJyMapper" >
+  <resultMap id="BaseResultMap" type="com.hxsg.po.FjLevelJy" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="level" property="level" jdbcType="INTEGER" />
+    <result column="yingcai" property="yingcai" jdbcType="INTEGER" />
+    <result column="jiangcai" property="jiangcai" jdbcType="INTEGER" />
+    <result column="yuanshuai" property="yuanshuai" jdbcType="INTEGER" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="type" property="type" jdbcType="VARCHAR" />
+    <result column="data" property="data" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, level, yingcai, jiangcai, yuanshuai, status, type, data
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from fj_level_jy
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+    <select id="sumyingcai" resultType="java.lang.Integer" parameterType="java.lang.Integer" >
+        select
+        sum(yingcai)
+        from fj_level_jy
+        where  level&lt;= #{0}
+    </select>
+    <select id="sumjiangcai" resultType="java.lang.Integer" parameterType="java.lang.Integer" >
+        select
+        sum(jiangcai)
+        from fj_level_jy
+        where level&lt;= #{0}
+    </select>
+    <select id="sumyuanshuai" resultType="java.lang.Integer" parameterType="java.lang.Integer" >
+        select
+        sum(yuanshuai)
+        from fj_level_jy
+        where level&lt;= #{0}
+    </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from fj_level_jy
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.hxsg.po.FjLevelJy" >
+    insert into fj_level_jy (id, level, yingcai, 
+      jiangcai, yuanshuai, status, 
+      type, data)
+    values (#{id,jdbcType=INTEGER}, #{level,jdbcType=INTEGER}, #{yingcai,jdbcType=INTEGER}, 
+      #{jiangcai,jdbcType=INTEGER}, #{yuanshuai,jdbcType=INTEGER}, #{status,jdbcType=INTEGER}, 
+      #{type,jdbcType=VARCHAR}, #{data,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hxsg.po.FjLevelJy" >
+    insert into fj_level_jy
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="level != null" >
+        level,
+      </if>
+      <if test="yingcai != null" >
+        yingcai,
+      </if>
+      <if test="jiangcai != null" >
+        jiangcai,
+      </if>
+      <if test="yuanshuai != null" >
+        yuanshuai,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="data != null" >
+        data,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="level != null" >
+        #{level,jdbcType=INTEGER},
+      </if>
+      <if test="yingcai != null" >
+        #{yingcai,jdbcType=INTEGER},
+      </if>
+      <if test="jiangcai != null" >
+        #{jiangcai,jdbcType=INTEGER},
+      </if>
+      <if test="yuanshuai != null" >
+        #{yuanshuai,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="data != null" >
+        #{data,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hxsg.po.FjLevelJy" >
+    update fj_level_jy
+    <set >
+      <if test="level != null" >
+        level = #{level,jdbcType=INTEGER},
+      </if>
+      <if test="yingcai != null" >
+        yingcai = #{yingcai,jdbcType=INTEGER},
+      </if>
+      <if test="jiangcai != null" >
+        jiangcai = #{jiangcai,jdbcType=INTEGER},
+      </if>
+      <if test="yuanshuai != null" >
+        yuanshuai = #{yuanshuai,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="data != null" >
+        data = #{data,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hxsg.po.FjLevelJy" >
+    update fj_level_jy
+    set level = #{level,jdbcType=INTEGER},
+      yingcai = #{yingcai,jdbcType=INTEGER},
+      jiangcai = #{jiangcai,jdbcType=INTEGER},
+      yuanshuai = #{yuanshuai,jdbcType=INTEGER},
+      status = #{status,jdbcType=INTEGER},
+      type = #{type,jdbcType=VARCHAR},
+      data = #{data,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

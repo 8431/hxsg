@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hxsg.Dao.GjsgMapMapper" >
+  <resultMap id="BaseResultMap" type="com.hxsg.po.GjsgMap" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="center_city" property="centerCity" jdbcType="VARCHAR" />
+    <result column="n_city" property="nCity" jdbcType="VARCHAR" />
+    <result column="s_city" property="sCity" jdbcType="VARCHAR" />
+    <result column="w_city" property="wCity" jdbcType="VARCHAR" />
+    <result column="e_city" property="eCity" jdbcType="VARCHAR" />
+    <result column="quYu" property="quyu" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, center_city, n_city, s_city, w_city, e_city, quYu
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from gjsg_map
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+    <select id="selectByCenterCity" resultMap="BaseResultMap" parameterType="java.lang.String" >
+        select
+        *
+        from gjsg_map
+        where center_city = #{0,jdbcType=VARCHAR}
+    </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from gjsg_map
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.hxsg.po.GjsgMap" >
+    insert into gjsg_map (id, center_city, n_city, 
+      s_city, w_city, e_city, 
+      quYu)
+    values (#{id,jdbcType=INTEGER}, #{centerCity,jdbcType=VARCHAR}, #{nCity,jdbcType=VARCHAR}, 
+      #{sCity,jdbcType=VARCHAR}, #{wCity,jdbcType=VARCHAR}, #{eCity,jdbcType=VARCHAR}, 
+      #{quyu,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hxsg.po.GjsgMap" >
+    insert into gjsg_map
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="centerCity != null" >
+        center_city,
+      </if>
+      <if test="nCity != null" >
+        n_city,
+      </if>
+      <if test="sCity != null" >
+        s_city,
+      </if>
+      <if test="wCity != null" >
+        w_city,
+      </if>
+      <if test="eCity != null" >
+        e_city,
+      </if>
+      <if test="quyu != null" >
+        quYu,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="centerCity != null" >
+        #{centerCity,jdbcType=VARCHAR},
+      </if>
+      <if test="nCity != null" >
+        #{nCity,jdbcType=VARCHAR},
+      </if>
+      <if test="sCity != null" >
+        #{sCity,jdbcType=VARCHAR},
+      </if>
+      <if test="wCity != null" >
+        #{wCity,jdbcType=VARCHAR},
+      </if>
+      <if test="eCity != null" >
+        #{eCity,jdbcType=VARCHAR},
+      </if>
+      <if test="quyu != null" >
+        #{quyu,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hxsg.po.GjsgMap" >
+    update gjsg_map
+    <set >
+      <if test="centerCity != null" >
+        center_city = #{centerCity,jdbcType=VARCHAR},
+      </if>
+      <if test="nCity != null" >
+        n_city = #{nCity,jdbcType=VARCHAR},
+      </if>
+      <if test="sCity != null" >
+        s_city = #{sCity,jdbcType=VARCHAR},
+      </if>
+      <if test="wCity != null" >
+        w_city = #{wCity,jdbcType=VARCHAR},
+      </if>
+      <if test="eCity != null" >
+        e_city = #{eCity,jdbcType=VARCHAR},
+      </if>
+      <if test="quyu != null" >
+        quYu = #{quyu,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hxsg.po.GjsgMap" >
+    update gjsg_map
+    set center_city = #{centerCity,jdbcType=VARCHAR},
+      n_city = #{nCity,jdbcType=VARCHAR},
+      s_city = #{sCity,jdbcType=VARCHAR},
+      w_city = #{wCity,jdbcType=VARCHAR},
+      e_city = #{eCity,jdbcType=VARCHAR},
+      quYu = #{quyu,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

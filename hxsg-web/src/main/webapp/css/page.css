@@ -1,0 +1,70 @@
+/*分页开始*/
+.fenye {
+	width: 100%;
+	height: 30px;
+	padding: 15px 0px 35px;
+	line-height: 30px;
+	text-align: center;
+	font-size: 14px;
+}
+.fenye_a {
+	padding: 0px 5px;
+	border: 1px solid #CCC;
+	background-color: #FFF;
+	display: inline-block;
+	height: 25px;
+	line-height: 25px;
+	color: #B4B4B4;
+	border-radius: 2px; 
+}
+.fenye_a:hover {
+	border: 1px solid #B20839;
+	color: #B20839;
+	background-color: #FBF2F5;
+}
+.fenye_a1 {
+	margin: 0px 8px 0px 4px;
+	width: 21px;
+	border: 1px solid #C7CACD;
+	background-color: #FFF;
+	color: #B4B4B4;
+	display: inline-block;
+	height: 25px;
+	line-height: 25px;
+	border-radius: 2px;
+}
+.fenye_a1:hover {
+	border: 1px solid #B20839;
+	color: #B20839;
+	background-color: #FBF2F5;
+}
+.fenye_span {
+	display: inline-block;
+	color: #B20839;
+}
+.fenye_a2 {
+	margin: 0px 4px 0px 8px;
+	width: 21px;
+	border: 1px solid #C7CACD;
+	background-color: #FFF;
+	color: #B4B4B4;
+	display: inline-block;
+	height: 25px;
+	line-height: 25px;
+	border-radius: 2px;
+}
+.fenye_a2:hover {
+	border: 1px solid #B20839;
+	color: #B20839;
+	background-color: #FBF2F5;
+}
+.fenye_jump {
+	margin: 1px 5px 0 15px;
+	width: 44px;
+	height: 25px;
+	border: 1px solid #CCCCCC;
+	border-radius: 2px;
+	vertical-align: top;
+	text-indent: 4px;
+}
+/*分页结束*/

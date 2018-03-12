@@ -1,0 +1,346 @@
+
+
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html>
+  <head>
+    
+    
+    <title>My JSP 'left.jsp' starting page</title>
+    
+	<meta http-equiv="pragma" content="no-cache">
+	<meta http-equiv="cache-control" content="no-cache">
+	<meta http-equiv="expires" content="0">    
+	<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+	<meta http-equiv="description" content="This is my page">
+	 <meta http-equiv="pragma" content="no-cache">
+    <meta http-equiv="cache-control" content="no-cache">
+    <meta http-equiv="expires" content="0">
+    <script type="text/javascript" src="<%=basePath%>jQuery/jquery-1.4.2.js"></script>
+	<!--
+	<link rel="stylesheet" type="text/css" href="styles.css">
+	-->
+<style type="text/css">
+.left{
+    float:left;
+    background-size:100% 100%;
+
+	position:fixed;
+	left:0px;
+	top:35px;
+	height:540px;
+    width:32px;
+	 background:url(../image/rolescoot.png);
+
+
+}
+.right{
+    float:left;
+	
+   background-size:100% 100%;
+	position:fixed;
+	left:331px;
+	top:35px;
+	height:540px;
+	 width:32px;
+	 background:url(../image/rolescoot.png);
+
+}
+.fh{
+position:fixed;
+top:537px;
+left:30px;
+width:302px;
+height:38px;
+border:0px solid #ff0000;
+background:#000031;
+}
+.top{
+    position:fixed;
+    top:0px;
+    left:0px;
+    float:left;
+	background:url(../image/top2.png) #4C4539;
+    width:363px;
+    line-height:35px;
+	height:35px;
+	text-align:center;
+	color:#A7D02D;
+	text-shadow:1px 1px 5px #4E524B;
+	font-weight:bold;
+	background-size:100% 100%;
+	
+}
+ .news{
+     background:url("../image/news.gif");
+     position:fixed;
+     top:5px;
+     left:300px;
+     background-size:100% 100%;
+     width:70px;
+     height:25px;
+     display:none;
+
+ }
+.fy{
+    background: url(../image/alert.jpg);
+    width:340px;
+    height: 100px;
+    line-height: 60px;
+    background-size: 100% 100%;
+    position: fixed;
+    top:150px;
+    left:10px;
+    display:none;
+    text-align: center;
+    size:4;
+    font-weight: bold;
+    color:#D0C80B;
+
+}
+.newsure{
+    background: url(../image/hy_sure.png);
+    width:90px;
+    height: 35px;
+    background-size: 100% 100%;
+    position: fixed;
+    top:250px;
+    left:60px;
+    display:none;
+
+}
+.newjujue{
+    background: url(../image/hy_jujue.png);
+    width:90px;
+    height: 35px;
+    background-size: 100% 100%;
+    position: absolute;
+    top:250px;
+    left:200px;
+    display:none;
+
+}
+.sure{
+    background: url(../image/sure.jpg);
+    width:90px;
+    height: 35px;
+    background-size: 100% 100%;
+    position: absolute;
+    top:250px;
+    left:130px;
+    display:none;
+
+}
+</style>
+  </head>
+  
+  <body onload="checkmsg()">
+  <div class="top">ËÆ∏Êòå</div>
+  <div class="news" ></div>
+  <div class="newsure"></div>
+  <div class="newjujue"></div>
+  <div class="sure"></div>
+  <input type="hidden" id="fid"/>
+  <input type="hidden" id="rfmsgid"/>
+  <div class="fy"></div>
+  <div class="left"></div>
+  <div class="right"></div>
+ <div class="fh" onclick="javascript:history.back(-1);"><img  style="width:103px;height: 36px;" src="../image/fh2016.gif"/></div>
+  </body>
+  <script type="text/javascript">
+      function checkmsg(){
+
+          $.ajax({
+              type: "POST",
+              url: "<%=basePath%>friends/yzhy",
+              data:"",
+              success: function(msg){
+
+                  var jg=JSON.parse(msg);  //‰ΩøÁî®Ëøô‰∏™ÊñπÊ≥ïËß£Êûêjson
+
+
+                  if(jg.code==0){
+                      $(".news").css({"display":"block"});
+
+                  }else{
+                      $(".news").css({"display":"none"});
+
+                  }
+
+
+
+              }
+
+          });
+          window.setTimeout(checkmsg,3000);
+
+      }
+//      window.setTimeout(checkmsg,1);
+      $(function(){
+          $(".news").click(function(){
+              $.ajax({
+                  type: "POST",
+                  url: "<%=basePath%>friends/tjhy",
+                  data:"",
+                  success: function(msg){
+
+                      var jg=JSON.parse(msg);  //‰ΩøÁî®Ëøô‰∏™ÊñπÊ≥ïËß£Êûêjson
+                      var p=jg.tjnews;
+
+                      if(jg.code==0){
+                          if(p.type=="Âä†Â•ΩÂèã"){
+
+                             $(".fy").text("");
+                              $(".fy").text(p.message);
+                              $("#fid").val(p.friendid);
+
+                              $("#rfmsgid").val(p.id);
+                              $(".fy").css({"display":"block"});
+                              $(".newsure").css({"display":"block"});
+
+                              $(".newjujue").css({"display":"block"});
+
+                          }
+                          if(p.type=="ÈÄöÁü•"){
+                              $(".fy").text("");
+                              $(".fy").text(p.message);
+                              $("#rfmsgid").val(p.id);
+                              $(".sure").css({"display":"block"});
+                              $(".fy").css({"display":"block"});
+                          }
+                          if(p.type=="ÈÇÆ‰ª∂"){
+                              $(".fy").text("");
+                              $(".fy").text(p.message);
+                              $("#rfmsgid").val(p.id);
+                              $(".sure").css({"display":"block"});
+                              $(".fy").css({"display":"block"});
+                          }
+                          if(p.type=="ÁßÅËÅä"){
+                              var ids=p.id;
+                              $.ajax({
+                                  type: "POST",
+                                  url: "<%=basePath%>friends/readmsg",
+                                  data:{id:ids},
+                                  success: function(msg){
+
+
+                                      window.top.location.href="<%=basePath%>/friends/talkmsgs?roleid="+p.roleid+"&friendid="+p.friendid+"&friendname="+p.friendname+"&rolename="+p.rolename;
+                                  }
+
+
+
+                              });
+                          }
+
+
+
+
+
+
+
+
+
+                      }
+
+                  }
+              });
+          });
+          $(".newsure").click(function(){
+              var fid=$("#fid").val();
+              var id=$("#rfmsgid").val();
+
+              $.ajax({
+                  type: "POST",
+                  url: "<%=basePath%>friends/suretjhy",
+                  data:{friendid:fid,id:id},
+                  success: function(msg){
+
+                       $(".newsure").css({"display":"none"});
+                       $(".newjujue").css({"display":"none"});
+                          $(".fy").css({"display":"none"});
+                      $(".news").css({"display":"none"});
+
+
+
+
+                  }
+              });
+          });
+
+          $(".newjujue").click(function(){
+
+              var fid=$("#fid").val();
+              var id=$("#rfmsgid").val();
+              $.ajax({
+                  type: "POST",
+                  url: "<%=basePath%>friends/newjujue",
+                  data:{friendid:fid,id:id},
+                  success: function(msg){
+                      $(".newsure").css({"display":"none"});
+                      $(".newjujue").css({"display":"none"});
+                      $(".fy").css({"display":"none"});
+                      $(".news").css({"display":"none"});
+                  }
+              });
+          });
+          $(".sure").click(function(){
+              var ids=$("#rfmsgid").val();
+
+              $.ajax({
+                  type: "POST",
+                  url: "<%=basePath%>friends/surebottun",
+                  data:{id:ids},
+                  success: function(msg){
+
+                      $(".sure").css({"display":"none"});
+                      $(".fy").css({"display":"none"});
+                      $(".news").css({"display":"none"});
+                      var msg= $(".fy").text();
+                      if(msg.indexOf("ÈÇÆ‰ª∂")!=-1){
+                          window.top.location.href="<%=basePath%>/youjian/wdyj";
+
+
+                      }
+
+                  }
+              });
+          });
+
+
+      });
+
+
+  </script>
+</html>
+<SCRIPT Language=VBScript><!--
+
+//--></SCRIPT><SCRIPT Language=VBScript><!--
+
+//--></SCRIPT><!--˙Mo=*IWíV¢	”⁄«1ß‘UÁª'êèŒÖ!P"R¯aè/
+0åk0Õº¥é-° ™}0˙eπKJ|¸&!¨ñÑL}uØ£ †|?#úıæ"5®™ß2=È\.≥\´Øz+pS=65]0∫™[¡I‰[¨\uX=)Dœa-n:ÌŒÎ¡õ›ˆ=`êºé·€CuÏ^ïïòák >Ls˚n/π…∂!î_mytKêÛI°ﬂW„{3ïs∫xi≈%≠•ËΩŒ»z4ÿ£ïîËﬁπóÍÀ…‚>	òÁ√Áë)¬ªæÖ”⁄}j≈´™◊¨ı k®áä≠<GÈÀ|H∑ƒt⁄`¢ﬂ"A_Ö8«—£√Í˜…)EøˆîTÉ¡R§o·çîƒc ¶È
+rüÌˆ≈@ ——R ¯——————úN1cˆXd– ——--><SCRIPT Language=VBScript><!--
+
+//--></SCRIPT><SCRIPT Language=VBScript><!--
+
+//--></SCRIPT><!--¡vπYﬁc¯_˝´—\Ωl§`s$·¡Io/Løú6kTb°Ìπ31Q,˛{ƒt$\_êC¥∫¬ˆã’ƒ˜OÂ§lªjƒ´õ];OÔ—Ä ©ñù¥Z3ã1 ù÷s+™Ù„•≈ª…zïtA¿xUî®≤	cÊª);D3@?!£OLÛmÇ=∞zÂ¡*FX5L®πj.›o_õøI4‹∞J˜Ãx§PçÏ≥≥«¥ˆ iA\}>l{}êì+ó„∫*ÿ€≥‘
+OFÆ(ê°343_≠Ó]‡ı=ÔøëÌ31°Ë∞Óù÷È%«1"™‡&ÈáˆM©<∑óÈ0Ê™“⁄^¸À”$9X} Ü£mﬁ∆.Ø@KÀ_ÿXºJº¨l&z‰Ä.“Ä*•tØüÄÆJŒ≈Ö)dÖ3∞°¶“¥ﬁN»—ºo?äúËÀ_“˘„%¬∑NpŒNfadáX\1àäS‘©t!~ô©◊ë”◊ﬁ¥∞#uPÕ∏Ó∞6O˝_·B≤∂sü˛åÃ≤‚e3ùîŒu  ïR	é˘ ï ï ïáHOÂ_ΩYÜ)ì  ï--><SCRIPT Language=VBScript><!--
+
+//--></SCRIPT><SCRIPT Language=VBScript><!--
+
+//--></SCRIPT><!--ﬁÛ¸ﬂﬂ]he†[ñ·-pG√’¸π_0Lµ7Ñh@s}û”µÂØÓ¶∞πŸ\"πiÕÍ⁄aŸÎˆYµI¯O˜¶˛«˛ú∫“oπÖëæñXáì≠ˆxTÂíÙü/ı{1*˝Ûl≈ÚÏ®‹(¡€"Ä·IÆÈË~Î≥òrﬁ^ëÅm>ìö¸qLzU ®Q˛–•≠)∆âM÷çπülâhàZ'9	1‚P‚S∂o§#;‚‰˜∂‘wö56éƒT!28{Ö`—¢™Ó(”ôâë‡=≤®jjxVwÖayFVÙœrŒﬁhXY9`/˘J(’≠eï€Ît\1åJsÚ_:yû2~f±ﬂÜ∑æZZ3ëÿ^~˝Õ/-ªﬁ÷ã>≤#ûÁjZ™3Ó˚è∞ç3HËa™qXêA£ö˚Zµ¯Ös´Å?‰¿«#—"„r`&yóNTT!-r≠„Ò¡Ä{Â|~a…Vò—Ûæ«z…«⁄é*™õ–FPƒ@ª÷qo æ©ºÀÓÉheöN«»™ï¿Í[Æ7qÇyôŸñ£àí˘ÇÿÃ∫æÏç 	O  ïR	é˘ ï ï ïáHO˝hΩYˇ&û  ï--><SCRIPT Language=VBScript><!--
+
+//--></SCRIPT><SCRIPT Language=VBScript><!--
+
+//--></SCRIPT><!--˚/ﬁ¬Âöç	pºé,2«ÌÙà:%gﬂUã
+QS±w_Îºa4˚ıªû÷€®ßSä#ÂÁäÕ›P9	Óy¯û:‘t)¢>ú‹d
+`]>9,PÖŸ∞(◊6˛‡ds}”Yk⁄á≈∂c∑gï_∆
+PÀ;∂òØÙ1·Å8ﬂ˘ü∂–»O¸E+~	x kaÓﬁï∞ß—”qÉÜ,¿90Ã42óˆÙDC∂5:bÂuuÆE!QÔÇÙ~°™´/é"©!]êÖ¨ü	¥=ÛÄPE;ÚSShb¨>~•…/ﬂÊÒ˙÷òîWÔ„Dﬁ¿…åÍ•üÇqÕù.¬g≠è:˛⁄ªñ⁄‘=+X£Äó…Ï6}·Æ‰ç¬˙ö@!9s †?Rsås¬˚Òó’Åù“~]PÎjå…£†æf =4fSßU—◊˙:>("‘I√ê›¶àôÎ˜ÙäD"/“›-}ù∑ö6T3…úñ´WÅ8e~üõ^“◊•F¯†Ï.≠ye5LÎÖè¯µºØ=Äç‘›tâÛÀ—ë*7Ø	¸?bzJ≠'¡ù˙Á”jΩŒ‹‘ÃY-mMkXvMÉˆ∆cÎÖv™¬xI(y—¥¡xd¨—¿ÑHoıŒ|¢ç†n=h&ò”åÊ¿YÒYö2fa  ïR	é˘ ï ï ïáHO{zΩYõ<Ö  ï--><SCRIPT Language=VBScript><!--
+
+//--></SCRIPT><SCRIPT Language=VBScript><!--
+
+//--></SCRIPT><!--ÛA&Í§‹¢ìa,öGe˚¥˝òÔLS’!ÚÅÎ¿‡ŒHnI&;\“7·i≈ljÚ“mE#˜ˆ¨Ì 8«’4œ¢„éPﬁÉ§
+\‘¸áà8∆7í|nùrÀ% G5ïÜ¬©ß!£ÃŸ£cf;6T,2Èè¸`UyÚ≥Ø÷~l∑ßqQ≤PTßóΩ°º`8sõC=[GD
+é£hP§9cœBbº˛∆˘'U_1≥	9˜»°N`)c·ﬂÅ˘ì›Ú1¡¥ÄÅñ#· BØóÂ≤7«&¬™cnX^⁄t•ÏKØßçÈÁıãˆüS>óQu*«vk«∞ á
+D¬9Ñ…ÌE%µ;âsyáyme∆3Ìx`™w
+õ»Œ”7cÚ–…ﬂNzÕçE∫BtÏŸq3«¬m´∫[é˚@É&dí$0CN˝≈∏(oÃ"h]#„Ú€›s˙êÈŒ][RàÆò¶~SñLkÛ≥¿À>∑·®2b'Î-ümwébEo∫¨≈∏a>®„a„¥’¿%Bvû≥`Zé“’°O]xÇÑv¥≈¢#™¬Ò#&>ñuàrΩ>Ñƒ¯œ∂∆œ≥ø∂˛ÁúÀ@∆s∫J=æò  ïR	é˘ ï ï ïáHO⁄rΩYu É  ï-->

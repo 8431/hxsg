@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hxsg.Dao.roleShuxingMapper" >
+  <resultMap id="BaseResultMap" type="com.hxsg.po.roleShuxing" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="roleid" property="roleid" jdbcType="INTEGER" />
+    <result column="mingzhong" property="mingzhong" jdbcType="INTEGER" />
+    <result column="baoji" property="baoji" jdbcType="INTEGER" />
+    <result column="fanji" property="fanji" jdbcType="INTEGER" />
+    <result column="zhiming" property="zhiming" jdbcType="INTEGER" />
+    <result column="fabao" property="fabao" jdbcType="INTEGER" />
+    <result column="fanzhen" property="fanzhen" jdbcType="INTEGER" />
+    <result column="duobi" property="duobi" jdbcType="INTEGER" />
+    <result column="kwuli" property="kwuli" jdbcType="INTEGER" />
+    <result column="kxuanji" property="kxuanji" jdbcType="INTEGER" />
+    <result column="kweikun" property="kweikun" jdbcType="INTEGER" />
+    <result column="kraoluan" property="kraoluan" jdbcType="INTEGER" />
+    <result column="kfengsuo" property="kfengsuo" jdbcType="INTEGER" />
+    <result column="kfengsha" property="kfengsha" jdbcType="INTEGER" />
+    <result column="kyaohuo" property="kyaohuo" jdbcType="INTEGER" />
+    <result column="kluolei" property="kluolei" jdbcType="INTEGER" />
+    <result column="kdushu" property="kdushu" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, roleid, mingzhong, baoji, fanji, zhiming, fabao, fanzhen, duobi, kwuli, kxuanji, 
+    kweikun, kraoluan, kfengsuo, kfengsha, kyaohuo, kluolei, kdushu
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from role_shuxing
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from role_shuxing
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.hxsg.po.roleShuxing" >
+    insert into role_shuxing (id, roleid, mingzhong, 
+      baoji, fanji, zhiming, 
+      fabao, fanzhen, duobi, 
+      kwuli, kxuanji, kweikun, 
+      kraoluan, kfengsuo, kfengsha, 
+      kyaohuo, kluolei, kdushu
+      )
+    values (#{id,jdbcType=INTEGER}, #{roleid,jdbcType=INTEGER}, #{mingzhong,jdbcType=INTEGER}, 
+      #{baoji,jdbcType=INTEGER}, #{fanji,jdbcType=INTEGER}, #{zhiming,jdbcType=INTEGER}, 
+      #{fabao,jdbcType=INTEGER}, #{fanzhen,jdbcType=INTEGER}, #{duobi,jdbcType=INTEGER}, 
+      #{kwuli,jdbcType=INTEGER}, #{kxuanji,jdbcType=INTEGER}, #{kweikun,jdbcType=INTEGER}, 
+      #{kraoluan,jdbcType=INTEGER}, #{kfengsuo,jdbcType=INTEGER}, #{kfengsha,jdbcType=INTEGER}, 
+      #{kyaohuo,jdbcType=INTEGER}, #{kluolei,jdbcType=INTEGER}, #{kdushu,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.hxsg.po.roleShuxing" >
+    insert into role_shuxing
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="roleid != null" >
+        roleid,
+      </if>
+      <if test="mingzhong != null" >
+        mingzhong,
+      </if>
+      <if test="baoji != null" >
+        baoji,
+      </if>
+      <if test="fanji != null" >
+        fanji,
+      </if>
+      <if test="zhiming != null" >
+        zhiming,
+      </if>
+      <if test="fabao != null" >
+        fabao,
+      </if>
+      <if test="fanzhen != null" >
+        fanzhen,
+      </if>
+      <if test="duobi != null" >
+        duobi,
+      </if>
+      <if test="kwuli != null" >
+        kwuli,
+      </if>
+      <if test="kxuanji != null" >
+        kxuanji,
+      </if>
+      <if test="kweikun != null" >
+        kweikun,
+      </if>
+      <if test="kraoluan != null" >
+        kraoluan,
+      </if>
+      <if test="kfengsuo != null" >
+        kfengsuo,
+      </if>
+      <if test="kfengsha != null" >
+        kfengsha,
+      </if>
+      <if test="kyaohuo != null" >
+        kyaohuo,
+      </if>
+      <if test="kluolei != null" >
+        kluolei,
+      </if>
+      <if test="kdushu != null" >
+        kdushu,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="roleid != null" >
+        #{roleid,jdbcType=INTEGER},
+      </if>
+      <if test="mingzhong != null" >
+        #{mingzhong,jdbcType=INTEGER},
+      </if>
+      <if test="baoji != null" >
+        #{baoji,jdbcType=INTEGER},
+      </if>
+      <if test="fanji != null" >
+        #{fanji,jdbcType=INTEGER},
+      </if>
+      <if test="zhiming != null" >
+        #{zhiming,jdbcType=INTEGER},
+      </if>
+      <if test="fabao != null" >
+        #{fabao,jdbcType=INTEGER},
+      </if>
+      <if test="fanzhen != null" >
+        #{fanzhen,jdbcType=INTEGER},
+      </if>
+      <if test="duobi != null" >
+        #{duobi,jdbcType=INTEGER},
+      </if>
+      <if test="kwuli != null" >
+        #{kwuli,jdbcType=INTEGER},
+      </if>
+      <if test="kxuanji != null" >
+        #{kxuanji,jdbcType=INTEGER},
+      </if>
+      <if test="kweikun != null" >
+        #{kweikun,jdbcType=INTEGER},
+      </if>
+      <if test="kraoluan != null" >
+        #{kraoluan,jdbcType=INTEGER},
+      </if>
+      <if test="kfengsuo != null" >
+        #{kfengsuo,jdbcType=INTEGER},
+      </if>
+      <if test="kfengsha != null" >
+        #{kfengsha,jdbcType=INTEGER},
+      </if>
+      <if test="kyaohuo != null" >
+        #{kyaohuo,jdbcType=INTEGER},
+      </if>
+      <if test="kluolei != null" >
+        #{kluolei,jdbcType=INTEGER},
+      </if>
+      <if test="kdushu != null" >
+        #{kdushu,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hxsg.po.roleShuxing" >
+    update role_shuxing
+    <set >
+      <if test="roleid != null" >
+        roleid = #{roleid,jdbcType=INTEGER},
+      </if>
+      <if test="mingzhong != null" >
+        mingzhong = #{mingzhong,jdbcType=INTEGER},
+      </if>
+      <if test="baoji != null" >
+        baoji = #{baoji,jdbcType=INTEGER},
+      </if>
+      <if test="fanji != null" >
+        fanji = #{fanji,jdbcType=INTEGER},
+      </if>
+      <if test="zhiming != null" >
+        zhiming = #{zhiming,jdbcType=INTEGER},
+      </if>
+      <if test="fabao != null" >
+        fabao = #{fabao,jdbcType=INTEGER},
+      </if>
+      <if test="fanzhen != null" >
+        fanzhen = #{fanzhen,jdbcType=INTEGER},
+      </if>
+      <if test="duobi != null" >
+        duobi = #{duobi,jdbcType=INTEGER},
+      </if>
+      <if test="kwuli != null" >
+        kwuli = #{kwuli,jdbcType=INTEGER},
+      </if>
+      <if test="kxuanji != null" >
+        kxuanji = #{kxuanji,jdbcType=INTEGER},
+      </if>
+      <if test="kweikun != null" >
+        kweikun = #{kweikun,jdbcType=INTEGER},
+      </if>
+      <if test="kraoluan != null" >
+        kraoluan = #{kraoluan,jdbcType=INTEGER},
+      </if>
+      <if test="kfengsuo != null" >
+        kfengsuo = #{kfengsuo,jdbcType=INTEGER},
+      </if>
+      <if test="kfengsha != null" >
+        kfengsha = #{kfengsha,jdbcType=INTEGER},
+      </if>
+      <if test="kyaohuo != null" >
+        kyaohuo = #{kyaohuo,jdbcType=INTEGER},
+      </if>
+      <if test="kluolei != null" >
+        kluolei = #{kluolei,jdbcType=INTEGER},
+      </if>
+      <if test="kdushu != null" >
+        kdushu = #{kdushu,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hxsg.po.roleShuxing" >
+    update role_shuxing
+    set roleid = #{roleid,jdbcType=INTEGER},
+      mingzhong = #{mingzhong,jdbcType=INTEGER},
+      baoji = #{baoji,jdbcType=INTEGER},
+      fanji = #{fanji,jdbcType=INTEGER},
+      zhiming = #{zhiming,jdbcType=INTEGER},
+      fabao = #{fabao,jdbcType=INTEGER},
+      fanzhen = #{fanzhen,jdbcType=INTEGER},
+      duobi = #{duobi,jdbcType=INTEGER},
+      kwuli = #{kwuli,jdbcType=INTEGER},
+      kxuanji = #{kxuanji,jdbcType=INTEGER},
+      kweikun = #{kweikun,jdbcType=INTEGER},
+      kraoluan = #{kraoluan,jdbcType=INTEGER},
+      kfengsuo = #{kfengsuo,jdbcType=INTEGER},
+      kfengsha = #{kfengsha,jdbcType=INTEGER},
+      kyaohuo = #{kyaohuo,jdbcType=INTEGER},
+      kluolei = #{kluolei,jdbcType=INTEGER},
+      kdushu = #{kdushu,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

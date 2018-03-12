@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hxsg.Dao.GoldRecordMapper" >
+  <resultMap id="BaseResultMap" type="com.hxsg.po.GoldRecord" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="sellRoleId" property="sellroleid" jdbcType="INTEGER" />
+    <result column="sellRoleName" property="sellrolename" jdbcType="VARCHAR" />
+    <result column="sellNum" property="sellnum" jdbcType="INTEGER" />
+    <result column="buyRoleId" property="buyroleid" jdbcType="INTEGER" />
+    <result column="buyRoleName" property="buyrolename" jdbcType="VARCHAR" />
+    <result column="date" property="date" jdbcType="TIMESTAMP" />
+    <result column="status" property="status" jdbcType="VARCHAR" />
+    <result column="type" property="type" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, sellRoleId, sellRoleName, sellNum, buyRoleId, buyRoleName, date, status, type
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from gold_record
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+    <select id="queryTransactionRecordForGold" resultMap="BaseResultMap" parameterType="com.hxsg.po.GoldRecord" >
+      select * from gold_record where date between current_date()-7  and  sysdate() and buyRoleid=#{buyroleid,jdbcType=INTEGER} and type=#{type,jdbcType=VARCHAR}
+    </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from gold_record
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.hxsg.po.GoldRecord" >
+    insert into gold_record (id, sellRoleId, sellRoleName, 
+      sellNum, buyRoleId, buyRoleName, 
+      date, status, type
+      )
+    values (#{id,jdbcType=INTEGER}, #{sellroleid,jdbcType=INTEGER}, #{sellrolename,jdbcType=VARCHAR}, 
+      #{sellnum,jdbcType=INTEGER}, #{buyroleid,jdbcType=INTEGER}, #{buyrolename,jdbcType=VARCHAR}, 
+      #{date,jdbcType=TIMESTAMP}, #{status,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.hxsg.po.GoldRecord" >
+    insert into gold_record
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="sellroleid != null" >
+        sellRoleId,
+      </if>
+      <if test="sellrolename != null" >
+        sellRoleName,
+      </if>
+      <if test="sellnum != null" >
+        sellNum,
+      </if>
+      <if test="buyroleid != null" >
+        buyRoleId,
+      </if>
+      <if test="buyrolename != null" >
+        buyRoleName,
+      </if>
+      <if test="date != null" >
+        date,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="sellroleid != null" >
+        #{sellroleid,jdbcType=INTEGER},
+      </if>
+      <if test="sellrolename != null" >
+        #{sellrolename,jdbcType=VARCHAR},
+      </if>
+      <if test="sellnum != null" >
+        #{sellnum,jdbcType=INTEGER},
+      </if>
+      <if test="buyroleid != null" >
+        #{buyroleid,jdbcType=INTEGER},
+      </if>
+      <if test="buyrolename != null" >
+        #{buyrolename,jdbcType=VARCHAR},
+      </if>
+      <if test="date != null" >
+        #{date,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hxsg.po.GoldRecord" >
+    update gold_record
+    <set >
+      <if test="sellroleid != null" >
+        sellRoleId = #{sellroleid,jdbcType=INTEGER},
+      </if>
+      <if test="sellrolename != null" >
+        sellRoleName = #{sellrolename,jdbcType=VARCHAR},
+      </if>
+      <if test="sellnum != null" >
+        sellNum = #{sellnum,jdbcType=INTEGER},
+      </if>
+      <if test="buyroleid != null" >
+        buyRoleId = #{buyroleid,jdbcType=INTEGER},
+      </if>
+      <if test="buyrolename != null" >
+        buyRoleName = #{buyrolename,jdbcType=VARCHAR},
+      </if>
+      <if test="date != null" >
+        date = #{date,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hxsg.po.GoldRecord" >
+    update gold_record
+    set sellRoleId = #{sellroleid,jdbcType=INTEGER},
+      sellRoleName = #{sellrolename,jdbcType=VARCHAR},
+      sellNum = #{sellnum,jdbcType=INTEGER},
+      buyRoleId = #{buyroleid,jdbcType=INTEGER},
+      buyRoleName = #{buyrolename,jdbcType=VARCHAR},
+      date = #{date,jdbcType=TIMESTAMP},
+      status = #{status,jdbcType=VARCHAR},
+      type = #{type,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hxsg.Dao.RoleWuPinMapper" >
+  <resultMap id="BaseResultMap" type="com.hxsg.po.RoleWuPin" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="roleid" property="roleid" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="num" property="num" jdbcType="INTEGER" />
+    <result column="type1" property="type1" jdbcType="VARCHAR" />
+    <result column="type2" property="type2" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="VARCHAR" />
+    <result column="wupinId" property="wupinid" jdbcType="INTEGER" />
+    <result column="custom1" property="custom1" jdbcType="VARCHAR" />
+    <result column="custom2" property="custom2" jdbcType="VARCHAR" />
+    <result column="custom3" property="custom3" jdbcType="VARCHAR" />
+    <result column="custom4" property="custom4" jdbcType="VARCHAR" />
+    <result column="custom5" property="custom5" jdbcType="VARCHAR" />
+    <result column="sell" property="sell" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, roleid, name, num, type1, type2, status, wupinId, custom1, custom2, custom3, 
+    custom4, custom5, sell
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from role_wupin
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+
+    <select id="queryZaWu" resultMap="BaseResultMap" parameterType="com.hxsg.po.RoleWuPin" >
+        select
+        <include refid="Base_Column_List" />
+        from role_wupin
+        where roleid =#{roleid,jdbcType=INTEGER} and type2 = #{type2,jdbcType=VARCHAR} and num&gt;0
+    </select>
+
+
+    <select id="selectAll" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+        select
+        <include refid="Base_Column_List" />
+        from role_wupin
+     <where>
+         <if test="id != null" >
+              id = #{id,jdbcType=INTEGER}
+         </if>
+         <if test="roleid != null" >
+             and roleid = #{roleid,jdbcType=INTEGER}
+         </if>
+         <if test="name != null" >
+             and  name = #{name,jdbcType=VARCHAR}
+         </if>
+         <if test="num != null" >
+             and num = #{num,jdbcType=INTEGER}
+         </if>
+         <if test="type1 != null" >
+             and  type1 = #{type1,jdbcType=VARCHAR}
+         </if>
+         <if test="type2 != null" >
+             and   type2 = #{type2,jdbcType=VARCHAR}
+         </if>
+         <if test="status != null" >
+             and status = #{status,jdbcType=VARCHAR}
+         </if>
+         <if test="wupinid != null" >
+             and  wupinId = #{wupinid,jdbcType=INTEGER}
+         </if>
+         <if test="custom1 != null" >
+             and  custom1 = #{custom1,jdbcType=VARCHAR}
+         </if>
+         <if test="custom2 != null" >
+             and custom2 = #{custom2,jdbcType=VARCHAR}
+         </if>
+         <if test="custom3 != null" >
+             and  custom3 = #{custom3,jdbcType=VARCHAR}
+         </if>
+         <if test="custom4 != null" >
+             and custom4 = #{custom4,jdbcType=VARCHAR}
+         </if>
+         <if test="custom5 != null" >
+             and  custom5 = #{custom5,jdbcType=VARCHAR}
+         </if>
+         <if test="sell != null" >
+             and  sell = #{sell,jdbcType=INTEGER}
+         </if>
+
+     </where>
+    </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from role_wupin
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.hxsg.po.RoleWuPin" >
+    insert into role_wupin (id, roleid, name, 
+      num, type1, type2, 
+      status, wupinId, custom1, 
+      custom2, custom3, custom4, 
+      custom5, sell)
+    values (#{id,jdbcType=INTEGER}, #{roleid,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, 
+      #{num,jdbcType=INTEGER}, #{type1,jdbcType=VARCHAR}, #{type2,jdbcType=VARCHAR}, 
+      #{status,jdbcType=VARCHAR}, #{wupinid,jdbcType=INTEGER}, #{custom1,jdbcType=VARCHAR}, 
+      #{custom2,jdbcType=VARCHAR}, #{custom3,jdbcType=VARCHAR}, #{custom4,jdbcType=VARCHAR}, 
+      #{custom5,jdbcType=VARCHAR}, #{sell,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hxsg.po.RoleWuPin" >
+    insert into role_wupin
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="roleid != null" >
+        roleid,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="num != null" >
+        num,
+      </if>
+      <if test="type1 != null" >
+        type1,
+      </if>
+      <if test="type2 != null" >
+        type2,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="wupinid != null" >
+        wupinId,
+      </if>
+      <if test="custom1 != null" >
+        custom1,
+      </if>
+      <if test="custom2 != null" >
+        custom2,
+      </if>
+      <if test="custom3 != null" >
+        custom3,
+      </if>
+      <if test="custom4 != null" >
+        custom4,
+      </if>
+      <if test="custom5 != null" >
+        custom5,
+      </if>
+      <if test="sell != null" >
+        sell,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="roleid != null" >
+        #{roleid,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="num != null" >
+        #{num,jdbcType=INTEGER},
+      </if>
+      <if test="type1 != null" >
+        #{type1,jdbcType=VARCHAR},
+      </if>
+      <if test="type2 != null" >
+        #{type2,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="wupinid != null" >
+        #{wupinid,jdbcType=INTEGER},
+      </if>
+      <if test="custom1 != null" >
+        #{custom1,jdbcType=VARCHAR},
+      </if>
+      <if test="custom2 != null" >
+        #{custom2,jdbcType=VARCHAR},
+      </if>
+      <if test="custom3 != null" >
+        #{custom3,jdbcType=VARCHAR},
+      </if>
+      <if test="custom4 != null" >
+        #{custom4,jdbcType=VARCHAR},
+      </if>
+      <if test="custom5 != null" >
+        #{custom5,jdbcType=VARCHAR},
+      </if>
+      <if test="sell != null" >
+        #{sell,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hxsg.po.RoleWuPin" >
+    update role_wupin
+    <set >
+      <if test="roleid != null" >
+        roleid = #{roleid,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="num != null" >
+        num = #{num,jdbcType=INTEGER},
+      </if>
+      <if test="type1 != null" >
+        type1 = #{type1,jdbcType=VARCHAR},
+      </if>
+      <if test="type2 != null" >
+        type2 = #{type2,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="wupinid != null" >
+        wupinId = #{wupinid,jdbcType=INTEGER},
+      </if>
+      <if test="custom1 != null" >
+        custom1 = #{custom1,jdbcType=VARCHAR},
+      </if>
+      <if test="custom2 != null" >
+        custom2 = #{custom2,jdbcType=VARCHAR},
+      </if>
+      <if test="custom3 != null" >
+        custom3 = #{custom3,jdbcType=VARCHAR},
+      </if>
+      <if test="custom4 != null" >
+        custom4 = #{custom4,jdbcType=VARCHAR},
+      </if>
+      <if test="custom5 != null" >
+        custom5 = #{custom5,jdbcType=VARCHAR},
+      </if>
+      <if test="sell != null" >
+        sell = #{sell,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hxsg.po.RoleWuPin" >
+    update role_wupin
+    set roleid = #{roleid,jdbcType=INTEGER},
+      name = #{name,jdbcType=VARCHAR},
+      num = #{num,jdbcType=INTEGER},
+      type1 = #{type1,jdbcType=VARCHAR},
+      type2 = #{type2,jdbcType=VARCHAR},
+      status = #{status,jdbcType=VARCHAR},
+      wupinId = #{wupinid,jdbcType=INTEGER},
+      custom1 = #{custom1,jdbcType=VARCHAR},
+      custom2 = #{custom2,jdbcType=VARCHAR},
+      custom3 = #{custom3,jdbcType=VARCHAR},
+      custom4 = #{custom4,jdbcType=VARCHAR},
+      custom5 = #{custom5,jdbcType=VARCHAR},
+      sell = #{sell,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

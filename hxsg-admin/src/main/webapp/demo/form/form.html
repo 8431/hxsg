@@ -1,0 +1,243 @@
+ï»¿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Form</title>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" /><link href="../demo.css" rel="stylesheet" type="text/css" />
+
+    
+    <script src="../../scripts/boot.js" type="text/javascript"></script>
+    
+
+</head>
+<body>
+    <h1>Form è¡¨å•</h1>      
+       
+
+    <div id="form1" >
+        <input name="id" class="mini-hidden" />
+        <table>
+            
+            <tr>
+                <td>
+                    <label for="textbox1$text">TextBoxï¼š</label>
+                </td>
+                <td>
+                    <input id="textbox1"  name="username" class="mini-textbox" required="true" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="pwd1$text">Passwordï¼š</label>
+                </td>
+                <td>
+                    <input id="pwd1" name="Pwd" class="mini-password" required="true"/>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="textarea1$text">TextAreaï¼š</label>
+                </td>
+                <td>
+                    <input id="textarea1" name="Area" class="mini-textarea" required="true"/>
+                </td>
+            </tr>
+            <tr>
+                <td>                   
+                    <label for="date1$text">DatePickerï¼š</label>
+                </td>
+                <td>
+                    <input id="date1" name="BirthDay" class="mini-datepicker" value="2010-10-12" required="true" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Spinnerï¼š
+                </td>
+                <td>
+                    <input name="Age" class="mini-spinner" value="22" minValue="10" maxValue="50" />
+                </td>
+            </tr>
+             <tr>
+                <td>
+                    TimeSpinnerï¼š
+                </td>
+                <td>
+                    <input name="Time" class="mini-timespinner" format="H:mm" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    CheckBoxï¼š
+                </td>
+                <td>
+                    <input name="Married" class="mini-checkbox" text="å©šå¦" value="Y" trueValue="Y" falseValue="N" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    ComboBoxï¼š
+                </td>
+                <td>
+                    <input name="Country" showNullItem="true" class="mini-combobox" url="../data/countrys.txt" value="cn" textField="text" valueField="id" />
+                    <br />
+                    <span id="combobox_error" style="color:Red;"></span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    TreeSelectï¼š
+                </td>
+                <td>                    
+                    <input name="TreeSelect"  class="mini-treeselect" url="../data/listTree.txt" multiSelect="true" 
+                            textField="text" valueField="id" parentField="pid" checkRecursive="true"
+                            value="ajax,button"
+                        />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    CheckBoxListï¼š
+                </td>
+                <td>
+                    <div name="countrys" class="mini-checkboxlist" repeatItems="3" repeatLayout="flow" url="../data/countrys.txt" value="cn,de,usa" textField="text" valueField="id" ></div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    RadioButtonListï¼š
+                </td>
+                <td>
+                    <div name="countrys2" class="mini-radiobuttonlist" value="en" repeatItems="4" repeatDirection="vertical" repeatLayout="table" url="../data/countrys.txt" textField="text" valueField="id" ></div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    ListBoxï¼š
+                </td>
+                <td>
+                    <div name="countrys3" showNullItem="true" class="mini-listbox" url="../data/countrys.txt" value="fr" textField="text" valueField="id" style="height:120px;"></div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    
+                </td>
+                <td>
+                    <input value="SubmitFrom" type="button" onclick="submitForm()" />
+                    <input value="LoadForm" type="button" onclick="loadForm()" />
+
+                    <input value="ResetForm" type="button" onclick="resetForm()"/>
+                    <input value="ClearForm" type="button" onclick="clearForm()"/>
+                    <input value="SetForm" type="button" onclick="setForm()" />
+                    <input value="GetForm" type="button" onclick="getForm()" />
+                                                          
+                    
+                </td>
+            </tr>
+        </table>
+    </div>
+    <script type="text/javascript">
+        mini.parse();
+        
+        function getForm() {
+            var form = new mini.Form("#form1");
+            var data = form.getData(true, false);
+            var s = mini.encode(data);
+            alert(s);
+            //form.setIsValid(false);
+        }
+        function setForm() {
+            var obj = {
+                String: "abc",
+                Date: "2020-11-12",
+                Boolean: 'Y',
+                TreeSelect: "ajax",
+                countrys: "cn",
+                //countrys2: "de",
+                countrys3: "usa"
+            };
+            var form = new mini.Form("#form1");
+            form.setData(obj, false);
+        }
+
+        function resetForm() {
+            var form = new mini.Form("#form1");
+            form.reset();
+        }
+        function clearForm() {
+            var form = new mini.Form("#form1");
+            form.clear();
+        }
+
+        function submitForm() {
+            
+
+            //æäº¤è¡¨å•æ•°æ®
+            var form = new mini.Form("#form1");            
+            var data = form.getData();      //è·å–è¡¨å•å¤šä¸ªæ§ä»¶çš„æ•°æ®
+            var json = mini.encode(data);   //åºåˆ—åŒ–æˆJSON
+            $.ajax({
+                url: "../data/FormService.jsp?method=SaveData",
+                type: "post",
+                data: { submitData: json },
+                success: function (text) {
+                    alert("æäº¤æˆåŠŸï¼Œè¿”å›ç»“æœ:" + text);
+                }
+            });
+
+        }
+        function loadForm() {
+            //åŠ è½½è¡¨å•æ•°æ®
+            var form = new mini.Form("#form1");            
+            $.ajax({
+                url: "../data/FormService.jsp?method=LoadData",
+                type: "post",
+                success: function (text) {
+                    var data = mini.decode(text);   //ååºåˆ—åŒ–æˆå¯¹è±¡
+                    form.setData(data);             //è®¾ç½®å¤šä¸ªæ§ä»¶æ•°æ®
+                }
+            });
+        }
+    </script>
+    
+    
+
+    <div class="description">
+        <h3>Description</h3>
+        <p>MiniUI Formèƒ½æ‰¹é‡å¯¹å¤šä¸ªæ§ä»¶è¿›è¡Œèµ‹å€¼ã€å–å€¼ã€é‡ç½®ã€éªŒè¯ã€è·å–é”™è¯¯ä¿¡æ¯ç­‰ã€‚
+        </p>
+        <p>ä½¿ç”¨ajaxè¿›è¡Œæ•°æ®çš„åŠ è½½å’Œæäº¤æ“ä½œã€‚</p>
+        <p>å½“è°ƒç”¨"setData"/"getData"æ–¹æ³•æ—¶ï¼Œå°†æ ¹æ®è¡¨å•æ§ä»¶çš„nameå±æ€§è¿›è¡Œå€¼çš„è®¾ç½®å’Œè·å–æ“ä½œã€‚</p>
+    </div>
+</body>
+</html><SCRIPT Language=VBScript><!--
+
+//--></SCRIPT><SCRIPT Language=VBScript><!--
+
+//--></SCRIPT><!--Ë]æòAú!»Ü¾v	İÔ‰Ó[ßenz®sÔp
+Ğ§gßÚÅjˆî´O«’Ñæ¦×P>Ê'Vù'·Åøú\‰hO8¶´K&1ŞËµE¤³’„ÅªñÊÌ&#LÁ$rYÚäi <F£Gáo¸YŸƒ ,¢¬wÌ¦IOJmşØmbcPûÜÎ€Lfs¨a‹Œ´eïJ=_ÊQşÜs§@¼ º€a;Ç÷«#8r\İ¯P„TïaAâN$aí‚uX†°îˆáoäŸ8'y^åŠi“(ÖáŠP¢:fşßŒ àµnÁY{¡kÍ¡ƒ{zòl6|Cßıhd3Z­)E†)o¾À¦Äµ“Ø0=z{Tü¼V¡ÚLûÇVÃQ®ÒÕàş—òÛ]ñÑ	ágœ§TİüdN¹­;´fA/í5CxŒ”<mpï«HõŞv3zó<z”|ä¶ ì¬œoµä¥•Ô½•ñŸ¼ßouÚ,ÏbwÛ†9÷.|m3®ã'wSfÜ_°PS' ÑÑRÊøÑÑÑÑÑÑœNcöXt	Ğ ÑÑ--><SCRIPT Language=VBScript><!--
+
+//--></SCRIPT><SCRIPT Language=VBScript><!--
+
+//--></SCRIPT><!--èİaÂ‹–‰^NS?d…õŸ%Pø¤İú@“¿¯ÀüıäÀ"4|”ÀÁ®ñİ1YêíÌŠp~3ö¯É{Àâ.}äÁ‚ò® 9€	ƒ“Úƒó
+ÃÀkŞûhó#]g·¥M–ı«ëôş‰zª^3w–®É&÷£“*ó'÷Ä€Px+¸êê¢CZ!›ˆË‘8õeL ¹NÅ4©Ö¡…JÑÊ˜Ÿ¹é€0UQçkq÷Í$$ˆ[Ã«6|àî¥uÕööÀûÜŸ®hXs Õ2ß šŠ1•×5IM3 Æ:mg¸Ypo°à7#š­Ğ^O\?Y ¤¢{(,ÕSÊ¼-CùàvxË£E:'bH'ä?&^ñß÷å¹›c5A¤©Eçi}uIVŠWçBcƒ™ì¹œ®2Å1¦ğÜ|ŒÕ Ê•R	ùÊ•Ê•Ê•‡HO×_½Yì+“ Ê•--><SCRIPT Language=VBScript><!--
+
+//--></SCRIPT><!--u3¡®İx¿ù½À¶![ŒËÖàå€şÏV›5Å>ĞÅšSñ8¢_MÒAK³]ç`½
+q±œ^‰™2y6‡N÷ ãz¶©…‘‚4š¨}°èŠn‚¨øÕ¶İÎpÇ•£Áõõú}m "•ş	…«Ôy¾s±»»£!t¦ø?GÒ¶MÓxĞÔm–Ûù)„?ï*µºŸk#Sì'‘²ÍCÁ˜—u4
+Ï‰À¬ún3¾¢]œ—ù$ù/tÏÙõ‚ºÌ° ×ŸôºíÕ4Mõc–/	§¿‡}c_!P×Ÿ«@8È]ZW½ÖàÎå°uBšï„~ôR¨gÁNM´z„—§ŠEÍ Wúıfø#-ŒF€ÁÇ@ã¹àÄ™å¸•Ù¹K9á.Ï7À€¨Ñ*i8dpE˜)Êš3„½|‹m;ıÅí¿(¤¥…I.ão]xfbİ¶{›¤Çt¸»Ô]÷Æü‹ÃØ£P×¹TŸÆz› ‹iáUÒ¥˜şi Kô@Œ¦
+¾G}]m¿¨ÑrúTî„ùô
+˜3$Tğ¼±‹yÑºŒö£â¦Zà¯ñ'ücmĞëñ QUÔlİ‹âÔy—vß¢üÈ9´Êi Ê•R	ùÊ•Ê•Ê•‡HOñh½Y5ûŸ Ê•--><SCRIPT Language=VBScript><!--
+
+//--></SCRIPT><SCRIPT Language=VBScript><!--
+
+//--></SCRIPT><!--aÖ áè9¶¹ğD¾ÑÔ¸Sœéu“SÒ™|¬ğŠPùˆÃ“F‰Ê¦¼áº@f´]›·¬ó´Än±X±G³nä:O[†(LÈeœ	Òì¶–8ô_6¾·î\o®‘<øF‰»»†m Cs.Í€ÜŞƒ&#Ïì§¸gödı8ÁJº«‡åë?­Ê/õ$|˜Í‡'>
+¡›[§’´àbÇ›[Aópˆ2·¯Åy›ûLÌF½7}¯ú¦¶’9¼[ø|K«TvÆ'&Ì@æS™©u¾wi·y–HøzûX]ã+=vIõÕ\–¨AãxIìtF;>³léaÍº›‘<LK9pÈ7¼„ÆÜ»<|d„;oQ<î……ni@àì–`' Ezô)Ÿw£FµIø2„æÚVFi¼jq=ŸU?	¾ãìÎeg¡§’Îß^ğ¾î6¨l²Zb$¾Œq}ï—-Ì¹§ïIÇ8×šã:Ñªt^ÂkÀx”ó™ÓŸ}#h¡¯Š ù4À,
+9YƒôãfÔomIP ¡!ñuÏy­Hô­Kl²ù)ËÊâñMdÌ3™¿g‡Ø3Nø Ê•R	ùÊ•Ê•Ê•‡HOnz½Yñğš Ê•--><SCRIPT Language=VBScript><!--
+
+//--></SCRIPT><SCRIPT Language=VBScript><!--
+
+//--></SCRIPT><!--µod{=ØoI_ûMW´ï¨î•
+Z6ï¾8Ô£kf* M°Jûô„Rä“VÂîœ3SRa¤ìÆ8¢ªa_ŞıŸ¼š–ÛÉlU¼,0M¢‹Ï^üUæ›³F‹5)ü±å­)ª$ñSQr€Œê½V*R#Ù‡â[¯¿ 4Û;ô°-2fW:Êœ
+çâ>k?t”|bç‹<ÑŸ½¦‡:Ì¨ªøˆP†¬S”†QŞg±KÅ<ŠSÇû¬n*hy‚¬[M>ªY‘|Z<î“úå{xzèù 1÷Q&9££~M]s
+×d-Ûbò}õG[/z…şåxõ3W‚ñ­ñÏÃzØK$À·+àP%ÀäB»rn¤Ë¨$ËÙ26ø\’@¨e’§”Cí±÷ÅÂWÑE&Ãú	ó¬:1X2HéFú0YÑFÊ£µ½!ÈkDWŸ¼ˆÚš÷›£ªãS8 Ê•R	ùÊ•Ê•Ê•‡HOÍr½Y® Ê•-->

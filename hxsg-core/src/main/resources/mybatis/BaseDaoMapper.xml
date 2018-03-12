@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hxsg.Dao.IHxsgBaseDao">
+    <select id="totalsize" parameterType="java.util.Map" resultType="java.lang.Integer">
+        select count(1)
+        from
+        ${tablename}
+    </select>
+    <select id="selectEverythingToTableName" parameterType="java.util.Map" resultType="java.util.Map">
+        ${sql}
+    </select>
+    <select id="getTableColumn" parameterType="java.lang.String" resultType="com.hxsg.vo.ColumnAndComment">
+     select  column_name columnName, column_comment columnComment  from information_schema.columns
+    where table_schema =#{0,jdbcType=VARCHAR}  and table_name = #{1,jdbcType=VARCHAR};
+    </select>
+    <!--MYSQL数据库查询数据（未分页，数据较少由前台插件分页）-->
+    <select id="mybatisQueryPage" resultType="java.util.Map" parameterType="java.util.Map">
+     SELECT * FROM  ${tablename} order by id desc
+    </select>
+    <!--MYSQL数据库对于任意的表进行批量新增-->
+    <insert id="insertEverythingToTableName" parameterType="java.util.Map">
+        insert into ${tablename}(
+        <foreach collection="key" item="keyItem" index="index" separator=",">
+            ${keyItem}
+        </foreach>
+        )VALUES
+        <foreach collection="value" item="valueItem" index="valueIndex" separator=",">
+            (
+            <foreach collection="englishcloum" item="englishcloumItem" index="englishcloumindex" separator=",">
+                <foreach collection="valueItem" item="valueItemItem" index="valueItemIndex" separator=",">
+                    <if test='englishcloumItem==valueItemIndex'>
+                      #{valueItemItem}
+                    </if>
+                </foreach>
+            </foreach>
+            )
+        </foreach>
+    </insert>
+    <!--MYSQL数据库对于任意的表进行批量更新-->
+    <update id="updateTableToEverthing" parameterType="java.util.Map">
+        update
+        ${tablename}
+        <set>
+            <foreach collection="par" item="k" index="key"
+                     separator=" , ">
+                <if test="key!='tablename'">
+                    ${key}= #{k}
+                </if>
+            </foreach>
+        </set>
+        where
+        <foreach collection="mpwhere" item="item" index="index"
+                 separator=" and ">
+            ${index}=#{item}
+        </foreach>
+    </update>
+    <!--MYSQL数据库对于任意的表进行批量更新-->
+    <delete id="deleteToEverthing" parameterType="java.util.Map">
+       delete from   ${tablename} where id in (
+        <foreach collection="del" item="item" index="index"
+                 separator=", ">
+            #{item}
+        </foreach>
+
+
+       )
+
+    </delete>
+    <select id="exuSql" parameterType="java.util.Map" resultMap="BaseResultMap">
+    ${sql}
+</select>
+
+
+    <resultMap id="BaseResultMap" type="java.util.HashMap" >
+        <id column="id" property="id" jdbcType="INTEGER" />
+        <result column="IMG" property="name" jdbcType="VARCHAR" />
+        <result column="CHUJING" property="chujing" jdbcType="INTEGER" />
+        <result column="SUDUDS" property="sududs" jdbcType="INTEGER" />
+        <result column="CHENGHAO" property="chenghao" jdbcType="VARCHAR" />
+        <result column="JIN" property="jin" jdbcType="INTEGER" />
+        <result column="SHENGJIXIAOLV" property="shengjixiaolv" jdbcType="INTEGER" />
+        <result column="CHENGZHANG" property="chengzhang" jdbcType="VARCHAR" />
+        <result column="totalJing2" property="totaljing2" jdbcType="INTEGER" />
+        <result column="SUMDS" property="sumds" jdbcType="INTEGER" />
+        <result column="TOTALJING1" property="totaljing1" jdbcType="INTEGER" />
+        <result column="TOTALXUE1" property="totalxue1" jdbcType="INTEGER" />
+        <result column="TOTALXUE2" property="totalxue2" jdbcType="INTEGER" />
+        <result column="TILIZHI" property="tilizhi" jdbcType="INTEGER" />
+        <result column="QIXUE" property="qixue" jdbcType="INTEGER" />
+        <result column="KEYONGDS" property="keyongds" jdbcType="INTEGER" />
+        <result column="GONGJIDS" property="gongjids" jdbcType="INTEGER" />
+        <result column="YIN" property="yin" jdbcType="INTEGER" />
+        <result column="QIXUEDS" property="qixueds" jdbcType="INTEGER" />
+        <result column="LEVEL" property="level" jdbcType="INTEGER" />
+        <result column="SEX" property="sex" jdbcType="VARCHAR" />
+        <result column="JINGLI" property="jingli" jdbcType="INTEGER" />
+        <result column="JINGLIDS" property="jinglids" jdbcType="INTEGER" />
+        <result column="ZHIYE" property="zhiye" jdbcType="VARCHAR" />
+        <result column="JINGYAN" property="jingyan" jdbcType="INTEGER" />
+        <result column="ZUOBIAO" property="zuobiao" jdbcType="VARCHAR" />
+        <result column="CHUGONG" property="chugong" jdbcType="INTEGER" />
+        <result column="CHUSU" property="chusu" jdbcType="INTEGER" />
+        <result column="ROLENAME" property="rolename" jdbcType="VARCHAR" />
+        <result column="ACCOUNT" property="account" jdbcType="VARCHAR" />
+        <result column="TOTALJY" property="totaljy" jdbcType="INTEGER" />
+        <result column="CHUXUE" property="chuxue" jdbcType="INTEGER" />
+        <result column="STATUS" property="status" jdbcType="VARCHAR" />
+        <result column="IMG" property="img" jdbcType="VARCHAR" />
+    </resultMap>
+
+
+
+
+</mapper>

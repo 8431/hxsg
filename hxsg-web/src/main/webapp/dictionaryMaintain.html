@@ -1,0 +1,104 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>字典明细</title>
+<link href="css/base.css" rel="stylesheet" type="text/css" />
+<link href="css/style_L.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" language="javascript" src="js/tab.js"></script>
+</head>
+<body>
+<!-- 头部开始 -->
+<div class="header">
+    <div class="left">咕叽三国</div>
+    <ul class="right">
+        <li><a href="#" class="doc_logo_L"></a></li>
+        <li class="first">管理员</li>
+        <li class="first second">咕叽</li>
+        <li name="exit" class="pic head_tuichu"></li>
+        <li name="exit" class="first second third head_tuichu">退出</li>				
+    </ul>
+</div>
+<!-- 头部结束 -->
+<!-- 导航开始 -->
+<div class="nav">
+    <ul class="nav-1">
+        <li><a href="dictionaryMaintain.html" class="sendingRules"><span class="act_icon"></span>数据管理</a></li>
+    </ul>
+</div>
+<!-- 导航结束 -->
+<div class="page_body">
+    <div class="left_main_business">
+    	<div class="beside clearfix">
+            <select class="" id="js_dictionary_option">
+                <option value="1">主数据管理</option>
+                <option value="0">副数据管理</option>
+            </select>
+            <div class="beside_Title">
+                <input type="text" alt="selcet" />
+                <span id="searchDictionary"></span>
+            </div>   
+        </div>
+        <div class="beside_Con">
+            <ul id="js_dictionary_List">
+            </ul>
+        </div>
+    </div>
+    <div class="right_secondary_business">
+        <div class="nav_box">
+            <ul class="navigation_L clearfix">
+                <li class="leftLi active"><a href="javascript:void(0);">数据明细</a></li>
+          
+            </ul>
+        </div>
+        <div class="wordbook" id="js_dictionary">
+            <table class="sysTable" id="js_dictionary_TB">
+                <thead id="js_dictionarydetail_th">
+                </thead>
+                <tbody id="js_dictionarydetail_td">
+                </tbody>
+            </table>
+        </div>
+        <div class="fenye toCenter js_pageList">
+            <!-- <a class="fenye_a" href="#">首页</a>
+            <a class="fenye_a1" href="#"> &lt; </a>
+            <span class="fenye_span">1/10页</span>
+            <a class="fenye_a2" href="#"> &gt; </a>
+            <a class="fenye_a" href="#">尾页</a> -->
+        </div>
+    </div>
+</div>
+
+<!-- 底部开始 -->
+<div class="footer">Copyright &copy; 咕叽三国网络有限公司版权所有</div>
+<!-- 底部结束 -->
+
+<!--弹窗iframe-->
+<div class="iframe_box"></div>
+<div class="iframe_boxW"></div>
+
+<div class="popLoading">
+	
+</div>
+
+<div class="popUp infoUp">
+  <div class="popUp_head">
+    <span></span>
+    <input class="popClose" type="button" value="" name="" />
+  </div>
+  <div class="popUp_content">
+    <p class="popUp_p"></p>
+    <div class="btnBox">
+    	<input class="button_red" type="button" value="确定" name="Confirm" />
+        <input class="button_gray ml15 cancel" type="button" value="取消" name="cancel" />
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript" language="javascript" src="js/jquery-1.9.1.min.js"></script>
+<script type="text/javascript" language="javascript" src="js/index.js"></script>
+<script type="text/javascript" language="javascript" src="js/popUpAll.js"></script>
+<script type="text/javascript" language="javascript" src="bridge-Service/portConfig.js"></script>
+<script type="text/javascript" language="javascript" src="bridge-Service/dictionaryBridge.js"></script>
+</body>
+</html>

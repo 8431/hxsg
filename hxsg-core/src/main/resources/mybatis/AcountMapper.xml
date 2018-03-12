@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hxsg.Dao.AcountMapper" >
+    <resultMap id="BaseResultMap" type="com.hxsg.po.Acount" >
+        <id column="id" property="id" jdbcType="INTEGER" />
+        <result column="name" property="name" jdbcType="VARCHAR" />
+        <result column="password" property="password" jdbcType="VARCHAR" />
+        <result column="supperpass" property="supperpass" jdbcType="VARCHAR" />
+        <result column="telPhone" property="telphone" jdbcType="VARCHAR" />
+        <result column="status" property="status" jdbcType="VARCHAR" />
+        <result column="email" property="email" jdbcType="VARCHAR" />
+        <result column="lock" property="lock" jdbcType="VARCHAR" />
+        <result column="LoginTime" property="logintime" jdbcType="TIMESTAMP" />
+        <result column="custom1" property="custom1" jdbcType="VARCHAR" />
+        <result column="custom2" property="custom2" jdbcType="VARCHAR" />
+        <result column="custom3" property="custom3" jdbcType="VARCHAR" />
+        <result column="custom4" property="custom4" jdbcType="VARCHAR" />
+        <result column="custom5" property="custom5" jdbcType="VARCHAR" />
+        <result column="roleId" property="roleid" jdbcType="INTEGER" />
+    </resultMap>
+    <sql id="Base_Column_List" >
+        id, name, password, supperpass, telPhone, status, email, lock, LoginTime, custom1,
+        custom2, custom3, custom4, custom5, roleId
+    </sql>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+        select
+        *
+        from acount
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+
+    <!--验证登录-->
+    <select id="login" resultMap="BaseResultMap" parameterType="com.hxsg.po.Acount" >
+        select
+        *
+        from acount
+        where name = #{name,jdbcType=INTEGER} and password=#{password,jdbcType=INTEGER} and status='0'
+    </select>
+    <!--检查账号重复-->
+    <select id="checkdAcount" resultMap="BaseResultMap" parameterType="com.hxsg.po.Acount" >
+        select
+        *
+        from acount
+        where name = #{name,jdbcType=INTEGER}
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+        delete from acount
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" parameterType="com.hxsg.po.Acount" >
+        insert into acount (id, name, password,
+        supperpass, telPhone, status,
+        email, lock, LoginTime,
+        custom1, custom2, custom3,
+        custom4, custom5, roleId
+        )
+        values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR},
+        #{supperpass,jdbcType=VARCHAR}, #{telphone,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR},
+        #{email,jdbcType=VARCHAR}, #{lock,jdbcType=VARCHAR}, #{logintime,jdbcType=TIMESTAMP},
+        #{custom1,jdbcType=VARCHAR}, #{custom2,jdbcType=VARCHAR}, #{custom3,jdbcType=VARCHAR},
+        #{custom4,jdbcType=VARCHAR}, #{custom5,jdbcType=VARCHAR}, #{roleid,jdbcType=INTEGER}
+        )
+    </insert>
+    <insert id="insertSelective" parameterType="com.hxsg.po.Acount" >
+        insert into acount
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="id != null" >
+                id,
+            </if>
+            <if test="name != null" >
+                name,
+            </if>
+            <if test="password != null" >
+                password,
+            </if>
+            <if test="supperpass != null" >
+                supperpass,
+            </if>
+            <if test="telphone != null" >
+                telPhone,
+            </if>
+            <if test="status != null" >
+                status,
+            </if>
+            <if test="email != null" >
+                email,
+            </if>
+            <if test="lock != null" >
+                lock,
+            </if>
+            <if test="logintime != null" >
+                LoginTime,
+            </if>
+            <if test="custom1 != null" >
+                custom1,
+            </if>
+            <if test="custom2 != null" >
+                custom2,
+            </if>
+            <if test="custom3 != null" >
+                custom3,
+            </if>
+            <if test="custom4 != null" >
+                custom4,
+            </if>
+            <if test="custom5 != null" >
+                custom5,
+            </if>
+            <if test="roleid != null" >
+                roleId,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="id != null" >
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="name != null" >
+                #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="password != null" >
+                #{password,jdbcType=VARCHAR},
+            </if>
+            <if test="supperpass != null" >
+                #{supperpass,jdbcType=VARCHAR},
+            </if>
+            <if test="telphone != null" >
+                #{telphone,jdbcType=VARCHAR},
+            </if>
+            <if test="status != null" >
+                #{status,jdbcType=VARCHAR},
+            </if>
+            <if test="email != null" >
+                #{email,jdbcType=VARCHAR},
+            </if>
+            <if test="lock != null" >
+                #{lock,jdbcType=VARCHAR},
+            </if>
+            <if test="logintime != null" >
+                #{logintime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="custom1 != null" >
+                #{custom1,jdbcType=VARCHAR},
+            </if>
+            <if test="custom2 != null" >
+                #{custom2,jdbcType=VARCHAR},
+            </if>
+            <if test="custom3 != null" >
+                #{custom3,jdbcType=VARCHAR},
+            </if>
+            <if test="custom4 != null" >
+                #{custom4,jdbcType=VARCHAR},
+            </if>
+            <if test="custom5 != null" >
+                #{custom5,jdbcType=VARCHAR},
+            </if>
+            <if test="roleid != null" >
+                #{roleid,jdbcType=INTEGER},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.hxsg.po.Acount" >
+        update acount
+        <set >
+            <if test="name != null" >
+                name = #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="password != null" >
+                password = #{password,jdbcType=VARCHAR},
+            </if>
+            <if test="supperpass != null" >
+                supperpass = #{supperpass,jdbcType=VARCHAR},
+            </if>
+            <if test="telphone != null" >
+                telPhone = #{telphone,jdbcType=VARCHAR},
+            </if>
+            <if test="status != null" >
+                status = #{status,jdbcType=VARCHAR},
+            </if>
+            <if test="email != null" >
+                email = #{email,jdbcType=VARCHAR},
+            </if>
+            <if test="lock != null" >
+                lock = #{lock,jdbcType=VARCHAR},
+            </if>
+            <if test="logintime != null" >
+                LoginTime = #{logintime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="custom1 != null" >
+                custom1 = #{custom1,jdbcType=VARCHAR},
+            </if>
+            <if test="custom2 != null" >
+                custom2 = #{custom2,jdbcType=VARCHAR},
+            </if>
+            <if test="custom3 != null" >
+                custom3 = #{custom3,jdbcType=VARCHAR},
+            </if>
+            <if test="custom4 != null" >
+                custom4 = #{custom4,jdbcType=VARCHAR},
+            </if>
+            <if test="custom5 != null" >
+                custom5 = #{custom5,jdbcType=VARCHAR},
+            </if>
+            <if test="roleid != null" >
+                roleId = #{roleid,jdbcType=INTEGER},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.hxsg.po.Acount" >
+        update acount
+        set name = #{name,jdbcType=VARCHAR},
+        password = #{password,jdbcType=VARCHAR},
+        supperpass = #{supperpass,jdbcType=VARCHAR},
+        telPhone = #{telphone,jdbcType=VARCHAR},
+        status = #{status,jdbcType=VARCHAR},
+        email = #{email,jdbcType=VARCHAR},
+        lock = #{lock,jdbcType=VARCHAR},
+        LoginTime = #{logintime,jdbcType=TIMESTAMP},
+        custom1 = #{custom1,jdbcType=VARCHAR},
+        custom2 = #{custom2,jdbcType=VARCHAR},
+        custom3 = #{custom3,jdbcType=VARCHAR},
+        custom4 = #{custom4,jdbcType=VARCHAR},
+        custom5 = #{custom5,jdbcType=VARCHAR},
+        roleId = #{roleid,jdbcType=INTEGER}
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+</mapper>

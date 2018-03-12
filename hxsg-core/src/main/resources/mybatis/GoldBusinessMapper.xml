@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hxsg.Dao.GoldBusinessMapper" >
+  <resultMap id="BaseResultMap" type="com.hxsg.po.GoldBusiness" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="roleId" property="roleid" jdbcType="INTEGER" />
+    <result column="roleName" property="rolename" jdbcType="VARCHAR" />
+    <result column="num" property="num" jdbcType="INTEGER" />
+    <result column="price" property="price" jdbcType="INTEGER" />
+    <result column="date" property="date" jdbcType="TIMESTAMP" />
+    <result column="status" property="status" jdbcType="VARCHAR" />
+    <result column="type" property="type" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, roleId, roleName, num, price, date, status, type
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from gold_business
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+    <!--查询供求信息各三条-->
+    <select id="queryGoldBusiness" resultMap="BaseResultMap"  >
+           (SELECT sum(num)num,price,type FROM gold_business g where type='求' and status='出售中' group by price  order by price limit 0,3)union all
+           (SELECT sum(num)num,price,type FROM gold_business g where type='供' and status='出售中' group by price  order by price limit 0,3)
+    </select>
+    <!-- 根据价格查询出价人和详细出价数量-->
+    <select id="queryGoldShopMsg" resultMap="BaseResultMap"  parameterType="com.hxsg.po.GoldBusiness">
+    SELECT * FROM gold_business g where g.price=#{price,jdbcType=INTEGER} and type=#{type,jdbcType=VARCHAR} and status='出售中'
+    </select>
+    <!-- 出售的最低价格-->
+    <select id="minSell" resultType="java.lang.Integer">
+    SELECT min(price) FROM gold_business g where g.type='供' and status='出售中';
+    </select>
+    <!-- 求购的最高价格-->
+    <select id="maxBuy" resultType="java.lang.Integer">
+    SELECT max(price) FROM gold_business g where g.type='求' and status!='出售中';
+    </select>
+    <!--查询某个玩家截止到当前时间的前N=7天，出售或求购中的 未成交的交易详情-->
+    <select id="queryNoTransactionRecordForGold" resultType="com.hxsg.po.GoldBusiness">
+    SELECT * FROM gold_business g where type=#{type,jdbcType=VARCHAR}  and status='出售中' and date between current_date()-7  and  sysdate() and roleid=#{roleid,jdbcType=INTEGER}
+    </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from gold_business
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.hxsg.po.GoldBusiness" >
+    insert into gold_business (id, roleId, roleName, 
+      num, price, date, 
+      status, type)
+    values (#{id,jdbcType=INTEGER}, #{roleid,jdbcType=INTEGER}, #{rolename,jdbcType=VARCHAR}, 
+      #{num,jdbcType=INTEGER}, #{price,jdbcType=INTEGER}, #{date,jdbcType=TIMESTAMP}, 
+      #{status,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hxsg.po.GoldBusiness" >
+    insert into gold_business
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="roleid != null" >
+        roleId,
+      </if>
+      <if test="rolename != null" >
+        roleName,
+      </if>
+      <if test="num != null" >
+        num,
+      </if>
+      <if test="price != null" >
+        price,
+      </if>
+      <if test="date != null" >
+        date,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="roleid != null" >
+        #{roleid,jdbcType=INTEGER},
+      </if>
+      <if test="rolename != null" >
+        #{rolename,jdbcType=VARCHAR},
+      </if>
+      <if test="num != null" >
+        #{num,jdbcType=INTEGER},
+      </if>
+      <if test="price != null" >
+        #{price,jdbcType=INTEGER},
+      </if>
+      <if test="date != null" >
+        #{date,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hxsg.po.GoldBusiness" >
+    update gold_business
+    <set >
+      <if test="roleid != null" >
+        roleId = #{roleid,jdbcType=INTEGER},
+      </if>
+      <if test="rolename != null" >
+        roleName = #{rolename,jdbcType=VARCHAR},
+      </if>
+      <if test="num != null" >
+        num = #{num,jdbcType=INTEGER},
+      </if>
+      <if test="price != null" >
+        price = #{price,jdbcType=INTEGER},
+      </if>
+      <if test="date != null" >
+        date = #{date,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hxsg.po.GoldBusiness" >
+    update gold_business
+    set roleId = #{roleid,jdbcType=INTEGER},
+      roleName = #{rolename,jdbcType=VARCHAR},
+      num = #{num,jdbcType=INTEGER},
+      price = #{price,jdbcType=INTEGER},
+      date = #{date,jdbcType=TIMESTAMP},
+      status = #{status,jdbcType=VARCHAR},
+      type = #{type,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

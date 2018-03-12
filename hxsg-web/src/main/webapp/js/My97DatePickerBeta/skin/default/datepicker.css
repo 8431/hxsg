@@ -1,0 +1,290 @@
+/* 
+ * My97 DatePicker 4.8
+ */
+
+.WdateDiv{
+	width:180px;
+	background-color:#FFFFFF;/*整体背景色*/
+	border:#b20839 1px solid;/**/
+	/*padding:2px;*/
+	padding-bottom:3px;
+	font-family:Arial;
+}
+
+.WdateDiv2{
+	width:360px;
+}
+.WdateDiv *{font-size:9pt;}
+
+.WdateDiv .NavImg a{
+	display:block;
+	cursor:pointer;
+	height:16px;
+	width:16px;
+}
+
+.WdateDiv .NavImgll a{
+	float:left;
+	height:16px;
+	width:16px;
+	background:url(img.gif) no-repeat scroll 0 0;
+	margin-top:4px;
+	cursor:pointer;
+}
+.WdateDiv .NavImgl a{
+	float:left;
+	height:16px;
+	width:16px;
+	background:url(img.gif) no-repeat scroll -16px 0;
+	margin-top:4px;
+	cursor:pointer;
+}
+.WdateDiv .NavImgr a{
+	float:right;
+	height:16px;
+	width:16px;
+	background:url(img.gif) no-repeat scroll -32px 0;
+	margin-top:4px;
+	cursor:pointer;
+}
+.WdateDiv .NavImgrr a{
+	float:right;
+	height:16px;
+	width:16px;
+	background:url(img.gif) no-repeat scroll -48px 0;
+	margin-top:4px;
+	cursor:pointer;
+}
+
+.WdateDiv #dpTitle{/*年份，月份 背景框*/
+	height:24px;
+	/*margin-bottom:2px;*/
+	padding:2px;
+	background-color:#fbf2f5;
+	border-bottom:1px solid #c7cacd;
+}
+
+.WdateDiv .yminput{/*年月*/
+	margin-top:3px;
+	text-align:center;
+	height:20px;
+	border:0px;
+	width:50px;
+	cursor:pointer;
+	background-color:#fbf2f5;
+	vertical-align:middle;
+}
+
+.WdateDiv .yminputfocus{/*选择 月份  年份  框架*/
+	margin-top:2px;
+	text-align:center;
+	font-weight:bold;
+	height:20px;
+	color:blue;
+	border:#ccc 1px solid;
+	width:50px;
+}
+
+.WdateDiv .menuSel{/*选择年份，月份 框架  背景*/
+	z-index:1;
+	position:absolute;
+	background-color:#FFFFFF;	
+	border:#ccc 1px solid;
+	display:none;
+}
+
+.WdateDiv .menu{
+	cursor:pointer;
+	background-color:#fff;
+}
+
+.WdateDiv .menuOn{/*选择年份 月份 鼠标指向 背景色*/
+	cursor:pointer;
+	background-color:#fcd9e5;
+}
+
+.WdateDiv .invalidMenu{
+	color:#aaa;
+}
+
+.WdateDiv .YMenu{
+	margin-top:20px;
+	
+}
+
+.WdateDiv .MMenu{
+	margin-top:20px;
+	*width:62px;
+}
+
+.WdateDiv .hhMenu{
+	margin-top:-90px; 
+	margin-left:26px;
+}
+
+.WdateDiv .mmMenu{
+	margin-top:-46px; 
+	margin-left:26px;
+}
+
+.WdateDiv .ssMenu{
+	margin-top:-24px; 
+	margin-left:26px;
+}
+
+ .WdateDiv .Wweek {
+ 	text-align:center;
+	background:#DAF3F5;
+	border-right:#BDEBEE 1px solid;
+ }
+
+.WdateDiv .MTitle{/*周1-7 背景色*/
+	/*background-color:#BDEBEE;*/background-color:#eef2f6;
+}
+.WdateDiv .WdayTable2{
+	border-collapse:collapse;
+	border:#c5d9e8 1px solid;
+}
+.WdateDiv .WdayTable2 table{
+	border:0;
+}
+
+.WdateDiv .WdayTable{/*日期显示区外框架*/
+	line-height:20px;
+	border:#c5d9e8 0px solid;
+}
+.WdateDiv .WdayTable td{
+	text-align:center;
+}
+
+.WdateDiv .Wday{/*当月 周1-5字体颜色*/
+	cursor:pointer;
+	color:#666666;
+}
+
+.WdateDiv .WdayOn{/*周1-5 鼠标指向 当月 日期  背景色*/
+	cursor:pointer;
+	background-color:#fcd9e5;
+}
+
+.WdateDiv .Wwday{/*当月 周6-7 字体颜色*/
+	cursor:pointer;
+	color:#666666;
+}
+
+.WdateDiv .WwdayOn{/*鼠标指向日期 周六 日*/
+	cursor:pointer;
+	/*color:#000;*/
+	background-color:#fcd9e5;
+	color:#666;
+}
+.WdateDiv .Wtoday{/*正常日期 今天  字体颜色*/
+	cursor:pointer;
+	color:#b20839;
+}
+.WdateDiv .Wselday{/*选中的日期 背景色*/
+	/*background-color:#A9E4E9;*/background-color:#d30a43;
+	color:#FFF;
+}
+.WdateDiv .WspecialDay{
+	/*background-color:#66F4DF;*/
+	background-image:url(teshu2.gif);
+	background-repeat: no-repeat;
+	background-position: left top;
+	font-weight: bold;
+}
+
+.WdateDiv .WotherDay{ /*当前页面不是当月日期 字体颜色*/
+	cursor:pointer;
+	color:#b4b3b3;	
+}
+
+.WdateDiv .WotherDayOn{ /*当前页面不是当月日期 鼠标指向 日期背景色*/
+	cursor:pointer;
+	background-color:#fcd9e5;	
+}
+
+.WdateDiv .WinvalidDay{
+	color:#aaa;
+}
+
+.WdateDiv #dpTime{
+	float:left;
+	margin-top:3px;
+	margin-left:5px;
+	/*margin-right:30px;*/
+}
+
+.WdateDiv #dpTime #dpTimeStr{
+	margin-left:1px;
+}
+
+.WdateDiv #dpTime input{
+	padding:0;
+	margin:0;
+	width:18px;
+	height:20px;
+	text-align:center;
+	border:#ccc 1px solid;
+	vertical-align:middle;
+	overflow:hidden;
+}
+
+.WdateDiv #dpTime .tB{
+	border-right:0px;
+}
+
+.WdateDiv #dpTime .tE{
+	border-left:0;
+	border-right:0;
+}
+
+.WdateDiv #dpTime .tm{
+	width:7px;
+	border-left:0;
+	border-right:0;
+}
+
+.WdateDiv #dpTime #dpTimeUp{/*分钟上按钮*/
+	padding:0;
+	height:10px;
+	width:13px;
+	border:0px;
+	background:url(img.gif) no-repeat -32px -16px;
+	vertical-align:bottom;
+}
+
+.WdateDiv #dpTime #dpTimeDown{/*分钟下按钮*/
+	padding:0;
+	height:10px;
+	width:13px;
+	border:0px;
+    background:url(img.gif) no-repeat -48px -16px;
+	vertical-align:top;
+}
+
+ .WdateDiv #dpQS {/*默认左下角 切换快速选择 时钟 图标*/
+ 	float:left;
+	margin-right:3px;
+	margin-top:3px;
+	background:url(img.gif) no-repeat 0px -16px;
+	width:20px;
+	height:20px;
+	cursor:pointer;
+ }
+.WdateDiv #dpControl {
+	text-align:right;
+	height:30px;
+	line-height:30px;
+	padding-top:3px;
+}
+.WdateDiv .dpButton{ /*按钮*/
+	height:20px;
+	line-height:18px;
+	width:45px;
+	border:#ccc 1px solid;
+	*margin-top:5px;
+	margin-right:5px;
+	
+	
+}

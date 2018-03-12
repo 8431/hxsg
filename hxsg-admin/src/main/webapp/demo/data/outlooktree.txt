@@ -1,0 +1,17 @@
+﻿[
+	{id: "user", text: "数据管理"},
+		
+	{id: "lists", text: "资源数据", pid: "user" },
+			
+	{id: "gjsg_map", text: "咕叽三国地图", pid: "lists"},			
+	{id: "map_guai", text: "地图野怪" , pid: "lists"},
+	{id: "zawu_miaoshu", text: "杂物详情 " , pid: "lists"},
+	{id: "fujiang", text: "副将详情 " , pid: "lists"},
+	{id: "yeguai_qun", text: "野怪群详情 " , pid: "lists"},
+		
+		
+
+					
+]
+
+

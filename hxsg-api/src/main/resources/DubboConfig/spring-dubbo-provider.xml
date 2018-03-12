@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://code.alibabatech.com/schema/dubbo
+        http://code.alibabatech.com/schema/dubbo/dubbo.xsd
+        ">
+	<dubbo:application name="hello-world-app" />
+	
+	<!-- zookeeper注册中心 -->
+	<dubbo:registry protocol="zookeeper" address="127.0.0.1:2181" />
+	<!-- 使用multicast广播注册中心暴露服务地址 -->
+	<!-- <dubbo:registry address="multicast://10.57.41.19:1234" /> -->
+	<dubbo:protocol name="dubbo" port="20880" />
+	<dubbo:service interface=" DaoApi.Demo"
+		ref="demoService" />       <!-- 和本地bean一样实现服务 -->
+	<bean id="demoService" class="provider.DemoImpl" />
+</beans>

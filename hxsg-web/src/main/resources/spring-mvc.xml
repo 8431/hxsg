@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:websocket="http://www.springframework.org/schema/websocket"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                        http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+                        http://www.springframework.org/schema/context
+                        http://www.springframework.org/schema/context/spring-context-4.0.xsd
+                        http://www.springframework.org/schema/mvc
+                        http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd
+                         http://www.springframework.org/schema/websocket
+                         http://www.springframework.org/schema/websocket/spring-websocket.xsd">
+
+<!--&lt;!&ndash; 自动扫描该包，使SpringMVC认为包下用了@controller注解的类是控制器 &ndash;&gt;-->
+<!--&lt;!&ndash; 自动扫描该包，使SpringMVC认为包下用了@controller注解的类是控制器 &ndash;&gt;-->
+<context:component-scan base-package="com.hxsg">
+    <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller" />
+    <context:include-filter type="annotation" expression="org.springframework.stereotype.Service" />
+</context:component-scan>
+<mvc:annotation-driven/>
+<bean id="RoleMoney" class="com.hxsg.CommonUtil.controller.RoleMoney"></bean>
+<bean id="ShengXing" class="com.hxsg.zhaunagbei.controller.ShengXing"></bean>
+<bean id="SxLevel1" class="com.hxsg.zhaunagbei.controller.SxLevel1"></bean>
+<bean id="SpringContextUtil" class="com.hxsg.CommonUtil.controller.SpringContextUtil"></bean>
+<bean id="SxLevel2" class="com.hxsg.zhaunagbei.controller.SxLevel2"></bean>
+<bean id="SxLevel3" class="com.hxsg.zhaunagbei.controller.SxLevel3"></bean>
+<bean id="SxLevel4" class="com.hxsg.zhaunagbei.controller.SxLevel4"></bean>
+<bean id="SendMsg" class="com.hxsg.CommonUtil.UtilDao.serviceimpl.SendMsgImpl"></bean>
+<bean id="loginservice" class="com.hxsg.login.impl.LoginServiceImpl"/>
+<!-- 用户登录配置start-->
+<bean id="login" class="com.hxsg.login.websoket.loginWebScoketController" />
+<websocket:handlers >
+    <websocket:mapping path="/login" handler="login" />
+    <websocket:handshake-interceptors>
+        <bean class="com.hxsg.login.websoket.loginWebScoketController" />
+    </websocket:handshake-interceptors>
+    <!--<websocket:sockjs />-->
+</websocket:handlers>
+<!-- spring-websocket配置end-->
+<!-- 主界面聊天信息配置start-->
+<bean id="chat" class="com.hxsg.index.websoket.indexWebScoketController" />
+<websocket:handlers >
+    <websocket:mapping path="/chat" handler="chat" />
+    <websocket:handshake-interceptors>
+        <bean class="com.hxsg.index.websoket.indexWebScoketController" />
+    </websocket:handshake-interceptors>
+    <!--<websocket:sockjs />-->
+</websocket:handlers>
+
+
+
+
+<bean id="systemnotification" class="com.hxsg.system.dao.impl.SystemNotificationImpl" />
+
+<bean id="mappingJacksonHttpMessageConverter"
+      class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter">
+    <property name="supportedMediaTypes">
+        <list>
+            <value>text/html;charset=UTF-8</value>
+        </list>
+    </property>
+</bean>
+<!-- 启动SpringMVC的注解功能，完成请求和注解POJO的映射 -->
+<bean
+        class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
+    <property name="messageConverters">
+        <list>
+            <ref bean="mappingJacksonHttpMessageConverter" />	<!-- JSON转换器 -->
+        </list>
+    </property>
+</bean>
+<bean
+        class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+    <!-- 这里的配置我的理解是自动给后面action的方法return的字符串加上前缀和后缀，变成一个 可用的url地址 -->
+    <property name="prefix" value="/WEB-INF/" />
+    <property name="suffix" value=".jsp" />
+    <property name="viewClass" value="org.springframework.web.servlet.view.JstlView" />
+</bean>
+<!-- 对静态资源文件的访问 -->
+<mvc:resources location="/image/"  mapping="/image/**"  cache-period="31556926" />
+<mvc:resources location="/jQuery/"  mapping="/jQuery/**"  cache-period="31556926" />
+<mvc:resources location="/js/"  mapping="/js/**"  cache-period="31556926" />
+<mvc:resources location="/sound/"  mapping="/sound/**"  cache-period="31556926" />
+<!--<mvc:default-servlet-handler/>-->
+<!--<mvc:interceptors>-->
+    <!--<mvc:interceptor>-->
+        <!--&lt;!&ndash;需拦截的地址&ndash;&gt;-->
+        <!--<mvc:mapping path="/*/*/*" />-->
+        <!--<mvc:mapping path="/*/*" />-->
+        <!--&lt;!&ndash;需排除拦截的地址&ndash;&gt;-->
+        <!--<mvc:exclude-mapping path="/cocos2dLogin/*"/>-->
+        <!--<mvc:exclude-mapping path="/hxsgAdmin/*"/>-->
+        <!--<bean class="com.hxsg.Interceptor.HxsgUrlInterceptor" />-->
+    <!--</mvc:interceptor>-->
+<!--</mvc:interceptors>-->
+</beans>

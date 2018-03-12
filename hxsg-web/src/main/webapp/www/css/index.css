@@ -1,0 +1,543 @@
+
+.index{
+	border:0px solid #ff0000;
+	width:100%;
+	height:100%;
+	
+	
+	
+}
+.top{
+   position:fixed;
+    top:0px;
+    left:0px;
+    float:left;
+	background:url(../image/top2.png) #4C4539;
+    width:100%;
+    line-height:100%;
+	height:5%;
+	text-align:center;
+	color:#A7D02D;
+	text-shadow:1px 1px 5px #4E524B;
+	font-weight:bold;
+	background-size:100% 100%;
+
+}
+/*界面左边整体样式*/
+.m_left{
+    float:left;
+	margin-top:5%;
+   	width:45%;
+	height:40%;	
+}
+/*界面左边角色头像样式*/
+.m_left_t{
+ 	width:100%;
+	height:50%;
+	background:url(../image/juese.png);
+	background-size:100% 100%;
+}
+/*界面左边人物信息样式*/
+.m_left_b{
+    width:100%;
+	height:50%;
+	background:2F2D1C ;
+	background-size:100% 100%;
+	background-position:-4px 0px;
+	border:1px solid #FF9900;
+	font-size:5px;
+}
+/*界面右边整体样式*/
+.m_right{
+    float:left;
+	border:0px solid #ff0000;
+    width:55%;
+	height:40%;
+	background-size:100% 100%;
+	margin-top:5%;
+	
+	
+}
+/*包含--移动，功能，人物，设施*/
+.md{
+    float:left;
+	border:1px solid #ff0000;
+   width:100%;
+	height:5%;
+
+	
+	
+}
+/*附近玩家*/
+.fujinwanjia{
+    float:left;
+	border:0px solid #ff0000; 
+    width:100%;
+	height:8%;
+	line-height:30px;
+   
+	font-size:20px;
+	background:url(../image/fujiwanjia.png);
+	background-size:100% 100%;
+	
+}
+/*移动，功能，人物，设施每个模块样式*/
+.md_f{
+    float:left;
+	
+    width:25%;
+	height:100%;
+	
+	border:0px solid #ff9e00;
+	
+}
+
+li{
+float:left;
+width:50px;
+border:1px solid #ff0000;
+width:50px;
+background:#E1B205;
+margin-left:40px;
+margin-top:10px;
+text-align:center;
+color:#B520BD;
+font-size:20px;
+list-style:none;
+}
+.lis{
+float:left;
+height:15%;
+border:1px solid #ff0000;
+width:40%;
+
+margin-left:2%;
+
+text-align:center;
+color:#B520BD;
+font-size:20px;
+
+}
+/*角色名字体样式*/
+.juesename{
+margin-top:12px;
+width:110px;
+line-height:100%;
+height:10%;
+border:0px solid #ff0000;
+margin-left:55px;
+text-align:center;
+color:#ffffff;
+font-size:16px;
+font-weight:bold;
+float:left;
+background:#290900;
+}
+/*角色血条样式*/
+.xt{
+
+width:100%;
+line-height:100%;
+height:12%;
+border:0px solid #ff0000;
+
+text-align:center;
+color:#ffffff;
+font-size:16px;
+font-weight:bold;
+float:left;
+border:1px solid #ff0000;
+
+}
+/*左边副将显示*/
+.juesefj{
+
+width:100%;
+
+height:18%;
+border:1px solid #ff0000;
+
+text-align:center;
+color:#ffffff;
+font-size:16px;
+font-weight:bold;
+float:left;
+background:#290900 url(../image/juesefj.png) no-repeat;
+background-size:100% 100%;
+}
+a{
+color:white;
+text-shadow:2px 2px 2px #ff0000;
+text-decoration: none;
+font-size:15px;
+font-weight:bold;
+
+
+}
+/*聊天界面整体样式*/
+.buttom{
+
+border:0px solid #ff9e00;
+
+float:left;
+width:100%;
+height:45%;
+
+
+
+}
+.gonghui1{
+width:50px;
+height:25px;
+background:url(../image/gonghui.png);
+background-size:100% 100%;
+position:fixed;
+left:202px;
+top:345px;
+}
+.shijie1{
+width:50px;
+height:25px;
+background:url(../image/shijie.png);
+background-size:100% 100%;
+position:fixed;
+left:250px;
+top:345px;
+}
+.xitong1{
+width:50px;
+height:25px;
+background:url(../image/xitong.png);
+background-size:100% 100%;
+position:fixed;
+left:300px;
+top:345px;
+}
+/*聊天界面样式*/
+.chat{
+
+
+margin-top:1%;
+
+width:100%;
+height:100%;
+background:url(../image/sqzh0.png);
+background-size:100% 100%;
+overflow-Y: auto;
+overflow-X:hidden;	
+
+
+
+}
+.lisgn{
+float:left;
+height:12%;
+border:2px solid #ff0000;
+width:30%;
+
+margin-left:1%;
+margin-top:3%;
+text-align:center;
+color:#B520BD;
+font-size:20px;
+
+}
+.fy2{
+background: url(../image/fy.png);
+    width:85%;
+    height:60%;
+    background-size: 100% 100%;
+    position: fixed;
+    top:30%;
+    left:7%;
+    display: none;
+
+}
+.send{
+    background: url(../image/send.png);
+    width:75px;
+    height:25px;
+    background-size: 100% 100%;
+    position: fixed;
+    top:80%;
+    left:15%;
+
+
+}
+.quxiao{
+    background: url(../image/quxiao.png);
+    width:75px;
+    height:25px;
+    background-size: 100% 100%;
+   position: fixed;
+    top:80%;
+    left:65%;
+
+
+}
+.face{
+	overflow-Y: auto;
+	overflow-X:hidden;	
+	margin-left:10%;
+border:0px solid #ff0000;
+margin-top:3%;
+width:80%;
+height:35%;	
+display:none;
+}
+.f1{
+	background:url(../face/vip1/0.gif);
+	background-size: 100% 100%;
+	width:20%;
+	height:40px;
+	float:left;	
+	
+	 
+}
+.f2{
+	background:url(../face/vip1/1.gif);
+	 background-size: 100% 100%;
+width:20%;
+	height:40px;	
+	float:left;	
+	
+}
+.f3{
+	 background:url(../face/vip1/2.gif);
+	 background-size: 100% 100%;
+  width:20%;
+	height:40px;	 
+	float:left;	
+	
+}
+.f4{
+	background:url(../face/vip1/3.gif);
+	background-size: 100% 100%;
+	width:20%;
+	height:40px;
+float:left;	
+	
+	 
+}
+.f5{
+	background:url(../face/vip1/4.gif);
+	 background-size: 100% 100%;
+width:20%;
+	height:40px;	
+float:left;		
+}
+.f6{
+	 background:url(../face/vip1/5.gif);
+	 background-size: 100% 100%;
+   width:20%;
+	height:40px;	 
+	float:left;	
+}
+.f7{
+	background:url(../face/vip1/6.gif);
+	background-size: 100% 100%;
+	width:20%;
+	height:40px;
+float:left;	
+	 
+}
+.f8{
+	background:url(../face/vip1/7.gif);
+	 background-size: 100% 100%;
+	width:20%;
+	height:40px;	
+float:left;		
+}
+.f9{
+	 background:url(../face/vip1/8.gif);
+	 background-size: 100% 100%;
+   width:20%;
+	height:40px;	 
+	float:left;	
+}
+.f10{
+	background:url(../face/vip1/9.gif);
+	background-size: 100% 100%;
+	width:20%;
+	height:40px;
+float:left;	
+	 
+}
+.f11{
+	background:url(../face/vip1/10.gif);
+	 background-size: 100% 100%;
+	width:20%;
+	height:40px;	
+float:left;		
+}
+.f12{
+	 background:url(../face/vip1/11.gif);
+	 background-size: 100% 100%;
+   width:20%;
+	height:40px;	 
+	float:left;	
+}
+.f13{
+	background:url(../face/vip1/12.gif);
+	background-size: 100% 100%;
+	width:20%;
+	height:40px;
+float:left;	
+	 
+}
+.f14{
+	background:url(../face/vip1/13.gif);
+	 background-size: 100% 100%;
+	width:20%;
+	height:40px;	
+float:left;		
+}
+.f15{
+	 background:url(../face/vip1/14.gif);
+	 background-size: 100% 100%;
+   width:20%;
+	height:40px;	 
+	float:left;	
+}
+.f16{
+	background:url(../face/vip1/15.gif);
+	background-size: 100% 100%;
+	width:20%;
+	height:40px;
+    float:left;	
+	 
+}
+.f17{
+	background:url(../face/vip1/16.gif);
+	 background-size: 100% 100%;
+	width:20%;
+	height:40px;	
+float:left;		
+}
+.f18{
+	 background:url(../face/vip1/17.gif);
+	 background-size: 100% 100%;
+   width:20%;
+	height:40px;	 
+	float:left;	
+}
+.f19{
+	 background:url(../face/vip1/18.gif);
+	 background-size: 100% 100%;
+   width:20%;
+	height:40px;	 
+	float:left;	
+}
+.f20{
+	 background:url(../face/vip1/19.gif);
+	 background-size: 100% 100%;
+   width:20%;
+	height:40px;	 
+	float:left;	
+}
+.f21{
+	 background:url(../face/vip1/20.gif);
+	 background-size: 100% 100%;
+   width:20%;
+	height:40px;	 
+	float:left;	
+}
+.quxiaos{
+    text-align: center;
+    position: absolute;
+    top:60px;
+    left:240px;
+    border:2px solid #ff0000;
+    background:#ff9e00;
+    color:#ff0000;
+    width:50px;
+    height: 20px;
+    line-height:20px;
+    display: block;
+}
+.queding5{
+    text-align: center;
+    position: absolute;
+    top:60px;
+    left:50px;
+    width:50px;
+    height: 20px;
+    line-height: 20px;
+    border:2px solid #ff0000;
+    background:#ff9e00;
+    color:#ff0000;
+    display: block;
+}
+.inputks{
+    background: #8c7b25;
+    width:340px;
+    height: 100px;
+
+
+    position: fixed;
+    top:150px;
+    left:10px;
+    display:none;
+    text-align: center;
+    size:4;
+    font-weight: bold;
+    color: #fff9f8;
+    display: none;
+
+}
+.tishi{
+    width:340px;
+    height: 40px;
+
+    position: absolute;
+    top:180px;
+    left:55px;
+   font-weight: bold;
+
+
+}
+.sy{
+    font-size: 25px;
+    height:30px;
+    line-height: 30px;
+    border:2px solid #ff0000;
+    background:#ff9e00;
+    color:#ff0000;
+}
+.kj{
+    background:#000031;
+    width:299px;
+    height:505px;
+    position:fixed;
+    left:32px;
+    top:35px;
+    color:#ffffff;
+
+}
+
+.yaoping{
+    color: #eeff84;
+
+
+    width:299px;
+
+    text-indent:20px;
+
+}
+.roleid{
+   
+    color:#FF9998;
+    text-align:center;
+
+    width:100%;
+    height:5%;
+    line-height:100%;
+
+}
+.gif{
+	width:20%;
+	height:40px;
+	
+	
+	
+}

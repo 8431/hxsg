@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hxsg.Dao.RoleYaoMapper" >
+  <resultMap id="BaseResultMap" type="com.hxsg.po.RoleYao" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="roleid" property="roleid" jdbcType="INTEGER" />
+    <result column="yaoid" property="yaoid" jdbcType="INTEGER" />
+    <result column="yaonum" property="yaonum" jdbcType="INTEGER" />
+    <result column="yaoname" property="yaoname" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMap" type="java.util.Map" >
+    <id column="ID" property="id" jdbcType="INTEGER" />
+    <result column="ROLEID" property="roleid" jdbcType="INTEGER" />
+    <result column="YAOID" property="yaoid" jdbcType="INTEGER" />
+    <result column="YAONUM" property="yaonum" jdbcType="INTEGER" />
+    <result column="YAONAME" property="yaoname" jdbcType="VARCHAR" />
+    <result column="QIXUEZHI" property="qixuezhi" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, roleid, yaoid, yaonum, yaoname
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from roleyao
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+    <select id="selectRoleId" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+        select
+        <include refid="Base_Column_List" />
+        from roleyao
+        where roleid = #{roleid,jdbcType=INTEGER}
+    </select>
+    <select id="selectByYaoIdRoleId" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+        select
+        <include refid="Base_Column_List" />
+        from roleyao
+        where roleid = #{0} and yaoid = #{1}
+    </select>
+  <select id="selectByYaoNameRoleId" resultMap="ResultMap" parameterType="java.lang.String" >
+    select m.*,y.qixuezhi from(select yaoname,sum(yaonum) as yaonum,yaoid from roleyao where roleid=#{0} and yaoname=#{1} GROUP BY yaoname)m,yaoping y where m.yaoid=y.yaoid
+    and m.yaonum>=1
+
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from roleyao
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.hxsg.po.RoleYao" >
+    insert into roleyao (id, roleid, yaoid, 
+      yaonum, yaoname)
+    values (#{id,jdbcType=INTEGER}, #{roleid,jdbcType=INTEGER}, #{yaoid,jdbcType=INTEGER}, 
+      #{yaonum,jdbcType=INTEGER}, #{yaoname,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hxsg.po.RoleYao" >
+    insert into roleyao
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="roleid != null" >
+        roleid,
+      </if>
+      <if test="yaoid != null" >
+        yaoid,
+      </if>
+      <if test="yaonum != null" >
+        yaonum,
+      </if>
+      <if test="yaoname != null" >
+        yaoname,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="roleid != null" >
+        #{roleid,jdbcType=INTEGER},
+      </if>
+      <if test="yaoid != null" >
+        #{yaoid,jdbcType=INTEGER},
+      </if>
+      <if test="yaonum != null" >
+        #{yaonum,jdbcType=INTEGER},
+      </if>
+      <if test="yaoname != null" >
+        #{yaoname,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hxsg.po.RoleYao" >
+    update roleyao
+    <set >
+      <if test="roleid != null" >
+        roleid = #{roleid,jdbcType=INTEGER},
+      </if>
+      <if test="yaoid != null" >
+        yaoid = #{yaoid,jdbcType=INTEGER},
+      </if>
+      <if test="yaonum != null" >
+        yaonum = #{yaonum,jdbcType=INTEGER},
+      </if>
+      <if test="yaoname != null" >
+        yaoname = #{yaoname,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hxsg.po.RoleYao" >
+    update roleyao
+    set roleid = #{roleid,jdbcType=INTEGER},
+      yaoid = #{yaoid,jdbcType=INTEGER},
+      yaonum = #{yaonum,jdbcType=INTEGER},
+      yaoname = #{yaoname,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,30 @@
+﻿
+.uc-toolbar
+{
+    position:relative;
+}
+.uc-toolbar-inner
+{
+    position:relative;
+    overflow:hidden;
+}
+.uc-toolbar-content
+{
+    position:relative;
+    width:100000px;
+}
+
+.uc-toolbar-arrow
+{
+    position:absolute;right:0;top:0;height:100%;overflow:hidden;cursor:pointer;
+    width:12px;
+    display:none;
+    background:url(toolbar_arrow.gif) no-repeat 50% 50%;
+}
+
+.uc-toolbar-popup
+{
+    position:absolute;padding:3px;
+    top:-10000px;left:0px;
+    min-width:50px;
+}

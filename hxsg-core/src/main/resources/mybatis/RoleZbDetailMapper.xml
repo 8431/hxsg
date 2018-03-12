@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hxsg.Dao.RoleZbDetailMapper" >
+  <resultMap id="BaseResultMap" type="com.hxsg.po.RoleZbDetail" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="roleid" property="roleid" jdbcType="INTEGER" />
+    <result column="toukui" property="toukui" jdbcType="INTEGER" />
+    <result column="wuqi" property="wuqi" jdbcType="INTEGER" />
+    <result column="huwan" property="huwan" jdbcType="INTEGER" />
+    <result column="xiezi" property="xiezi" jdbcType="INTEGER" />
+    <result column="xl" property="xl" jdbcType="INTEGER" />
+    <result column="yifu" property="yifu" jdbcType="INTEGER" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, roleid, toukui, wuqi, huwan, xiezi, xl, yifu, status
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from rolezb
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+    <select id="selectAll" resultMap="BaseResultMap" parameterType="com.hxsg.po.RoleZbDetail" >
+        select
+        <include refid="Base_Column_List" />
+        from rolezb
+<where>
+    <if test="roleid != null" >
+        roleid = #{roleid,jdbcType=INTEGER}
+    </if>
+    <if test="toukui != null" >
+      and  toukui = #{toukui,jdbcType=INTEGER}
+    </if>
+    <if test="wuqi != null" >
+        and  wuqi = #{wuqi,jdbcType=INTEGER}
+    </if>
+    <if test="huwan != null" >
+        and  huwan = #{huwan,jdbcType=INTEGER}
+    </if>
+    <if test="xiezi != null" >
+        and xiezi = #{xiezi,jdbcType=INTEGER}
+    </if>
+    <if test="xl != null" >
+        and xl = #{xl,jdbcType=INTEGER}
+    </if>
+    <if test="yifu != null" >
+        and yifu = #{yifu,jdbcType=INTEGER}
+    </if>
+    <if test="status != null" >
+        and  status = #{status,jdbcType=INTEGER}
+    </if>
+
+
+</where>
+    </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from rolezb
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.hxsg.po.RoleZbDetail" >
+    insert into rolezb (id, roleid, toukui, 
+      wuqi, huwan, xiezi, 
+      xl, yifu, status)
+    values (#{id,jdbcType=INTEGER}, #{roleid,jdbcType=INTEGER}, #{toukui,jdbcType=INTEGER}, 
+      #{wuqi,jdbcType=INTEGER}, #{huwan,jdbcType=INTEGER}, #{xiezi,jdbcType=INTEGER}, 
+      #{xl,jdbcType=INTEGER}, #{yifu,jdbcType=INTEGER}, #{status,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hxsg.po.RoleZbDetail" >
+    insert into rolezb
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="roleid != null" >
+        roleid,
+      </if>
+      <if test="toukui != null" >
+        toukui,
+      </if>
+      <if test="wuqi != null" >
+        wuqi,
+      </if>
+      <if test="huwan != null" >
+        huwan,
+      </if>
+      <if test="xiezi != null" >
+        xiezi,
+      </if>
+      <if test="xl != null" >
+        xl,
+      </if>
+      <if test="yifu != null" >
+        yifu,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="roleid != null" >
+        #{roleid,jdbcType=INTEGER},
+      </if>
+      <if test="toukui != null" >
+        #{toukui,jdbcType=INTEGER},
+      </if>
+      <if test="wuqi != null" >
+        #{wuqi,jdbcType=INTEGER},
+      </if>
+      <if test="huwan != null" >
+        #{huwan,jdbcType=INTEGER},
+      </if>
+      <if test="xiezi != null" >
+        #{xiezi,jdbcType=INTEGER},
+      </if>
+      <if test="xl != null" >
+        #{xl,jdbcType=INTEGER},
+      </if>
+      <if test="yifu != null" >
+        #{yifu,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hxsg.po.RoleZbDetail" >
+    update rolezb
+    <set >
+      <if test="roleid != null" >
+        roleid = #{roleid,jdbcType=INTEGER},
+      </if>
+      <if test="toukui != null" >
+        toukui = #{toukui,jdbcType=INTEGER},
+      </if>
+      <if test="wuqi != null" >
+        wuqi = #{wuqi,jdbcType=INTEGER},
+      </if>
+      <if test="huwan != null" >
+        huwan = #{huwan,jdbcType=INTEGER},
+      </if>
+      <if test="xiezi != null" >
+        xiezi = #{xiezi,jdbcType=INTEGER},
+      </if>
+      <if test="xl != null" >
+        xl = #{xl,jdbcType=INTEGER},
+      </if>
+      <if test="yifu != null" >
+        yifu = #{yifu,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hxsg.po.RoleZbDetail" >
+    update rolezb
+    set roleid = #{roleid,jdbcType=INTEGER},
+      toukui = #{toukui,jdbcType=INTEGER},
+      wuqi = #{wuqi,jdbcType=INTEGER},
+      huwan = #{huwan,jdbcType=INTEGER},
+      xiezi = #{xiezi,jdbcType=INTEGER},
+      xl = #{xl,jdbcType=INTEGER},
+      yifu = #{yifu,jdbcType=INTEGER},
+      status = #{status,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
